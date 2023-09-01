@@ -7,14 +7,14 @@ const _ = Gettext.gettext;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
+let SETTINGS;
 
 //------------------------------------------------------------------------------
 
 function init() {
 	ExtensionUtils.initTranslations();
+    SETTINGS = ExtensionUtils.getSettings();
 }
-
-let SETTINGS = ExtensionUtils.getSettings();
 
 //------------------------------------------------------------------------------
 
