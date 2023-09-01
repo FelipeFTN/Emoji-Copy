@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EXT_ID=emoji-selector@maestroschan.fr
+EXT_ID=emoji-copy@felipeftn
 
 # ./update-and-compile-translations.sh
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 cd "$(dirname "$0")" || exit 2
 
-glib-compile-schemas ./emoji-selector@maestroschan.fr/schemas
+glib-compile-schemas ./emoji-copy@felipeftn/schemas
 
 if (( $EUID == 0 )); then
 	INSTALL_DIR="/usr/share/gnome-shell/extensions"
@@ -13,8 +13,8 @@ if [ ! -d $INSTALL_DIR ]; then
 	mkdir $INSTALL_DIR
 fi
 
-echo "Installing extension files in $INSTALL_DIR/emoji-selector@maestroschan.fr"
-cp -r emoji-selector@maestroschan.fr $INSTALL_DIR
+echo "Installing extension files in $INSTALL_DIR/emoji-copy@felipeftn"
+cp -r emoji-copy@felipeftn $INSTALL_DIR
 
 echo "Done."
 exit 0
