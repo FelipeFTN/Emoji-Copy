@@ -1,10 +1,9 @@
-# Emoji Selector (for GNOME Shell)
+# Emoji Copy 😎
+This GNOME shell extension provides a searchable popup menu displaying most emojis; Clicking on an emoji copies it to your clipboard.<br>
+This repo is a Fork from [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome) and was created for keeping the extension alive.
+Please feel free to use and contribute to this project. 😃
 
-This GNOME shell extension provides a searchable popup menu displaying most emojis ; Clicking on an emoji copies it to your clipboard.
-
-## Features
-
->**currently Unicode 11** ([soon 12](https://github.com/maoschanz/emoji-selector-for-gnome/issues/28))
+## Features 🚀
 
 - keyboard shortcut to open the extension's menu (<kbd>Super</kbd>+<kbd>E</kbd> by defaut)
 - dynamic search (press <kbd>Enter</kbd> to copy the first result to the clipboard)
@@ -15,15 +14,38 @@ This GNOME shell extension provides a searchable popup menu displaying most emoj
 
 The keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
 
-![Screenshot](./screenshot_v19.png)
+![Screenshot](./emoji-copy.png)
 
-## About fonts
+## Installation 🍀
 
-It will be less ugly if you have the « Noto Emoji » font, the
-« [Twitter Color Emoji](https://github.com/eosrei/twemoji-color-font/releases) »
-font, or the « JoyPixels Color » font installed on your system.
+#### Recommended:
 
-## About memory performance
+The easiest way to install it is directly from Gnome Extensions: [emoji-copy](https://extensions.gnome.org/extension/1162/emoji-copy/).<br>
+_emoji-copy extension review in progress..._
+
+#### Native packages
+
+Work in progress...
+
+<!-- - [`gnome-shell-extension-emoji-selector` (**Fedora**)](https://src.fedoraproject.org/rpms/gnome-shell-extension-emoji-selector) -->
+<!-- - `gnome-shell-emoji-selector` (**nixOS**) -->
+<!-- - [`gnome-shell-extension-emoji-selector-git` (**AUR**)](https://aur.archlinux.org/packages/gnome-shell-extension-emoji-selector-git/) -->
+<!-- - ...<!-1- TODO à compléter -1-> -->
+
+#### Manual installation
+
+**Not recommended at all:** installing the extension this way prevent any
+further update.
+
+Download and extract the ZIP, then open a terminal in the project's directory,
+and run `./install.sh`. It should copy the "emoji-copy@felipeftn"
+folder to `~/.local/share/gnome-shell/extensions/`, which can be done manually
+if you prefer.
+
+You may need to restart the GNOME Shell environment (logout and login again, or
+<kbd>Alt</kbd>+<kbd>F2</kbd> -> `r` ->, <kbd>Enter</kbd>).
+
+## Memory performance 👾
 
 Loading hundreds of small pictures and thousands of keywords into the memory is
 a lot. Despite a few attempts to optimize their loading, I'm not an expert at
@@ -31,10 +53,17 @@ all concerning memory management, and the extension may be responsible for
 between 10MB and 60MB of memory usage, which is a lot. Don't blame the actual GS
 devs for it.
 
-## Contributors & translations
+## Fonts 🔠
+
+It will be less ugly if you have the « Noto Emoji » font, the
+« [Twitter Color Emoji](https://github.com/eosrei/twemoji-color-font/releases) »
+font, or the « JoyPixels Color » font installed on your system.
+
+## Contributors & translations 🫂
 
 Various contributions to the code itself:
 
+- [maoschanz](https://github.com/maoschanz) _emoji-selector-for-gnome creator_
 - [Ryan Gonzalez](https://github.com/kirbyfan64)
 - [amivaleo](https://github.com/amivaleo)
 - [xurizaemon](https://github.com/xurizaemon)
@@ -52,33 +81,4 @@ The extension is currently available in the following languages:
 <!-- TODO if no update from them, manually add their names to the .po files
           before the release -->
 
-If you need another language, please contribute!
-
-----
-
-## Installation
-
-#### Default way to do
-
-The better option is to install it from [here](https://extensions.gnome.org/extension/1162/emoji-selector/).
-
-#### Native packages
-
-- [`gnome-shell-extension-emoji-selector` (**Fedora**)](https://src.fedoraproject.org/rpms/gnome-shell-extension-emoji-selector)
-- `gnome-shell-emoji-selector` (**nixOS**)
-- [`gnome-shell-extension-emoji-selector-git` (**AUR**)](https://aur.archlinux.org/packages/gnome-shell-extension-emoji-selector-git/)
-- ...<!-- TODO à compléter -->
-
-#### Manual installation
-
-**Not recommended at all:** installing the extension this way prevent any
-further update.
-
-Download and extract the ZIP, then open a terminal in the project's directory,
-and run `./install.sh`. It should copy the "emoji-selector@maestroschan.fr"
-folder to `~/.local/share/gnome-shell/extensions/`, which can be done manually
-if you prefer.
-
-You may need to restart the GNOME Shell environment (logout and login again, or
-<kbd>Alt</kbd>+<kbd>F2</kbd> -> `r` ->, <kbd>Enter</kbd>).
-
+If you need another language, please contribute! ♥
