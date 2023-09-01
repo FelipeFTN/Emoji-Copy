@@ -168,10 +168,7 @@ function buildPrefsWidget() {
 	let obj = widget.prefs_stack;
 
 	obj.connect('realize', () => {
-		let window = (this._shellVersion < 40) ? obj.get_toplevel() : obj.get_root();
-		if (this._shellVersion < 40) {
-			headerBar.set_show_close_button(true);
-		}
+        let window = obj.get_root(); // Only avaliable on GNOME 40+
 		if (this._shellVersion < 43) {
 			this._registerSignals(window);
 		}
