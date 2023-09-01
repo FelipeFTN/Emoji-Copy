@@ -41,16 +41,15 @@ const EmojiSearchItem = Me.imports.emojiSearchItem.EmojiSearchItem;
 
 //------------------------------------------------------------------------------
 
-var SETTINGS;
+// These global variables are used to store some static settings
+var SETTINGS = null;
+var GLOBAL_BUTTON = null;
 let SIGNAUX = [];
+let POSITION;
+var NB_COLS;
+
 let timeoutSourceId = null;
 
-// Global variable : GLOBAL_BUTTON to click in the topbar
-var GLOBAL_BUTTON;
-
-// These global variables are used to store some static settings
-var NB_COLS;
-let POSITION;
 
 //------------------------------------------------------------------------------
 
@@ -341,6 +340,10 @@ function disable() {
 		GLib.Source.remove(timeoutSourceId);
 		timeoutSourceId = null;
 	}
+
+    SETTINGS = null;
+    GLOBAL_BUTTON = null;
+    SIGNAUX = [];
 }
 
 //------------------------------------------------------------------------------
