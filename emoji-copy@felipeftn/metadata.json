@@ -1,16 +1,10 @@
 {
-	"description": "This extension provides a parametrable popup menu displaying most emojis, clicking on an emoji copies it to the clipboard. An appropriate font like 'Twitter Color Emoji' or 'JoyPixels Color' should be installed on your system for a better visual result.",
-	"name": "Emoji Copy",
-	"shell-version": [
-		"40",
-		"41",
-		"42",
-		"43",
-		"44"
-	],
-	"url": "https://github.com/felipeftn/emoji-copy",
 	"uuid": "emoji-copy@felipeftn",
-	"gettext-domain": "emoji-copy",
+	"name": "Emoji Copy",
+	"description": "Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.\n\nIt is a fork of Emoji Selector.",
+	"shell-version": [ "40", "41", "42", "43", "44" ],
+	"url": "https://github.com/felipeftn/emoji-copy",
 	"settings-schema": "org.gnome.shell.extensions.emoji-copy",
-	"version": 0
+	"gettext-domain": "emoji-copy",
+	"version": 1
 }
