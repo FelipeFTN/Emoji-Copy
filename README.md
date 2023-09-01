@@ -20,12 +20,12 @@ The keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrow
 
 #### Recommended:
 
-The easiest way to install it is directly from Gnome Extensions: [emoji-copy](https://extensions.gnome.org/extension/1162/emoji-copy/).<br>
-_emoji-copy extension review in progress..._
+The easiest way to install it is directly from Gnome Extensions: [emoji-copy](https://extensions.gnome.org/extension/6242/emoji-copy/).<br>
 
-#### Native packages
+#### Native packages:
 
 Work in progress...
+> We need to publish this project to most known package managers, like AUR, Fedora and so on.
 
 <!-- - [`gnome-shell-extension-emoji-selector` (**Fedora**)](https://src.fedoraproject.org/rpms/gnome-shell-extension-emoji-selector) -->
 <!-- - `gnome-shell-emoji-selector` (**nixOS**) -->
