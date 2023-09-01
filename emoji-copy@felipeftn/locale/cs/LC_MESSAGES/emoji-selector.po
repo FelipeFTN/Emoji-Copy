@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-14 18:44+0100\n"
+"PO-Revision-Date: 2023-04-23 10:03+0200\n"
+"Last-Translator: Kryštof Černý <cleerline1mc@gmail.com>\n"
+"Language-Team: \n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: emoji-copy@felipeftn/extension.js
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Emoji Selector"
+msgstr "Menu emotikonů"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Smileys & Body"
+msgstr "Tváře a tělo"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Peoples & Clothing"
+msgstr "Lidé a oblečení"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Animals & Nature"
+msgstr "Zvířata a příroda"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Food & Drink"
+msgstr "Jídlo a pití"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Travel & Places"
+msgstr "Cestování a místa"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Activities & Sports"
+msgstr "Aktivity a sporty"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Objects"
+msgstr "Předměty"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Symbols"
+msgstr "Symboly"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Flags"
+msgstr "Vlajky"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Modifications will be effective after reloading the extension."
+msgstr "Úpravy budou použity po restartu rozšíření."
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "From top to bottom"
+msgstr "Shora dolů"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "From bottom to top"
+msgstr "Zespoda nahoru"
+
+#: emoji-copy@felipeftn/prefs.js
+#, javascript-format
+msgid "The default value is %s"
+msgstr "Výchozí hodnota je %s"
+
+#: emoji-copy@felipeftn/prefs.js
+#, javascript-format
+msgid "version %s"
+msgstr "verze %s"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"Displaying the interface from the bottom is better if you use a bottom panel "
+"instead of the default top bar. Modifications will be effective after "
+"reloading the extension."
+msgstr ""
+"Rozhraní zespoda nahoru je lepší, když používáte spodní panel místo "
+"výchozího horního panelu. Úpravy budou použity po restartu rozšíření."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "General layout"
+msgstr "Základní rozvržení"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Number of emojis per line"
+msgstr "Počet emotikonů na řádek"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Size of emojis (px)"
+msgstr "Velikost emotikonů (px)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Layout"
+msgstr "Rozvržení"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Use a keyboard shortcut to toggle the menu"
+msgstr "Použít klávesovou zkratku pro přepnutí menu"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Help"
+msgstr "Nápověda"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Apply"
+msgstr "Použít"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Always show the icon in the panel"
+msgstr "Vždy zobrazit ikonu na panelu"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"If you access the menu with the keyboard shortcut, you don't need to always "
+"display the icon."
+msgstr ""
+"Pokud vyvoláváte menu pomocí klávesové zkratky, nepotřebujete mít vždy "
+"zobrazenou ikonu."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Keyboard bindings"
+msgstr "Přiřazení kláves"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"This extension provides a parametrable popup menu displaying most emojis, "
+"clicking on an emoji copies it to the clipboard."
+msgstr ""
+"Toto rozšíření poskytuje nastavitelné menu zobrazující většinu emotikonů, "
+"kliknutím na emotikon jej zkopírujete do schránky."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Report bugs or ideas"
+msgstr "Nahlásit chyby nebo nápady"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Author"
+msgstr "Autor"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Translator(s)"
+msgstr "Překladatelé"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "translator-credits"
+msgstr "Kryštof Černý"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Contributors"
+msgstr "Přispěvatelé"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "About"
+msgstr "O rozšíření"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "List of valid key names"
+msgstr "Seznam platných jmen klíčů"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Modifier keys must be between chevrons"
+msgstr "Modifikační klíče musí být ve špičatých závorkách"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Don't use a keyboard shortcut that already exists."
+msgstr "Nepoužívejte klávesovou zkratku, která je již použita."
+
+#: emoji-copy@felipeftn/emojiCategory.js
+#, javascript-format
+msgid "Incorrect number of keywords for category '%s':"
+msgstr "Nesprávný počet klíčových slov pro kategorii \"%s\":"
+
+#: emoji-copy@felipeftn/emojiCategory.js
+msgid "Please report this bug"
+msgstr "Prosíme, nahlašte tuto chybu"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Bez barvy pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Světlá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Středně světlá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Jemně tmavá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Středně tmavá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Tmavá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Žena"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Muž"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Pište sem pro vyhledávání…"

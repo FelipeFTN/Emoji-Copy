@@ -1,0 +1,227 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-14 18:44+0100\n"
+"PO-Revision-Date: 2023-02-08 20:39+0100\n"
+"Last-Translator: Quentin PAGÈS\n"
+"Language-Team: \n"
+"Language: oc\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: emoji-copy@felipeftn/extension.js
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Emoji Selector"
+msgstr "Aisina de seleccion d'emoji"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Smileys & Body"
+msgstr "Risetas e còs"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Peoples & Clothing"
+msgstr "Personas e vestits"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Animals & Nature"
+msgstr "Animals e natura"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Food & Drink"
+msgstr "Beure e manjar"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Travel & Places"
+msgstr "Viatges e luòcs"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Activities & Sports"
+msgstr "Activitats e espòrts"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Objects"
+msgstr "Objèctes"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Symbols"
+msgstr "Simbòls"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Flags"
+msgstr "Bandièras"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Modifications will be effective after reloading the extension."
+msgstr "Las modificacions seràn efectivas aprèp lo recargament de l'extension."
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "From top to bottom"
+msgstr "De naut en bas"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "From bottom to top"
+msgstr "De bas en naut"
+
+#: emoji-copy@felipeftn/prefs.js
+#, javascript-format
+msgid "The default value is %s"
+msgstr "La valor per defaut es %s"
+
+#: emoji-copy@felipeftn/prefs.js
+#, javascript-format
+msgid "version %s"
+msgstr "version %s"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"Displaying the interface from the bottom is better if you use a bottom panel "
+"instead of the default top bar. Modifications will be effective after "
+"reloading the extension."
+msgstr ""
+"Afichar l'interfàcia enbàs es melhor s'utilizatz un panèl enbàs a la placa "
+"del barra superiora per defaut. Las modificacions seràn presas en carga "
+"aprèp lo recargament de l'extension."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "General layout"
+msgstr "Disposicion generala"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Number of emojis per line"
+msgstr "Nombre d'emojis per linha"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Size of emojis (px)"
+msgstr "Talha dels emojis (px)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Layout"
+msgstr "Agençament"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Use a keyboard shortcut to toggle the menu"
+msgstr "Utilizar un acorchi de clavièr per dobrir lo menú."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Help"
+msgstr "Ajuda"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Apply"
+msgstr "Aplicar"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Always show the icon in the panel"
+msgstr "Totjorn afichar l'icòna al panèl"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"If you access the menu with the keyboard shortcut, you don't need to always "
+"display the icon."
+msgstr ""
+"S'accedissètz al menú via l'acorchi de clavièr, vos fa pas mestièr de "
+"totjorn afichar l'icòna."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Keyboard bindings"
+msgstr "Combinasons de tòcas"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"This extension provides a parametrable popup menu displaying most emojis, "
+"clicking on an emoji copies it to the clipboard."
+msgstr ""
+"Aquesta extension provesís una fenèstra sorgissenta qu'aficha la màger part "
+"dels emojis, los clicar los còpia al quichapapièrs."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Report bugs or ideas"
+msgstr "Senhalar las anomalias o idèas"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Author"
+msgstr "Autor"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Translator(s)"
+msgstr "Traductor(s)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "translator-credits"
+msgstr "Quentin PAGÈS"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Contributors"
+msgstr "Contributors"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "About"
+msgstr "A prepaus"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "List of valid key names"
+msgstr "Lista dels noms claus valids"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Modifier keys must be between chevrons"
+msgstr "Las claus de modificacions devon èsser entre croquets"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Don't use a keyboard shortcut that already exists."
+msgstr "Utilizetz pas un acorchi de clavièr qu'existís ja."
+
+#: emoji-copy@felipeftn/emojiCategory.js
+#, javascript-format
+msgid "Incorrect number of keywords for category '%s':"
+msgstr "Nombre incorrect de mots claus per la categoria « %s » :"
+
+#: emoji-copy@felipeftn/emojiCategory.js
+msgid "Please report this bug"
+msgstr "Mercés de senhalar aqueste bug"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Cap de color de pèl"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Color de pèl clara"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Color de pèl mejana clara"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Color de pèl mejana"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Color de pèl mejana escura"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Color de pèl escura"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Femnas"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Òmes"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Començatz la sasida per recercar…"
+
+#~ msgid "Settings"
+#~ msgstr "Paramètres"
