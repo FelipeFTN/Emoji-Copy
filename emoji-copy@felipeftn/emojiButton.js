@@ -80,6 +80,7 @@ var EmojiButton = class EmojiButton {
     }
 
     destroy() {
+        Mainloop.Source.remove(this._pasteHackCallbackId);
         this.super_btn.destroy();
     }
 
@@ -243,7 +244,6 @@ var EmojiButton = class EmojiButton {
                     Clutter.KeyState.RELEASED,
                 );
 
-                Mainloop.Source.remove(this._pasteHackCallbackId);
                 this._pasteHackCallbackId = undefined;
                 return false;
             },
