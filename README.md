@@ -14,7 +14,9 @@ Please feel free to use and contribute to this project. 😃
 
 The keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
 
+<div align="center">
 <img src="https://user-images.githubusercontent.com/80127749/265275927-8aed39fc-8844-4763-827d-dfe84b7e98b1.png" width="300"><img src="https://github.com/FelipeFTN/emoji-copy/assets/80127749/4d3b438a-40e4-4b5e-aa0c-633992ff4b83.png" width="300">
+</div>
 
 ## Installation 🍀
 
@@ -67,6 +69,8 @@ Various contributions to the code itself:
 - [Ryan Gonzalez](https://github.com/kirbyfan64)
 - [amivaleo](https://github.com/amivaleo)
 - [xurizaemon](https://github.com/xurizaemon)
+- [khaled-0](https://github.com/khaled-0)
+- [VortexAcherontic](https://github.com/VortexAcherontic)
 
 The extension is currently available in the following languages:
 
