@@ -21,8 +21,8 @@ msgstr ""
 
 #: emoji-copy@felipeftn/extension.js
 #: emoji-copy@felipeftn/prefs.ui
-msgid "Emoji Selector"
-msgstr "Selektor Emotikon"
+msgid "Emoji Copy"
+msgstr "Kopie Emotikon"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Smileys & Body"

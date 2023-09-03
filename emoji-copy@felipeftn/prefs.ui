@@ -380,7 +380,7 @@
         <child>
           <object class="GtkLabel">
             <property name="halign">center</property>
-            <property name="label" translatable="yes">Emoji Selector</property>
+            <property name="label" translatable="yes">Emoji Copy</property>
             <attributes>
               <attribute name="weight" value="bold" />
               <attribute name="scale" value="2" />
@@ -395,7 +395,7 @@
             <property name="halign">center</property>
             <property name="wrap">True</property>
             <property name="max-width-chars">60</property>
-            <property name="label" translatable="yes">This extension provides a parametrable popup menu displaying most emojis, clicking on an emoji copies it to the clipboard.</property>
+            <property name="label" translatable="yes">Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.</property>
           </object>
         </child>
         <child>
@@ -431,7 +431,7 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="label">Romain F. T.</property>
+                    <property name="label">FelipeFTN</property>
                     <property name="halign">start</property>
                     <layout>
                       <property name="row">0</property>
@@ -464,7 +464,7 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="label" translatable="yes">Contributors</property>
+                    <property name="label" translatable="yes">Original Owner</property>
                     <property name="halign">end</property>
                     <attributes>
                       <attribute name="weight" value="bold" />
@@ -478,10 +478,7 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="halign">start</property>
-                    <property name="label">Jimmy Scionti
-Ryan Gonzalez
-xurizaemon
-Fran Diéguez</property>
+                    <property name="label">Romain F. T. (maoschanz)</property>
                     <layout>
                       <property name="row">2</property>
                       <property name="column">1</property>

@@ -59,7 +59,7 @@ let timeoutSourceId = null;
  */
 class EmojisMenu {
 	constructor() {
-		this.super_btn = new PanelMenu.Button(0.0, _("Emoji Selector"), false);
+		this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
 		let box = new St.BoxLayout();
 		let icon = new St.Icon({
 			icon_name: 'face-cool-symbolic',

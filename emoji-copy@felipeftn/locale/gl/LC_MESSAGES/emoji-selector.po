@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021 Emoji Selector
+# Copyright (C) 2021 Emoji Copy
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Fran Dieguez <frandieguez@gnome.org>, 2021.
@@ -21,7 +21,7 @@ msgstr ""
 
 #: emoji-copy@felipeftn/extension.js
 #: emoji-copy@felipeftn/prefs.ui
-msgid "Emoji Selector"
+msgid "Emoji Copy"
 msgstr "Selector de emoticonas"
 
 #: emoji-copy@felipeftn/extension.js

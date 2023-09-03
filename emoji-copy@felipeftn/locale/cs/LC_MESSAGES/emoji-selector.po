@@ -20,7 +20,7 @@ msgstr ""
 
 #: emoji-copy@felipeftn/extension.js
 #: emoji-copy@felipeftn/prefs.ui
-msgid "Emoji Selector"
+msgid "Emoji Copy"
 msgstr "Menu emotikonů"
 
 #: emoji-copy@felipeftn/extension.js
