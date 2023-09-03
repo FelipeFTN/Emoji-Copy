@@ -66,18 +66,18 @@ const EmojiCopySettingsWidget = new GObject.Class({
 		//----------------------------------------------------------------------
 
 		let pasteonselectSwitch = builder.get_object('pasteonselect_switch');
-		pasteonselectSwitch.set_state(SETTINGS.get_boolean('paste-on-select'));
+		pasteonselectSwitch.set_state(this.settings.get_boolean('paste-on-select'));
 
 		pasteonselectSwitch.connect('notify::active', widget => {
 			if (widget.active) {
-				SETTINGS.set_boolean('paste-on-select', true);
+				this.settings.set_boolean('paste-on-select', true);
 			} else {
-				SETTINGS.set_boolean('paste-on-select', false);
+				this.settings.set_boolean('paste-on-select', false);
 			}
 		});
 
-		SETTINGS.connect('changed::paste-on-select', () => {
-			pasteonselectSwitch.set_state(SETTINGS.get_boolean('paste-on-select'));
+		this.settings.connect('changed::paste-on-select', () => {
+			pasteonselectSwitch.set_state(this.settings.get_boolean('paste-on-select'));
 		});
 
 		//----------------------------------------------------------------------
