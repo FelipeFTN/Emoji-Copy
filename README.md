@@ -5,7 +5,7 @@ Please feel free to use and contribute to this project. 😃
 
 ## Features 🚀
 
-- keyboard shortcut to open the extension's menu (<kbd>Super</kbd>+<kbd>E</kbd> by defaut)
+- keyboard shortcut to open the extension's menu (<kbd>Super</kbd>+<kbd>.</kbd> by defaut)
 - dynamic search (press <kbd>Enter</kbd> to copy the first result to the clipboard)
 - lots of parametrable things
 - skin tone & gender modifiers
