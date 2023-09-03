@@ -218,8 +218,8 @@ var EmojiButton = class EmojiButton {
 		return temp;
 	}
 
-	//Originaly from "clipboard-histroy@alexsaveau.dev"
-	//https://github.com/SUPERCILEX/gnome-clipboard-history/blob/master/extension.js
+    // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
+	// Originaly from "clipboard-histroy@alexsaveau.dev"
 	triggerPasteHack() {
 		this._pasteHackCallbackId = Mainloop.timeout_add(
 			1, // Just post to the end of the event loop

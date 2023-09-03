@@ -156,7 +156,7 @@
                             <property name="halign">end</property>
                             <property name="hexpand">False</property>
                             <property name="vexpand">False</property>
-                            <property name="label" translatable="yes">*EXPERIMENTAL* Paste upon selection of emoji</property>
+                            <property name="label" translatable="yes">Paste upon emoji selection</property>
                           </object>
                         </child>
                         <child>
