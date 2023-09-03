@@ -14,8 +14,11 @@ Please feel free to use and contribute to this project. 😃
 
 The keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
 
-![image](https://github.com/FelipeFTN/emoji-copy/assets/80127749/13e7fc9f-4984-4035-9b9a-676198f6c4d5)
+<div align="center">
+          
+![image](https://github.com/FelipeFTN/emoji-copy/assets/80127749/8aed39fc-8844-4763-827d-dfe84b7e98b1)
 
+</div>
 
 ## Installation 🍀
 
