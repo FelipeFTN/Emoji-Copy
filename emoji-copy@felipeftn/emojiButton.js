@@ -80,7 +80,10 @@ var EmojiButton = class EmojiButton {
     }
 
     destroy() {
-        Mainloop.Source.remove(this._pasteHackCallbackId);
+        if (this._pasteHackCallbackId) {
+            Mainloop.Source.remove(this._pasteHackCallbackId);
+            this._pasteHackCallbackId = null;
+        }
         this.super_btn.destroy();
     }
 
