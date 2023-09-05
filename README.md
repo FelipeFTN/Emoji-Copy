@@ -39,10 +39,18 @@ Work in progress...
 **Not recommended at all:** installing the extension this way prevent any
 further update.
 
-Download and extract the ZIP, then open a terminal in the project's directory,
-and run `./install.sh`. It should copy the "emoji-copy@felipeftn"
-folder to `~/.local/share/gnome-shell/extensions/`, which can be done manually
-if you prefer.
+1. Download and extract the ZIP, then open a terminal in the project's directory.
+2. Choose a way to install the extension:
+```bash
+    --> NPM 😇
+    $ npm run deploy
+    
+    --> Shell scripts 🤨
+    $ sh install.sh
+    
+    --> Hardcore 💀
+    $ cp -a ./emoji-copy@felipeftn $HOME/.local/share/gnome-shell/extensions
+```
 
 You may need to restart the GNOME Shell environment (logout and login again, or
 <kbd>Alt</kbd>+<kbd>F2</kbd> -> `r` ->, <kbd>Enter</kbd>).
