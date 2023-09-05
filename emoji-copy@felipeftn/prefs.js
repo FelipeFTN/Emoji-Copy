@@ -1,5 +1,3 @@
-// prefs.js (https://github.com/felipeftn/emoji-copy)
-
 const { GLib, GObject, Gio, Gtk, GdkPixbuf } = imports.gi;
 
 const Gettext = imports.gettext.domain('emoji-copy');
@@ -8,13 +6,9 @@ const _ = Gettext.gettext;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
-//------------------------------------------------------------------------------
-
 function init() {
     ExtensionUtils.initTranslations();
 }
-
-//------------------------------------------------------------------------------
 
 const EmojiCopySettingsWidget = new GObject.Class({
     Name: 'EmojiCopy.Prefs.Widget',
@@ -30,8 +24,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
         this._loadPrefsPage(builder);
         this._loadAboutPage(builder);
     },
-
-    //--------------------------------------------------------------------------
 
     _loadPrefsPage(builder) {
         let RELOAD_TEXT = _("Modifications will be effective after reloading the extension.");
@@ -49,8 +41,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
             positionCombobox.set_active_id(this.settings.get_string('position'));
         });
 
-        //----------------------------------------------------------------------
-
         let emojiSize = builder.get_object('size_spinbtn');
         emojiSize.set_value(this.settings.get_int('emojisize'));
 
@@ -62,8 +52,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
         this.settings.connect('changed::emojisize', () => {
             emojiSize.set_value(this.settings.get_int('emojisize'));
         });
-
-        //----------------------------------------------------------------------
 
         let pasteonselectSwitch = builder.get_object('pasteonselect_switch');
         pasteonselectSwitch.set_state(this.settings.get_boolean('paste-on-select'));
@@ -80,8 +68,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
             pasteonselectSwitch.set_state(this.settings.get_boolean('paste-on-select'));
         });
 
-        //----------------------------------------------------------------------
-
         let nbColsSpinBtn = builder.get_object('nbcols_spinbtn');
         nbColsSpinBtn.set_value(this.settings.get_int('nbcols'));
         nbColsSpinBtn.connect('value-changed', w => {
@@ -92,8 +78,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
         this.settings.connect('changed::nbcols', () => {
             nbColsSpinBtn.set_value(this.settings.get_int('nbcols'));
         });
-
-        //----------------------------------------------------------------------
 
         let default_kbs_label = _("The default value is %s");
         default_kbs_label = default_kbs_label.replace('%s', "<Super>e");
@@ -114,11 +98,9 @@ const EmojiCopySettingsWidget = new GObject.Class({
         let keybindingButton = builder.get_object('keybinding_button');
         keybindingButton.set_sensitive(this.settings.get_boolean('use-keybinding'));
 
-        keybindingButton.connect('clicked', widget => {
+        keybindingButton.connect('clicked', () => {
             this.settings.set_strv('emoji-keybinding', [keybindingEntry.text]);
         });
-
-        //----------------------------------------------------------------------
 
         let keybindingSwitch = builder.get_object('keybinding_switch');
         keybindingSwitch.set_state(this.settings.get_boolean('use-keybinding'));
@@ -143,8 +125,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
             keybindingSwitch.set_state(this.settings.get_boolean('use-keybinding'));
         });
 
-        //----------------------------------------------------------------------
-
         let alwaysShowSwitch = builder.get_object('always_show_switch');
         alwaysShowSwitch.set_state(this.settings.get_boolean('always-show'));
 
@@ -161,8 +141,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
         });
     },
 
-    //--------------------------------------------------------------------------
-
     _loadAboutPage(builder) {
         let version = _("version %s").replace('%s', Me.metadata.version.toString());
         builder.get_object('version-label').set_label(version);
@@ -178,8 +156,6 @@ const EmojiCopySettingsWidget = new GObject.Class({
 
 });
 
-//------------------------------------------------------------------------------
-
 function buildPrefsWidget() {
     let widget = new EmojiCopySettingsWidget(ExtensionUtils.getSettings());
     let obj = widget.prefs_stack;
@@ -190,12 +166,8 @@ function buildPrefsWidget() {
             this._registerSignals(window);
         }
     });
-
     if (widget.prefs_stack.show_all)
         widget.prefs_stack.show_all();
 
     return widget.prefs_stack;
 }
-
-//------------------------------------------------------------------------------
-

@@ -1,2 +1,7 @@
-/_*
-/*.zip
+# Ignore node files
+node_modules/
+package-lock.json
+
+# Ignores builded files
+_*
+*.zip

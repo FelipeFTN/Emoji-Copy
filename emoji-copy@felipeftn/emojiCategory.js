@@ -1,5 +1,3 @@
-//this file is part of https://github.com/felipeftn/emoji-copy
-
 const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const PopupMenu = imports.ui.popupMenu;

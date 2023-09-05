@@ -1,5 +1,3 @@
-//this file is part of https://github.com/felipeftn/emoji-copy
-
 const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const Mainloop = imports.mainloop;
@@ -24,15 +22,9 @@ const VirtualKeyboard = (() => {
     };
 })();
 
-
-//				none	woman					man
 const GENDERS = ['', '\u200D\u2640\uFE0F', '\u200D\u2642\uFE0F'];
 const GENDERS2 = ['👩', '👨'];
 const TONES = ['', '🏻', '🏼', '🏽', '🏾', '🏿'];
-// TODO hairs?? red/curly/white/bald
-// TODO symbols
-
-//------------------------------------------------------------------------------
 
 var EmojiButton = class EmojiButton {
 
@@ -50,7 +42,7 @@ var EmojiButton = class EmojiButton {
                 gendered = true;
             }
         }
-        this.tags = [tonable, genrable, gendered]
+        this.tags = [tonable, genrable, gendered];
         this.keywords = keywords;
     }
 
@@ -69,9 +61,8 @@ var EmojiButton = class EmojiButton {
 
         // Update the category label on hover, allowing the user to know the
         // name of the emoji he's copying.
-        this.super_btn.connect('notify::hover', (a, b) => {
+        this.super_btn.connect('notify::hover', (a, _) => {
             if (a.hover) {
-                // FIXME #72 labels too long
                 category.super_item.label.text = this.keywords[0];
             } else {
                 category.super_item.label.text = category.categoryName;
@@ -98,12 +89,12 @@ var EmojiButton = class EmojiButton {
         this.super_btn.style = fontStyle;
     }
 
-    onKeyPress(o, e) {
+    onKeyPress(_, e) {
         let symbol = e.get_key_symbol();
         //  Main return key (GS > 3.35)     Main return key (GS < 3.35)           Numpad return key
         if (symbol == Clutter.KEY_Return || symbol == Clutter.Return || symbol == Clutter.KP_Enter) {
             let emojiToCopy = this.getTaggedEmoji();
-            let [x, y, mods] = global.get_pointer();
+            let [mods] = global.get_pointer();
             let majPressed = (mods & Clutter.ModifierType.SHIFT_MASK) != 0;
             let ctrlPressed = (mods & Clutter.ModifierType.CONTROL_MASK) != 0;
             if (majPressed) {
@@ -125,7 +116,7 @@ var EmojiButton = class EmojiButton {
      * - right click adds the emoji at the end of the current clipboard content
      *   (and does not close the menu).
      */
-    onButtonPress(actor, event) {
+    onButtonPress(_, event) {
         let mouseButton = event.get_button();
         let emojiToCopy = this.getTaggedEmoji();
         if (emojiToCopy == null) { return Clutter.EVENT_PROPAGATE; }
@@ -164,7 +155,7 @@ var EmojiButton = class EmojiButton {
     }
 
     addToClipboardAndStay(emojiToCopy) {
-        Clipboard.get_text(CLIPBOARD_TYPE, function(clipBoard, text) {
+        Clipboard.get_text(CLIPBOARD_TYPE, function(_, text) {
             Clipboard.set_text(
                 CLIPBOARD_TYPE,
                 text + emojiToCopy
@@ -176,23 +167,20 @@ var EmojiButton = class EmojiButton {
         return Clutter.EVENT_STOP;
     }
 
-    // TODO update this old comment and add the tag for symbol
     /*
      * This returns an emoji corresponding to .super_btn.label with tags applied
      * to it. `tags` is an array of 3 booleans, which describe how a composite
      * emoji is built:
-     * - tonable -> return emoji concatened with the selected skin tone;
-     * - genrable -> return emoji concatened with the selected gender;
+     * - tonable -> return emoji concatenated with the selected skin tone;
+     * - genrable -> return emoji concatenated with the selected gender;
      * - gendered -> the emoji is already gendered, which modifies the way skin
      *   tone is applied ([man|woman] + [skin tone if any] + [other symbol(s)]).
      * If all tags are false, it returns unmodified .super_btn.label
      */
     getTaggedEmoji() {
         let currentEmoji = this.super_btn.label;
-        if (currentEmoji == '') {
-            log("Error: not a valid emoji.");
-            return;
-        }
+        if (currentEmoji == '') return;
+
         let tonable = this.tags[0];
         let genrable = this.tags[1];
         let gendered = this.tags[2];
@@ -201,11 +189,11 @@ var EmojiButton = class EmojiButton {
             let tone_index = Extension.SETTINGS.get_int('skin-tone');
             if (gendered) {
                 if (temp.includes(GENDERS2[0])) {
-                    currentEmoji = currentEmoji.replace(GENDERS2[0], GENDERS2[0] + TONES[tone_index])
+                    currentEmoji = currentEmoji.replace(GENDERS2[0], GENDERS2[0] + TONES[tone_index]);
                 } else if (temp.includes(GENDERS2[1])) {
-                    currentEmoji = currentEmoji.replace(GENDERS2[1], GENDERS2[1] + TONES[tone_index])
+                    currentEmoji = currentEmoji.replace(GENDERS2[1], GENDERS2[1] + TONES[tone_index]);
                 } else {
-                    log('Error: ' + GENDERS2[0] + " isn't a valid gender prefix.");
+                    console.error('Error: ' + GENDERS2[0] + " isn't a valid gender prefix.");
                 }
                 temp = currentEmoji;
             } else {

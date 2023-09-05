@@ -18,4 +18,3 @@ cp -r emoji-copy@felipeftn $INSTALL_DIR
 
 echo "Done."
 exit 0
-

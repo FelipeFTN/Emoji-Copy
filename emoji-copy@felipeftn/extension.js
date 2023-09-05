@@ -1,5 +1,3 @@
-// extension.js (https://github.com/felipeftn/emoji-copy)
-
 /*
     Copyright 2017-2022 Romain F. T.
 
@@ -39,8 +37,6 @@ const EmojiCategory = Me.imports.emojiCategory.EmojiCategory;
 const EmojiButton = Me.imports.emojiButton.EmojiButton;
 const EmojiSearchItem = Me.imports.emojiSearchItem.EmojiSearchItem;
 
-//------------------------------------------------------------------------------
-
 // These global variables are used to store some static settings
 var SETTINGS = null;
 var GLOBAL_BUTTON = null;
@@ -49,9 +45,6 @@ let POSITION;
 var NB_COLS;
 
 let timeoutSourceId = null;
-
-
-//------------------------------------------------------------------------------
 
 /*
  * This is the main class of this extension, corresponding to the button in the
@@ -183,7 +176,7 @@ class EmojisMenu {
         ];
 
         const CAT_ICONS = [
-            'face-smile-symbolic', //'emoji-body-symbolic',
+            'face-smile-symbolic',
             'emoji-people-symbolic',
             'emoji-nature-symbolic',
             'emoji-food-symbolic',
@@ -245,7 +238,7 @@ class EmojisMenu {
         }
 
         this._activeCat = -1;
-        this._onSearchTextChanged(); // XXX not optimal
+        this._onSearchTextChanged();
     }
 
     // Wrapper calling EmojiSearchItem's _onSearchTextChanged method
@@ -262,18 +255,7 @@ class EmojisMenu {
             this.toggle.bind(this)
         );
     }
-
-    //	destroy() { // XXX ?
-    //		this.unloadCategories();
-    //		for (let i=1; i<this.emojiCategories.length; i++) {
-    //			this.emojiCategories[i].destroy();
-    //		}
-    //	}
-
-};
-
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
+}
 
 function init() {
     ExtensionUtils.initTranslations('emoji-copy');
@@ -285,8 +267,6 @@ function init() {
         // users don't have the icons so i do it anyway.
     }
 }
-
-//------------------------------------------------------------------------------
 
 function enable() {
     SETTINGS = ExtensionUtils.getSettings();
@@ -319,8 +299,6 @@ function enable() {
     });
 }
 
-//------------------------------------------------------------------------------
-
 function disable() {
     // we need to save these data for the next session
     GLOBAL_BUTTON.searchItem.saveRecents();
@@ -345,5 +323,3 @@ function disable() {
     GLOBAL_BUTTON = null;
     SIGNAUX = [];
 }
-
-//------------------------------------------------------------------------------

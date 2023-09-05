@@ -1,0 +1,27 @@
+{
+  "name": "emoji-copy",
+  "version": "0.2.0",
+  "description": "😄 Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.",
+  "main": "./emoji-copy@felipeftn/extension.js",
+  "scripts": {
+    "run": "sh install.sh",
+    "build": "sh build-a-zip.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelipeFTN/emoji-copy.git"
+  },
+  "keywords": [
+    "emoji"
+  ],
+  "author": "FelipeFTN",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FelipeFTN/emoji-copy/issues"
+  },
+  "homepage": "https://github.com/FelipeFTN/emoji-copy#readme",
+  "devDependencies": {
+    "eslint": "^8.48.0"
+  }
+}

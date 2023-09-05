@@ -1,5 +1,3 @@
-//this file is part of https://github.com/felipeftn/emoji-copy
-
 const St = imports.gi.St;
 
 /* Import the current extension, mainly because we need to access other files */
@@ -8,25 +6,23 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Extension = Me.imports.extension;
 
 /* Stuffs for translations etc. */
-const Gettext = imports.gettext.domain('emoji-copy');
-const _ = Gettext.gettext;
-
-////////////////////////////////////////////////////////////////////////////////
+const textDomain = imports.gettext.domain('emoji-copy');
+const getText = textDomain.gettext;
 
 var SkinTonesBar = class SkinTonesBar {
     constructor(hasGender) {
         this._toneArray = [];
 
-        this._buildToneButton(_("No skin tone"), '#FFEE00');
-        this._buildToneButton(_("Light skin tone"), '#FFD8A8');
-        this._buildToneButton(_("Medium light skin tone"), '#E5B590');
-        this._buildToneButton(_("Medium skin tone"), '#B88750');
-        this._buildToneButton(_("Medium dark skin tone"), '#9B6020');
-        this._buildToneButton(_("Dark skin tone"), '#4B2000');
+        this._buildToneButton(getText("No skin tone"), '#FFEE00');
+        this._buildToneButton(getText("Light skin tone"), '#FFD8A8');
+        this._buildToneButton(getText("Medium light skin tone"), '#E5B590');
+        this._buildToneButton(getText("Medium skin tone"), '#B88750');
+        this._buildToneButton(getText("Medium dark skin tone"), '#9B6020');
+        this._buildToneButton(getText("Dark skin tone"), '#4B2000');
 
         this._genderArray = [];
         if (hasGender) {
-            this._buildGendersButtons()
+            this._buildGendersButtons();
         }
         this.update();
     }
@@ -36,8 +32,8 @@ var SkinTonesBar = class SkinTonesBar {
     // gsettings database, where 0 means no gender variation.
     _buildGendersButtons() {
         this._genderArray[0] = null;
-        this._addGenderButton(1, _("Women"), "♀");
-        this._addGenderButton(2, _("Men"), "♂");
+        this._addGenderButton(1, getText("Women"), "♀");
+        this._addGenderButton(2, getText("Men"), "♂");
     }
 
     _addGenderButton(intId, accessibleName, labelChar) {
@@ -50,7 +46,7 @@ var SkinTonesBar = class SkinTonesBar {
             style_class: 'EmojisGender',
             label: labelChar,
         });
-        btn.connect('clicked', w => {
+        btn.connect('clicked', () => {
             if (Extension.SETTINGS.get_int('gender') != intId) {
                 this._setGender(intId);
             } else {
@@ -123,4 +119,4 @@ var SkinTonesBar = class SkinTonesBar {
         btn.connect('clicked', this._updateToneBtn.bind(this, intId));
         this._toneArray.push(btn);
     }
-}
+};

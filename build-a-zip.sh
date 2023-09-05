@@ -22,4 +22,3 @@ shopt -s globstar
 
 zip -d ../$EXT_ID.zip **/*.pot
 zip -d ../$EXT_ID.zip **/*.po
-

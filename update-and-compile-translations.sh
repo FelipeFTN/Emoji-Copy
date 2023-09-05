@@ -1,13 +1,9 @@
 #!/bin/bash
 
-################################################################################
-
 TRANSLATION_ID="emoji-copy"
 
 echo "Generating .pot file..."
 xgettext --files-from=POTFILES.in --from-code=UTF-8 --add-location=file --output=$TRANSLATION_ID@felipeftn/locale/$TRANSLATION_ID.pot
-
-################################################################################
 
 IFS='
 '
@@ -23,7 +19,5 @@ for dir in $dir_list; do
 		rm -f "$prefix/$dir/LC_MESSAGES/$TRANSLATION_ID.po~"
 	fi
 done
-
-################################################################################
 
 exit 0

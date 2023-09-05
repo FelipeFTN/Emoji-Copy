@@ -1,5 +1,3 @@
-// this file is part of https://github.com/felipeftn/emoji-copy
-
 const St = imports.gi.St;
 
 const PopupMenu = imports.ui.popupMenu;
@@ -11,10 +9,8 @@ const Extension = Me.imports.extension;
 const EmojiButton = Me.imports.emojiButton.EmojiButton;
 
 /* Translations */
-const Gettext = imports.gettext.domain('emoji-copy');
-const _ = Gettext.gettext;
-
-//------------------------------------------------------------------------------
+const textDomain = imports.gettext.domain('emoji-copy');
+const getText = textDomain.gettext;
 
 /**
  * A wrapper around a menu item, with a search entry added to it, and a second
@@ -34,7 +30,7 @@ var EmojiSearchItem = class EmojiSearchItem {
             name: 'searchEntry',
             style_class: 'search-entry',
             can_focus: true,
-            hint_text: _("Type here to search…"),
+            hint_text: getText("Type here to search…"),
             track_hover: true,
             x_expand: true,
         });
@@ -55,8 +51,6 @@ var EmojiSearchItem = class EmojiSearchItem {
         });
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-
     // Updates the "recently used" buttons content in reaction to a new search
     // query (the text changed or the category changed).
     _onSearchTextChanged() {
@@ -74,7 +68,7 @@ var EmojiSearchItem = class EmojiSearchItem {
 
         let minCat = 0;
         let maxCat = Extension.GLOBAL_BUTTON.emojiCategories.length;
-        let activeCat = Extension.GLOBAL_BUTTON._activeCat
+        let activeCat = Extension.GLOBAL_BUTTON._activeCat;
         if (activeCat != -1) {
             minCat = activeCat;
             maxCat = activeCat + 1;
@@ -122,8 +116,6 @@ var EmojiSearchItem = class EmojiSearchItem {
         return results;
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-
     // Initializes the container showing the recently used emojis as buttons
     _recentlyUsedInit() {
         let recentlyUsed = new PopupMenu.PopupBaseMenuItem({
@@ -154,7 +146,7 @@ var EmojiSearchItem = class EmojiSearchItem {
     }
 
     _buildRecents() {
-        let temp = Extension.SETTINGS.get_strv('recently-used')
+        let temp = Extension.SETTINGS.get_strv('recently-used');
         for (let i = 0; i < this._nbColumns; i++) {
             if (i < temp.length) {
                 this._recents[i].super_btn.label = temp[i];
@@ -192,4 +184,4 @@ var EmojiSearchItem = class EmojiSearchItem {
         this.saveRecents();
         Extension.GLOBAL_BUTTON._onSearchTextChanged();
     }
-}
+};
