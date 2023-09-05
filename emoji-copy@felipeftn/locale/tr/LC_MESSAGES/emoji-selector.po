@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-14 18:44+0100\n"
+"PO-Revision-Date: 2023-09-05 21:46+0300\n"
+"Last-Translator: Oğuz Taş <mimoguz@outlook.com>\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
+msgid "Emoji Copy"
+msgstr "Emoji Kopyala"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Smileys & Body"
+msgstr "Gülenyüzler ve Gövde"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Peoples & Clothing"
+msgstr "İnsanlar ve Giysi"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Animals & Nature"
+msgstr "Hayvanlar ve Doğa"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Food & Drink"
+msgstr "Yiyecek ve İçecek"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Travel & Places"
+msgstr "Seyahat ve Mekânlar"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Activities & Sports"
+msgstr "Etkinlikler ve Sporlar"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Objects"
+msgstr "Nesneler"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Symbols"
+msgstr "Simgeler"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Flags"
+msgstr "Bayraklar"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Modifications will be effective after reloading the extension."
+msgstr "Değişiklikler eklenti yeniden yüklendiğinde etkin olur."
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "From top to bottom"
+msgstr "Yukarıdan aşağıya"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "From bottom to top"
+msgstr "Aşağıdan yukarıya"
+
+#: emoji-copy@felipeftn/prefs.js
+#, javascript-format
+msgid "The default value is %s"
+msgstr "Varsayılan değer %s"
+
+#: emoji-copy@felipeftn/prefs.js
+#, javascript-format
+msgid "version %s"
+msgstr "sürüm %s"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"Displaying the interface from the bottom is better if you use a bottom panel "
+"instead of the default top bar. Modifications will be effective after "
+"reloading the extension."
+msgstr ""
+"Arayüzü altta göstermek, varsayılan üst çubuk yerine  bir alt panel "
+"kullanıyorsanız daha uyumlu olacaktır.  Değişiklikler eklenti yeniden "
+"yüklendiğinde etkin olur."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "General layout"
+msgstr "Genel yerleşim"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Number of emojis per line"
+msgstr "Satır başına emoji sayısı"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Size of emojis (px)"
+msgstr "Emoji büyüklüğü (piksel)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Layout"
+msgstr "Yerleşim"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Use a keyboard shortcut to toggle the menu"
+msgstr "Menüyü açmak-kapatmak için bir klavye kısayolu kullan"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Help"
+msgstr "Yardım"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Apply"
+msgstr "Uygula"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Always show the icon in the panel"
+msgstr "Panelde her zaman simgeyi göster"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"If you access the menu with the keyboard shortcut, you don't need to always "
+"display the icon."
+msgstr ""
+"Menüye klavye kısayolu kullanarak erişiyorsanız, simgenin her zaman "
+"görünmesine ihtiyacınız olmayacaktır."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Keyboard bindings"
+msgstr "Klavye tuş atamaları"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"This extension provides a parametrable popup menu displaying most emojis, "
+"clicking on an emoji copies it to the clipboard."
+msgstr ""
+"Bu eklenti ,çoğu emojiyi bulunabileceğiniz özelleştirilebilir bir açılır "
+"pencere sağlar.  Bir emojiye tıkladığınızda emojiyi panoya kopyalar."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Report bugs or ideas"
+msgstr "Sorunları veya önerilerinizi iletin"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Author"
+msgstr "Geliştiren"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Translator(s)"
+msgstr "Çeviren(ler)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "translator-credits"
+msgstr "çeviriye katkıda bulunanlar"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Contributors"
+msgstr "Katılımcılar"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "About"
+msgstr "Hakkında"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "List of valid key names"
+msgstr "Geçerli tuş adları listesi"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Modifier keys must be between chevrons"
+msgstr "Niteleme tuşları açı-parantezler içinde yazılmalıdır"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Don't use a keyboard shortcut that already exists."
+msgstr "Zaten mevcut bir kısayol kullanmayın."
+
+#: emoji-copy@felipeftn/emojiCategory.js
+#, javascript-format
+msgid "Incorrect number of keywords for category '%s':"
+msgstr "\"%s\" kategorisinde hatlı sayıda anahtar kelime:"
+
+#: emoji-copy@felipeftn/emojiCategory.js
+msgid "Please report this bug"
+msgstr "Lütfen bu hatayı bildirin"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Ten rengi yok"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Açık ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Orta-açık ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Orta ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Orta-koyu ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Koyu ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Kadınlar"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Erkekler"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Aramak için buraya yazın…"
