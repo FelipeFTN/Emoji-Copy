@@ -90,7 +90,6 @@ The extension is currently available in the following languages:
 - Italian (thanks to amivaleo)
 - Polish (thanks to alex4401)
 - Brazilian portuguese (thanks to nicolasmaia, picsi & frnogueira)
-<!-- TODO if no update from them, manually add their names to the .po files
-          before the release -->
+- Turkish (thanks to mimoguz)
 
 If you need another language, please contribute! ♥
