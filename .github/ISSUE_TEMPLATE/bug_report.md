@@ -1,39 +1,27 @@
 ---
-name: Bug report
-about: Report something which is broken
+name: "\U0001F41B Bug Report"
+about: "If something isn't working as expected \U0001F914."
 title: ''
-labels: ''
+labels: 'i: bug, i: needs triage'
 assignees: ''
 
 ---
 
-# System
+## Bug Report
 
-- OS: 
-- Your version of the extension (visible in the "about" tab of the preferences window):
-- Your version of GNOME Shell: 
-- Most recent GNOME Shell version that is supposed to work ([visible here](https://extensions.gnome.org/extension/1162/emoji-selector/) in the dropdown):
-- Is the extension supposed to work with your version of GNOME Shell [y/n]:
+**Current Behavior**
+A clear and concise description of the behavior.
 
-<!-- If the answer to the last question is "no", consider the fact that i use my own extension and i'm not blind. I just can't fix issues related to GNOME Shell updates before getting these updates, so you should wait until i get the update instead of opening issues. -->
+**Expected behavior/code**
+A clear and concise description of what you expected to happen (or code).
 
-# Description of the bug
+**Environment**
+- emoji-copy version(s): [e.g. v0.1.0, v5.0.0]
+- npm version: [e.g. Node 8/npm 5]
+- OS: [e.g. OSX 10.13.4, Windows 10]
 
-Is your bug already reported? [y/n]:
+**Possible Solution**
+<!--- Only if you have suggestions on a fix for the bug -->
 
-<!-- Don't forget to check issues that are already **closed**. A closed issue means the fix has been developed, not that it has been distributed to you. -->
-
-<!-- A clear and concise description of what the bug is: -->
-
-
-## To Reproduce
-
-Steps to reproduce the bug:
-
-1. ...
-2. ...
-3. ...
-
-## Expected behavior
-
-<!-- A clear and concise description of what you expected to happen. -->
+**Additional context/Screenshots**
+Add any other context about the problem here. If applicable, add screenshots to help explain.
