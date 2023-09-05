@@ -7,78 +7,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 18:44+0100\n"
-"PO-Revision-Date: 2023-02-08 20:39+0100\n"
-"Last-Translator: Quentin PAGÈS\n"
+"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"PO-Revision-Date: 2023-09-05 21:46+0300\n"
+"Last-Translator: Oğuz Taş <mimoguz@outlook.com>\n"
 "Language-Team: \n"
-"Language: oc\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.1\n"
 
-#: emoji-copy@felipeftn/extension.js
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
 msgid "Emoji Copy"
-msgstr "Aisina de seleccion d'emoji"
+msgstr "Emoji Kopyala"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Smileys & Body"
-msgstr "Risetas e còs"
+msgstr "Gülenyüzler ve Gövde"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Peoples & Clothing"
-msgstr "Personas e vestits"
+msgstr "İnsanlar ve Giysi"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Animals & Nature"
-msgstr "Animals e natura"
+msgstr "Hayvanlar ve Doğa"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Food & Drink"
-msgstr "Beure e manjar"
+msgstr "Yiyecek ve İçecek"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Travel & Places"
-msgstr "Viatges e luòcs"
+msgstr "Seyahat ve Mekânlar"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Activities & Sports"
-msgstr "Activitats e espòrts"
+msgstr "Etkinlikler ve Sporlar"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Objects"
-msgstr "Objèctes"
+msgstr "Nesneler"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Symbols"
-msgstr "Simbòls"
+msgstr "Simgeler"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
-msgstr "Bandièras"
+msgstr "Bayraklar"
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "Modifications will be effective after reloading the extension."
-msgstr "Las modificacions seràn efectivas aprèp lo recargament de l'extension."
+msgstr "Değişiklikler eklenti yeniden yüklendiğinde etkin olur."
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "From top to bottom"
-msgstr "De naut en bas"
+msgstr "Yukarıdan aşağıya"
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "From bottom to top"
-msgstr "De bas en naut"
+msgstr "Aşağıdan yukarıya"
 
 #: emoji-copy@felipeftn/prefs.js
 #, javascript-format
 msgid "The default value is %s"
-msgstr "La valor per defaut es %s"
+msgstr "Varsayılan değer %s"
 
 #: emoji-copy@felipeftn/prefs.js
 #, javascript-format
 msgid "version %s"
-msgstr "version %s"
+msgstr "sürüm %s"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
@@ -86,142 +86,142 @@ msgid ""
 "instead of the default top bar. Modifications will be effective after "
 "reloading the extension."
 msgstr ""
-"Afichar l'interfàcia enbàs es melhor s'utilizatz un panèl enbàs a la placa "
-"del barra superiora per defaut. Las modificacions seràn presas en carga "
-"aprèp lo recargament de l'extension."
+"Arayüzü altta göstermek, varsayılan üst çubuk yerine  bir alt panel "
+"kullanıyorsanız daha uyumlu olacaktır.  Değişiklikler eklenti yeniden "
+"yüklendiğinde etkin olur."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "General layout"
-msgstr "Disposicion generala"
+msgstr "Genel yerleşim"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Number of emojis per line"
-msgstr "Nombre d'emojis per linha"
+msgstr "Satır başına emoji sayısı"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Size of emojis (px)"
-msgstr "Talha dels emojis (px)"
+msgstr "Emoji büyüklüğü (piksel)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Layout"
-msgstr "Agençament"
+msgstr "Yerleşim"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Use a keyboard shortcut to toggle the menu"
-msgstr "Utilizar un acorchi de clavièr per dobrir lo menú."
+msgstr "Menüyü açmak-kapatmak için bir klavye kısayolu kullan"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Help"
-msgstr "Ajuda"
+msgstr "Yardım"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Apply"
-msgstr "Aplicar"
+msgstr "Uygula"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Always show the icon in the panel"
-msgstr "Totjorn afichar l'icòna al panèl"
+msgstr "Panelde her zaman simgeyi göster"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
 "If you access the menu with the keyboard shortcut, you don't need to always "
 "display the icon."
 msgstr ""
-"S'accedissètz al menú via l'acorchi de clavièr, vos fa pas mestièr de "
-"totjorn afichar l'icòna."
+"Menüye klavye kısayolu kullanarak erişiyorsanız, simgenin her zaman "
+"görünmesine ihtiyacınız olmayacaktır."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Keyboard bindings"
-msgstr "Combinasons de tòcas"
+msgstr "Klavye tuş atamaları"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
-"This extension provides a parametrable popup menu displaying most emojis, "
-"clicking on an emoji copies it to the clipboard."
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
 msgstr ""
-"Aquesta extension provesís una fenèstra sorgissenta qu'aficha la màger part "
-"dels emojis, los clicar los còpia al quichapapièrs."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Report bugs or ideas"
-msgstr "Senhalar las anomalias o idèas"
+msgstr "Sorunları veya önerilerinizi iletin"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Author"
-msgstr "Autor"
+msgstr "Geliştiren"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Translator(s)"
-msgstr "Traductor(s)"
+msgstr "Çeviren(ler)"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "translator-credits"
-msgstr "Quentin PAGÈS"
+msgstr "çeviriye katkıda bulunanlar"
 
 #: emoji-copy@felipeftn/prefs.ui
-msgid "Contributors"
-msgstr "Contributors"
+msgid "Original Owner"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "About"
-msgstr "A prepaus"
+msgstr "Hakkında"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "List of valid key names"
-msgstr "Lista dels noms claus valids"
+msgstr "Geçerli tuş adları listesi"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Modifier keys must be between chevrons"
-msgstr "Las claus de modificacions devon èsser entre croquets"
+msgstr "Niteleme tuşları açı-parantezler içinde yazılmalıdır"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Don't use a keyboard shortcut that already exists."
-msgstr "Utilizetz pas un acorchi de clavièr qu'existís ja."
+msgstr "Zaten mevcut bir kısayol kullanmayın."
 
 #: emoji-copy@felipeftn/emojiCategory.js
 #, javascript-format
 msgid "Incorrect number of keywords for category '%s':"
-msgstr "Nombre incorrect de mots claus per la categoria « %s » :"
+msgstr "\"%s\" kategorisinde hatlı sayıda anahtar kelime:"
 
 #: emoji-copy@felipeftn/emojiCategory.js
 msgid "Please report this bug"
-msgstr "Mercés de senhalar aqueste bug"
+msgstr "Lütfen bu hatayı bildirin"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "No skin tone"
-msgstr "Cap de color de pèl"
+#~ msgid ""
+#~ "This extension provides a parametrable popup menu displaying most emojis, "
+#~ "clicking on an emoji copies it to the clipboard."
+#~ msgstr ""
+#~ "Bu eklenti ,çoğu emojiyi bulunabileceğiniz özelleştirilebilir bir açılır "
+#~ "pencere sağlar.  Bir emojiye tıkladığınızda emojiyi panoya kopyalar."
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Light skin tone"
-msgstr "Color de pèl clara"
+#~ msgid "Contributors"
+#~ msgstr "Katılımcılar"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium light skin tone"
-msgstr "Color de pèl mejana clara"
+#~ msgid "No skin tone"
+#~ msgstr "Ten rengi yok"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium skin tone"
-msgstr "Color de pèl mejana"
+#~ msgid "Light skin tone"
+#~ msgstr "Açık ten rengi"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium dark skin tone"
-msgstr "Color de pèl mejana escura"
+#~ msgid "Medium light skin tone"
+#~ msgstr "Orta-açık ten rengi"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Dark skin tone"
-msgstr "Color de pèl escura"
+#~ msgid "Medium skin tone"
+#~ msgstr "Orta ten rengi"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Women"
-msgstr "Femnas"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "Orta-koyu ten rengi"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Men"
-msgstr "Òmes"
+#~ msgid "Dark skin tone"
+#~ msgstr "Koyu ten rengi"
 
-#: emoji-copy@felipeftn/emojiSearchItem.js
-msgid "Type here to search…"
-msgstr "Començatz la sasida per recercar…"
+#~ msgid "Women"
+#~ msgstr "Kadınlar"
 
-#~ msgid "Settings"
-#~ msgstr "Paramètres"
+#~ msgid "Men"
+#~ msgstr "Erkekler"
+
+#~ msgid "Type here to search…"
+#~ msgstr "Aramak için buraya yazın…"

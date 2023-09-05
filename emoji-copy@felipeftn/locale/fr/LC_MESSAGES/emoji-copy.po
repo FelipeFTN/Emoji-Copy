@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 18:44+0100\n"
+"POT-Creation-Date: 2023-09-05 18:13-0300\n"
 "PO-Revision-Date: 2019-03-20 23:18+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <none>\n"
@@ -16,8 +16,7 @@ msgstr ""
 "X-Generator: Gtranslator 3.32.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: emoji-copy@felipeftn/extension.js
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
 msgid "Emoji Copy"
 msgstr "Sélecteur d'émojis"
 
@@ -105,6 +104,10 @@ msgid "Size of emojis (px)"
 msgstr "Taille des émojis (en pixels)"
 
 #: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.ui
 msgid "Layout"
 msgstr "Disposition"
 
@@ -142,11 +145,9 @@ msgstr "Raccourci clavier"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
-"This extension provides a parametrable popup menu displaying most emojis, "
-"clicking on an emoji copies it to the clipboard."
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
 msgstr ""
-"Cette extension fournit un menu parametrable affichant la plupart des "
-"émojis, cliquer sur un émoji le copiant dans le presse-papier."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Report bugs or ideas"
@@ -169,10 +170,8 @@ msgid "translator-credits"
 msgstr "Romain F. T."
 
 #: emoji-copy@felipeftn/prefs.ui
-#, fuzzy
-#| msgid "Contributors:"
-msgid "Contributors"
-msgstr "Contributeurs :"
+msgid "Original Owner"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "About"
@@ -199,41 +198,44 @@ msgstr "Nombre incorrect de mots-clés pour la catégorie '%s' :"
 msgid "Please report this bug"
 msgstr "Veuillez rapporter le problème"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "No skin tone"
-msgstr "Pas de teinte"
+#~ msgid ""
+#~ "This extension provides a parametrable popup menu displaying most emojis, "
+#~ "clicking on an emoji copies it to the clipboard."
+#~ msgstr ""
+#~ "Cette extension fournit un menu parametrable affichant la plupart des "
+#~ "émojis, cliquer sur un émoji le copiant dans le presse-papier."
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Light skin tone"
-msgstr "Teinte pâle"
+#, fuzzy
+#~| msgid "Contributors:"
+#~ msgid "Contributors"
+#~ msgstr "Contributeurs :"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium light skin tone"
-msgstr "Teinte moyennement pâle"
+#~ msgid "No skin tone"
+#~ msgstr "Pas de teinte"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium skin tone"
-msgstr "Teinte moyenne"
+#~ msgid "Light skin tone"
+#~ msgstr "Teinte pâle"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium dark skin tone"
-msgstr "Teinte moyennement sombre"
+#~ msgid "Medium light skin tone"
+#~ msgstr "Teinte moyennement pâle"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Dark skin tone"
-msgstr "Teinte sombre"
+#~ msgid "Medium skin tone"
+#~ msgstr "Teinte moyenne"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Women"
-msgstr "Femmes"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "Teinte moyennement sombre"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Men"
-msgstr "Hommes"
+#~ msgid "Dark skin tone"
+#~ msgstr "Teinte sombre"
 
-#: emoji-copy@felipeftn/emojiSearchItem.js
-msgid "Type here to search…"
-msgstr "Taper ici pour rechercher…"
+#~ msgid "Women"
+#~ msgstr "Femmes"
+
+#~ msgid "Men"
+#~ msgstr "Hommes"
+
+#~ msgid "Type here to search…"
+#~ msgstr "Taper ici pour rechercher…"
 
 #~ msgid "Settings"
 #~ msgstr "Paramètres"

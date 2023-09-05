@@ -7,78 +7,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 18:44+0100\n"
-"PO-Revision-Date: 2020-12-09 14:44+0100\n"
-"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
-"Language-Team: \n"
-"Language: es_ES\n"
+"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"PO-Revision-Date: 2022-01-04 18:09+0100\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: Dutch <vistausss@outlook.com>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: emoji-copy@felipeftn/extension.js
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
 msgid "Emoji Copy"
-msgstr ""
+msgstr "Emoji Copy"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Smileys & Body"
-msgstr "Emoticonos & Cuerpos"
+msgstr "Smileys en lichaam"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Peoples & Clothing"
-msgstr "Personas & Vestimentas"
+msgstr "Personen en kleding"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Animals & Nature"
-msgstr "Animales & Naturaleza"
+msgstr "Dieren en natuur"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Food & Drink"
-msgstr "Comidas & Bebidas"
+msgstr "Eten en drinken"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Travel & Places"
-msgstr "Viajes & Lugares"
+msgstr "Reizen en locaties"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Activities & Sports"
-msgstr "Actividades & Deportes"
+msgstr "Activiteiten en sport"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Objects"
-msgstr "Objetos"
+msgstr "Objecten"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Symbols"
-msgstr "Símbolos"
+msgstr "Symbolen"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
-msgstr "Banderas"
+msgstr "Vlaggen"
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "Modifications will be effective after reloading the extension."
-msgstr "Los cambios tendrán efecto tras recargar la extensión."
+msgstr "Herlaad de uitbreiding om de wijzigingen toe te passen."
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "From top to bottom"
-msgstr "De arriba a abajo"
+msgstr "Van boven naar beneden"
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "From bottom to top"
-msgstr "De abajo a arriba"
+msgstr "Van beneden naar boven"
 
 #: emoji-copy@felipeftn/prefs.js
 #, javascript-format
 msgid "The default value is %s"
-msgstr "El valor por defecto es %s"
+msgstr "De standaardwaarde is ‘%s’"
 
 #: emoji-copy@felipeftn/prefs.js
 #, javascript-format
 msgid "version %s"
-msgstr "versión %s"
+msgstr "versie %s"
 
 #: emoji-copy@felipeftn/prefs.ui
 #, fuzzy
@@ -90,167 +90,165 @@ msgid ""
 "instead of the default top bar. Modifications will be effective after "
 "reloading the extension."
 msgstr ""
-"Mostrar la interfaz desde abajo puede ser de utilidad si usas un panel "
-"inferior en vez de la barra superior predeterminada."
+"Van beneden naar boven is het handigst als je gebruikmaakt van een paneel "
+"aan de onderkant van het scherm."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "General layout"
-msgstr "Distribución general"
+msgstr "Indeling"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Number of emojis per line"
-msgstr "Número de emojis por linea"
+msgstr "Aantal emoji's per regel"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Size of emojis (px)"
-msgstr "Tamaño de los emojis (px)"
+msgstr "Emojigrootte (in px)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Layout"
-msgstr "Distribución"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Use a keyboard shortcut to toggle the menu"
-msgstr "Usar un atajo de teclado para mostrar el menú"
+msgstr "Sneltoets gebruiken om menu te tonen/verbergen"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Help"
-msgstr "Ayuda"
+msgstr "Hulp"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Apply"
-msgstr "Aplicar"
+msgstr "Toepassen"
 
 #: emoji-copy@felipeftn/prefs.ui
 #, fuzzy
 #| msgid "Always show the icon"
 msgid "Always show the icon in the panel"
-msgstr "Mostrar siempre el icono"
+msgstr "Pictogram altijd tonen"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
 "If you access the menu with the keyboard shortcut, you don't need to always "
 "display the icon."
 msgstr ""
-"Si accedes al menú con el atajo de teclado, puede que no necesites que se "
-"muestre siempre el icono."
+"Als je het menu opent met een sneltoets, dan hoeft het pictogram niet altijd "
+"te worden getoond."
 
 #: emoji-copy@felipeftn/prefs.ui
-#, fuzzy
-#| msgid "Keybinding"
 msgid "Keyboard bindings"
-msgstr "Atajos de teclado"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
-"This extension provides a parametrable popup menu displaying most emojis, "
-"clicking on an emoji copies it to the clipboard."
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
 msgstr ""
-"Esta extensión proporciona un menú desplegable configurable que muestra la "
-"mayoría de los emojis, al hacer clic en un emoji lo copia al portapapeles."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Report bugs or ideas"
-msgstr "Informar errores o ideas"
+msgstr "Meld bugs of deel ideeën"
 
 #: emoji-copy@felipeftn/prefs.ui
 #, fuzzy
 #| msgid "Author:"
 msgid "Author"
-msgstr "Autor:"
+msgstr "Maker:"
 
 #: emoji-copy@felipeftn/prefs.ui
 #, fuzzy
 #| msgid "Translator(s):"
 msgid "Translator(s)"
-msgstr "Traductor(es):"
+msgstr "Vertaler(s):"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "translator-credits"
-msgstr "créditos-traductor"
+msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
 #: emoji-copy@felipeftn/prefs.ui
-#, fuzzy
-#| msgid "Contributors:"
-msgid "Contributors"
-msgstr "Colaboradores:"
+msgid "Original Owner"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "About"
-msgstr "Acerca de"
+msgstr "Over"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "List of valid key names"
-msgstr "Lista de nombres clave válidos"
+msgstr "Lijst met geldige waardenamen"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Modifier keys must be between chevrons"
-msgstr "Las teclas modificadoras deben estar entre los cheurones"
+msgstr "Sneltoetsen dienen tussen chevrons te worden geplaatst"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Don't use a keyboard shortcut that already exists."
-msgstr "No use un atajo de teclado que ya existe."
+msgstr "Deze sneltoets is al in gebruik."
 
 #: emoji-copy@felipeftn/emojiCategory.js
 #, javascript-format
 msgid "Incorrect number of keywords for category '%s':"
-msgstr "Número incorrecto de palabras clave para la categoría '%s':"
+msgstr "Ongeldig aantal trefwoorden bij ‘%s’:"
 
 #: emoji-copy@felipeftn/emojiCategory.js
 msgid "Please report this bug"
-msgstr "Por favor, informe de este error"
+msgstr "Meld deze bug"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "No skin tone"
-msgstr "Sin tonalidad de piel"
+#~ msgid ""
+#~ "This extension provides a parametrable popup menu displaying most emojis, "
+#~ "clicking on an emoji copies it to the clipboard."
+#~ msgstr ""
+#~ "Deze uitbreiding biedt een instelbaar pop-upmenu dat de meeste emoji's "
+#~ "toont. Klik op een emoji om hem te kopiëren naar het klembord."
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Light skin tone"
-msgstr "Tonalidad clara"
+#, fuzzy
+#~| msgid "Contributors:"
+#~ msgid "Contributors"
+#~ msgstr "Met dank aan:"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium light skin tone"
-msgstr "Tonalidad ligeramente clara"
+#~ msgid "No skin tone"
+#~ msgstr "Geen huidskleur"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium skin tone"
-msgstr "Tonalidad media"
+#~ msgid "Light skin tone"
+#~ msgstr "Lichte huidskleur"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium dark skin tone"
-msgstr "Tonalidad ligeramente oscura"
+#~ msgid "Medium light skin tone"
+#~ msgstr "Lichtere huidskleur"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Dark skin tone"
-msgstr "Tonalidad oscura"
+#~ msgid "Medium skin tone"
+#~ msgstr "Gemiddelde huidskleur"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Women"
-msgstr "Mujer"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "Donkerder huidskleur"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Men"
-msgstr "Hombre"
+#~ msgid "Dark skin tone"
+#~ msgstr "Donkere huidskleur"
 
-#: emoji-copy@felipeftn/emojiSearchItem.js
-msgid "Type here to search…"
-msgstr "Escriba aquí para buscar…"
+#~ msgid "Women"
+#~ msgstr "Vrouwen"
+
+#~ msgid "Men"
+#~ msgstr "Mannen"
+
+#~ msgid "Type here to search…"
+#~ msgstr "Typ hier om te zoeken…"
 
 #~ msgid "Settings"
-#~ msgstr "Ajustes"
+#~ msgstr "Voorkeuren"
 
 #~ msgid "Default value is:"
-#~ msgstr "El valor por defecto es"
+#~ msgstr "De standaardwaarde is:"
 
 #~ msgid "Use dark font"
-#~ msgstr "Usar color oscuro de fuente"
+#~ msgstr "Donker lettertype gebruiken"
 
 #~ msgid ""
 #~ "This is useful if your system doesn't support color emojis and your GNOME "
 #~ "Shell theme has a white menu background."
 #~ msgstr ""
-#~ "De gran utilidad si su sistema no soporta emojis de colores y su tema de "
-#~ "GNOME Shell tiene un fondo de menú claro."
-
-#~ msgid "Appearance"
-#~ msgstr "Apariencia"
+#~ "Dit is handig als je systeem geen ondersteuning biedt voor gekleurde "
+#~ "emoji's en je GNOME Shell-thema een witte menu-achtergrond bevat."

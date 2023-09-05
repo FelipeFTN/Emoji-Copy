@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 18:44+0100\n"
+"POT-Creation-Date: 2023-09-05 18:13-0300\n"
 "PO-Revision-Date: 2022-11-16 20:17+0100\n"
 "Last-Translator: Albano Battistella<albano_battistella@hotmail.com>\n"
 "Language-Team:italian\n"
@@ -17,8 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: emoji-copy@felipeftn/extension.js
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
 msgid "Emoji Copy"
 msgstr "Emoji Copy"
 
@@ -81,17 +80,14 @@ msgid "version %s"
 msgstr "versione %s"
 
 #: emoji-copy@felipeftn/prefs.ui
-#| msgid ""
-#| "Displaying the interface from the bottom is better if you use a bottom "
-#| "panel instead of the default top bar."
 msgid ""
 "Displaying the interface from the bottom is better if you use a bottom panel "
 "instead of the default top bar. Modifications will be effective after "
 "reloading the extension."
 msgstr ""
-"La visualizzazione dell'interfaccia dal basso è migliore se si utilizza un pannello inferiore "
-"invece della barra superiore predefinita. Le modifiche entreranno in vigore dopo il "
-"ricaricamento dell'estensione."
+"La visualizzazione dell'interfaccia dal basso è migliore se si utilizza un "
+"pannello inferiore invece della barra superiore predefinita. Le modifiche "
+"entreranno in vigore dopo il ricaricamento dell'estensione."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "General layout"
@@ -104,6 +100,10 @@ msgstr "Numero di emoji per riga"
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Size of emojis (px)"
 msgstr "Dimensione degli emoji (px)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Layout"
@@ -122,7 +122,6 @@ msgid "Apply"
 msgstr "Applica"
 
 #: emoji-copy@felipeftn/prefs.ui
-#| msgid "Always show the icon"
 msgid "Always show the icon in the panel"
 msgstr "Mostra sempre l'icona nel pannello"
 
@@ -135,29 +134,24 @@ msgstr ""
 "visualizzare l'icona."
 
 #: emoji-copy@felipeftn/prefs.ui
-#| msgid "Keybinding"
 msgid "Keyboard bindings"
 msgstr "Associazioni di tastiera"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
-"This extension provides a parametrable popup menu displaying most emojis, "
-"clicking on an emoji copies it to the clipboard."
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
 msgstr ""
-"Questa estensione fornisce un menu popup parametrabile che mostra la maggior "
-"parte degli emoji, facendo clic su un emoji la copia negli appunti."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Report bugs or ideas"
 msgstr "Segnala bug o idee"
 
 #: emoji-copy@felipeftn/prefs.ui
-#| msgid "Author:"
 msgid "Author"
 msgstr "Autore"
 
 #: emoji-copy@felipeftn/prefs.ui
-#| msgid "Translator(s):"
 msgid "Translator(s)"
 msgstr "Traduttore(i)"
 
@@ -166,9 +160,8 @@ msgid "translator-credits"
 msgstr "Albano Battistella, Danilo Del Busso"
 
 #: emoji-copy@felipeftn/prefs.ui
-#| msgid "Contributors:"
-msgid "Contributors"
-msgstr "Contributori"
+msgid "Original Owner"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "About"
@@ -195,41 +188,44 @@ msgstr "Numero di parole chiave errato per la categoria '%s':"
 msgid "Please report this bug"
 msgstr "Segnala questo bug"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "No skin tone"
-msgstr "Nessun tono della pelle"
+#~ msgid ""
+#~ "This extension provides a parametrable popup menu displaying most emojis, "
+#~ "clicking on an emoji copies it to the clipboard."
+#~ msgstr ""
+#~ "Questa estensione fornisce un menu popup parametrabile che mostra la "
+#~ "maggior parte degli emoji, facendo clic su un emoji la copia negli "
+#~ "appunti."
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Light skin tone"
-msgstr "Tonalità della pelle chiara"
+#~| msgid "Contributors:"
+#~ msgid "Contributors"
+#~ msgstr "Contributori"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium light skin tone"
-msgstr "Tono della pelle medio-leggero"
+#~ msgid "No skin tone"
+#~ msgstr "Nessun tono della pelle"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium skin tone"
-msgstr "Tonalità della pelle media"
+#~ msgid "Light skin tone"
+#~ msgstr "Tonalità della pelle chiara"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium dark skin tone"
-msgstr "Tono della pelle medio scuro"
+#~ msgid "Medium light skin tone"
+#~ msgstr "Tono della pelle medio-leggero"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Dark skin tone"
-msgstr "Tonalità della pelle scura"
+#~ msgid "Medium skin tone"
+#~ msgstr "Tonalità della pelle media"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Women"
-msgstr "Donne"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "Tono della pelle medio scuro"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Men"
-msgstr "Uomini"
+#~ msgid "Dark skin tone"
+#~ msgstr "Tonalità della pelle scura"
 
-#: emoji-copy@felipeftn/emojiSearchItem.js
-msgid "Type here to search…"
-msgstr "Digita qui per effettuare una ricerca…"
+#~ msgid "Women"
+#~ msgstr "Donne"
+
+#~ msgid "Men"
+#~ msgstr "Uomini"
+
+#~ msgid "Type here to search…"
+#~ msgstr "Digita qui per effettuare una ricerca…"
 
 #~ msgid "Settings"
 #~ msgstr "Impostazioni"

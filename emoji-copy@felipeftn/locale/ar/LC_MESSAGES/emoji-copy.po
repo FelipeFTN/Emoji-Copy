@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 18:44+0100\n"
+"POT-Creation-Date: 2023-09-05 18:13-0300\n"
 "PO-Revision-Date: 2020-03-07 04:17+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,8 +18,7 @@ msgstr ""
 "X-Generator: Poedit 2.2.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: emoji-copy@felipeftn/extension.js
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
 msgid "Emoji Copy"
 msgstr "إيموجي سيلكتور"
 
@@ -107,6 +106,10 @@ msgid "Size of emojis (px)"
 msgstr "حجم الإموجي (بكسل)"
 
 #: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.ui
 msgid "Layout"
 msgstr ""
 
@@ -140,11 +143,9 @@ msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
-"This extension provides a parametrable popup menu displaying most emojis, "
-"clicking on an emoji copies it to the clipboard."
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
 msgstr ""
-"توفر هذه الإضافة قائمة منبثقة تحوي على أغلب الإيموجيات، يُنسخ بالضغط على أي "
-"منهم."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Report bugs or ideas"
@@ -167,7 +168,7 @@ msgid "translator-credits"
 msgstr "أحمد العلق"
 
 #: emoji-copy@felipeftn/prefs.ui
-msgid "Contributors"
+msgid "Original Owner"
 msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
@@ -195,41 +196,39 @@ msgstr ""
 msgid "Please report this bug"
 msgstr ""
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "No skin tone"
-msgstr "إخفاء ألوان البشرة"
+#~ msgid ""
+#~ "This extension provides a parametrable popup menu displaying most emojis, "
+#~ "clicking on an emoji copies it to the clipboard."
+#~ msgstr ""
+#~ "توفر هذه الإضافة قائمة منبثقة تحوي على أغلب الإيموجيات، يُنسخ بالضغط على "
+#~ "أي منهم."
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Light skin tone"
-msgstr "بشرة فاتحة"
+#~ msgid "No skin tone"
+#~ msgstr "إخفاء ألوان البشرة"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium light skin tone"
-msgstr "بشرة سمراء فاتحة"
+#~ msgid "Light skin tone"
+#~ msgstr "بشرة فاتحة"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium skin tone"
-msgstr "بشرة سمراء"
+#~ msgid "Medium light skin tone"
+#~ msgstr "بشرة سمراء فاتحة"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium dark skin tone"
-msgstr "بشرة سمراء غامقة"
+#~ msgid "Medium skin tone"
+#~ msgstr "بشرة سمراء"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Dark skin tone"
-msgstr "بشرة غامقة"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "بشرة سمراء غامقة"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Women"
-msgstr "إمرأة"
+#~ msgid "Dark skin tone"
+#~ msgstr "بشرة غامقة"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Men"
-msgstr "رجل"
+#~ msgid "Women"
+#~ msgstr "إمرأة"
 
-#: emoji-copy@felipeftn/emojiSearchItem.js
-msgid "Type here to search…"
-msgstr "اكتب هنا للبحث..."
+#~ msgid "Men"
+#~ msgstr "رجل"
+
+#~ msgid "Type here to search…"
+#~ msgstr "اكتب هنا للبحث..."
 
 #~ msgid "Settings"
 #~ msgstr "الإعدادات"

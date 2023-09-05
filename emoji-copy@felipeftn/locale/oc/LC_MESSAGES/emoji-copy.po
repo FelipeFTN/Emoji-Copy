@@ -7,79 +7,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 18:44+0100\n"
-"PO-Revision-Date: 2023-04-23 10:03+0200\n"
-"Last-Translator: Kryštof Černý <cleerline1mc@gmail.com>\n"
+"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"PO-Revision-Date: 2023-02-08 20:39+0100\n"
+"Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
-"Language: cs\n"
+"Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: emoji-copy@felipeftn/extension.js
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
 msgid "Emoji Copy"
-msgstr "Menu emotikonů"
+msgstr "Aisina de seleccion d'emoji"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Smileys & Body"
-msgstr "Tváře a tělo"
+msgstr "Risetas e còs"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Peoples & Clothing"
-msgstr "Lidé a oblečení"
+msgstr "Personas e vestits"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Animals & Nature"
-msgstr "Zvířata a příroda"
+msgstr "Animals e natura"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Food & Drink"
-msgstr "Jídlo a pití"
+msgstr "Beure e manjar"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Travel & Places"
-msgstr "Cestování a místa"
+msgstr "Viatges e luòcs"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Activities & Sports"
-msgstr "Aktivity a sporty"
+msgstr "Activitats e espòrts"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Objects"
-msgstr "Předměty"
+msgstr "Objèctes"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Symbols"
-msgstr "Symboly"
+msgstr "Simbòls"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
-msgstr "Vlajky"
+msgstr "Bandièras"
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "Modifications will be effective after reloading the extension."
-msgstr "Úpravy budou použity po restartu rozšíření."
+msgstr "Las modificacions seràn efectivas aprèp lo recargament de l'extension."
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "From top to bottom"
-msgstr "Shora dolů"
+msgstr "De naut en bas"
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "From bottom to top"
-msgstr "Zespoda nahoru"
+msgstr "De bas en naut"
 
 #: emoji-copy@felipeftn/prefs.js
 #, javascript-format
 msgid "The default value is %s"
-msgstr "Výchozí hodnota je %s"
+msgstr "La valor per defaut es %s"
 
 #: emoji-copy@felipeftn/prefs.js
 #, javascript-format
 msgid "version %s"
-msgstr "verze %s"
+msgstr "version %s"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
@@ -87,64 +85,67 @@ msgid ""
 "instead of the default top bar. Modifications will be effective after "
 "reloading the extension."
 msgstr ""
-"Rozhraní zespoda nahoru je lepší, když používáte spodní panel místo "
-"výchozího horního panelu. Úpravy budou použity po restartu rozšíření."
+"Afichar l'interfàcia enbàs es melhor s'utilizatz un panèl enbàs a la placa "
+"del barra superiora per defaut. Las modificacions seràn presas en carga "
+"aprèp lo recargament de l'extension."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "General layout"
-msgstr "Základní rozvržení"
+msgstr "Disposicion generala"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Number of emojis per line"
-msgstr "Počet emotikonů na řádek"
+msgstr "Nombre d'emojis per linha"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Size of emojis (px)"
-msgstr "Velikost emotikonů (px)"
+msgstr "Talha dels emojis (px)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Layout"
-msgstr "Rozvržení"
+msgstr "Agençament"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Use a keyboard shortcut to toggle the menu"
-msgstr "Použít klávesovou zkratku pro přepnutí menu"
+msgstr "Utilizar un acorchi de clavièr per dobrir lo menú."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Help"
-msgstr "Nápověda"
+msgstr "Ajuda"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Apply"
-msgstr "Použít"
+msgstr "Aplicar"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Always show the icon in the panel"
-msgstr "Vždy zobrazit ikonu na panelu"
+msgstr "Totjorn afichar l'icòna al panèl"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
 "If you access the menu with the keyboard shortcut, you don't need to always "
 "display the icon."
 msgstr ""
-"Pokud vyvoláváte menu pomocí klávesové zkratky, nepotřebujete mít vždy "
-"zobrazenou ikonu."
+"S'accedissètz al menú via l'acorchi de clavièr, vos fa pas mestièr de "
+"totjorn afichar l'icòna."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Keyboard bindings"
-msgstr "Přiřazení kláves"
+msgstr "Combinasons de tòcas"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
-"This extension provides a parametrable popup menu displaying most emojis, "
-"clicking on an emoji copies it to the clipboard."
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
 msgstr ""
-"Toto rozšíření poskytuje nastavitelné menu zobrazující většinu emotikonů, "
-"kliknutím na emotikon jej zkopírujete do schránky."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Report bugs or ideas"
-msgstr "Nahlásit chyby nebo nápady"
+msgstr "Senhalar las anomalias o idèas"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Author"
@@ -152,73 +153,77 @@ msgstr "Autor"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Translator(s)"
-msgstr "Překladatelé"
+msgstr "Traductor(s)"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "translator-credits"
-msgstr "Kryštof Černý"
+msgstr "Quentin PAGÈS"
 
 #: emoji-copy@felipeftn/prefs.ui
-msgid "Contributors"
-msgstr "Přispěvatelé"
+msgid "Original Owner"
+msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "About"
-msgstr "O rozšíření"
+msgstr "A prepaus"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "List of valid key names"
-msgstr "Seznam platných jmen klíčů"
+msgstr "Lista dels noms claus valids"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Modifier keys must be between chevrons"
-msgstr "Modifikační klíče musí být ve špičatých závorkách"
+msgstr "Las claus de modificacions devon èsser entre croquets"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Don't use a keyboard shortcut that already exists."
-msgstr "Nepoužívejte klávesovou zkratku, která je již použita."
+msgstr "Utilizetz pas un acorchi de clavièr qu'existís ja."
 
 #: emoji-copy@felipeftn/emojiCategory.js
 #, javascript-format
 msgid "Incorrect number of keywords for category '%s':"
-msgstr "Nesprávný počet klíčových slov pro kategorii \"%s\":"
+msgstr "Nombre incorrect de mots claus per la categoria « %s » :"
 
 #: emoji-copy@felipeftn/emojiCategory.js
 msgid "Please report this bug"
-msgstr "Prosíme, nahlašte tuto chybu"
+msgstr "Mercés de senhalar aqueste bug"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "No skin tone"
-msgstr "Bez barvy pleti"
+#~ msgid ""
+#~ "This extension provides a parametrable popup menu displaying most emojis, "
+#~ "clicking on an emoji copies it to the clipboard."
+#~ msgstr ""
+#~ "Aquesta extension provesís una fenèstra sorgissenta qu'aficha la màger "
+#~ "part dels emojis, los clicar los còpia al quichapapièrs."
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Light skin tone"
-msgstr "Světlá barva pleti"
+#~ msgid "Contributors"
+#~ msgstr "Contributors"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium light skin tone"
-msgstr "Středně světlá barva pleti"
+#~ msgid "No skin tone"
+#~ msgstr "Cap de color de pèl"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium skin tone"
-msgstr "Jemně tmavá barva pleti"
+#~ msgid "Light skin tone"
+#~ msgstr "Color de pèl clara"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Medium dark skin tone"
-msgstr "Středně tmavá barva pleti"
+#~ msgid "Medium light skin tone"
+#~ msgstr "Color de pèl mejana clara"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Dark skin tone"
-msgstr "Tmavá barva pleti"
+#~ msgid "Medium skin tone"
+#~ msgstr "Color de pèl mejana"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Women"
-msgstr "Žena"
+#~ msgid "Medium dark skin tone"
+#~ msgstr "Color de pèl mejana escura"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js
-msgid "Men"
-msgstr "Muž"
+#~ msgid "Dark skin tone"
+#~ msgstr "Color de pèl escura"
 
-#: emoji-copy@felipeftn/emojiSearchItem.js
-msgid "Type here to search…"
-msgstr "Pište sem pro vyhledávání…"
+#~ msgid "Women"
+#~ msgstr "Femnas"
+
+#~ msgid "Men"
+#~ msgstr "Òmes"
+
+#~ msgid "Type here to search…"
+#~ msgstr "Començatz la sasida per recercar…"
+
+#~ msgid "Settings"
+#~ msgstr "Paramètres"
