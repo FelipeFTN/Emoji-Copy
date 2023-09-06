@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-05 18:13-0300\n"
-"PO-Revision-Date: 2023-09-05 21:46+0300\n"
+"PO-Revision-Date: 2023-09-06 09:03+0300\n"
 "Last-Translator: Oğuz Taş <mimoguz@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
 msgid "Emoji Copy"
@@ -87,7 +87,7 @@ msgid ""
 "reloading the extension."
 msgstr ""
 "Arayüzü altta göstermek, varsayılan üst çubuk yerine  bir alt panel "
-"kullanıyorsanız daha uyumlu olacaktır.  Değişiklikler eklenti yeniden "
+"kullanıyorsanız daha uyumlu olacaktır. Değişiklikler eklenti yeniden "
 "yüklendiğinde etkin olur."
 
 #: emoji-copy@felipeftn/prefs.ui
@@ -104,7 +104,7 @@ msgstr "Emoji büyüklüğü (piksel)"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Paste upon emoji selection"
-msgstr ""
+msgstr "Emoji seçildiğinde yapıştır"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Layout"
@@ -143,6 +143,8 @@ msgid ""
 "Emoji copy is a versatile extension designed to simplify emoji selection and "
 "clipboard management."
 msgstr ""
+"Emoji Kopyala, emoji seçimi ve pano yönetimini basitleştirmek için "
+"geliştirilmiş çok yönlü bir eklentidir."
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Report bugs or ideas"
@@ -162,7 +164,7 @@ msgstr "çeviriye katkıda bulunanlar"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "Original Owner"
-msgstr ""
+msgstr "Orijinal Sahibi"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid "About"
@@ -183,7 +185,7 @@ msgstr "Zaten mevcut bir kısayol kullanmayın."
 #: emoji-copy@felipeftn/emojiCategory.js
 #, javascript-format
 msgid "Incorrect number of keywords for category '%s':"
-msgstr "\"%s\" kategorisinde hatlı sayıda anahtar kelime:"
+msgstr "\"%s\" kategorisinde hatalı sayıda anahtar kelime:"
 
 #: emoji-copy@felipeftn/emojiCategory.js
 msgid "Please report this bug"
