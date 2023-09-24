@@ -1,11 +1,12 @@
-const St = imports.gi.St;
-const Clutter = imports.gi.Clutter;
-const Mainloop = imports.mainloop;
+import St from 'gi://St';
+import Clutter from 'gi://Clutter';
+
+// Trying to import Mainloop
+// import Mainloop from 'imports.mainloop';
+import * as Mainloop from 'resource:///org/gnome/Shell/mainloop.js'; // Is this import correct?
 
 /* Import the current extension, mainly because we need to access other files */
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Extension = Me.imports.extension;
+import * as Extension from './extension.js'
 
 const Clipboard = St.Clipboard.get_default();
 const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;
@@ -26,8 +27,7 @@ const GENDERS = ['', '\u200D\u2640\uFE0F', '\u200D\u2642\uFE0F'];
 const GENDERS2 = ['👩', '👨'];
 const TONES = ['', '🏻', '🏼', '🏽', '🏾', '🏿'];
 
-var EmojiButton = class EmojiButton {
-
+export class EmojiButton {
     constructor(baseCharacter, keywords) {
         this.baseCharacter = baseCharacter;
         let tonable = false;
@@ -57,7 +57,9 @@ var EmojiButton = class EmojiButton {
         this.super_btn.connect('button-press-event', this.onButtonPress.bind(this));
         this.super_btn.connect('key-press-event', this.onKeyPress.bind(this));
 
-        if (category == null || this.keywords == []) { return; }
+        if (category == null || this.keywords == []) {
+            return;
+        }
 
         // Update the category label on hover, allowing the user to know the
         // name of the emoji he's copying.
@@ -91,7 +93,7 @@ var EmojiButton = class EmojiButton {
 
     onKeyPress(_, e) {
         let symbol = e.get_key_symbol();
-        //  Main return key (GS > 3.35)     Main return key (GS < 3.35)           Numpad return key
+        // Main return key (GS > 3.35)     Main return key (GS < 3.35)           Numpad return key
         if (symbol == Clutter.KEY_Return || symbol == Clutter.Return || symbol == Clutter.KP_Enter) {
             let emojiToCopy = this.getTaggedEmoji();
             let [mods] = global.get_pointer();
@@ -111,15 +113,16 @@ var EmojiButton = class EmojiButton {
     /*
      * This method is called at each click and copies the emoji to the clipboard.
      * The exact behavior of the method depends on the mouse button used:
-     * - left click overwrites clipboard content with the emoji, and closes the menu;
+     * - left click overwrites clipboard content with the emoji and closes the menu;
      * - middle click too, but does not close the menu;
-     * - right click adds the emoji at the end of the current clipboard content
-     *   (and does not close the menu).
+     * - right click adds the emoji at the end of the current clipboard content (and does not close the menu).
      */
     onButtonPress(_, event) {
         let mouseButton = event.get_button();
         let emojiToCopy = this.getTaggedEmoji();
-        if (emojiToCopy == null) { return Clutter.EVENT_PROPAGATE; }
+        if (emojiToCopy == null) {
+            return Clutter.EVENT_PROPAGATE;
+        }
 
         if (mouseButton == 1) {
             return this.replaceClipboardAndClose(emojiToCopy);
@@ -138,7 +141,9 @@ var EmojiButton = class EmojiButton {
         );
         Extension.GLOBAL_BUTTON.super_btn.menu.close();
 
-        if (Extension.SETTINGS.get_boolean('paste-on-select')) this.triggerPasteHack();
+        if (Extension.SETTINGS.get_boolean('paste-on-select')) {
+            this.triggerPasteHack();
+        }
 
         return Clutter.EVENT_STOP;
     }
@@ -149,7 +154,9 @@ var EmojiButton = class EmojiButton {
             emojiToCopy
         );
 
-        if (Extension.SETTINGS.get_boolean('paste-on-select')) this.triggerPasteHack();
+        if (Extension.SETTINGS.get_boolean('paste-on-select')) {
+            this.triggerPasteHack();
+        }
 
         return Clutter.EVENT_STOP;
     }
@@ -162,7 +169,9 @@ var EmojiButton = class EmojiButton {
             );
         });
 
-        if (Extension.SETTINGS.get_boolean('paste-on-select')) this.triggerPasteHack();
+        if (Extension.SETTINGS.get_boolean('paste-on-select')) {
+            this.triggerPasteHack();
+        }
 
         return Clutter.EVENT_STOP;
     }
@@ -208,7 +217,7 @@ var EmojiButton = class EmojiButton {
     }
 
     // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
-    // Originaly from "clipboard-histroy@alexsaveau.dev"
+    // Originally from "clipboard-histroy@alexsaveau.dev"
     triggerPasteHack() {
         this._pasteHackCallbackId = Mainloop.timeout_add(
             1,
@@ -240,4 +249,4 @@ var EmojiButton = class EmojiButton {
             },
         );
     }
-};
+}

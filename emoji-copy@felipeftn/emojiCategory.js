@@ -1,13 +1,11 @@
-const Clutter = imports.gi.Clutter;
-const St = imports.gi.St;
-const PopupMenu = imports.ui.popupMenu;
+import St from 'gi://St';
+import Clutter from 'gi://Clutter';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
 /* Import the current extension, mainly because we need to access other files */
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const SkinTonesBar = Me.imports.emojiOptionsBar.SkinTonesBar;
-const Extension = Me.imports.extension;
-const EmojiButton = Me.imports.emojiButton;
+import { SkinTonesBar } from './emojiOptionsBar.js';
+import { EmojiButton } from './emojiButton.js';
+import * as Extension from './extension.js' // Can I get SETTINGS with this? (Extension.SETTINGS)?
 
 /**
  * This imports data (array of arrays of characters, and array of arrays
@@ -16,13 +14,12 @@ const EmojiButton = Me.imports.emojiButton;
  * - skin tone management
  * - gender management
  */
-const EMOJIS_CHARACTERS = Me.imports.data.emojisCharacters.ALL;
-const EMOJIS_KEYWORDS = Me.imports.data.emojisKeywords.ALL_KEYWORDS;
+import { EMOJIS_CHARACTERS } from './data/emojisCharacters.js';
+import { EMOJIS_KEYWORDS } from './data/emojisKeywords.js';
+// const EMOJIS_CHARACTERS = Me.imports.data.emojisCharacters.ALL;
+// const EMOJIS_KEYWORDS = Me.imports.data.emojisKeywords.ALL_KEYWORDS;
 
-////////////////////////////////////////////////////////////////////////////////
-
-var EmojiCategory = class EmojiCategory {
-
+export class EmojiCategory {
     /**
      * The category and its button have to be built without being loaded, to
      * memory issues with emojis' image textures.
@@ -47,7 +44,7 @@ var EmojiCategory = class EmojiCategory {
             this.skinTonesBar = new SkinTonesBar(false);
         }
 
-        //   Smileys & body   Peoples           Activities
+        // Smileys & body Peoples Activities
         if ((this.id == 0) || (this.id == 1) || (this.id == 5)) {
             this.skinTonesBar.addBar(this.super_item.actor);
         }
@@ -111,7 +108,7 @@ var EmojiCategory = class EmojiCategory {
         if (this._loaded) return;
 
         for (let i = 0; i < EMOJIS_CHARACTERS[this.id].length; i++) {
-            let button = new EmojiButton.EmojiButton(
+            let button = new EmojiButton(
                 EMOJIS_CHARACTERS[this.id][i], EMOJIS_KEYWORDS[this.id][i]);
             this.emojiButtons.push(button);
         }
@@ -194,16 +191,6 @@ var EmojiCategory = class EmojiCategory {
         }
         this._built = true;
     }
-
-    //	unload() { // TODO ?
-    //		this._built = false;
-    //		this._loaded = false;
-    //		for (let i=0; i<this.emojiButtons.length; i++) {
-    //			this.emojiButtons[i].destroy();
-    //		}
-    //		this.super_item.menu.removeAll();
-    //		this.emojiButtons = [];
-    //	}
 
     _toggle() {
         if (this.super_item._getOpenState()) {

@@ -1,5 +1,5 @@
 /*
-    Copyright 2017-2022 Romain F. T.
+    Copyright 2023 FelipeFTN
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,41 +15,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-const { St, Clutter, Shell, Meta, GLib } = imports.gi;
+import St from 'gi://St';
+import Meta from 'gi://Meta';
+import GLib from 'gi://GLib';
+import Shell from 'gi://Shell';
 
-const Main = imports.ui.main;
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 
-/* Import PanelMenu and PopupMenu */
-const PanelMenu = imports.ui.panelMenu;
-const PopupMenu = imports.ui.popupMenu;
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
-const Clipboard = St.Clipboard.get_default();
-const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;
+import { ExtensionUtils, gettext as _ } from 'resource:///org/gnome/shell/extensions.js';
 
-/* Stuffs for settings, translations etc. */
-const Gettext = imports.gettext.domain('emoji-copy');
-const _ = Gettext.gettext;
+import { EmojiCategory } from './emojiCategory.js';
+import { EmojiSearchItem } from './emojiSearchItem.js';
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const SkinTonesBar = Me.imports.emojiOptionsBar.SkinTonesBar;
-const EmojiCategory = Me.imports.emojiCategory.EmojiCategory;
-const EmojiButton = Me.imports.emojiButton.EmojiButton;
-const EmojiSearchItem = Me.imports.emojiSearchItem.EmojiSearchItem;
-
-// These global variables are used to store some static settings
-var SETTINGS = null;
-var GLOBAL_BUTTON = null;
+let SETTINGS = null;
+let GLOBAL_BUTTON = null;
 let SIGNAUX = [];
 let POSITION;
-var NB_COLS;
 
 let timeoutSourceId = null;
 
-/*
- * This is the main class of this extension, corresponding to the button in the
- * top panel and its menu.
- */
 class EmojisMenu {
     constructor() {
         this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
@@ -66,16 +54,12 @@ class EmojisMenu {
         this.super_btn.add_child(box);
         this.super_btn.visible = SETTINGS.get_boolean('always-show');
 
-        //initializing categories
         this._createAllCategories(nbCols);
 
-        //initializing this._buttonMenuItem
         this._renderPanelMenuHeaderBox();
 
-        //creating the search entry
         this.searchItem = new EmojiSearchItem(nbCols);
 
-        //initializing the "recently used" buttons
         let recentlyUsed = this.searchItem._recentlyUsedInit();
 
         if (POSITION === 'top') {
@@ -86,9 +70,9 @@ class EmojisMenu {
             this.super_btn.menu.addMenuItem(recentlyUsed);
             this._permanentItems++;
         }
-        //----------------------------------------------------------------------
+
         this._addAllCategories();
-        //----------------------------------------------------------------------
+
         if (POSITION === 'bottom') {
             this.super_btn.menu.addMenuItem(recentlyUsed);
             this._permanentItems++;
@@ -134,15 +118,10 @@ class EmojisMenu {
         this.super_btn.menu.toggle();
     }
 
-    /**
-     * Executed when the user opens/closes the menu, the main goals are to clear
-     * and to focus the search entry.
-     */
-    _onOpenStateChanged(self, open) {
+    _onOpenStateChanged(_, open) {
         this.super_btn.visible = open || SETTINGS.get_boolean('always-show');
         this.clearCategories();
         this.searchItem.searchEntry.set_text('');
-        // this.unloadCategories();
 
         timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 20, () => {
             if (open) {
@@ -153,13 +132,33 @@ class EmojisMenu {
         });
     }
 
-    //	unloadCategories() { // XXX
-    //		for (let i=1; i<this.emojiCategories.length; i++) {
-    //			this.emojiCategories[i].unload();
-    //		}
-    //	}
+    clearCategories() {
+        for (let i = 0; i < 9; i++) {
+            this.emojiCategories[i].getButton().set_checked(false);
+        }
 
-    // Creates all categories (buttons & submenu menuitems), empty for now.
+        let items = this.super_btn.menu._getMenuItems();
+
+        if (POSITION == 'top') {
+            for (let i = this._permanentItems; i < items.length; i++) {
+                items[i].setSubmenuShown(false);
+                items[i].actor.visible = false;
+            }
+        } else {
+            for (let i = 0; i < (items.length - this._permanentItems); i++) {
+                items[i].setSubmenuShown(false);
+                items[i].actor.visible = false;
+            }
+        }
+
+        this._activeCat = -1;
+        this._onSearchTextChanged();
+    }
+
+    _onSearchTextChanged() {
+        this.searchItem._onSearchTextChanged();
+    }
+
     _createAllCategories(nbCols) {
         this.emojiCategories = [];
 
@@ -187,22 +186,18 @@ class EmojisMenu {
             'emoji-flags-symbolic'
         ];
 
-        /* creating new categories, with emojis not loaded yet */
         for (let i = 0; i < 9; i++) {
             this.emojiCategories[i] = new EmojiCategory(CAT_LABELS[i], CAT_ICONS[i], i);
             this.emojiCategories[i].setNbCols(nbCols);
         }
     }
 
-    // Adds all submenu-menuitems to the extension interface. These items are
-    // hidden, and will be visible only when the related category is opened.
     _addAllCategories() {
         for (let i = 0; i < 9; i++) {
             this.super_btn.menu.addMenuItem(this.emojiCategories[i].super_item);
         }
     }
 
-    // Adds categories' buttons to the extension interface
     _renderPanelMenuHeaderBox() {
         this._buttonMenuItem = new PopupMenu.PopupBaseMenuItem({
             reactive: false,
@@ -212,38 +207,6 @@ class EmojisMenu {
         for (let i = 0; i < this.emojiCategories.length; i++) {
             this._buttonMenuItem.actor.add_child(this.emojiCategories[i].getButton());
         }
-    }
-
-    // Cleans the interface & close the opened category (if any). Called from the
-    // outside, be careful.
-    clearCategories() {
-        // removing the style class of previously opened category's button
-        for (let i = 0; i < 9; i++) {
-            this.emojiCategories[i].getButton().set_checked(false);
-        }
-
-        let items = this.super_btn.menu._getMenuItems();
-
-        // closing and hiding any opened category
-        if (POSITION == 'top') {
-            for (let i = this._permanentItems; i < items.length; i++) {
-                items[i].setSubmenuShown(false);
-                items[i].actor.visible = false;
-            }
-        } else { // if (POSITION == 'bottom') {
-            for (let i = 0; i < (items.length - this._permanentItems); i++) {
-                items[i].setSubmenuShown(false);
-                items[i].actor.visible = false;
-            }
-        }
-
-        this._activeCat = -1;
-        this._onSearchTextChanged();
-    }
-
-    // Wrapper calling EmojiSearchItem's _onSearchTextChanged method
-    _onSearchTextChanged() {
-        this.searchItem._onSearchTextChanged();
     }
 
     _bindShortcut() {
@@ -261,23 +224,19 @@ function init() {
     ExtensionUtils.initTranslations('emoji-copy');
     try {
         let theme = imports.gi.Gtk.IconTheme.get_default();
-        theme.append_search_path(Me.path + '/icons');
+        theme.append_search_path(ExtensionUtils.path + '/icons');
     } catch (e) {
         // Appending bullshit to the icon theme path is deprecated, but 18.04
-        // users don't have the icons so i do it anyway.
+        // users don't have the icons so I do it anyway.
     }
 }
 
 function enable() {
-    SETTINGS = ExtensionUtils.getSettings();
+    SETTINGS = ExtensionUtils.getSettings(); // Is this GOING to work?
     POSITION = SETTINGS.get_string('position');
 
     GLOBAL_BUTTON = new EmojisMenu();
 
-    // about addToStatusArea :
-    // - 'EmojisMenu' is an id
-    // - 0 is the position
-    // - `right` is the box where we want our GLOBAL_BUTTON to be displayed (left/center/right)
     Main.panel.addToStatusArea('EmojisMenu', GLOBAL_BUTTON.super_btn, 0, 'right');
 
     SIGNAUX[0] = SETTINGS.connect('changed::emojisize', () => {
@@ -300,7 +259,6 @@ function enable() {
 }
 
 function disable() {
-    // we need to save these data for the next session
     GLOBAL_BUTTON.searchItem.saveRecents();
 
     if (SETTINGS.get_boolean('use-keybinding')) {
@@ -312,7 +270,6 @@ function disable() {
     SETTINGS.disconnect(SIGNAUX[2]);
 
     GLOBAL_BUTTON.super_btn.destroy();
-    //	GLOBAL_BUTTON.destroy();
 
     if (timeoutSourceId) {
         GLib.Source.remove(timeoutSourceId);

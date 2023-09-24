@@ -1,23 +1,17 @@
-const St = imports.gi.St;
-
-const PopupMenu = imports.ui.popupMenu;
+import St from 'gi://St';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
 /* Import the current extension, mainly because we need to access other files */
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Extension = Me.imports.extension;
-const EmojiButton = Me.imports.emojiButton.EmojiButton;
+import * as Extension from './extension.js'
+import { EmojiButton } from './emojiButton.js';
+
+import { imports } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
 
 /* Translations */
-const textDomain = imports.gettext.domain('emoji-copy');
-const getText = textDomain.gettext;
+const textDomain = imports.gettext.domain('emoji-copy'); // is this going to work?
+const _ = textDomain.gettext;
 
-/**
- * A wrapper around a menu item, with a search entry added to it, and a second
- * menu item with a list of buttons for recently used emojis.
- */
-var EmojiSearchItem = class EmojiSearchItem {
-
+export class EmojiSearchItem {
     constructor(nbColumns) {
         this.super_item = new PopupMenu.PopupBaseMenuItem({
             reactive: false,
@@ -30,7 +24,7 @@ var EmojiSearchItem = class EmojiSearchItem {
             name: 'searchEntry',
             style_class: 'search-entry',
             can_focus: true,
-            hint_text: getText("Type here to search…"),
+            hint_text: _("Type here to search…"),
             track_hover: true,
             x_expand: true,
         });
@@ -184,4 +178,4 @@ var EmojiSearchItem = class EmojiSearchItem {
         this.saveRecents();
         Extension.GLOBAL_BUTTON._onSearchTextChanged();
     }
-};
+}

@@ -1,15 +1,13 @@
-const St = imports.gi.St;
+import * as St from 'gi://St';
 
 /* Import the current extension, mainly because we need to access other files */
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Extension = Me.imports.extension;
+import * as Extension from './extension.js'
 
 /* Stuffs for translations etc. */
-const textDomain = imports.gettext.domain('emoji-copy');
+const textDomain = imports.gettext.domain('emoji-copy'); // is this going to work?
 const getText = textDomain.gettext;
 
-var SkinTonesBar = class SkinTonesBar {
+export class SkinTonesBar {
     constructor(hasGender) {
         this._toneArray = [];
 
@@ -119,4 +117,4 @@ var SkinTonesBar = class SkinTonesBar {
         btn.connect('clicked', this._updateToneBtn.bind(this, intId));
         this._toneArray.push(btn);
     }
-};
+}
