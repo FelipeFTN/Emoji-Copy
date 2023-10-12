@@ -1,22 +1,20 @@
 import * as St from 'gi://St';
 
 /* Import the current extension, mainly because we need to access other files */
-import * as Extension from './extension.js'
+import * as Extension from './extension.js';
 
-/* Stuffs for translations etc. */
-const textDomain = imports.gettext.domain('emoji-copy'); // is this going to work?
-const getText = textDomain.gettext;
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
 
 export class SkinTonesBar {
     constructor(hasGender) {
         this._toneArray = [];
 
-        this._buildToneButton(getText("No skin tone"), '#FFEE00');
-        this._buildToneButton(getText("Light skin tone"), '#FFD8A8');
-        this._buildToneButton(getText("Medium light skin tone"), '#E5B590');
-        this._buildToneButton(getText("Medium skin tone"), '#B88750');
-        this._buildToneButton(getText("Medium dark skin tone"), '#9B6020');
-        this._buildToneButton(getText("Dark skin tone"), '#4B2000');
+        this._buildToneButton(_("No skin tone"), '#FFEE00');
+        this._buildToneButton(_("Light skin tone"), '#FFD8A8');
+        this._buildToneButton(_("Medium light skin tone"), '#E5B590');
+        this._buildToneButton(_("Medium skin tone"), '#B88750');
+        this._buildToneButton(_("Medium dark skin tone"), '#9B6020');
+        this._buildToneButton(_("Dark skin tone"), '#4B2000');
 
         this._genderArray = [];
         if (hasGender) {
@@ -30,8 +28,8 @@ export class SkinTonesBar {
     // gsettings database, where 0 means no gender variation.
     _buildGendersButtons() {
         this._genderArray[0] = null;
-        this._addGenderButton(1, getText("Women"), "♀");
-        this._addGenderButton(2, getText("Men"), "♂");
+        this._addGenderButton(1, _("Women"), "♀");
+        this._addGenderButton(2, _("Men"), "♂");
     }
 
     _addGenderButton(intId, accessibleName, labelChar) {

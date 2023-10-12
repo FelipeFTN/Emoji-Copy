@@ -5,7 +5,9 @@ import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 /* Import the current extension, mainly because we need to access other files */
 import { SkinTonesBar } from './emojiOptionsBar.js';
 import { EmojiButton } from './emojiButton.js';
-import * as Extension from './extension.js' // Can I get SETTINGS with this? (Extension.SETTINGS)?
+import * as Extension from './extension.js'; // Can I get SETTINGS with this? (Extension.SETTINGS)?
+
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
 
 /**
  * This imports data (array of arrays of characters, and array of arrays
@@ -16,8 +18,6 @@ import * as Extension from './extension.js' // Can I get SETTINGS with this? (Ex
  */
 import { EMOJIS_CHARACTERS } from './data/emojisCharacters.js';
 import { EMOJIS_KEYWORDS } from './data/emojisKeywords.js';
-// const EMOJIS_CHARACTERS = Me.imports.data.emojisCharacters.ALL;
-// const EMOJIS_KEYWORDS = Me.imports.data.emojisKeywords.ALL_KEYWORDS;
 
 export class EmojiCategory {
     /**
@@ -84,7 +84,6 @@ export class EmojiCategory {
     }
 
     _addErrorLine(error_message) {
-        log(error_message);
         let line = new PopupMenu.PopupBaseMenuItem({
             reactive: false,
             can_focus: false,
@@ -138,12 +137,12 @@ export class EmojiCategory {
                     isMatching = this._searchInKeywords(searchedText, i);
                 }
                 if (isMatching) {
-                    searchResults.push(this.emojiButtons[i].baseCharacter)
+                    searchResults.push(this.emojiButtons[i].baseCharacter);
                     neededresults--;
                 }
             }
         }
-        return searchResults
+        return searchResults;
     }
 
     _searchRecentMatch(searchedText, i, recentlyUsed) {
@@ -151,7 +150,7 @@ export class EmojiCategory {
             this._searchExactMatch(searchedText, i) ||
             this._searchInName(searchedText, i) ||
             this._searchInKeywords(searchedText, i)
-        )
+        );
     }
 
     _searchExactMatch(searchedText, i) {

@@ -6,7 +6,7 @@ import Clutter from 'gi://Clutter';
 import * as Mainloop from 'resource:///org/gnome/Shell/mainloop.js'; // Is this import correct?
 
 /* Import the current extension, mainly because we need to access other files */
-import * as Extension from './extension.js'
+import * as Extension from './extension.js';
 
 const Clipboard = St.Clipboard.get_default();
 const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;

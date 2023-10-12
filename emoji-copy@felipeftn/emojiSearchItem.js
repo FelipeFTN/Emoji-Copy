@@ -2,14 +2,10 @@ import St from 'gi://St';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
 /* Import the current extension, mainly because we need to access other files */
-import * as Extension from './extension.js'
+import * as Extension from './extension.js';
 import { EmojiButton } from './emojiButton.js';
 
-import { imports } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
-
-/* Translations */
-const textDomain = imports.gettext.domain('emoji-copy'); // is this going to work?
-const _ = textDomain.gettext;
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
 
 export class EmojiSearchItem {
     constructor(nbColumns) {

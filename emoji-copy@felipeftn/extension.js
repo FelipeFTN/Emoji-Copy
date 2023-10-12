@@ -16,12 +16,12 @@
 */
 
 import St from 'gi://St';
+import Gtk from 'gi://Gtk';
 import Meta from 'gi://Meta';
 import GLib from 'gi://GLib';
 import Shell from 'gi://Shell';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
@@ -223,7 +223,7 @@ class EmojisMenu {
 function init() {
     ExtensionUtils.initTranslations('emoji-copy');
     try {
-        let theme = imports.gi.Gtk.IconTheme.get_default();
+        let theme = Gtk.IconTheme.get_default();
         theme.append_search_path(ExtensionUtils.path + '/icons');
     } catch (e) {
         // Appending bullshit to the icon theme path is deprecated, but 18.04
