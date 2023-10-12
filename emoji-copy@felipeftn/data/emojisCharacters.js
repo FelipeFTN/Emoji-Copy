@@ -1,6 +1,6 @@
 /* http://unicode.org/emoji/charts/full-emoji-list.html */
 
-var EMOJIS_CHARACTERS = [
+export const EMOJIS_CHARACTERS = [
     [
         '😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😉', '😊',
         '😋', '😎', '😍', '🥰', '😘', '😗', '😙', '😚', '☺', '🙂',

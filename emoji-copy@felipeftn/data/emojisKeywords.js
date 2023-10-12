@@ -2,7 +2,7 @@
 
 //http://unicode.org/emoji/charts/full-emoji-list.html
 
-var EMOJIS_KEYWORDS = [
+export const EMOJIS_KEYWORDS = [
     [   // Smileys and Body
         //-----smileys--------------------------------------------------------------
         ["grinning face", "grin"],
