@@ -4,8 +4,7 @@
   "description": "😄 Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.",
   "main": "./emoji-copy@felipeftn/extension.js",
   "scripts": {
-    "deploy" : "sh build-a-zip.sh && sh install.sh",
-    "install": "sh install.sh",
+    "deploy": "sh build-a-zip.sh && sh install.sh",
     "build": "sh build-a-zip.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +22,7 @@
   },
   "homepage": "https://github.com/FelipeFTN/emoji-copy#readme",
   "devDependencies": {
-    "eslint": "^8.48.0"
+    "eslint": "^8.48.0",
+    "eslint-plugin-jsdoc": "^46.8.2"
   }
 }

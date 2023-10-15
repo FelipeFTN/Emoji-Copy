@@ -1,37 +1,6 @@
-env:
-  browser: true
-  es2021: true
-  node: true
-extends: 'eslint:recommended'
+extends:
+  # - ./lint/eslintrc-gjs.yml
+  # - ./lint/eslintrc-shell.yml
+  - ./lint/eslintrc-legacy.yml
 parserOptions:
   sourceType: module
-  ecmaVersion: latest
-rules:
-  semi:
-    - 'error'
-    - 'always'
-  curly: 0
-  brace-style:
-    - 'error'
-    - '1tbs'
-    -
-      allowSingleLine: true
-  indent:
-    - 'error'
-    - 4
-    - SwitchCase: 1
-  eol-last:
-    - 'error'
-    - 'always'
-  'no-unused-vars':
-    - 'warn'
-    -
-      args: 'none'
-      vars: 'local'
-      argsIgnorePattern: '^_'
-  no-console:
-    - 'warn'
-    -
-      allow:
-        - 'warn'
-        - 'error'
