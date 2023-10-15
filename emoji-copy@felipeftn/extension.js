@@ -1,4 +1,5 @@
 /*
+    Copyright 2017-2022 Romain F. T.
     Copyright 2023 FelipeFTN
 
     This program is free software: you can redistribute it and/or modify
