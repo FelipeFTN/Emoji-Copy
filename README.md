@@ -1,30 +1,31 @@
 # Emoji Copy 😎
+
 This GNOME shell extension provides a searchable popup menu displaying most emojis; Clicking on an emoji copies it to your clipboard.<br>
 This repo is a Fork from [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome) and was created for keeping the extension alive.
 Please feel free to use and contribute to this project. 😃
 
 ## Features 🚀
 
-- keyboard shortcut to open the extension's menu (<kbd>Super</kbd>+<kbd>.</kbd> by defaut)
+- keyboard shortcut to open the extension's menu (<kbd>Super</kbd>+<kbd>.</kbd> by default)
 - dynamic search (press <kbd>Enter</kbd> to copy the first result to the clipboard)
-- lots of parametrable things
+- lots of configurable things
 - skin tone & gender modifiers
-- middle-click to set to the cliboard without closing the menu (or <kbd>Ctrl</kbd>+<kbd>Enter</kbd>)
+- middle-click to set to the clipboard without closing the menu (or <kbd>Ctrl</kbd>+<kbd>Enter</kbd>)
 - right-click to add the emoji at the end of the current clipboard content (or <kbd>Shift</kbd>+<kbd>Enter</kbd>)
 
-The keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
+Keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/80127749/265275927-8aed39fc-8844-4763-827d-dfe84b7e98b1.png" width="300"><img src="https://github.com/FelipeFTN/emoji-copy/assets/80127749/4d3b438a-40e4-4b5e-aa0c-633992ff4b83.png" width="300">
+<img src="https://user-images.githubusercontent.com/80127749/265275927-8aed39fc-8844-4763-827d-dfe84b7e98b1.png" width="300"><img src="https://user-images.githubusercontent.com/80127749/265276211-4d3b438a-40e4-4b5e-aa0c-633992ff4b83.png" width="300">
 </div>
 
 ## Installation 🍀
 
-#### Recommended:
+### Recommended
 
-The easiest way to install it is directly from Gnome Extensions: [emoji-copy](https://extensions.gnome.org/extension/6242/emoji-copy/).<br>
+The easiest way to install it is directly from Gnome Extensions: [emoji-copy](https://extensions.gnome.org/extension/6242/emoji-copy/)
 
-#### Native packages:
+### Native packages
 
 Work in progress...
 > We need to publish this project to most known package managers, like AUR, Fedora and so on.
@@ -36,18 +37,18 @@ Work in progress...
 
 #### Manual installation
 
-**Not recommended at all:** installing the extension this way prevent any
-further update.
+**Not recommended at all:** installing the extension this way will prevent any further updates.
 
 1. Download and extract the ZIP, then open a terminal in the project's directory.
 2. Choose a way to install the extension:
+
 ```bash
     --> NPM 😇
     $ npm run deploy
-    
+
     --> Shell scripts 🤨
     $ sh install.sh
-    
+
     --> Hardcore 💀
     $ cp -a ./emoji-copy@felipeftn $HOME/.local/share/gnome-shell/extensions
 ```
