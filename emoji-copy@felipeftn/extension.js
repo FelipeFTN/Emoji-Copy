@@ -222,7 +222,6 @@ class EmojisMenu {
 }
 
 function init() {
-    ExtensionUtils.initTranslations('emoji-copy');
     try {
         let theme = Gtk.IconTheme.get_default();
         theme.append_search_path(ExtensionUtils.path + '/icons');
