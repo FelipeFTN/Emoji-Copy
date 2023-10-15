@@ -1,9 +1,6 @@
 import St from 'gi://St';
 import Clutter from 'gi://Clutter';
-
-// Trying to import Mainloop
-// import Mainloop from 'imports.mainloop';
-import * as Mainloop from 'resource:///org/gnome/Shell/mainloop.js'; // Is this import correct?
+import GLib from 'gi://GLib';
 
 /* Import the current extension, mainly because we need to access other files */
 import * as Extension from './extension.js';
@@ -44,6 +41,7 @@ export class EmojiButton {
         }
         this.tags = [tonable, genrable, gendered];
         this.keywords = keywords;
+        this._loop = new GLib.MainLoop(null, false);
     }
 
     build(category) {
@@ -74,7 +72,7 @@ export class EmojiButton {
 
     destroy() {
         if (this._pasteHackCallbackId) {
-            Mainloop.Source.remove(this._pasteHackCallbackId);
+            this._loop.Source.remove(this._pasteHackCallbackId);
             this._pasteHackCallbackId = null;
         }
         this.super_btn.destroy();
@@ -219,7 +217,7 @@ export class EmojiButton {
     // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
     // Originally from "clipboard-histroy@alexsaveau.dev"
     triggerPasteHack() {
-        this._pasteHackCallbackId = Mainloop.timeout_add(
+        this._pasteHackCallbackId = this._loop.timeout_add(
             1,
             () => {
                 const eventTime = Clutter.get_current_event_time() * 1000;
