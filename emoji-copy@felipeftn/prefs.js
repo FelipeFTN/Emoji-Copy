@@ -1,4 +1,5 @@
 import Gtk from 'gi://Gtk?version=4.0';
+import Adw from 'gi://Adw';
 
 import { ExtensionPreferences, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
@@ -14,6 +15,19 @@ export default class EmojiCopyPreferences extends ExtensionPreferences {
 
         this._loadPrefsPage(builder);
         this._loadAboutPage(builder);
+    }
+
+    fillPreferencesWindow(window) {
+        window._settings = this.getSettings();
+
+        const page = new Adw.PreferencesPage();
+
+        const group = new Adw.PreferencesGroup({
+            title: _('EmojiCopyPrefs'),
+        });
+        page.add(group);
+
+        window.add(page);
     }
 
     _loadPrefsPage(builder) {
