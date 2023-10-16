@@ -27,7 +27,7 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
-import { Extension, ExtensionUtils, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
+import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 import { EmojiCategory } from './emojiCategory.js';
 import { EmojiSearchItem } from './emojiSearchItem.js';
@@ -39,8 +39,64 @@ let POSITION;
 
 let timeoutSourceId = null;
 
-class EmojisMenu {
+export default class EmojisMenu extends Extension {
+    init() {
+        let theme = Gtk.IconTheme.get_default();
+        theme.append_search_path(Extension.path + '/icons');
+    }
+
+    enable() {
+        SETTINGS = this.getSettings(); // should be like this: this._settings = this.getSettings();
+        POSITION = SETTINGS.get_string('position');
+
+        GLOBAL_BUTTON = new EmojisMenu();
+
+        Main.panel.addToStatusArea('EmojisMenu', GLOBAL_BUTTON.super_btn, 0, 'right');
+
+        SIGNAUX[0] = SETTINGS.connect('changed::emojisize', () => {
+            GLOBAL_BUTTON.updateStyle();
+        });
+        SIGNAUX[1] = SETTINGS.connect('changed::always-show', () => {
+            GLOBAL_BUTTON.super_btn.visible = SETTINGS.get_boolean('always-show');
+        });
+        SIGNAUX[2] = SETTINGS.connect('changed::use-keybinding', (z) => {
+            if (z.get_boolean('use-keybinding')) {
+                Main.wm.removeKeybinding('emoji-keybinding');
+                GLOBAL_BUTTON._bindShortcut();
+            } else {
+                Main.wm.removeKeybinding('emoji-keybinding');
+            }
+        });
+        SIGNAUX[3] = SETTINGS.connect('changed::nbcols', () => {
+            GLOBAL_BUTTON.updateNbCols();
+        });
+    }
+
+    disable() {
+        GLOBAL_BUTTON.searchItem.saveRecents();
+
+        if (SETTINGS.get_boolean('use-keybinding')) {
+            Main.wm.removeKeybinding('emoji-keybinding');
+        }
+
+        SETTINGS.disconnect(SIGNAUX[0]);
+        SETTINGS.disconnect(SIGNAUX[1]);
+        SETTINGS.disconnect(SIGNAUX[2]);
+
+        GLOBAL_BUTTON.super_btn.destroy();
+
+        if (timeoutSourceId) {
+            GLib.Source.remove(timeoutSourceId);
+            timeoutSourceId = null;
+        }
+
+        SETTINGS = null;
+        GLOBAL_BUTTON = null;
+        SIGNAUX = [];
+    }
+
     constructor() {
+        super();
         this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
         let box = new St.BoxLayout();
         let icon = new St.Icon({
@@ -219,64 +275,4 @@ class EmojisMenu {
             this.toggle.bind(this)
         );
     }
-}
-
-function init() {
-    try {
-        let theme = Gtk.IconTheme.get_default();
-        theme.append_search_path(Extension.path + '/icons');
-    } catch (e) {
-        // Appending bullshit to the icon theme path is deprecated, but 18.04
-        // users don't have the icons so I do it anyway.
-    }
-}
-
-function enable() {
-    SETTINGS = ExtensionUtils.getSettings(); // Is this GOING to work?
-    POSITION = SETTINGS.get_string('position');
-
-    GLOBAL_BUTTON = new EmojisMenu();
-
-    Main.panel.addToStatusArea('EmojisMenu', GLOBAL_BUTTON.super_btn, 0, 'right');
-
-    SIGNAUX[0] = SETTINGS.connect('changed::emojisize', () => {
-        GLOBAL_BUTTON.updateStyle();
-    });
-    SIGNAUX[1] = SETTINGS.connect('changed::always-show', () => {
-        GLOBAL_BUTTON.super_btn.visible = SETTINGS.get_boolean('always-show');
-    });
-    SIGNAUX[2] = SETTINGS.connect('changed::use-keybinding', (z) => {
-        if (z.get_boolean('use-keybinding')) {
-            Main.wm.removeKeybinding('emoji-keybinding');
-            GLOBAL_BUTTON._bindShortcut();
-        } else {
-            Main.wm.removeKeybinding('emoji-keybinding');
-        }
-    });
-    SIGNAUX[3] = SETTINGS.connect('changed::nbcols', () => {
-        GLOBAL_BUTTON.updateNbCols();
-    });
-}
-
-function disable() {
-    GLOBAL_BUTTON.searchItem.saveRecents();
-
-    if (SETTINGS.get_boolean('use-keybinding')) {
-        Main.wm.removeKeybinding('emoji-keybinding');
-    }
-
-    SETTINGS.disconnect(SIGNAUX[0]);
-    SETTINGS.disconnect(SIGNAUX[1]);
-    SETTINGS.disconnect(SIGNAUX[2]);
-
-    GLOBAL_BUTTON.super_btn.destroy();
-
-    if (timeoutSourceId) {
-        GLib.Source.remove(timeoutSourceId);
-        timeoutSourceId = null;
-    }
-
-    SETTINGS = null;
-    GLOBAL_BUTTON = null;
-    SIGNAUX = [];
 }
