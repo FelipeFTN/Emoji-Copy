@@ -3,7 +3,7 @@ import * as St from 'gi://St';
 /* Import the current extension, mainly because we need to access other files */
 import * as Extension from './extension.js';
 
-import { gettext as _ } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 export class SkinTonesBar {
     constructor(hasGender) {

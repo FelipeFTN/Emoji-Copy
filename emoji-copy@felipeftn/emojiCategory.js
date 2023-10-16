@@ -7,7 +7,7 @@ import { SkinTonesBar } from './emojiOptionsBar.js';
 import { EmojiButton } from './emojiButton.js';
 import * as Extension from './extension.js'; // Can I get SETTINGS with this? (Extension.SETTINGS)?
 
-import { gettext as _ } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 /**
  * This imports data (array of arrays of characters, and array of arrays

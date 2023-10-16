@@ -27,7 +27,7 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
-import { ExtensionUtils, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
+import { Extension, ExtensionUtils, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 import { EmojiCategory } from './emojiCategory.js';
 import { EmojiSearchItem } from './emojiSearchItem.js';
@@ -224,7 +224,7 @@ class EmojisMenu {
 function init() {
     try {
         let theme = Gtk.IconTheme.get_default();
-        theme.append_search_path(ExtensionUtils.path + '/icons');
+        theme.append_search_path(Extension.path + '/icons');
     } catch (e) {
         // Appending bullshit to the icon theme path is deprecated, but 18.04
         // users don't have the icons so I do it anyway.

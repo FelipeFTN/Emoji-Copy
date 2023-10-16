@@ -5,7 +5,7 @@ import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as Extension from './extension.js';
 import { EmojiButton } from './emojiButton.js';
 
-import { gettext as _ } from 'resource:///org/gnome/shell/extensions/js/extensions.js';
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 export class EmojiSearchItem {
     constructor(nbColumns) {

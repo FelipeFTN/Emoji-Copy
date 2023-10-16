@@ -1,6 +1,6 @@
-import * as Gtk from 'gi://Gtk';
-import * as GObject from 'gi://GObject';
-import { ExtensionUtils, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions.js';
+import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk?version=4.0';
+import { ExtensionUtils, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extension.js';
 
 export default class EmojiCopyPreferences extends GObject.Object {
     _init(settings) {
