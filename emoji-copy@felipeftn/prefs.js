@@ -1,15 +1,15 @@
-import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk?version=4.0';
-import { ExtensionUtils, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extension.js';
 
-export default class EmojiCopyPreferences extends GObject.Object {
+import { ExtensionPreferences, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
+
+export default class EmojiCopyPreferences extends ExtensionPreferences {
     _init(settings) {
         super._init();
 
         this._settings = settings;
 
         let builder = new Gtk.Builder();
-        builder.add_from_file(ExtensionUtils.path + '/prefs.ui');
+        builder.add_from_file(ExtensionPreferences.path + '/prefs.ui');
         this.prefs_stack = builder.get_object('prefs_stack');
 
         this._loadPrefsPage(builder);
@@ -133,7 +133,7 @@ export default class EmojiCopyPreferences extends GObject.Object {
     }
 
     _loadAboutPage(builder) {
-        let version = _("version %s").replace('%s', ExtensionUtils.metadata.version.toString());
+        let version = _("version %s").replace('%s', ExtensionPreferences.metadata.version.toString());
         builder.get_object('version-label').set_label(version);
 
         let translators_credits = builder.get_object('translators-credits').get_label();
@@ -142,7 +142,7 @@ export default class EmojiCopyPreferences extends GObject.Object {
             builder.get_object('translators-credits').set_label('');
         }
 
-        builder.get_object('link-btn').set_uri(ExtensionUtils.metadata.url.toString());
+        builder.get_object('link-btn').set_uri(ExtensionPreferences.metadata.url.toString());
     }
 }
 
