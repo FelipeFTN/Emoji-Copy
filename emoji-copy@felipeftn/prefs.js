@@ -1,19 +1,8 @@
-import Adw from 'gi://Adw';
+import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-export default class MyExtensionPreferences extends ExtensionPreferences {
+export default class EmojiCopyPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
-        window._settings = this.getSettings();
-
-        const page = new Adw.PreferencesPage();
-
-        const group = new Adw.PreferencesGroup({
-            title: _('Preferences'),
-        });
-        page.add(group);
-
-        window.add(page);
+        window._settings = this.getSettings('org.gnome.shell.extensions.emoji-copy');
     }
 }
-

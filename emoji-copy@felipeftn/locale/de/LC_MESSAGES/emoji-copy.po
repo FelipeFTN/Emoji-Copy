@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
 "PO-Revision-Date: 2021-11-21 21:00+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: \n"
@@ -58,28 +58,6 @@ msgstr "Symbole"
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
 msgstr "Flaggen"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "Modifications will be effective after reloading the extension."
-msgstr "Änderungen werden nach einem Neustart der Erweiterung übernommen."
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From top to bottom"
-msgstr "Von oben nach unten"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From bottom to top"
-msgstr "Von unten nach oben"
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "The default value is %s"
-msgstr "Der Standardwert ist %s"
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "version %s"
-msgstr "Version %s"
 
 #: emoji-copy@felipeftn/prefs.ui
 #, fuzzy
@@ -199,6 +177,59 @@ msgstr "Ungültige Anzahl an Schlüsselwörtern für die Kategorie '%s':"
 msgid "Please report this bug"
 msgstr "Bitte melden Sie diesen Fehler"
 
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Ohne Hautton"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Helle Hautfarbe"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Mittelhelle Hautfarbe"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Mittlere Hautfarbe"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Mitteldunkle Hautfarbe"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Dunkle Hautfarbe"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Weiblich"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Männlich"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Hier tippen, um zu suchen…"
+
+#~ msgid "Modifications will be effective after reloading the extension."
+#~ msgstr "Änderungen werden nach einem Neustart der Erweiterung übernommen."
+
+#~ msgid "From top to bottom"
+#~ msgstr "Von oben nach unten"
+
+#~ msgid "From bottom to top"
+#~ msgstr "Von unten nach oben"
+
+#, javascript-format
+#~ msgid "The default value is %s"
+#~ msgstr "Der Standardwert ist %s"
+
+#, javascript-format
+#~ msgid "version %s"
+#~ msgstr "Version %s"
+
 #~ msgid ""
 #~ "This extension provides a parametrable popup menu displaying most emojis, "
 #~ "clicking on an emoji copies it to the clipboard."
@@ -210,33 +241,6 @@ msgstr "Bitte melden Sie diesen Fehler"
 #~| msgid "Contributors:"
 #~ msgid "Contributors"
 #~ msgstr "Beitragende:"
-
-#~ msgid "No skin tone"
-#~ msgstr "Ohne Hautton"
-
-#~ msgid "Light skin tone"
-#~ msgstr "Helle Hautfarbe"
-
-#~ msgid "Medium light skin tone"
-#~ msgstr "Mittelhelle Hautfarbe"
-
-#~ msgid "Medium skin tone"
-#~ msgstr "Mittlere Hautfarbe"
-
-#~ msgid "Medium dark skin tone"
-#~ msgstr "Mitteldunkle Hautfarbe"
-
-#~ msgid "Dark skin tone"
-#~ msgstr "Dunkle Hautfarbe"
-
-#~ msgid "Women"
-#~ msgstr "Weiblich"
-
-#~ msgid "Men"
-#~ msgstr "Männlich"
-
-#~ msgid "Type here to search…"
-#~ msgstr "Hier tippen, um zu suchen…"
 
 #~ msgid "Settings"
 #~ msgstr "Einstellungen"

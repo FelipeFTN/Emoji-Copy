@@ -41,7 +41,6 @@ export class EmojiButton {
         }
         this.tags = [tonable, genrable, gendered];
         this.keywords = keywords;
-        this._loop = new GLib.MainLoop(null, false);
     }
 
     build(category) {
@@ -72,7 +71,6 @@ export class EmojiButton {
 
     destroy() {
         if (this._pasteHackCallbackId) {
-            this._loop.Source.remove(this._pasteHackCallbackId);
             this._pasteHackCallbackId = null;
         }
         this.super_btn.destroy();
@@ -217,7 +215,7 @@ export class EmojiButton {
     // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
     // Originally from "clipboard-histroy@alexsaveau.dev"
     triggerPasteHack() {
-        this._pasteHackCallbackId = this._loop.timeout_add(
+        this._pasteHackCallbackId = GLib.timeout_add(
             1,
             () => {
                 const eventTime = Clutter.get_current_event_time() * 1000;

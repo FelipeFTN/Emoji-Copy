@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
 "PO-Revision-Date: 2023-04-23 10:03+0200\n"
 "Last-Translator: Kryštof Černý <cleerline1mc@gmail.com>\n"
 "Language-Team: \n"
@@ -57,28 +57,6 @@ msgstr "Symboly"
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
 msgstr "Vlajky"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "Modifications will be effective after reloading the extension."
-msgstr "Úpravy budou použity po restartu rozšíření."
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From top to bottom"
-msgstr "Shora dolů"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From bottom to top"
-msgstr "Zespoda nahoru"
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "The default value is %s"
-msgstr "Výchozí hodnota je %s"
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "version %s"
-msgstr "verze %s"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
@@ -188,6 +166,59 @@ msgstr "Nesprávný počet klíčových slov pro kategorii \"%s\":"
 msgid "Please report this bug"
 msgstr "Prosíme, nahlašte tuto chybu"
 
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Bez barvy pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Světlá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Středně světlá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Jemně tmavá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Středně tmavá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Tmavá barva pleti"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Žena"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Muž"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Pište sem pro vyhledávání…"
+
+#~ msgid "Modifications will be effective after reloading the extension."
+#~ msgstr "Úpravy budou použity po restartu rozšíření."
+
+#~ msgid "From top to bottom"
+#~ msgstr "Shora dolů"
+
+#~ msgid "From bottom to top"
+#~ msgstr "Zespoda nahoru"
+
+#, javascript-format
+#~ msgid "The default value is %s"
+#~ msgstr "Výchozí hodnota je %s"
+
+#, javascript-format
+#~ msgid "version %s"
+#~ msgstr "verze %s"
+
 #~ msgid ""
 #~ "This extension provides a parametrable popup menu displaying most emojis, "
 #~ "clicking on an emoji copies it to the clipboard."
@@ -197,30 +228,3 @@ msgstr "Prosíme, nahlašte tuto chybu"
 
 #~ msgid "Contributors"
 #~ msgstr "Přispěvatelé"
-
-#~ msgid "No skin tone"
-#~ msgstr "Bez barvy pleti"
-
-#~ msgid "Light skin tone"
-#~ msgstr "Světlá barva pleti"
-
-#~ msgid "Medium light skin tone"
-#~ msgstr "Středně světlá barva pleti"
-
-#~ msgid "Medium skin tone"
-#~ msgstr "Jemně tmavá barva pleti"
-
-#~ msgid "Medium dark skin tone"
-#~ msgstr "Středně tmavá barva pleti"
-
-#~ msgid "Dark skin tone"
-#~ msgstr "Tmavá barva pleti"
-
-#~ msgid "Women"
-#~ msgstr "Žena"
-
-#~ msgid "Men"
-#~ msgstr "Muž"
-
-#~ msgid "Type here to search…"
-#~ msgstr "Pište sem pro vyhledávání…"

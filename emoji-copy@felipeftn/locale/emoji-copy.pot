@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
@@ -55,28 +55,6 @@ msgstr ""
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "Modifications will be effective after reloading the extension."
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From top to bottom"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From bottom to top"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "The default value is %s"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "version %s"
 msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
@@ -181,4 +159,40 @@ msgstr ""
 
 #: emoji-copy@felipeftn/emojiCategory.js
 msgid "Please report this bug"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
 msgstr ""
