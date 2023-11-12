@@ -1,10 +1,10 @@
 {
-	"uuid": "emoji-copy@felipeftn",
-	"name": "Emoji Copy",
-	"description": "Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.\n\nIt is a fork of Emoji Selector.",
-	"shell-version": [ "45" ],
-	"url": "https://github.com/felipeftn/emoji-copy",
-	"settings-schema": "org.gnome.shell.extensions.emoji-copy",
-	"gettext-domain": "emoji-copy",
-	"version": 2
+  "uuid": "emoji-copy@felipeftn",
+  "name": "Emoji Copy",
+  "description": "Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.\n\nIt is a fork of Emoji Selector.",
+  "shell-version": ["45"],
+  "url": "https://github.com/felipeftn/emoji-copy",
+  "settings-schema": "org.gnome.shell.extensions.emoji-copy",
+  "gettext-domain": "emoji-copy",
+  "version": 2
 }

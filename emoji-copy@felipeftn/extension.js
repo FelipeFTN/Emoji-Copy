@@ -16,23 +16,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import St from 'gi://St';
-import Gtk from 'gi://Gtk';
-import Meta from 'gi://Meta';
-import GLib from 'gi://GLib';
-import Shell from 'gi://Shell';
+import St from "gi://St";
+import Gtk from "gi://Gtk";
+import Meta from "gi://Meta";
+import GLib from "gi://GLib";
+import Shell from "gi://Shell";
 
-import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as Main from "resource:///org/gnome/shell/ui/main.js";
 
-import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
-import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
+import * as PanelMenu from "resource:///org/gnome/shell/ui/panelMenu.js";
+import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
-import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
+import {
+  Extension,
+  gettext as _,
+} from "resource:///org/gnome/shell/extensions/extension.js";
 
-import { EmojiCategory } from './emojiCategory.js';
-import { EmojiSearchItem } from './emojiSearchItem.js';
+import { EmojiCategory } from "./emojiCategory.js";
+import { EmojiSearchItem } from "./emojiSearchItem.js";
 
-let SETTINGS = null;
 let GLOBAL_BUTTON = null;
 let SIGNAUX = [];
 let POSITION;
@@ -40,233 +42,249 @@ let POSITION;
 let timeoutSourceId = null;
 
 export default class EmojisMenu extends Extension {
-    init() { }
+  init() {}
 
-    enable() {
-        this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
-        let box = new St.BoxLayout();
-        let icon = new St.Icon({
-            icon_name: 'face-cool-symbolic',
-            style_class: 'system-status-icon emotes-icon'
-        });
-        box.add_child(icon);
-        this._permanentItems = 0;
-        this._activeCat = -1;
-        let nbCols = SETTINGS.get_int('nbcols');
+  enable() {
+    this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
+    let box = new St.BoxLayout();
+    let icon = new St.Icon({
+      icon_name: "face-cool-symbolic",
+      style_class: "system-status-icon emotes-icon",
+    });
+    box.add_child(icon);
+    this._permanentItems = 0;
+    this._activeCat = -1;
+    this._settings = this.getSettings();
+    let nbCols = this._settings.get_int("nbcols");
 
-        this.super_btn.add_child(box);
-        this.super_btn.visible = SETTINGS.get_boolean('always-show');
+    this.super_btn.add_child(box);
+    this.super_btn.visible = this._settings.get_boolean("always-show");
 
-        this._createAllCategories(nbCols);
+    this._createAllCategories(nbCols);
 
-        this._renderPanelMenuHeaderBox();
+    this._renderPanelMenuHeaderBox();
 
-        this.searchItem = new EmojiSearchItem(nbCols);
+    this.searchItem = new EmojiSearchItem(nbCols);
 
-        let recentlyUsed = this.searchItem._recentlyUsedInit();
+    let recentlyUsed = this.searchItem._recentlyUsedInit();
 
-        if (POSITION === 'top') {
-            this.super_btn.menu.addMenuItem(this._buttonMenuItem);
-            this._permanentItems++;
-            this.super_btn.menu.addMenuItem(this.searchItem.super_item);
-            this._permanentItems++;
-            this.super_btn.menu.addMenuItem(recentlyUsed);
-            this._permanentItems++;
-        }
-
-        this._addAllCategories();
-
-        if (POSITION === 'bottom') {
-            this.super_btn.menu.addMenuItem(recentlyUsed);
-            this._permanentItems++;
-            this.super_btn.menu.addMenuItem(this.searchItem.super_item);
-            this._permanentItems++;
-            this.super_btn.menu.addMenuItem(this._buttonMenuItem);
-            this._permanentItems++;
-        }
-
-        this.super_btn.menu.connect(
-            'open-state-changed',
-            this._onOpenStateChanged.bind(this)
-        );
-
-        if (SETTINGS.get_boolean('use-keybinding')) {
-            this._bindShortcut();
-        }
-        let theme = Gtk.IconTheme.get_default();
-        theme.append_search_path(Extension.path + '/icons');
-
-        SETTINGS = this.getSettings(); // should be like this: this._settings = this.getSettings();
-        POSITION = SETTINGS.get_string('position');
-
-        GLOBAL_BUTTON = new EmojisMenu();
-
-        Main.panel.addToStatusArea('EmojisMenu', GLOBAL_BUTTON.super_btn, 0, 'right');
-
-        SIGNAUX[0] = SETTINGS.connect('changed::emojisize', () => {
-            GLOBAL_BUTTON.updateStyle();
-        });
-        SIGNAUX[1] = SETTINGS.connect('changed::always-show', () => {
-            GLOBAL_BUTTON.super_btn.visible = SETTINGS.get_boolean('always-show');
-        });
-        SIGNAUX[2] = SETTINGS.connect('changed::use-keybinding', (z) => {
-            if (z.get_boolean('use-keybinding')) {
-                Main.wm.removeKeybinding('emoji-keybinding');
-                GLOBAL_BUTTON._bindShortcut();
-            } else {
-                Main.wm.removeKeybinding('emoji-keybinding');
-            }
-        });
-        SIGNAUX[3] = SETTINGS.connect('changed::nbcols', () => {
-            GLOBAL_BUTTON.updateNbCols();
-        });
+    if (POSITION === "top") {
+      this.super_btn.menu.addMenuItem(this._buttonMenuItem);
+      this._permanentItems++;
+      this.super_btn.menu.addMenuItem(this.searchItem.super_item);
+      this._permanentItems++;
+      this.super_btn.menu.addMenuItem(recentlyUsed);
+      this._permanentItems++;
     }
 
-    disable() {
-        GLOBAL_BUTTON.searchItem.saveRecents();
+    this._addAllCategories();
 
-        if (SETTINGS.get_boolean('use-keybinding')) {
-            Main.wm.removeKeybinding('emoji-keybinding');
-        }
-
-        SETTINGS.disconnect(SIGNAUX[0]);
-        SETTINGS.disconnect(SIGNAUX[1]);
-        SETTINGS.disconnect(SIGNAUX[2]);
-
-        GLOBAL_BUTTON.super_btn.destroy();
-
-        if (timeoutSourceId) {
-            GLib.Source.remove(timeoutSourceId);
-            timeoutSourceId = null;
-        }
-
-        SETTINGS = null;
-        GLOBAL_BUTTON = null;
-        SIGNAUX = [];
+    if (POSITION === "bottom") {
+      this.super_btn.menu.addMenuItem(recentlyUsed);
+      this._permanentItems++;
+      this.super_btn.menu.addMenuItem(this.searchItem.super_item);
+      this._permanentItems++;
+      this.super_btn.menu.addMenuItem(this._buttonMenuItem);
+      this._permanentItems++;
     }
 
-    _connectSignals() { }
+    this.super_btn.menu.connect(
+      "open-state-changed",
+      this._onOpenStateChanged.bind(this),
+    );
 
-    disconnectSignals() { }
+    if (this._settings.get_boolean("use-keybinding")) {
+      this._bindShortcut();
+    }
+    let theme = Gtk.IconTheme.new();
+    theme.add_search_path(Extension.path + "/icons");
 
-    updateStyle() {
-        this.searchItem.updateStyleRecents();
-        this.emojiCategories.forEach(function(c) {
-            c.updateStyle();
-        });
+    POSITION = this._settings.get_string("position");
+
+    // GLOBAL_BUTTON = new EmojisMenu();
+    GLOBAL_BUTTON = this;
+
+    Main.panel.addToStatusArea(
+      "EmojisMenu",
+      GLOBAL_BUTTON.get_super_btn(),
+      0,
+      "right",
+    );
+
+    SIGNAUX[0] = this._settings.connect("changed::emojisize", () => {
+      GLOBAL_BUTTON.updateStyle();
+    });
+    SIGNAUX[1] = this._settings.connect("changed::always-show", () => {
+      GLOBAL_BUTTON.get_super_btn().visible = this._settings.get_boolean(
+        "always-show",
+      );
+    });
+    SIGNAUX[2] = this._settings.connect("changed::use-keybinding", (z) => {
+      if (z.get_boolean("use-keybinding")) {
+        Main.wm.removeKeybinding("emoji-keybinding");
+        GLOBAL_BUTTON._bindShortcut();
+      } else {
+        Main.wm.removeKeybinding("emoji-keybinding");
+      }
+    });
+    SIGNAUX[3] = this._settings.connect("changed::nbcols", () => {
+      GLOBAL_BUTTON.updateNbCols();
+    });
+  }
+
+  disable() {
+    GLOBAL_BUTTON.searchItem.saveRecents();
+
+    if (this._settings.get_boolean("use-keybinding")) {
+      Main.wm.removeKeybinding("emoji-keybinding");
     }
 
-    updateNbCols() {
-        let nbCols = SETTINGS.get_int('nbcols');
-        this.emojiCategories.forEach(function(c) {
-            c.setNbCols(nbCols);
-        });
+    this._settings.disconnect(SIGNAUX[0]);
+    this._settings.disconnect(SIGNAUX[1]);
+    this._settings.disconnect(SIGNAUX[2]);
 
-        this.searchItem = new EmojiSearchItem(nbCols);
+    GLOBAL_BUTTON.get_super_btn().destroy();
+
+    if (timeoutSourceId) {
+      GLib.Source.remove(timeoutSourceId);
+      timeoutSourceId = null;
     }
 
-    toggle() {
-        this.super_btn.menu.toggle();
+    this._settings = null;
+    GLOBAL_BUTTON = null;
+    SIGNAUX = [];
+  }
+
+  _connectSignals() {}
+
+  disconnectSignals() {}
+
+  updateStyle() {
+    this.searchItem.updateStyleRecents();
+    this.emojiCategories.forEach(function (c) {
+      c.updateStyle();
+    });
+  }
+
+  updateNbCols() {
+    let nbCols = this._settings.get_int("nbcols");
+    this.emojiCategories.forEach(function (c) {
+      c.setNbCols(nbCols);
+    });
+
+    this.searchItem = new EmojiSearchItem(nbCols);
+  }
+
+  toggle() {
+    this.super_btn.menu.toggle();
+  }
+
+  _onOpenStateChanged(_, open) {
+    this.super_btn.visible = open || this._settings.get_boolean("always-show");
+    this.clearCategories();
+    this.searchItem.searchEntry.set_text("");
+
+    timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 20, () => {
+      if (open) {
+        global.stage.set_key_focus(this.searchItem.searchEntry);
+      }
+      timeoutSourceId = null;
+      return GLib.SOURCE_REMOVE;
+    });
+  }
+
+  clearCategories() {
+    for (let i = 0; i < 9; i++) {
+      this.emojiCategories[i].getButton().set_checked(false);
     }
 
-    _onOpenStateChanged(_, open) {
-        this.super_btn.visible = open || SETTINGS.get_boolean('always-show');
-        this.clearCategories();
-        this.searchItem.searchEntry.set_text('');
+    let items = this.super_btn.menu._getMenuItems();
 
-        timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 20, () => {
-            if (open) {
-                global.stage.set_key_focus(this.searchItem.searchEntry);
-            }
-            timeoutSourceId = null;
-            return GLib.SOURCE_REMOVE;
-        });
+    if (POSITION == "top") {
+      for (let i = this._permanentItems; i < items.length; i++) {
+        items[i].setSubmenuShown(false);
+        items[i].actor.visible = false;
+      }
+    } else {
+      for (let i = 0; i < (items.length - this._permanentItems); i++) {
+        items[i].setSubmenuShown(false);
+        items[i].actor.visible = false;
+      }
     }
 
-    clearCategories() {
-        for (let i = 0; i < 9; i++) {
-            this.emojiCategories[i].getButton().set_checked(false);
-        }
+    this._activeCat = -1;
+    this._onSearchTextChanged();
+  }
 
-        let items = this.super_btn.menu._getMenuItems();
+  _onSearchTextChanged() {
+    this.searchItem._onSearchTextChanged();
+  }
 
-        if (POSITION == 'top') {
-            for (let i = this._permanentItems; i < items.length; i++) {
-                items[i].setSubmenuShown(false);
-                items[i].actor.visible = false;
-            }
-        } else {
-            for (let i = 0; i < (items.length - this._permanentItems); i++) {
-                items[i].setSubmenuShown(false);
-                items[i].actor.visible = false;
-            }
-        }
+  _createAllCategories(nbCols) {
+    this.emojiCategories = [];
 
-        this._activeCat = -1;
-        this._onSearchTextChanged();
+    const CAT_LABELS = [
+      _("Smileys & Body"),
+      _("Peoples & Clothing"),
+      _("Animals & Nature"),
+      _("Food & Drink"),
+      _("Travel & Places"),
+      _("Activities & Sports"),
+      _("Objects"),
+      _("Symbols"),
+      _("Flags"),
+    ];
+
+    const CAT_ICONS = [
+      "face-smile-symbolic",
+      "emoji-people-symbolic",
+      "emoji-nature-symbolic",
+      "emoji-food-symbolic",
+      "emoji-travel-symbolic",
+      "emoji-activities-symbolic",
+      "emoji-objects-symbolic",
+      "emoji-symbols-symbolic",
+      "emoji-flags-symbolic",
+    ];
+
+    for (let i = 0; i < 9; i++) {
+      this.emojiCategories[i] = new EmojiCategory(
+        CAT_LABELS[i],
+        CAT_ICONS[i],
+        i,
+      );
+      this.emojiCategories[i].setNbCols(nbCols);
     }
+  }
 
-    _onSearchTextChanged() {
-        this.searchItem._onSearchTextChanged();
+  _addAllCategories() {
+    for (let i = 0; i < 9; i++) {
+      this.super_btn.menu.addMenuItem(this.emojiCategories[i].super_item);
     }
+  }
 
-    _createAllCategories(nbCols) {
-        this.emojiCategories = [];
-
-        const CAT_LABELS = [
-            _("Smileys & Body"),
-            _("Peoples & Clothing"),
-            _("Animals & Nature"),
-            _("Food & Drink"),
-            _("Travel & Places"),
-            _("Activities & Sports"),
-            _("Objects"),
-            _("Symbols"),
-            _("Flags")
-        ];
-
-        const CAT_ICONS = [
-            'face-smile-symbolic',
-            'emoji-people-symbolic',
-            'emoji-nature-symbolic',
-            'emoji-food-symbolic',
-            'emoji-travel-symbolic',
-            'emoji-activities-symbolic',
-            'emoji-objects-symbolic',
-            'emoji-symbols-symbolic',
-            'emoji-flags-symbolic'
-        ];
-
-        for (let i = 0; i < 9; i++) {
-            this.emojiCategories[i] = new EmojiCategory(CAT_LABELS[i], CAT_ICONS[i], i);
-            this.emojiCategories[i].setNbCols(nbCols);
-        }
+  _renderPanelMenuHeaderBox() {
+    this._buttonMenuItem = new PopupMenu.PopupBaseMenuItem({
+      reactive: false,
+      can_focus: false,
+    });
+    this.categoryButton = [];
+    for (let i = 0; i < this.emojiCategories.length; i++) {
+      this._buttonMenuItem.actor.add_child(this.emojiCategories[i].getButton());
     }
+  }
 
-    _addAllCategories() {
-        for (let i = 0; i < 9; i++) {
-            this.super_btn.menu.addMenuItem(this.emojiCategories[i].super_item);
-        }
-    }
+  _bindShortcut() {
+    Main.wm.addKeybinding(
+      "emoji-keybinding",
+      this._settings,
+      Meta.KeyBindingFlags.NONE,
+      Shell.ActionMode.ALL,
+      this.toggle.bind(this),
+    );
+  }
 
-    _renderPanelMenuHeaderBox() {
-        this._buttonMenuItem = new PopupMenu.PopupBaseMenuItem({
-            reactive: false,
-            can_focus: false
-        });
-        this.categoryButton = [];
-        for (let i = 0; i < this.emojiCategories.length; i++) {
-            this._buttonMenuItem.actor.add_child(this.emojiCategories[i].getButton());
-        }
-    }
-
-    _bindShortcut() {
-        Main.wm.addKeybinding(
-            'emoji-keybinding',
-            SETTINGS,
-            Meta.KeyBindingFlags.NONE,
-            Shell.ActionMode.ALL,
-            this.toggle.bind(this)
-        );
-    }
+  get_super_btn() {
+    return this.super_btn;
+  }
 }
