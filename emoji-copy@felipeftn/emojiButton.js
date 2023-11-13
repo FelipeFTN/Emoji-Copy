@@ -142,7 +142,7 @@ export class EmojiButton {
       CLIPBOARD_TYPE,
       emojiToCopy,
     );
-    this.emojiCopy.super_btn.menu.close();
+    this.emojiCopy.get_super_btn().menu.close();
 
     if (this._settings.get_boolean("paste-on-select")) {
       this.triggerPasteHack();
@@ -230,7 +230,7 @@ export class EmojiButton {
   // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
   // Originally from "clipboard-histroy@alexsaveau.dev"
   triggerPasteHack() {
-    this._pasteHackCallbackId = GLib.timeout_add(
+    this._pasteHackCallbackId = GLib.timeout_add_seconds(
       GLib.PRIORITY_DEFAULT,
       1,
       () => {

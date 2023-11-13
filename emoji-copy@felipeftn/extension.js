@@ -35,16 +35,17 @@ import {
 import { EmojiCategory } from "./emojiCategory.js";
 import { EmojiSearchItem } from "./emojiSearchItem.js";
 
-let GLOBAL_BUTTON = null;
-let SIGNAUX = [];
-let POSITION;
-
-let timeoutSourceId = null;
-
-export default class EmojisMenu extends Extension {
+export default class EmojiCopy extends Extension {
   init() {}
 
   enable() {
+    this.signaux = [];
+    this.timeoutSourceId = null;
+    this._settings = this.getSettings();
+    this.position = this._settings.get_string("position");
+    this._permanentItems = 0;
+    this._activeCat = -1;
+
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
     let box = new St.BoxLayout();
     let icon = new St.Icon({
@@ -52,13 +53,23 @@ export default class EmojisMenu extends Extension {
       style_class: "system-status-icon emotes-icon",
     });
     box.add_child(icon);
-    this._permanentItems = 0;
-    this._activeCat = -1;
-    this._settings = this.getSettings();
-    let nbCols = this._settings.get_int("nbcols");
 
     this.super_btn.add_child(box);
     this.super_btn.visible = this._settings.get_boolean("always-show");
+
+    Main.panel.addToStatusArea(
+      this.uuid,
+      this.super_btn,
+      0,
+      "right",
+    );
+
+    this.super_btn.menu.connect(
+      "open-state-changed",
+      this._onOpenStateChanged.bind(this),
+    );
+
+    let nbCols = this._settings.get_int("nbcols");
 
     this._createAllCategories(nbCols);
 
@@ -68,7 +79,7 @@ export default class EmojisMenu extends Extension {
 
     let recentlyUsed = this.searchItem._recentlyUsedInit();
 
-    if (POSITION === "top") {
+    if (this.position === "top") {
       this.super_btn.menu.addMenuItem(this._buttonMenuItem);
       this._permanentItems++;
       this.super_btn.menu.addMenuItem(this.searchItem.super_item);
@@ -79,7 +90,7 @@ export default class EmojisMenu extends Extension {
 
     this._addAllCategories();
 
-    if (POSITION === "bottom") {
+    if (this.position === "bottom") {
       this.super_btn.menu.addMenuItem(recentlyUsed);
       this._permanentItems++;
       this.super_btn.menu.addMenuItem(this.searchItem.super_item);
@@ -88,71 +99,54 @@ export default class EmojisMenu extends Extension {
       this._permanentItems++;
     }
 
-    this.super_btn.menu.connect(
-      "open-state-changed",
-      this._onOpenStateChanged.bind(this),
-    );
-
     if (this._settings.get_boolean("use-keybinding")) {
       this._bindShortcut();
     }
+
     let theme = Gtk.IconTheme.new();
     theme.add_search_path(Extension.path + "/icons");
 
-    POSITION = this._settings.get_string("position");
-
-    // GLOBAL_BUTTON = new EmojisMenu();
-    GLOBAL_BUTTON = this;
-
-    Main.panel.addToStatusArea(
-      "EmojisMenu",
-      GLOBAL_BUTTON.get_super_btn(),
-      0,
-      "right",
-    );
-
-    SIGNAUX[0] = this._settings.connect("changed::emojisize", () => {
-      GLOBAL_BUTTON.updateStyle();
+    this.signaux[0] = this._settings.connect("changed::emojisize", () => {
+      this.updateStyle();
     });
-    SIGNAUX[1] = this._settings.connect("changed::always-show", () => {
-      GLOBAL_BUTTON.get_super_btn().visible = this._settings.get_boolean(
+    this.signaux[1] = this._settings.connect("changed::always-show", () => {
+      this.super_btn.visible = this._settings.get_boolean(
         "always-show",
       );
     });
-    SIGNAUX[2] = this._settings.connect("changed::use-keybinding", (z) => {
+    this.signaux[2] = this._settings.connect("changed::use-keybinding", (z) => {
       if (z.get_boolean("use-keybinding")) {
         Main.wm.removeKeybinding("emoji-keybinding");
-        GLOBAL_BUTTON._bindShortcut();
+        this._bindShortcut();
       } else {
         Main.wm.removeKeybinding("emoji-keybinding");
       }
     });
-    SIGNAUX[3] = this._settings.connect("changed::nbcols", () => {
-      GLOBAL_BUTTON.updateNbCols();
+    this.signaux[3] = this._settings.connect("changed::nbcols", () => {
+      this.updateNbCols();
     });
   }
 
   disable() {
-    GLOBAL_BUTTON.searchItem.saveRecents();
+    this.searchItem.saveRecents();
 
     if (this._settings.get_boolean("use-keybinding")) {
       Main.wm.removeKeybinding("emoji-keybinding");
     }
 
-    this._settings.disconnect(SIGNAUX[0]);
-    this._settings.disconnect(SIGNAUX[1]);
-    this._settings.disconnect(SIGNAUX[2]);
+    this._settings.disconnect(this.signaux[0]);
+    this._settings.disconnect(this.signaux[1]);
+    this._settings.disconnect(this.signaux[2]);
 
-    GLOBAL_BUTTON.get_super_btn().destroy();
-
-    if (timeoutSourceId) {
-      GLib.Source.remove(timeoutSourceId);
-      timeoutSourceId = null;
+    if (this.timeoutSourceId) {
+      GLib.Source.remove(this.timeoutSourceId);
+      this.timeoutSourceId = null;
     }
 
+    this.super_btn.destroy();
     this._settings = null;
-    GLOBAL_BUTTON = null;
-    SIGNAUX = [];
+    this.super_btn = null;
+    this.signaux = [];
   }
 
   _connectSignals() {}
@@ -184,11 +178,11 @@ export default class EmojisMenu extends Extension {
     this.clearCategories();
     this.searchItem.searchEntry.set_text("");
 
-    timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 20, () => {
+    this.timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 5, () => {
       if (open) {
         global.stage.set_key_focus(this.searchItem.searchEntry);
       }
-      timeoutSourceId = null;
+      this.timeoutSourceId = null;
       return GLib.SOURCE_REMOVE;
     });
   }
@@ -200,7 +194,7 @@ export default class EmojisMenu extends Extension {
 
     let items = this.super_btn.menu._getMenuItems();
 
-    if (POSITION == "top") {
+    if (this.position == "top") {
       for (let i = this._permanentItems; i < items.length; i++) {
         items[i].setSubmenuShown(false);
         items[i].actor.visible = false;
