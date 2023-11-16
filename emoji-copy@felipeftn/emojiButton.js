@@ -230,7 +230,7 @@ export class EmojiButton {
   // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
   // Originally from "clipboard-histroy@alexsaveau.dev"
   triggerPasteHack() {
-    this._pasteHackCallbackId = GLib.timeout_add_seconds(
+    this._pasteHackCallbackId = GLib.timeout_add(
       GLib.PRIORITY_DEFAULT,
       1,
       () => {

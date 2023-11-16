@@ -178,7 +178,7 @@ export default class EmojiCopy extends Extension {
     this.clearCategories();
     this.searchItem.searchEntry.set_text("");
 
-    this.timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 5, () => {
+    this.timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 20, () => {
       if (open) {
         global.stage.set_key_focus(this.searchItem.searchEntry);
       }
