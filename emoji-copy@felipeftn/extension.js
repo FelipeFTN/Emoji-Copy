@@ -36,8 +36,6 @@ import { EmojiCategory } from "./emojiCategory.js";
 import { EmojiSearchItem } from "./emojiSearchItem.js";
 
 export default class EmojiCopy extends Extension {
-  init() {}
-
   enable() {
     this.signaux = [];
     this.timeoutSourceId = null;
@@ -75,7 +73,7 @@ export default class EmojiCopy extends Extension {
 
     this._renderPanelMenuHeaderBox();
 
-    this.searchItem = new EmojiSearchItem(nbCols);
+    this.searchItem = new EmojiSearchItem(this._settings, nbCols);
 
     let recentlyUsed = this.searchItem._recentlyUsedInit();
 
@@ -144,6 +142,7 @@ export default class EmojiCopy extends Extension {
     }
 
     this.super_btn.destroy();
+    this.searchItem = null;
     this._settings = null;
     this.super_btn = null;
     this.signaux = [];
@@ -166,7 +165,7 @@ export default class EmojiCopy extends Extension {
       c.setNbCols(nbCols);
     });
 
-    this.searchItem = new EmojiSearchItem(nbCols);
+    this.searchItem = new EmojiSearchItem(this._settings, nbCols);
   }
 
   toggle() {

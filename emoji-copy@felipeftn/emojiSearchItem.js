@@ -1,24 +1,19 @@
 import St from "gi://St";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
-import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
-
 import { EmojiButton } from "./emojiButton.js";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
 
 // DEPRECATED?
 export class EmojiSearchItem {
-  constructor(nbColumns) {
+  constructor(settings, nbColumns) {
     this.super_item = new PopupMenu.PopupBaseMenuItem({
       reactive: false,
       can_focus: false,
     });
     this._nbColumns = nbColumns;
-
-    // Getting the extension object by UUID
-    this.emojiCopy = Extension.lookupByUUID("emoji-copy@felipeftn");
-    this._settings = this.emojiCopy.getSettings();
+    this._settings = settings;
 
     this.searchEntry = new St.Entry({
       name: "searchEntry",
@@ -125,7 +120,7 @@ export class EmojiSearchItem {
     this._recents = [];
 
     for (let i = 0; i < this._nbColumns; i++) {
-      this._recents[i] = new EmojiButton("", []);
+      this._recents[i] = new EmojiButton(this._settings, "", []);
       this._recents[i].build(null);
       container.add_child(this._recents[i].super_btn);
     }

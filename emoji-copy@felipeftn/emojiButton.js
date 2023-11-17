@@ -2,8 +2,6 @@ import St from "gi://St";
 import Clutter from "gi://Clutter";
 import GLib from "gi://GLib";
 
-import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
-
 const Clipboard = St.Clipboard.get_default();
 const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;
 
@@ -24,8 +22,10 @@ const GENDERS2 = ["👩", "👨"];
 const TONES = ["", "🏻", "🏼", "🏽", "🏾", "🏿"];
 
 export class EmojiButton {
-  constructor(baseCharacter, keywords) {
+  constructor(settings, baseCharacter, keywords) {
     this.baseCharacter = baseCharacter;
+    this._settings = settings;
+
     let tonable = false;
     let genrable = false;
     let gendered = false;
@@ -40,10 +40,6 @@ export class EmojiButton {
     }
     this.tags = [tonable, genrable, gendered];
     this.keywords = keywords;
-
-    // Getting the extension object by UUID
-    this.emojiCopy = Extension.lookupByUUID("emoji-copy@felipeftn");
-    this._settings = this.emojiCopy.getSettings();
   }
 
   build(category) {

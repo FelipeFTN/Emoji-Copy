@@ -5,12 +5,9 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 
 export class SkinTonesBar {
-  constructor(hasGender) {
+  constructor(settings, hasGender) {
+    this._settings = settings;
     this._toneArray = [];
-
-    // Getting the extension object by UUID
-    this.emojiCopy = Extension.lookupByUUID("emoji-copy@felipeftn");
-    this._settings = this.emojiCopy.getSettings();
 
     this._buildToneButton(_("No skin tone"), "#FFEE00");
     this._buildToneButton(_("Light skin tone"), "#FFD8A8");

@@ -24,28 +24,24 @@ export class EmojiCategory {
    * The category and its button have to be built without being loaded, to
    * memory issues with emojis' image textures.
    */
-  constructor(categoryName, iconName, id) {
+  constructor(settings, categoryName, iconName, id) {
     this.super_item = new PopupMenu.PopupSubMenuMenuItem(categoryName);
     this.categoryName = categoryName;
-    this.id = id;
+    this._settings = settings;
+    this.emojiButtons = []; // used for searching, and for updating the size/style
     this._nbColumns = 10; // some random default value
-
-    // Getting the extension object by UUID
-    this.emojiCopy = Extension.lookupByUUID("emoji-copy@felipeftn");
-    this._settings = this.emojiCopy.getSettings();
+    this.id = id;
 
     this.super_item.actor.visible = false;
     this.super_item.actor.reactive = false;
     this.super_item._triangleBin.visible = false;
 
-    this.emojiButtons = []; // used for searching, and for updating the size/style
-
     // These options bar widgets have the same type for all categories to
     // simplify the update method
     if ((this.id == 1) || (this.id == 5)) {
-      this.skinTonesBar = new SkinTonesBar(true);
+      this.skinTonesBar = new SkinTonesBar(this._settings, true);
     } else {
-      this.skinTonesBar = new SkinTonesBar(false);
+      this.skinTonesBar = new SkinTonesBar(this._settings, false);
     }
 
     // Smileys & body Peoples Activities
@@ -114,6 +110,7 @@ export class EmojiCategory {
 
     for (let i = 0; i < EMOJIS_CHARACTERS[this.id].length; i++) {
       let button = new EmojiButton(
+        this._settings,
         EMOJIS_CHARACTERS[this.id][i],
         EMOJIS_KEYWORDS[this.id][i],
       );
