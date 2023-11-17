@@ -5,8 +5,8 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 
 export class SkinTonesBar {
-  constructor(settings, hasGender) {
-    this._settings = settings;
+  constructor(emojiCopy, hasGender) {
+    this._settings = emojiCopy._settings;
     this._toneArray = [];
 
     this._buildToneButton(_("No skin tone"), "#FFEE00");

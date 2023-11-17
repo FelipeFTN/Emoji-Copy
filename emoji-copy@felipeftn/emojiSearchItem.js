@@ -7,13 +7,14 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
 
 // DEPRECATED?
 export class EmojiSearchItem {
-  constructor(settings, nbColumns) {
+  constructor(emojiCopy, nbColumns) {
     this.super_item = new PopupMenu.PopupBaseMenuItem({
       reactive: false,
       can_focus: false,
     });
     this._nbColumns = nbColumns;
-    this._settings = settings;
+    this.emojiCopy = emojiCopy;
+    this._settings = this.emojiCopy._settings;
 
     this.searchEntry = new St.Entry({
       name: "searchEntry",
@@ -120,7 +121,7 @@ export class EmojiSearchItem {
     this._recents = [];
 
     for (let i = 0; i < this._nbColumns; i++) {
-      this._recents[i] = new EmojiButton(this._settings, "", []);
+      this._recents[i] = new EmojiButton(this.emojiCopy, "", []);
       this._recents[i].build(null);
       container.add_child(this._recents[i].super_btn);
     }

@@ -22,9 +22,10 @@ const GENDERS2 = ["👩", "👨"];
 const TONES = ["", "🏻", "🏼", "🏽", "🏾", "🏿"];
 
 export class EmojiButton {
-  constructor(settings, baseCharacter, keywords) {
+  constructor(emojiCopy, baseCharacter, keywords) {
     this.baseCharacter = baseCharacter;
-    this._settings = settings;
+    this.emojiCopy = emojiCopy;
+    this._settings = this.emojiCopy._settings;
 
     let tonable = false;
     let genrable = false;

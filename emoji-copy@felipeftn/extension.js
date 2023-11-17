@@ -73,7 +73,7 @@ export default class EmojiCopy extends Extension {
 
     this._renderPanelMenuHeaderBox();
 
-    this.searchItem = new EmojiSearchItem(this._settings, nbCols);
+    this.searchItem = new EmojiSearchItem(this, nbCols);
 
     let recentlyUsed = this.searchItem._recentlyUsedInit();
 
@@ -165,7 +165,7 @@ export default class EmojiCopy extends Extension {
       c.setNbCols(nbCols);
     });
 
-    this.searchItem = new EmojiSearchItem(this._settings, nbCols);
+    this.searchItem = new EmojiSearchItem(this, nbCols);
   }
 
   toggle() {
@@ -242,6 +242,7 @@ export default class EmojiCopy extends Extension {
 
     for (let i = 0; i < 9; i++) {
       this.emojiCategories[i] = new EmojiCategory(
+        this,
         CAT_LABELS[i],
         CAT_ICONS[i],
         i,

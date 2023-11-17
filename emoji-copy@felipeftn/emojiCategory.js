@@ -24,10 +24,11 @@ export class EmojiCategory {
    * The category and its button have to be built without being loaded, to
    * memory issues with emojis' image textures.
    */
-  constructor(settings, categoryName, iconName, id) {
+  constructor(emojiCopy, categoryName, iconName, id) {
     this.super_item = new PopupMenu.PopupSubMenuMenuItem(categoryName);
     this.categoryName = categoryName;
-    this._settings = settings;
+    this.emojiCopy = emojiCopy;
+    this._settings = this.emojiCopy._settings;
     this.emojiButtons = []; // used for searching, and for updating the size/style
     this._nbColumns = 10; // some random default value
     this.id = id;
@@ -39,9 +40,9 @@ export class EmojiCategory {
     // These options bar widgets have the same type for all categories to
     // simplify the update method
     if ((this.id == 1) || (this.id == 5)) {
-      this.skinTonesBar = new SkinTonesBar(this._settings, true);
+      this.skinTonesBar = new SkinTonesBar(this.emojiCopy, true);
     } else {
-      this.skinTonesBar = new SkinTonesBar(this._settings, false);
+      this.skinTonesBar = new SkinTonesBar(this.emojiCopy, false);
     }
 
     // Smileys & body Peoples Activities
@@ -110,7 +111,7 @@ export class EmojiCategory {
 
     for (let i = 0; i < EMOJIS_CHARACTERS[this.id].length; i++) {
       let button = new EmojiButton(
-        this._settings,
+        this.emojiCopy,
         EMOJIS_CHARACTERS[this.id][i],
         EMOJIS_KEYWORDS[this.id][i],
       );
