@@ -17,7 +17,6 @@
 */
 
 import St from "gi://St";
-import Gtk from "gi://Gtk";
 import Meta from "gi://Meta";
 import GLib from "gi://GLib";
 import Shell from "gi://Shell";
@@ -100,9 +99,6 @@ export default class EmojiCopy extends Extension {
     if (this._settings.get_boolean("use-keybinding")) {
       this._bindShortcut();
     }
-
-    let theme = Gtk.IconTheme.new();
-    theme.add_search_path(Extension.path + "/icons");
 
     this.signaux[0] = this._settings.connect("changed::emojisize", () => {
       this.updateStyle();
