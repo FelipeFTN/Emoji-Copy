@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
 "PO-Revision-Date: 2017-11-10 10:59-0300\n"
 "Last-Translator: Fábio Nogueira <fnogueira@gnome.org>\n"
 "Language-Team: \n"
@@ -59,28 +59,6 @@ msgstr "Símbolos"
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
 msgstr "Bandeiras"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "Modifications will be effective after reloading the extension."
-msgstr "Estas modificações necessitam reiniciar a extensão."
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From top to bottom"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From bottom to top"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "The default value is %s"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "version %s"
-msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
@@ -186,8 +164,44 @@ msgstr ""
 msgid "Please report this bug"
 msgstr ""
 
-#~ msgid "Type here to search…"
-#~ msgstr "Digite aqui para pesquisar…"
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Digite aqui para pesquisar…"
+
+#~ msgid "Modifications will be effective after reloading the extension."
+#~ msgstr "Estas modificações necessitam reiniciar a extensão."
 
 #~ msgid "Default value is:"
 #~ msgstr "O valor padrão é"

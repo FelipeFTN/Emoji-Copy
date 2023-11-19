@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
 "PO-Revision-Date: 2023-09-06 09:03+0300\n"
 "Last-Translator: Oğuz Taş <mimoguz@outlook.com>\n"
 "Language-Team: \n"
@@ -57,28 +57,6 @@ msgstr "Simgeler"
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
 msgstr "Bayraklar"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "Modifications will be effective after reloading the extension."
-msgstr "Değişiklikler eklenti yeniden yüklendiğinde etkin olur."
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From top to bottom"
-msgstr "Yukarıdan aşağıya"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From bottom to top"
-msgstr "Aşağıdan yukarıya"
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "The default value is %s"
-msgstr "Varsayılan değer %s"
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "version %s"
-msgstr "sürüm %s"
 
 #: emoji-copy@felipeftn/prefs.ui
 msgid ""
@@ -191,6 +169,59 @@ msgstr "\"%s\" kategorisinde hatalı sayıda anahtar kelime:"
 msgid "Please report this bug"
 msgstr "Lütfen bu hatayı bildirin"
 
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Ten rengi yok"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Açık ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Orta-açık ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Orta ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Orta-koyu ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Koyu ten rengi"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Kadınlar"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Erkekler"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Aramak için buraya yazın…"
+
+#~ msgid "Modifications will be effective after reloading the extension."
+#~ msgstr "Değişiklikler eklenti yeniden yüklendiğinde etkin olur."
+
+#~ msgid "From top to bottom"
+#~ msgstr "Yukarıdan aşağıya"
+
+#~ msgid "From bottom to top"
+#~ msgstr "Aşağıdan yukarıya"
+
+#, javascript-format
+#~ msgid "The default value is %s"
+#~ msgstr "Varsayılan değer %s"
+
+#, javascript-format
+#~ msgid "version %s"
+#~ msgstr "sürüm %s"
+
 #~ msgid ""
 #~ "This extension provides a parametrable popup menu displaying most emojis, "
 #~ "clicking on an emoji copies it to the clipboard."
@@ -200,30 +231,3 @@ msgstr "Lütfen bu hatayı bildirin"
 
 #~ msgid "Contributors"
 #~ msgstr "Katılımcılar"
-
-#~ msgid "No skin tone"
-#~ msgstr "Ten rengi yok"
-
-#~ msgid "Light skin tone"
-#~ msgstr "Açık ten rengi"
-
-#~ msgid "Medium light skin tone"
-#~ msgstr "Orta-açık ten rengi"
-
-#~ msgid "Medium skin tone"
-#~ msgstr "Orta ten rengi"
-
-#~ msgid "Medium dark skin tone"
-#~ msgstr "Orta-koyu ten rengi"
-
-#~ msgid "Dark skin tone"
-#~ msgstr "Koyu ten rengi"
-
-#~ msgid "Women"
-#~ msgstr "Kadınlar"
-
-#~ msgid "Men"
-#~ msgstr "Erkekler"
-
-#~ msgid "Type here to search…"
-#~ msgstr "Aramak için buraya yazın…"

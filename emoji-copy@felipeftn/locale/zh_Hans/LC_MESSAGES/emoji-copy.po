@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-05 18:13-0300\n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
 "PO-Revision-Date: 2020-03-07 04:17+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -57,28 +57,6 @@ msgstr "符号"
 #: emoji-copy@felipeftn/extension.js
 msgid "Flags"
 msgstr "旗"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "Modifications will be effective after reloading the extension."
-msgstr "重新加载后更改才会生效."
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From top to bottom"
-msgstr "从顶部到底部"
-
-#: emoji-copy@felipeftn/prefs.js
-msgid "From bottom to top"
-msgstr "从底部到顶部"
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "The default value is %s"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.js
-#, javascript-format
-msgid "version %s"
-msgstr ""
 
 #: emoji-copy@felipeftn/prefs.ui
 #, fuzzy
@@ -194,39 +172,57 @@ msgstr ""
 msgid "Please report this bug"
 msgstr ""
 
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "无肤色"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "微淡色"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "淡色"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "中色"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "偏暗色"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "暗色"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "女"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "男"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "搜索…"
+
+#~ msgid "Modifications will be effective after reloading the extension."
+#~ msgstr "重新加载后更改才会生效."
+
+#~ msgid "From top to bottom"
+#~ msgstr "从顶部到底部"
+
+#~ msgid "From bottom to top"
+#~ msgstr "从底部到顶部"
+
 #~ msgid ""
 #~ "This extension provides a parametrable popup menu displaying most emojis, "
 #~ "clicking on an emoji copies it to the clipboard."
 #~ msgstr ""
 #~ "这个扩展提供一个可定义参数的弹出菜单用于选用常用的Emoji, 点击你需要的Emoji"
 #~ "它就被复制到剪切板."
-
-#~ msgid "No skin tone"
-#~ msgstr "无肤色"
-
-#~ msgid "Light skin tone"
-#~ msgstr "微淡色"
-
-#~ msgid "Medium light skin tone"
-#~ msgstr "淡色"
-
-#~ msgid "Medium skin tone"
-#~ msgstr "中色"
-
-#~ msgid "Medium dark skin tone"
-#~ msgstr "偏暗色"
-
-#~ msgid "Dark skin tone"
-#~ msgstr "暗色"
-
-#~ msgid "Women"
-#~ msgstr "女"
-
-#~ msgid "Men"
-#~ msgstr "男"
-
-#~ msgid "Type here to search…"
-#~ msgstr "搜索…"
 
 #~ msgid "Settings"
 #~ msgstr "设置"
