@@ -96,7 +96,7 @@ export class EmojiButton {
       symbol == Clutter.KP_Enter
     ) {
       let emojiToCopy = this.getTaggedEmoji();
-      let [mods] = global.get_pointer();
+      let [x, y, mods] = global.get_pointer();
       let majPressed = (mods & Clutter.ModifierType.SHIFT_MASK) != 0;
       let ctrlPressed = (mods & Clutter.ModifierType.CONTROL_MASK) != 0;
       if (majPressed) {
