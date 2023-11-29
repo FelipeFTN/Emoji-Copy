@@ -18,7 +18,7 @@ const VirtualKeyboard = (() => {
 })();
 
 const GENDERS = ["", "\u200D\u2640\uFE0F", "\u200D\u2642\uFE0F"];
-const GENDERS2 = ["👩", "👨"];
+const GENDERS2 = ["🧑", "👩", "👨"];
 const TONES = ["", "🏻", "🏼", "🏽", "🏾", "🏿"];
 
 export class EmojiButton {
@@ -197,21 +197,10 @@ export class EmojiButton {
     if (tonable) {
       let tone_index = this._settings.get_int("skin-tone");
       if (gendered) {
-        if (temp.includes(GENDERS2[0])) {
-          currentEmoji = currentEmoji.replace(
-            GENDERS2[0],
-            GENDERS2[0] + TONES[tone_index],
-          );
-        } else if (temp.includes(GENDERS2[1])) {
-          currentEmoji = currentEmoji.replace(
-            GENDERS2[1],
-            GENDERS2[1] + TONES[tone_index],
-          );
-        } else {
-          console.error(
-            "Error: " + GENDERS2[0] + " isn't a valid gender prefix.",
-          );
-        }
+        currentEmoji = currentEmoji.replace(
+          GENDERS2[0],
+          GENDERS2[this._settings.get_int("gender")] + TONES[tone_index],
+        );
         temp = currentEmoji;
       } else {
         temp += TONES[tone_index];

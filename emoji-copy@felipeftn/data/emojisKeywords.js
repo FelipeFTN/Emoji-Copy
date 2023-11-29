@@ -45,21 +45,22 @@ export const EMOJIS_KEYWORDS = [
         ["sleepy face", "sleep"],
         ["tired face", "tired"],
         ["sleeping face", "sleep", "zzz"],
+        ["yawning face", "yawn"],
         ["relieved face", "relieved"],
         ["face with stuck-out tongue", "tongue"],
-        ["face with stuck-out tongue & winking eye", "joke", "tongue", "wink"],
         //-------------
+        ["face with stuck-out tongue & winking eye", "joke", "tongue", "wink"],
         ["face with stuck-out tongue & closed eyes", "horrible", "taste", "tongue"],
         ["drooling face", "drooling"],
-        ["unamused face", "unamused", "unhappy"],
+        ["unamused face", "unamused"],
         ["face with cold sweat", "cold", "sweat"],
         ["pensive face", "dejected", "pensive"],
         ["confused face	", "confused"],
         ["upside-down face", "upside-down"],
         ["money-mouth face", "money", "mouth"],
         ["astonished face", "astonished", "shocked"],
-        ["frowning face", "frown"],
         //-------------
+        ["frowning face", "frown"],
         ["slightly frowning face", "frown"],
         ["confounded face", "confounded"],
         ["disappointed face", "disappointed"],
@@ -69,8 +70,8 @@ export const EMOJIS_KEYWORDS = [
         ["loudly crying face", "cry", "sad", "sob", "tear"],
         ["frowning face with open mouth", "frown", "mouth", "open"],
         ["anguished face", "anguished"],
-        ["fearful face", "fear", "fearful", "scared"],
         //-------------
+        ["fearful face", "fear", "fearful", "scared"],
         ["weary face", "tired", "weary"],
         ["exploding head", "shocked", "mind blowing"],
         ["grimacing face", "grimace"],
@@ -80,8 +81,8 @@ export const EMOJIS_KEYWORDS = [
         ["flushed face", "dazed", "flushed"],
         ["crazy face", "large eye", "small eye"],
         ["woozy face", "high", "dizzy", "drunk"],
-        ["dizzy face", "dizzy"],
         //-------------
+        ["dizzy face", "dizzy"],
         ["pouting face", "angry", "mad", "pouting", "rage", "red"],
         ["angry face", "angry", "mad"],
         ["face with symbols over mouth", "cursing"],
@@ -91,8 +92,8 @@ export const EMOJIS_KEYWORDS = [
         ["nauseated face", "nauseated", "vomit"],
         ["face vomiting", "sick", "vomit"],
         ["sneezing face", "sneeze"],
-        ["hot face", "hot", "sweat", "horny"],
         //-------------
+        ["hot face", "hot", "sweat", "horny"],
         ["cold face", "freeze"],
         ["smiling face with halo", "angel", "fantasy", "halo", "innocent", "smile"],
         ["cowboy hat face", "cowboy", "cowgirl", "hat"],
@@ -102,8 +103,8 @@ export const EMOJIS_KEYWORDS = [
         ["shushing face", "shush"],
         ["face with hand over mouth", "whoops", "shock", "sudden realization", "surprise"],
         ["face with monocle", "stuffy", "wealthy"],
-        ["nerd face", "geek", "nerd"],
         //-------------
+        ["nerd face", "geek", "nerd"],
         ["smiling face with horns", "demon", "fantasy", "smile", "devil"],
         ["angry face with horns", "demon", "devil", "fantasy", "imp"],
         ["ogre", "creature", "fairy tale", "fantasy", "monster", "troll"],
@@ -113,8 +114,8 @@ export const EMOJIS_KEYWORDS = [
         ["ghost", "creature", "fantasy", "monster"],
         ["alien", "creature", "extraterrestrial", "fantasy", "monster", "ufo", "external", "translation"],
         ["alien monster", "alien", "creature", "extraterrestrial", "fantasy", "monster", "ufo"],
-        ["robot face", "monster", "robot", "android"],
         //-------------
+        ["robot face", "monster", "robot", "android"],
         ["pile of poo", "comic", "dung", "monster", "poo", "poop", "hankey", "bad code"],
         ["smiling cat face with open mouth", "cat", "mouth", "open", "smile"],
         ["grinning cat face with smiling eyes", "cat", "grin", "smile"],
@@ -124,8 +125,8 @@ export const EMOJIS_KEYWORDS = [
         ["kissing cat face with closed eyes", "cat", "kiss"],
         ["weary cat face", "cat", "oh", "surprised", "weary"],
         ["crying cat face", "cat", "cry", "sad", "tear"],
-        ["pouting cat face", "cat", "pouting"],
         //-------------
+        ["pouting cat face", "cat", "pouting"],
         ["see-no-evil monkey", "evil", "forbidden", "gesture", "monkey", "no", "prohibited", "see", "gitignore"],
         ["hear-no-evil monkey", "evil", "forbidden", "gesture", "hear", "monkey", "no", "prohibited"],
         ["speak-no-evil monkey", "evil", "forbidden", "gesture", "monkey", "no", "prohibited", "speak"],
@@ -133,6 +134,7 @@ export const EMOJIS_KEYWORDS = [
         //-----body-----------------------------------------------------------------
         ["selfie", "camera", "phone", "selfie", 'HAS_TONE'],
         ["flexed biceps", "biceps", "comic", "flex", "muscle", 'HAS_TONE'],
+        ["flexed biceps", "biceps", "comic", "flex", "muscle", "mechanical arm", "prosthetic"],
         ["backhand index pointing left", "backhand", "finger", "hand", "index", "point", 'HAS_TONE'],
         ["backhand index pointing right", "backhand", "finger", "hand", "index", "point", 'HAS_TONE'],
         ["index pointing up", "finger", "hand", "index", "point", "up", 'HAS_TONE'],
@@ -147,9 +149,10 @@ export const EMOJIS_KEYWORDS = [
         ["call me hand", "call", "hand", 'HAS_TONE'],
         ["raised hand with fingers splayed", "finger", "hand", "splayed", 'HAS_TONE'],
         ["raised hand", "hand", 'HAS_TONE'],
+        ["pinching hand", "hand", "small", "close", 'HAS_TONE'],
         ["ok hand", "ok", "ok", "hand", 'HAS_TONE'],
-        ["thumbs up", "hand", "thumb", "up", 'HAS_TONE'],
         //-------------
+        ["thumbs up", "hand", "thumb", "up", 'HAS_TONE'],
         ["thumbs down", "down", "hand", "thumb", 'HAS_TONE'],
         ["raised fist", "clenched", "fist", "hand", "punch", 'HAS_TONE'],
         ["oncoming fist", "clenched", "fist", "hand", "punch", 'HAS_TONE'],
@@ -159,8 +162,8 @@ export const EMOJIS_KEYWORDS = [
         ["waving hand", "hand", "wave", "waving", 'HAS_TONE'],
         ["love-you gesture", "hand", "love", 'HAS_TONE'],
         ["writing hand", "hand", "write", 'HAS_TONE'],
-        ["clapping hands", "clap", "hand", 'HAS_TONE'],
         //-------------
+        ["clapping hands", "clap", "hand", 'HAS_TONE'],
         ["open hands", "hand", "open", 'HAS_TONE'],
         ["raising hands", "celebration", "hand", "hooray", "raised", 'HAS_TONE'],
         ["palms up together", "hand", 'HAS_TONE'],
@@ -168,10 +171,12 @@ export const EMOJIS_KEYWORDS = [
         ["handshake", "agreement", "hand", "handshake", "meeting", "shake", 'HAS_TONE'],
         ["nail polish", "care", "cosmetics", "manicure", "nail", "polish", 'HAS_TONE'],
         ["ear", "body", 'HAS_TONE'],
+        ["ear", "body", "ear with hearing aid", "hearing loss", "deaf aid"],
         ["nose", "body", 'HAS_TONE'],
-        ["leg", "body", 'HAS_TONE'],
-        ["foot", "fetish", "body", 'HAS_TONE'],
         //-------------
+        ["leg", "body", 'HAS_TONE'],
+        ["leg", "body", "mechanical leg", "prosthetic"],
+        ["foot", "fetish", "body", 'HAS_TONE'],
         ["footprints", "footprint", "print", "gnome"],
         ["eyes", "eye"],
         ["eye", "body"],
@@ -179,6 +184,7 @@ export const EMOJIS_KEYWORDS = [
         ["brain", "body"],
         ["tongue", "body"],
         ["mouth", "lips", "body"],
+        //-------------
         ["tooth", "mouth"],
         ["bone", "body"]
 
@@ -191,44 +197,31 @@ export const EMOJIS_KEYWORDS = [
         ["adult", "man", "young", 'HAS_TONE'],
         ["man", 'HAS_TONE'],
         ["woman", 'HAS_TONE'],
-        ["older adult", "adult", "old", 'HAS_TONE'],
-        ["old man", "man", "old", 'HAS_TONE'],
-        ["old woman", "old", "woman", 'HAS_TONE'],
+        ["older adult", "adult", "old", "person", 'IS_GENDERED', 'HAS_TONE'],
+        //-------------
+        ["person red hair", "ginger hair", "orange hair", 'IS_GENDERED', 'HAS_TONE'],
+        ["person curly hair", "curls", 'IS_GENDERED', 'HAS_TONE'],
+        ["person white hair", "person with white hair", 'IS_GENDERED', 'HAS_TONE'],
+        ["person bald", "alopecia", 'IS_GENDERED', 'HAS_TONE'],
         //-------------
         ["health worker", "doctor", "healthcare", "nurse", "therapist", 'IS_GENDERED', 'HAS_TONE'],
-        ["health worker", "doctor", "healthcare", "nurse", "therapist", 'IS_GENDERED', 'HAS_TONE'],
-        ["student", "university", 'IS_GENDERED', 'HAS_TONE'],
         ["student", "university", 'IS_GENDERED', 'HAS_TONE'],
         ["teacher", "school", 'IS_GENDERED', 'HAS_TONE'],
-        ["teacher", "school", 'IS_GENDERED', 'HAS_TONE'],
         ["judge", 'IS_GENDERED', 'HAS_TONE'],
-        ["judge", 'IS_GENDERED', 'HAS_TONE'],
-        ["farmer", "farm", "worker", 'IS_GENDERED', 'HAS_TONE'],
         ["farmer", "farm", "worker", 'IS_GENDERED', 'HAS_TONE'],
         //-------------
         ["cook", "cooking", "chef", 'IS_GENDERED', 'HAS_TONE'],
-        ["cook", "cooking", "chef", 'IS_GENDERED', 'HAS_TONE'],
-        ["mechanic", "worker", 'IS_GENDERED', 'HAS_TONE'],
         ["mechanic", "worker", 'IS_GENDERED', 'HAS_TONE'],
         ["factory worker", "factory", 'IS_GENDERED', 'HAS_TONE'],
-        ["factory worker", "factory", 'IS_GENDERED', 'HAS_TONE'],
         ["office worker", "office", "office worker", 'HAS_TONE', 'IS_GENDERED'],
-        ["office worker", "office", "office worker", 'HAS_TONE', 'IS_GENDERED'],
-        ["scientist", "scientist", 'IS_GENDERED', 'HAS_TONE'],
         ["scientist", "scientist", 'IS_GENDERED', 'HAS_TONE'],
         //-------------
         ["technologist", "hacker", "matrix", "computing", 'IS_GENDERED', 'HAS_TONE'],
-        ["technologist", "hacker", "matrix", "computing", 'IS_GENDERED', 'HAS_TONE'],
-        ["singer", "star", "rock", "music", 'IS_GENDERED', 'HAS_TONE'],
         ["singer", "star", "rock", "music", 'IS_GENDERED', 'HAS_TONE'],
         ["artist", "painter", 'IS_GENDERED', 'HAS_TONE'],
-        ["artist", "painter", 'IS_GENDERED', 'HAS_TONE'],
         ["airplane pilot", "pilot", 'IS_GENDERED', 'HAS_TONE'],
-        ["airplane pilot", "pilot", 'IS_GENDERED', 'HAS_TONE'],
-        ["astronaut", "cosmonaut", "spationaut", 'IS_GENDERED', 'HAS_TONE'],
         ["astronaut", "cosmonaut", "spationaut", 'IS_GENDERED', 'HAS_TONE'],
         //------------
-        ["firefighter", "fire", 'IS_GENDERED', 'HAS_TONE'],
         ["firefighter", "fire", 'IS_GENDERED', 'HAS_TONE'],
         ["police officer", "cop", "officer", "police", 'HAS_GENDER', 'HAS_TONE'],
         ["detective", "detective", "sleuth", "spy", 'HAS_GENDER', 'HAS_TONE'],
@@ -271,20 +264,26 @@ export const EMOJIS_KEYWORDS = [
         ["person bowing", "apology", "bow", "gesture", "sorry", 'HAS_GENDER', 'HAS_TONE'],
         ["person facepalming", "disbelief", "exasperation", "palm", 'HAS_GENDER', 'HAS_TONE'],
         ["person shrugging", "doubt", "ignorance", "indifference", "shrug", 'HAS_GENDER', 'HAS_TONE'],
+        ["deaf person", "hearing loss", "sign language", 'HAS_GENDER', 'HAS_TONE'],
         ["person getting massage", "massage", "salon", 'HAS_GENDER', 'HAS_TONE'],
-        ["person getting haircut", "barber", "beauty", "haircut", "parlor", 'HAS_GENDER', 'HAS_TONE'],
         //------------
+        ["person getting haircut", "barber", "beauty", "haircut", "parlor", 'HAS_GENDER', 'HAS_TONE'],
+        ["person standing", "upright", "stop", "loitering", "awkwardness", "facing forward", 'HAS_GENDER', 'HAS_TONE'],
         ["person walking", "hike", "walk", "walking", 'HAS_GENDER', 'HAS_TONE'],
         ["person running", "marathon", "running", 'HAS_GENDER', 'HAS_TONE'],
+        ["person kneeling", "prayer", "kneel down", 'HAS_GENDER', 'HAS_TONE'],
+        ["person with white cane", "blind person", "walking", "disability", 'IS_GENDERED', 'HAS_TONE'],
+        ["person in motorized wheelchair", "disability", 'IS_GENDERED', 'HAS_TONE'],
+        ["person in manual wheelchair", "disability", 'IS_GENDERED', 'HAS_TONE'],
         ["woman dancing", "dancing", "woman"],
         ["man dancing", "dance", "man"],
+        //-------------
         ["people with bunny ears partying", "bunny ear", "dancer", "partying", 'HAS_GENDER'],
         ["person taking bath", "bath", "bathtub"],
         ["person in bed", "hotel", "sleep", "bed"],
         ["man in business suit levitating", "business", "suit"],
         ["speaking head", "head", "silhouette", "speak", "speaking"],
         ["bust in silhouette", "bust", "silhouette"],
-        //-------------
         ["busts in silhouette", "bust", "silhouette", "contributors"],
         ["people hugging", "hugging"],
         //-----family---------------------------------------------------------------
@@ -298,6 +297,7 @@ export const EMOJIS_KEYWORDS = [
         ["glasses", "eye", "eyeglasses", "eyewear"],
         ["sunglasses", "dark", "sun", "eyewear", "glasses"],
         ["necktie", "shirt"],
+        ["safety vest", "orange vest", "reflective vest"],
         //-------------
         ["t-shirt", "shirt", "tshirt", "lint"],
         ["jeans", "pants", "trousers"],
@@ -307,31 +307,36 @@ export const EMOJIS_KEYWORDS = [
         ["socks", "feet"],
         ["dress"],
         ["kimono", "japan"],
+        ["sari", "saree", "shari", "india"],
         ["bikini", "beach", "swim"],
-        ["woman's clothes", "woman"],
         //-------------
+        ["one-piece swimsuit", "beach", "swim", "swimsuit"],
+        ["briefs", "underwear", "swim", "speedos"],
+        ["shorts", "trunks", "swim"],
+        ["woman's clothes", "woman"],
         ["purse", "coin"],
         ["handbag", "bag", "purse"],
         ["clutch bag", "bag", "pouch"],
         ["shopping bags", "bag", "hotel", "shopping"],
         ["school backpack", "bag", "satchel", "school"],
         ["man's shoe", "foot", "shoe", "man"],
+        //-------------
         ["running shoe", "athletic", "shoe", "sneaker"],
         ["high-heeled shoe", "heel", "shoe", "woman"],
         ["woman's sandal", "sandal", "shoe", "woman"],
         ["woman's boot", "boot", "shoe", "woman"],
-        //-------------
         ["hiking boot", "boot", "shoe", "hiking"],
         ["flat shoe", "shoe"],
+        ["ballet shoes", "shoes", "dance", "dancing", "pointe shoe"],
         ["crown", "king", "queen"],
         ["woman's hat", "hat", "woman"],
         ["top hat", "hat", "top", "tophat"],
+        //-------------
         ["graduation cap", "cap", "celebration", "graduation", "hat"],
         ["billed cap", "cap", "hat"],
         ["rescue worker's helmet", "aid", "cross", "hat", "helmet"],
         ["prayer beads", "beads", "necklace", "prayer", "religion"],
         ["lipstick", "cosmetics", "makeup", "style", "ui"],
-        //-------------
         ["ring", "diamond"],
         ["gem stone", "diamond", "gem", "jewel"]
     ], [ // Animals and nature
@@ -339,14 +344,16 @@ export const EMOJIS_KEYWORDS = [
         ["monkey face", "monkey"],
         ["monkey", "monkey"],
         ["gorilla", "gorilla", "monkey"],
+        ["orangutan", "monkey"],
         ["dog face", "dog", "pet"],
         ["dog", "pet"],
         ["poodle", "dog"],
+        ["guide dog", "seeing eye dog", "harness"],
         ["wolf face", "wolf"],
         ["fox face", "fox"],
+        //-------------
         ["cat face", "cat", "pet"],
         ["cat", "pet", "feline"],
-        //-------------
         ["lion face", "leo", "lion", "zodiac"],
         ["tiger face", "tiger"],
         ["tiger", "feline"],
@@ -355,9 +362,9 @@ export const EMOJIS_KEYWORDS = [
         ["horse", "equestrian", "racehorse", "racing", "performance"],
         ["unicorn face", "unicorn", "fantasy"],
         ["zebra"],
+        //-------------
         ["deer"],
         ["cow face", "cow"],
-        //-------------
         ["ox", "taurus", "bull", "zodiac"],
         ["water buffalo", "buffalo", "water"],
         ["cow"],
@@ -366,9 +373,9 @@ export const EMOJIS_KEYWORDS = [
         ["boar", "pig", "gruik"],
         ["pig nose", "nose", "pig", "gruik"],
         ["ram", "aries", "male", "sheep", "zodiac"],
+        //-------------
         ["ewe", "female", "sheep"],
         ["goat", "capricorn", "zodiac", "gegl"],
-        //-------------
         ["camel", "dromedary", "hump"],
         ["two-hump camel", "bactrian", "camel", "hump"],
         ["giraffe"],
@@ -377,75 +384,79 @@ export const EMOJIS_KEYWORDS = [
         ["hippopotamus"],
         ["mouse face", "mouse"],
         ["mouse"],
+        //-------------
         ["rat"],
         ["hamster face", "hamster", "pet"],
-        //-------------
         ["rabbit face", "bunny", "pet", "rabbit"],
         ["rabbit", "bunny", "pet"],
         ["chipmunk"],
         ["hedgehog"],
         ["raccoon"],
+        ["skunk", "odor", "bad smell"],
         ["badger"],
+        ["otter"],
+        //-------------
         ["bat", "vampire"],
         ["bear face", "bear"],
         ["koala"],
         ["kangaroo"],
-        //-------------
+        ["sloth", "slow"],
         ["panda face", "panda"],
         ["llama", "panda"],
         ["paw prints", "feet", "paw", "print"],
         ["turkey", "bird"],
         ["chicken", "bird"],
+        //-------------
         ["rooster", "bird"],
         ["hatching chick", "baby", "bird", "chick", "hatching"],
         ["baby chick", "baby", "bird", "chick"],
         ["front-facing baby chick", "baby", "bird", "chick"],
         ["peacock", "bird"],
-        //-------------
+        ["flamingo", "bird"],
         ["swan", "bird"],
         ["bird"],
         ["parrot"],
         ["penguin", "bird", "tux", "linux"],
+        //-------------
         ["dove", "bird", "fly", "peace"],
         ["eagle", "bird"],
         ["duck", "bird"],
         ["owl", "bird", "owl", "wise"],
         ["frog face", "frog"],
         ["crocodile", "alligator"],
-        //-------------
         ["turtle", "terrapin", "tortoise", "turtle"],
         ["lizard", "lizard", "reptile"],
         ["snake", "ophiuchus", "bearer", "serpent", "zodiac"],
         ["dragon face", "dragon", "fairy tale"],
+        //-------------
         ["dragon", "fairy tale"],
         ["sauropod", "brachiosaurus", "brontosaurus", "diplodocus", "dinosaur"],
         ["t-rex", "t-rex", "tyrannosaurus rex", "tyrannosaurus rex", "dinosaur"],
         ["spouting whale", "spouting", "whale", "docker"],
         ["whale"],
         ["dolphin", "flipper"],
-        //-------------
         ["fish", "pisces", "zodiac", "wanda"],
         ["tropical fish", "fish", "tropical"],
         ["blowfish", "fish"],
         ["shark", "fish", "shark"],
+        //-------------
         ["octopus"],
         ["spiral shell", "shell", "spiral"],
         ["crab", "cancer", "zodiac"],
         ["shrimp", "food", "shellfish", "shrimp"],
         ["lobster", "food", "transgender"],
         ["squid", "food", "molusc", "squid"],
-        //-------------
         ["snail", "slow", "shell"],
         ["butterfly", "insect", "pretty"],
         ["bug", "insect"],
         ["ant", "insect"],
+        //-------------
         ["honeybee", "bee", "insect"],
         ["lady beetle", "beetle", "insect", "ladybird", "ladybug"],
         ["cricket", "insect"],
         ["spider", "arachnid"],
         ["spider web", "spider", "web"],
         ["scorpion", "scorpius", "scorpio", "zodiac"],
-        //-------------
         ["mosquito", "insect"],
         ["microbe", "bacteria"],
         //-----nature---------------------------------------------------------------
@@ -495,14 +506,15 @@ export const EMOJIS_KEYWORDS = [
         ["white medium star", "star"],
         ["glowing star", "star"],
         ["shooting star", "star"],
+        ["ringed planet", "rings", "saturn", "planet"],
         ["cloud", "weather"],
         ["sun behind cloud", "sun", "weather"],
         ["cloud with lightning and rain", "cloud", "rain", "lightning", "weather"],
         ["sun behind small cloud", "weather", "cloud", "sun", "weather"],
         ["sun behind large cloud", "weather", "cloud", "sun", "weather"],
         ["sun behind rain cloud", "cloud", "sun", "weather", "rain"],
-        ["cloud with rain", "weather", "weather", "cloud", "rain"],
         //-------------
+        ["cloud with rain", "weather", "weather", "cloud", "rain"],
         ["cloud with snow", "weather", "cloud", "snow"],
         ["cloud with lightning", "weather", "cloud", "lightning"],
         ["tornado", "weather", "wind"],
@@ -512,8 +524,8 @@ export const EMOJIS_KEYWORDS = [
         ["rainbow", "colors", "weather"],
         ["closed umbrella", "umbrella"],
         ["umbrella", "rain", "weather"],
-        ["umbrella with rain drops", "rain", "umbrella", "weather"],
         //-------------
+        ["umbrella with rain drops", "rain", "umbrella", "weather"],
         ["umbrella on ground", "umbrella"],
         ["high voltage", "electricity", "performance", "update"],
         ["snowflake", "snow", "weather"],
@@ -547,6 +559,8 @@ export const EMOJIS_KEYWORDS = [
         //-----vegetables-----------------------------------------------------------
         ["eggplant", "aubergine", "vegetable"],
         ["potato", "food", "potato", "vegetable"],
+        ["garlic", "food", "vegetable", "vampire"],
+        ["onion", "food", "vegetable"],
         //-------------
         ["carrot", "carrot", "food", "vegetable"],
         ["ear of corn", "corn", "ear", "maize", "maze"],
@@ -562,6 +576,7 @@ export const EMOJIS_KEYWORDS = [
         ["croissant", "bread", "crescent roll", "croissant", "food", "french"],
         ["baguette bread", "baguette", "bread", "food", "french"],
         ["pretzel", "twisted", "convoluted"],
+        ["butter", "butter stick"],
         ["pancakes", "crêpe", "food", "hotcake", "pancake"],
         ["bagel"],
         ["moon cake", "chinese", "food"],
@@ -582,6 +597,7 @@ export const EMOJIS_KEYWORDS = [
         ["burrito", "mexican", "wrap"],
         //-------------
         ["stuffed flatbread", "falafel", "flatbread", "food", "gyro", "kebab", "stuffed"],
+        ["falafel", "chickpeas", "middle east", "brown balls"],
         ["egg", "food", "easter egg"],
         ["cooking", "egg", "frying", "pan"],
         ["shallow pan of food", "casserole", "food", "paella", "pan", "shallow"],
@@ -601,6 +617,7 @@ export const EMOJIS_KEYWORDS = [
         ["roasted sweet potato", "potato", "roasted", "sweet"],
         ["oden", "seafood", "skewer", "stick"],
         ["sushi", "fish"],
+        ["oyster", "shell", "pearl", "seafood"],
         ["fried shrimp", "fried", "prawn", "shrimp", "tempura"],
         //-------------
         ["fish cake with swirl", "cake", "fish", "pastry", "swirl", "debian"],
@@ -617,11 +634,13 @@ export const EMOJIS_KEYWORDS = [
         ["birthday cake", "birthday", "cake", "celebration", "dessert", "pastry", "sweet"],
         ["shortcake", "cake", "dessert", "pastry", "slice", "sweet"],
         ["pie", "fruit", "meat"],
+        ["waffle", "belgian waffle"],
         ["chocolate bar", "chocolate", "dessert", "sweet"],
         ["candy", "sweet"],
         ["lollipop", "sweet"],
         ["custard", "dessert"],
         ["honey pot", "sugar", "bee"],
+        ["ice cube", "cool", "chill", "cold", "ice"],
         //-----drink----------------------------------------------------------------
         ["baby bottle", "milk", "baby", "drink"],
         ["glass of milk", "milk", "glass", "drink"],
@@ -639,6 +658,8 @@ export const EMOJIS_KEYWORDS = [
         //-------------
         ["tumbler glass", "glass"],
         ["cup with straw", "cup", "straw"],
+        ["beverage box", "juice", "straw"],
+        ["mate drink", "yerba mate", "chimarrão", "cimarrón"],
         ["chopsticks"],
         ["fork and knife with plate", "flatware", "fork", "knife", "plate"],
         ["fork and knife", "fork", "knife", "cutlery"],
@@ -695,6 +716,7 @@ export const EMOJIS_KEYWORDS = [
         //-------------
         ["mosque", "religion", "islam", "muslim"],
         ["synagogue", "religion", "judaism"],
+        ["hindu temple", "religion", "hinduism", "india", "mandir"],
         ["shinto shrine", "religion", "japan", "kami"],
         ["kaaba", "religion", "mecca", "islam", "muslim"],
         ["moai", "easter island"],
@@ -747,22 +769,25 @@ export const EMOJIS_KEYWORDS = [
         ["oncoming police car", "police"],
         ["taxi", "car", "vehicle"],
         ["oncoming taxi", "car"],
+        ["auto rickshaw", "tuk tuk", "three wheels"],
         ["automobile", "car", "vehicle"],
         ["oncoming automobile", "automobile", "car"],
         ["sport utility vehicle", "automobile", "utility", "car"],
-        ["delivery truck", "truck", "vehicle", "move", "rename"],
         //-------------
+        ["delivery truck", "truck", "vehicle", "move", "rename"],
         ["articulated lorry", "truck", "vehicle"],
         ["tractor", "vehicle"],
+        ["manual wheelchair", "disability"],
+        ["motorized wheelchair", "disability"],
         ["bicycle", "bike", "vehicle"],
         ["kick scooter", "scooter"],
         ["motor scooter", "scooter", "motorbike"],
         ["bus stop", "bus"],
         ["motorway", "road"],
+        //-------------
         ["railway track", "rails", "train"],
         ["fuel pump", "fuel"],
         ["police car light", "police", "revolving light", "rotating light", "linter", "tests"],
-        //-------------
         ["horizontal traffic light", "traffic light", "road sign"],
         ["vertical traffic light", "traffic light", "road sign"],
         ["construction", "road sign", "wip", "work in progress"],
@@ -794,12 +819,14 @@ export const EMOJIS_KEYWORDS = [
         //hotel
         ["bellhop bell", "bell"],
         ["door"],
+        ["chair"],
         ["bed", "sleeping"],
         ["couch and lamp"],
         ["toilet", "wc"],
         ["shower", "bathroom"],
         //-------------
-        ["bathtub", "bathroom"]
+        ["bathtub", "bathroom"],
+        ["razor", "safety razor"],
     ], [ // Activities and sports
         //-----events and hobbies
         ["jack-o-lantern", "halloween"],
@@ -847,6 +874,7 @@ export const EMOJIS_KEYWORDS = [
         ["rugby football", "ball", "rugby"],
         ["tennis", "ball"],
         ["pool 8 ball", "ball"],
+        ["yo-yo", "yo yo", "yoyo"],
         //-------------
         ["bowling"],
         ["cricket game", "cricket"],
@@ -871,6 +899,9 @@ export const EMOJIS_KEYWORDS = [
         ["flying disc", "frisbee", "ultimate"],
         //-------------
         ["lacrosse", "crosse", "lacrosse stick and ball"],
+        ["parachute"],
+        ["kite"],
+        ["diving mask", "snorkel", "scuba diving", "underwater", "swimming goggles"],
         //game
         ["video game", "game", "gaming"],
         ["joystick", "video game", "game", "gaming"],
@@ -900,6 +931,7 @@ export const EMOJIS_KEYWORDS = [
         ["violin"],
         ["drum"],
         ["postal horn"],
+        ["banjo"],
         //-----person-sport
         ["person fencing", "fencer", "fencing", "sword"],
         ["horse racing", "horse", "jockey", "racehorse", "racing", 'HAS_TONE'],
@@ -964,6 +996,7 @@ export const EMOJIS_KEYWORDS = [
         ["telescope"],
         ["satellite antenna"],
         ["candle"],
+        ["diya lamp", "lamp", "diwali", "oil lamp", "ghee", "india"],
         ["light bulb", "source docs"],
         ["flashlight"],
         ["red paper lantern"],
@@ -1072,12 +1105,13 @@ export const EMOJIS_KEYWORDS = [
         ["pick"],
         ["hammer and pick"],
         ["hammer and wrench"],
+        ["axe", "fire axe"],
         ["brick"],
         ["magnet"],
         ["wrench", "configuration"],
         ["nut and bolt"],
-        ["gear"],
         //-------------
+        ["gear"],
         ["clamp"],
         ["alembic", "experiment"],
         ["balance scale"],
@@ -1092,6 +1126,9 @@ export const EMOJIS_KEYWORDS = [
         //-------------
         ["petri dish", "lab"],
         ["dna", "cell", "evolution"],
+        ["drop of blood", "blood", "bleeding", "menstruation", "period", "blood donation"],
+        ["adhesive bandage", "first aid", "band-aid", "band aid", "plaster"],
+        ["stethoscope", "doctor", "medicine"],
         //-----weapons--------------------------------------------------------------
         ["bow and arrow"],
         ["shield"],
@@ -1116,7 +1153,8 @@ export const EMOJIS_KEYWORDS = [
         //-------------
         ["soap"],
         ["sponge"],
-        ["fire extinguisher"]
+        ["fire extinguisher"],
+        ["white cane", "blind", "visually impaired", "cane", "probing cane"],
     ], [ // Symbols
         //----emotion---------------------------------------------------------------
         ["kiss mark", "kiss", "lips"],
@@ -1135,6 +1173,8 @@ export const EMOJIS_KEYWORDS = [
         ["black heart", "evil", "wicked"],
 
         ["orange heart", "heart", "orange"],
+        ["brown heart"],
+        ["white heart"],
         //-------------
         ["heart with ribbon", "ribbon", "valentine"],
         ["revolving hearts", "revolving"],
@@ -1391,12 +1431,20 @@ export const EMOJIS_KEYWORDS = [
         ["black medium-small square"],
         ["black large square"],
         ["white large square"],
+        ["red square"],
+        ["orange square"],
+        //-------------
+        ["yellow square"],
+        ["green square"],
+        ["blue square"],
+        ["purple square"],
+        ["brown square"],
         ["large orange diamond"],
         ["large blue diamond"],
-        //-------------
         ["small orange diamond"],
         ["small blue diamond"],
         ["red triangle pointed up"],
+        //-------------
         ["red triangle pointed down"],
         ["diamond with a dot"],
         ["radio button"],
@@ -1406,6 +1454,12 @@ export const EMOJIS_KEYWORDS = [
         ["black circle"],
         ["red circle"],
         ["blue circle"],
+        ["orange circle"],
+        //-------------
+        ["yellow circle"],
+        ["green circle"],
+        ["purple circle"],
+        ["brown circle"],
         //-----time-----------------------------------------------------------------
         ["0h00", "12h00", "hour"],
         ["0h30", "12h30", "hour"],
