@@ -52,7 +52,7 @@ export const EMOJIS_KEYWORDS = [
         ["face with stuck-out tongue & winking eye", "joke", "tongue", "wink"],
         ["face with stuck-out tongue & closed eyes", "horrible", "taste", "tongue"],
         ["drooling face", "drooling"],
-        ["unamused face", "unamused", "unhappy"],
+        ["unamused face", "unamused"],
         ["face with cold sweat", "cold", "sweat"],
         ["pensive face", "dejected", "pensive"],
         ["confused face	", "confused"],
