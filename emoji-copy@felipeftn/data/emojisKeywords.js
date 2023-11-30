@@ -444,7 +444,7 @@ export const EMOJIS_KEYWORDS = [
         ["spiral shell", "shell", "spiral"],
         ["crab", "cancer", "zodiac"],
         ["shrimp", "food", "shellfish", "shrimp"],
-        ["lobster", "food", "transgender"],
+        ["lobster", "food", "crayfish", "crawfish"],
         ["squid", "food", "molusc", "squid"],
         ["snail", "slow", "shell"],
         ["butterfly", "insect", "pretty"],
