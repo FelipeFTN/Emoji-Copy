@@ -1278,6 +1278,9 @@ export const EMOJIS_KEYWORDS = [
         ["peace symbol"],
         ["menorah"],
         ["dotted six-pointed star"],
+        //-----ideology---------------------------------------------------------------
+        ["hammer and sickle", "communism", "gramsci", "socialism", "marxism leninism", "dialectical materialism"],
+        ["anarchism", "anarchy"],
         //-----zodiac---------------------------------------------------------------
         ["aries"],
         ["taurus"],
@@ -1499,12 +1502,12 @@ export const EMOJIS_KEYWORDS = [
 
         ["ascension island"],
         ["andorra"],
-        ["united arab emirates", "UAE"],
+        ["united arab emirates", "uae"],
         //-------------
-        ["afghanistan"],
-        ["antigua & barbuda"],
-        ["anguilla"],
-        ["albania"],
+        ["afghanistan", "af", "afg"],
+        ["antigua & barbuda", "ag", "atg"],
+        ["anguilla", "AI", "AIA"],
+        ["albania", "al", "alb"],
         ["armenia"],
         ["angola"],
         ["antarctica"],
