@@ -1493,6 +1493,7 @@ export const EMOJIS_KEYWORDS = [
         ["crossed flags"],
         ["black flag"],
         ["white flag", "flag"],
+        ["transgender flag", "trans"],
         ["rainbow flag", "lgbt"],
         ["pirate flag", "one piece"],
 
