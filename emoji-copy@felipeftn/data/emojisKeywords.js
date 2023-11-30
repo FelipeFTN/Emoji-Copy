@@ -133,8 +133,8 @@ export const EMOJIS_KEYWORDS = [
 
         //-----body-----------------------------------------------------------------
         ["selfie", "camera", "phone", "selfie", 'HAS_TONE'],
-        ["flexed biceps", "biceps", "comic", "flex", "muscle", 'HAS_TONE'],
-        ["flexed biceps", "biceps", "comic", "flex", "muscle", "mechanical arm", "prosthetic"],
+        ["flexed biceps", "biceps", "comic", "flex", "muscle", "arm", 'HAS_TONE'],
+        ["flexed biceps", "biceps", "comic", "flex", "muscle", "bionic arm", "mechanical arm", "prosthetic"],
         ["backhand index pointing left", "backhand", "finger", "hand", "index", "point", 'HAS_TONE'],
         ["backhand index pointing right", "backhand", "finger", "hand", "index", "point", 'HAS_TONE'],
         ["index pointing up", "finger", "hand", "index", "point", "up", 'HAS_TONE'],
@@ -191,10 +191,10 @@ export const EMOJIS_KEYWORDS = [
     ], [ // People and Clothes
         //-----people---------------------------------------------------------------
         ["baby", "baby", "young", 'HAS_TONE'],
-        ["child", "young", 'HAS_TONE'],
-        ["boy", "boy", "young", 'HAS_TONE'],
-        ["girl", "virgo", "young", "zodiac", 'HAS_TONE'],
-        ["adult", "man", "young", 'HAS_TONE'],
+        ["child", "young", "kid", 'HAS_TONE'],
+        ["boy", "young", "kid", 'HAS_TONE'],
+        ["girl", "young", "kid", 'HAS_TONE'],
+        ["adult", "guy", "grownup", "human", "person", 'HAS_TONE'],
         ["man", 'HAS_TONE'],
         ["woman", 'HAS_TONE'],
         ["older adult", "adult", "old", "person", 'IS_GENDERED', 'HAS_TONE'],
@@ -532,7 +532,7 @@ export const EMOJIS_KEYWORDS = [
         ["snowman", "snow"],
         ["snowman without snow", "snowman"],
         ["comet", "asteroid", "star"],
-        ["fire", "remove"],
+        ["fire", "remove", "flame", "burn", "hot", "lit", "bars"],
         ["droplet", "water"],
         ["water wave", "water", "wave"]
     ], [ // Food and drink
@@ -1185,7 +1185,7 @@ export const EMOJIS_KEYWORDS = [
         ["anger symbol", "angry", "comic", "mad"],
         ["bomb", "comic"],
         ["collision", "boom", "comic", "breaking"],
-        ["sweat droplets", "comic", "splashing", "sweat"],
+        ["sweat droplets", "comic", "splashing", "sweat", "sploosh", "wet"],
         //-------------
         ["dashing away", "comic", "dash", "running"],
         ["dizzy", "comic", "star"],
