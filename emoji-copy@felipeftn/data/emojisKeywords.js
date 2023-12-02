@@ -1496,8 +1496,8 @@ export const EMOJIS_KEYWORDS = [
         ["crossed flags"],
         ["black flag"],
         ["white flag", "flag"],
-        ["transgender flag", "queer", "MtF", "FtM", "Gender", "MtX", "FtX", "Nonbinary"],
-        ["rainbow flag", "lgbt", "gay flag", "queer", "homosexual", "lesbian", "dyke", "fruity flag"],
+        ["transgender flag", "queer", "mtf", "ftm", "gender", "mtx", "ftx", "nonbinary", "nb"],
+        ["rainbow flag", "lgbt", "gay flag", "queer", "homosexual", "lesbian", "dyke", "fruity flag", "pride", "sapphic", "sappho"],
         ["pirate flag", "one piece"],
 
         ["ascension island", "sh", "shn"],//Why are these three flags in the beginning?
