@@ -1500,9 +1500,9 @@ export const EMOJIS_KEYWORDS = [
         ["rainbow flag", "lgbt", "gay flag", "queer", "homosexual", "lesbian", "dyke", "fruity flag"],
         ["pirate flag", "one piece"],
 
-        ["ascension island"],
-        ["andorra"],
-        ["united arab emirates", "uae"],
+        ["ascension island", "sh", "shn"],//Why are these three flags in the beginning?
+        ["andorra", "ad", "and"],
+        ["united arab emirates", "ae", "are", "uae"],
         //-------------
         ["afghanistan", "af", "afg", "kabul"],
         ["antigua & barbuda", "ag", "atg"],
