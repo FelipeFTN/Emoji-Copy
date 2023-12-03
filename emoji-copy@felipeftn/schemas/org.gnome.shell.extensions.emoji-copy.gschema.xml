@@ -30,7 +30,7 @@
       <summary>if paste on select is enabled</summary>
       <description>if true, Selecting an emoji will attempt to paste it on the focused textfield</description>
     </key>
-    <key type="b" name="use-keybinding">
+    <key type="b" name="active-keybind">
       <default>true</default>
       <summary>if keybinding is enabled</summary>
       <description>if true, Super+Period will toggle the menu.</description>
@@ -50,7 +50,7 @@
       <summary>Favorite gender</summary>
       <description>0 is none, 1 is women, 2 is men.</description>
     </key>
-    <key name="emoji-keybinding" type="as">
+    <key name="emoji-keybind" type="as">
       <default><![CDATA[['<Super>period']]]></default>
       <summary>Keyboard shortcut.</summary>
       <description>Keyboard shortcut which opens the extension's menu.</description>

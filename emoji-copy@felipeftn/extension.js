@@ -96,7 +96,7 @@ export default class EmojiCopy extends Extension {
       this._permanentItems++;
     }
 
-    if (this._settings.get_boolean("use-keybinding")) {
+    if (this._settings.get_boolean("active-keybind")) {
       this._bindShortcut();
     }
 
@@ -108,12 +108,12 @@ export default class EmojiCopy extends Extension {
         "always-show",
       );
     });
-    this.signaux[2] = this._settings.connect("changed::use-keybinding", (z) => {
-      if (z.get_boolean("use-keybinding")) {
-        Main.wm.removeKeybinding("emoji-keybinding");
+    this.signaux[2] = this._settings.connect("changed::active-keybind", (z) => {
+      if (z.get_boolean("active-keybind")) {
+        Main.wm.removeKeybinding("emoji-keybind");
         this._bindShortcut();
       } else {
-        Main.wm.removeKeybinding("emoji-keybinding");
+        Main.wm.removeKeybinding("emoji-keybind");
       }
     });
     this.signaux[3] = this._settings.connect("changed::nbcols", () => {
@@ -124,8 +124,8 @@ export default class EmojiCopy extends Extension {
   disable() {
     this.searchItem.saveRecents();
 
-    if (this._settings.get_boolean("use-keybinding")) {
-      Main.wm.removeKeybinding("emoji-keybinding");
+    if (this._settings.get_boolean("active-keybind")) {
+      Main.wm.removeKeybinding("emoji-keybind");
     }
 
     this._settings.disconnect(this.signaux[0]);
@@ -266,7 +266,7 @@ export default class EmojiCopy extends Extension {
 
   _bindShortcut() {
     Main.wm.addKeybinding(
-      "emoji-keybinding",
+      "emoji-keybind",
       this._settings,
       Meta.KeyBindingFlags.NONE,
       Shell.ActionMode.ALL,
