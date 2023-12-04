@@ -24,3 +24,4 @@ some useful commands I used to debug this extension.
 - [GJS](https://gjs-docs.gnome.org/) GJS Documentation
 - [GJS Settings](https://gjs-docs.gnome.org/gio20~2.0/gio.settings) GJS Settings Documentation
 - [GJS Guide](https://gjs.guide/guides/) GJS Extensions Guide
+- [Adwaita](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/index.html) Gnome Adw documentation
