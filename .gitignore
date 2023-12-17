@@ -5,3 +5,5 @@ package-lock.json
 # Ignores builded files
 _*
 *.zip
+gschemas.compiled
+zip-temp

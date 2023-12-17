@@ -1,6 +1,6 @@
 # Emoji Copy 😎
 
-This GNOME shell extension provides a searchable popup menu displaying most emojis; Clicking on an emoji copies it to your clipboard.<br>
+**This GNOME shell extension provides a emoji search pop-up menu. 🚀<br>Want any emoji? It's right into your top bar!<br>**
 This repo is a Fork from [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome) and was created for keeping the extension alive.
 Please feel free to use and contribute to this project. 😃
 
@@ -28,6 +28,7 @@ The easiest way to install it is directly from Gnome Extensions: [emoji-copy](ht
 ### Native packages
 
 Work in progress...
+
 > We need to publish this project to most known package managers, like AUR, Fedora and so on.
 
 <!-- - [`gnome-shell-extension-emoji-selector` (**Fedora**)](https://src.fedoraproject.org/rpms/gnome-shell-extension-emoji-selector) -->
@@ -43,6 +44,9 @@ Work in progress...
 2. Choose a way to install the extension:
 
 ```bash
+    --> Make 🔥
+    $ make install
+
     --> NPM 😇
     $ npm run deploy
 
@@ -53,8 +57,7 @@ Work in progress...
     $ cp -a ./emoji-copy@felipeftn $HOME/.local/share/gnome-shell/extensions
 ```
 
-You may need to restart the GNOME Shell environment (logout and login again, or
-<kbd>Alt</kbd>+<kbd>F2</kbd> -> `r` ->, <kbd>Enter</kbd>).
+You may need to restart the GNOME Shell environment (<kbd>Alt</kbd>+<kbd>F2</kbd> -> `restart` -> <kbd>Enter</kbd>).<br> _(X11 only, if you are in Wayland, sign out and sign in from the session manually)._
 
 ## Memory performance 👾
 
