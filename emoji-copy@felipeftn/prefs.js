@@ -40,6 +40,13 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(show_indicator);
 
+        // Emoji copy paste on Select Switch
+        const paste_on_select = new Adw.SwitchRow({
+            title: _('Paste on Select'),
+            subtitle: _('Automatically paste the selected emoji.'),
+        });
+        general_gp.add(paste_on_select);
+
         // Keybind active (true or false)
         const active_keybind = new Adw.SwitchRow({
             title: _('Use Keybind'),
@@ -85,6 +92,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
 
         // Bind Adwaita field values to schema
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
     }
 
