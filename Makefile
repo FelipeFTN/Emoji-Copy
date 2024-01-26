@@ -36,6 +36,8 @@ $(ZIP_NAME): $(ZIP_CONTENT)
 	@cp -r $^ $(ZIP_TEMP)
 	@rm --force $@
 	@cd $(ZIP_TEMP) && zip -r ../$@ .
+	@cd $(ZIP_TEMP) && zip -d ../$@ **/*.pot
+	@cd $(ZIP_TEMP) && zip -d ../$@ **/*.po
 
 $(SCHEMA_COMPILED_FILE): $(SCHEMA_FILE)
 	@echo "[-] COMPILING SCHEMA..."
