@@ -16,8 +16,8 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
  * - skin tone management
  * - gender management
  */
-import { EMOJIS_CHARACTERS } from "./data/emojisCharacters.js";
-import { EMOJIS_KEYWORDS } from "./data/emojisKeywords.js";
+EMOJIS_CHARACTERS = fetch("./data/emojisCharacters.json").then(response => json = response.json())
+EMOJIS_KEYWORDS = fetch("./data/emojisKeywords.json").then(response => json = response.json())
 
 export class EmojiCategory {
   /**
