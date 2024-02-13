@@ -4,6 +4,7 @@ import re
 import sys
 import json
 import traceback
+from emoji_map import emoji_map
 
 # Constants
 UNICODE_FILE = "emoji-test.txt" # Source: https://unicode.org/Public/emoji/15.1/emoji-test.txt
@@ -33,7 +34,17 @@ for line in text.split("\n"):
             emoji = match.group(1)
             desc = match.group(2)
             emoji_group.append(emoji)
-            desc_group.append(desc)
+            key_words = emoji_map.get(emoji)
+            if key_words:
+                try:
+                    key_words.remove(desc)
+                except ValueError:
+                    pass
+                desc = [desc]
+                desc.extend(key_words)
+                desc_group.append(desc)
+            else:
+                desc_group.append([desc])
         else:
             print("Could not parse unicode test file containing emoji and its description")
             print(traceback.format_exc())
