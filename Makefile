@@ -16,7 +16,7 @@ ZIP_CONTENT = $(JS_FILES) $(EMOJI_JSON_FILES) $(EXTENSION)/handlers $(EXTENSION)
 
 all: clean build
 
-build: $(SCHEMA_COMPILED_FILE) $(ZIP_NAME)
+build: $(SCHEMA_COMPILED_FILE) $(EMOJI_JSON_FILES) $(ZIP_NAME)
 	@echo "[+] EMOJI COPY BUILT"
 
 install: build
@@ -28,7 +28,7 @@ uninstall:
 	@echo "Extension uninstalled successfully!"
 
 clean:
-	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP)
+	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJI_JSON_FILES)
 
 # Just to make it clear ($@ => First argument; $^ second argument)
 # e.g: $@ => $(ZIP_NAME); $^ => $(ZIP_CONTENT).
@@ -45,3 +45,6 @@ $(SCHEMA_COMPILED_FILE): $(SCHEMA_FILE)
 	@echo "[-] COMPILING SCHEMA..."
 	@glib-compile-schemas $(EXTENSION)/schemas
 	@echo "[+] SCHEMA COMPILED"
+
+$(EMOJI_JSON_FILES):
+	@python3 ./unicode_parser/parser.py

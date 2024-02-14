@@ -3,8 +3,8 @@
 import re
 import sys
 import json
-from urllib.request import urlopen
 import traceback
+from urllib.request import urlopen
 from emoji_map import emoji_map
 
 # Constants
