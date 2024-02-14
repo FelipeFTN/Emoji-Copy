@@ -7,3 +7,4 @@ _*
 *.zip
 gschemas.compiled
 zip-temp
+./emoji-copy@felipeftn/data/*
