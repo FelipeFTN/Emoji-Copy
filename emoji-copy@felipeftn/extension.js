@@ -42,7 +42,6 @@ export default class EmojiCopy extends Extension {
     this._settings = this.getSettings();
     this.position = this._settings.get_string("position");
     this._permanentItems = 0;
-    this._activeCat = -1;
 
     this.sqlite = new SQLite("emojis");
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
@@ -203,7 +202,6 @@ export default class EmojiCopy extends Extension {
       }
     }
 
-    this._activeCat = -1;
     this._onSearchTextChanged();
   }
 

@@ -7,17 +7,6 @@ import { EmojiButton } from "./emojiButton.js";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
 
-/**
- * This imports data (array of arrays of characters, and array of arrays
- * of strings). Keywords are used for both:
- * - search
- * - skin tone management
- * - gender management
- */
-
-// const EMOJIS_CHARACTERS = await ReadJsonFile("./data/emojisCharacters.json");
-// const EMOJIS_KEYWORDS = await ReadJsonFile("./data/emojisKeywords.json");
-
 // Map of emoji's group
 const EMOJIS_CATEGORIES = {
   0: "Smileys & Emotion",
@@ -33,8 +22,9 @@ const EMOJIS_CATEGORIES = {
 
 export class EmojiCategory {
   /**
-   * The category and its button have to be built without being loaded, to
+   * The category and its button have to be built without being loaded, to "avoid"
    * memory issues with emojis' image textures.
+   * PS: For some reason, when we render everything, there is a bunch of Lag...
    */
   constructor(emojiCopy, categoryName, iconName, id) {
     this.super_item = new PopupMenu.PopupSubMenuMenuItem(categoryName);
@@ -125,54 +115,7 @@ export class EmojiCategory {
   clear() {
     this.super_item.menu.removeAll();
     this.emojiButtons = [];
-  }
-
-  // What the heck is this?
-  // TODO: Fix this mess as soon as possible
-  searchEmoji(searchedText, results, recentlyUsed, neededresults, priority) {
-    let searchResults = [];
-    for (let i = 0; i < this.emojiButtons.length; i++) {
-      if (results.includes(this.emojiButtons[i].baseCharacter)) {
-        continue;
-      }
-      if (neededresults >= 0) {
-        let isMatching = false;
-        if (priority === 4) {
-          isMatching = this._searchRecentMatch(searchedText, i, recentlyUsed);
-        } else if (priority === 3) {
-          isMatching = this._searchExactMatch(searchedText, i);
-        } else if (priority === 2) {
-          isMatching = this._searchInName(searchedText, i);
-        } else {
-          isMatching = this._searchInKeywords(searchedText, i);
-        }
-        if (isMatching) {
-          searchResults.push(this.emojiButtons[i].baseCharacter);
-          neededresults--;
-        }
-      }
-    }
-    return searchResults;
-  }
-
-  _searchRecentMatch(searchedText, i, recentlyUsed) {
-    return recentlyUsed.includes(this.emojiButtons[i].baseCharacter) && (
-      this._searchExactMatch(searchedText, i) ||
-      this._searchInName(searchedText, i) ||
-      this._searchInKeywords(searchedText, i)
-    );
-  }
-
-  _searchExactMatch(searchedText, i) {
-    return this.emojiButtons[i].keywords === searchedText;
-  }
-
-  _searchInName(searchedText, i) {
-    return this.emojiButtons[i].keywords.includes(searchedText);
-  }
-
-  _searchInKeywords(searchedText, i) {
-    return this.emojiButtons[i].keywords.some((e) => e.includes(searchedText));
+    this.emojis = [];
   }
 
   /**
@@ -222,17 +165,15 @@ export class EmojiCategory {
 
     this.categoryButton.set_checked(true);
     this.super_item.actor.visible = true;
-    this.super_item.setSubmenuShown(true);
-    this.emojiCopy._activeCat = this.id;
+    this.super_item.setSubmenuShown(true); // This is causing the Lag!
     this.emojiCopy._onSearchTextChanged();
   }
 
   updateStyle() {
-    let fontStyle = "font-size: " + this._settings.get_int("emojisize") +
-      "px;";
-    fontStyle += " color: #FFFFFF;";
+    const emoji_size = this._settings.get_int("emojisize");
+    const style = `font-size: ${emoji_size}px;\ncolor: #FFFFFF`;
     this.emojiButtons.forEach(function (b) {
-      b.updateStyle(fontStyle);
+      b.updateStyle(style);
     });
   }
 
