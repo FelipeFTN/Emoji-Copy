@@ -4,6 +4,7 @@ SHELL := /bin/bash
 
 EXTENSION := emoji-copy@felipeftn
 EXTENSION_NAME := emoji-copy
+EXTENSION_PATH = ~/.local/share/gnome-shell/extensions/$(EXTENSION)
 ZIP_NAME := $(EXTENSION).zip
 ZIP_TEMP := zip-temp
 
@@ -12,7 +13,7 @@ SCHEMA_FILE = $(EXTENSION)/schemas/org.gnome.shell.extensions.emoji-copy.gschema
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
 EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
-ZIP_CONTENT = $(JS_FILES) $(EMOJIS_DB) $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE
+ZIP_CONTENT = $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE $(JS_FILES) $(EMOJIS_DB)
 
 all: clean build
 
@@ -28,17 +29,17 @@ uninstall:
 	@echo "Extension uninstalled successfully!"
 
 clean:
-	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB)
+	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB) $(EXTENSION_PATH)
 	
 debug: clean install
 	dbus-run-session -- gnome-shell --nested --wayland
 
 # Just to make it clear ($@ => First argument; $^ second argument)
 # e.g: $@ => $(ZIP_NAME); $^ => $(ZIP_CONTENT).
-$(ZIP_NAME): $(ZIP_CONTENT)
+$(ZIP_NAME):
 	@echo "[-] ZIPPING EMOJI COPY..."
 	@mkdir -p zip-temp
-	@cp -r $^ $(ZIP_TEMP)
+	@cp -r $(ZIP_CONTENT) $(ZIP_TEMP)
 	@rm --force $@
 	@cd $(ZIP_TEMP) && zip -r ../$@ .
 	@cd $(ZIP_TEMP) && zip -d ../$@ **/*.pot
