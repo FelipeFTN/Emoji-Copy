@@ -10,7 +10,9 @@ ZIP_TEMP := zip-temp
 JS_FILES = $(shell find -type f -and \( -name "*.js" \))
 SCHEMA_FILE = $(EXTENSION)/schemas/org.gnome.shell.extensions.emoji-copy.gschema.xml
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
-ZIP_CONTENT = $(JS_FILES) $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE
+EMOJI_JSON_FILES = $(EXTENSION)/data/emojisCharacters.json $(EXTENSION)/data/emojisKeywords.json
+
+ZIP_CONTENT = $(JS_FILES) $(EMOJI_JSON_FILES) $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE
 
 all: clean build
 

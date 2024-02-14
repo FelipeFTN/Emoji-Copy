@@ -2,9 +2,8 @@ import St from "gi://St";
 import Clutter from "gi://Clutter";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
-import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
-
 import { SkinTonesBar } from "./emojiOptionsBar.js";
+import { ReadJsonFile } from "./handlers/files.js";
 import { EmojiButton } from "./emojiButton.js";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
@@ -16,8 +15,8 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
  * - skin tone management
  * - gender management
  */
-EMOJIS_CHARACTERS = fetch("./data/emojisCharacters.json").then(response => json = response.json())
-EMOJIS_KEYWORDS = fetch("./data/emojisKeywords.json").then(response => json = response.json())
+const EMOJIS_CHARACTERS = await ReadJsonFile("./data/emojisCharacters.json");
+const EMOJIS_KEYWORDS = await ReadJsonFile("./data/emojisKeywords.json");
 
 export class EmojiCategory {
   /**

@@ -34,7 +34,7 @@ for line in text.split("\n"):
             emoji = match.group(1)
             desc = match.group(2)
             emoji_group.append(emoji)
-            key_words = emoji_map.get(emoji)
+            key_words = emoji_map.get(emoji) # TODO: Read from JSON
             if key_words:
                 try:
                     key_words.remove(desc)
@@ -57,6 +57,6 @@ for line in text.split("\n"):
 
 # Save parsed data
 with open(CHAR_FILE, "w") as f:
-    json.dump(EMOJI, f)
+    json.dump(EMOJI, f, indent=2)
 with open(KEY_FILE, "w") as f:
-    json.dump(DESC, f)
+    json.dump(DESC, f, indent=2)
