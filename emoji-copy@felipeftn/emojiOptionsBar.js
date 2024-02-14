@@ -2,8 +2,6 @@ import St from "gi://St";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
 
-import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
-
 export class SkinTonesBar {
   constructor(emojiCopy, hasGender) {
     this._settings = emojiCopy._settings;

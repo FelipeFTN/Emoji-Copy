@@ -4,20 +4,21 @@ import re
 import sys
 import json
 import traceback
+from urllib.request import urlopen
 from emoji_map import emoji_map
 
 # Constants
-UNICODE_FILE = "emoji-test.txt" # Source: https://unicode.org/Public/emoji/15.1/emoji-test.txt
-CHAR_FILE = "emojisCharacters.json" # Emoji characters
-KEY_FILE = "emojisKeywords.json" # Description/keywords of emoji characters
+UNICODE_URL = "https://unicode.org/Public/emoji/15.1/emoji-test.txt" # Source: https://unicode.org
+CHAR_FILE = "./emoji-copy@felipeftn/data/emojisCharacters.json" # Emoji characters
+KEY_FILE = "./emoji-copy@felipeftn/data/emojisKeywords.json" # Description/keywords of emoji characters
 
 # Read unicode file
 try:
-    with open(UNICODE_FILE, "r") as f:
-        text = f.read()
-except FileNotFoundError:
+    data = urlopen(UNICODE_URL).read().decode("utf-8") # Read file from URL
+    data = data.split("\n") # then split it into lines
+except Exception as e:
     print("Could not read unicode test file containing emoji and its description")
-    print(traceback.format_exc())
+    print(e)
     sys.exit(1)
 
 # Parse unicode text into two lists of emoji and its corresponding description
@@ -27,14 +28,14 @@ DESC = [] # list of grouped emoji descriptions
 # Travel & Places, Activities, Objects, Symbols, Flags
 emoji_group = []
 desc_group = []
-for line in text.split("\n"):
+for line in data:
     if not line.startswith("#") and line.find("fully-qualified") != -1:
         match = re.search(r"# (\S+) E\d+\.\d+ (.+)$", line)
         if match:
             emoji = match.group(1)
             desc = match.group(2)
             emoji_group.append(emoji)
-            key_words = emoji_map.get(emoji)
+            key_words = emoji_map.get(emoji) # TODO: Read from JSON
             if key_words:
                 try:
                     key_words.remove(desc)
@@ -56,7 +57,7 @@ for line in text.split("\n"):
         desc_group = []
 
 # Save parsed data
-with open(CHAR_FILE, "w") as f:
-    json.dump(EMOJI, f)
-with open(KEY_FILE, "w") as f:
-    json.dump(DESC, f)
+with open(CHAR_FILE, "w+") as f:
+    json.dump(EMOJI, f, indent=2)
+with open(KEY_FILE, "w+") as f:
+    json.dump(DESC, f, indent=2)
