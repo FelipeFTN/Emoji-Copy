@@ -29,6 +29,9 @@ uninstall:
 
 clean:
 	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJI_JSON_FILES)
+	
+debug: clean install
+	dbus-run-session -- gnome-shell --nested --wayland
 
 # Just to make it clear ($@ => First argument; $^ second argument)
 # e.g: $@ => $(ZIP_NAME); $^ => $(ZIP_CONTENT).
