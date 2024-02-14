@@ -53,16 +53,14 @@ SUBGROUP = ""
 
 for line in data:
     if line.startswith("# subgroup"):
-        subgroup_match = re.search(r"subgroup: ([a-z\-]+)", line, re.IGNORECASE)
-        if subgroup_match == None :
-            continue
-        SUBGROUP = f" {subgroup_match.group(1)}"
+        subgroup_match = re.search(r"# subgroup: ([a-z\-]+)", line, re.IGNORECASE)
+        if subgroup_match != None:
+            SUBGROUP = f" {subgroup_match.group(1)}"
 
     if line.startswith("# group"):
-        group_match = re.search(r"group: ([a-z\ &]+)", line, re.IGNORECASE)
-        if group_match == None :
-            continue
-        GROUP = f" {group_match.group(1)}"
+        group_match = re.search(r"# group: ([a-z\ &]+)", line, re.IGNORECASE)
+        if group_match != None:
+            GROUP = f"{group_match.group(1)}"
 
     match = re.search(r"# (\S+) E\d+\.\d+ (.+)$", line, re.IGNORECASE)
     if match == None:
@@ -70,11 +68,14 @@ for line in data:
 
     # Keep the code if everything is allright
     emoji = match.group(1)
-    desc = match.group(2) + SUBGROUP
+    desc = match.group(2)
+    if SUBGROUP not in desc:
+        desc = match.group(2) + SUBGROUP
+
     skin_tone_match = re.search(r":\ ([a-z\-]+)", desc)
     skin_tone = ""
 
-    if skin_tone_match:
+    if skin_tone_match != None:
         skin_tone = skin_tone_match.group(1)
 
     item = [emoji, desc, skin_tone, GROUP]

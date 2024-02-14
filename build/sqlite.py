@@ -29,8 +29,8 @@ class SQLite:
         group     = item[3]
 
         self.cur.execute("""
-            UPDATE emojis SET description=(description || " " || ?)
-            AND skin_tone=? AND emoji_group=?
+            UPDATE emojis SET description=(description || " " || ?),
+            skin_tone=?, emoji_group=?
             WHERE unicode=?
         ;""", [desc, skin_tone, group, unicode])
         self.conn.commit()

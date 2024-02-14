@@ -1,10 +1,8 @@
 import St from "gi://St";
 import Clutter from "gi://Clutter";
-import SQLite from "./handlers/sqlite.js";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
 import { SkinTonesBar } from "./emojiOptionsBar.js";
-import { ReadJsonFile } from "./handlers/files.js";
 import { EmojiButton } from "./emojiButton.js";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
@@ -16,10 +14,22 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
  * - skin tone management
  * - gender management
  */
-const EMOJIS_CHARACTERS = await ReadJsonFile("./data/emojisCharacters.json");
-const EMOJIS_KEYWORDS = await ReadJsonFile("./data/emojisKeywords.json");
 
-const sqlite = new SQLite("emojis.db");
+// const EMOJIS_CHARACTERS = await ReadJsonFile("./data/emojisCharacters.json");
+// const EMOJIS_KEYWORDS = await ReadJsonFile("./data/emojisKeywords.json");
+
+// Map of emoji's group
+const EMOJIS_CATEGORIES = {
+  0: "Smileys & Emotion",
+  1: "People & Body",
+  2: "Animals & Nature",
+  3: "Food & Drink",
+  4: "Travel & Places",
+  5: "Activities",
+  6: "Objects",
+  7: "Symbols",
+  8: "Flags",
+};
 
 export class EmojiCategory {
   /**
@@ -34,6 +44,9 @@ export class EmojiCategory {
     this.emojiButtons = []; // used for searching, and for updating the size/style
     this._nbColumns = 10; // some random default value
     this.id = id;
+    this.emojis = this.emojiCopy.sqlite.select_by_group(
+      EMOJIS_CATEGORIES[this.id],
+    );
 
     this.super_item.actor.visible = false;
     this.super_item.actor.reactive = false;
@@ -70,21 +83,8 @@ export class EmojiCategory {
 
     this._built = false; // will be true once the user opens the category
     this._loaded = false; // will be true once loaded
-    // this.validateKeywordsNumber();
     this.load();
   }
-
-  // validateKeywordsNumber() {
-  //   if (EMOJIS_CHARACTERS[this.id].length === EMOJIS_KEYWORDS[this.id].length) {
-  //     return true;
-  //   }
-  //   let main_message = _("Incorrect number of keywords for category '%s':");
-  //   this._addErrorLine(main_message.replace("%s", this.categoryName));
-  //   this._addErrorLine(EMOJIS_CHARACTERS[this.id].length + " emojis");
-  //   this._addErrorLine(EMOJIS_KEYWORDS[this.id].length + " keyword groups");
-  //   this._addErrorLine(_("Please report this bug"));
-  //   return false;
-  // }
 
   _addErrorLine(error_message) {
     let line = new PopupMenu.PopupBaseMenuItem({
@@ -111,11 +111,11 @@ export class EmojiCategory {
   load() {
     if (this._loaded) return;
 
-    for (let i = 0; i < EMOJIS_CHARACTERS[this.id].length; i++) {
+    for (let i = 0; i < this.emojis.length; i++) {
       let button = new EmojiButton(
         this.emojiCopy,
-        EMOJIS_CHARACTERS[this.id][i],
-        EMOJIS_KEYWORDS[this.id][i],
+        this.emojis[i].unicode,
+        this.emojis[i].description,
       );
       this.emojiButtons.push(button);
     }
@@ -127,6 +127,8 @@ export class EmojiCategory {
     this.emojiButtons = [];
   }
 
+  // What the heck is this?
+  // TODO: Fix this mess as soon as possible
   searchEmoji(searchedText, results, recentlyUsed, neededresults, priority) {
     let searchResults = [];
     for (let i = 0; i < this.emojiButtons.length; i++) {
@@ -162,11 +164,11 @@ export class EmojiCategory {
   }
 
   _searchExactMatch(searchedText, i) {
-    return this.emojiButtons[i].keywords[0] === searchedText;
+    return this.emojiButtons[i].keywords === searchedText;
   }
 
   _searchInName(searchedText, i) {
-    return this.emojiButtons[i].keywords[0].includes(searchedText);
+    return this.emojiButtons[i].keywords.includes(searchedText);
   }
 
   _searchInKeywords(searchedText, i) {
