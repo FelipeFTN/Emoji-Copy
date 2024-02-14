@@ -22,105 +22,51 @@ export class SQLite {
     this.connection.open();
   }
 
-  select_by_description(description) {
-    if (!this.connection || !this.connection.is_opened()) {
-      return [];
-    }
-
-    try {
-      const dm = this.connection.execute_select_command(`
-        SELECT * FROM emojis WHERE description LIKE '%${description}%';
-      `);
-
-      const iter = dm.create_iter();
-      const items = [];
-
-      while (iter.move_next()) {
-        const unicode = iter.get_value_for_field("unicode");
-        const description = iter.get_value_for_field("description");
-        const skin_tone = iter.get_value_for_field("skin_tone");
-        const group = iter.get_value_for_field("emoji_group");
-
-        items.push({
-          unicode,
-          description,
-          skin_tone,
-          group,
-        });
-      }
-
-      return items;
-    } catch (error) {
-      console.error("Error executing select command:", error.message);
-      return [];
-    }
+  select_like_description(description) {
+    return this.query(`
+      SELECT * FROM emojis WHERE description LIKE '%${description}%';
+    `);
   }
 
   select_by_group(group) {
-    if (!this.connection || !this.connection.is_opened()) {
-      return [];
-    }
-
-    try {
-      const dm = this.connection.execute_select_command(`
-        SELECT * FROM emojis WHERE emoji_group='${group}';
-      `);
-
-      const iter = dm.create_iter();
-      const items = [];
-
-      while (iter.move_next()) {
-        const unicode = iter.get_value_for_field("unicode");
-        const description = iter.get_value_for_field("description");
-        const skin_tone = iter.get_value_for_field("skin_tone");
-        const group = iter.get_value_for_field("emoji_group");
-
-        items.push({
-          unicode,
-          description,
-          skin_tone,
-          group,
-        });
-      }
-
-      return items;
-    } catch (error) {
-      console.error("Error executing select command:", error.message);
-      return [];
-    }
+    return this.query(`
+      SELECT * FROM emojis WHERE emoji_group='${group}';
+    `);
   }
 
   select_all() {
-    if (!this.connection || !this.connection.is_opened()) {
+    return this.query(`
+      SELECT * FROM emojis;
+    `);
+  }
+
+  query(sql_query) {
+    if (
+      this.connection === undefined || !this.connection ||
+      !this.connection.is_opened()
+    ) {
       return [];
     }
 
-    try {
-      const dm = this.connection.execute_select_command(`
-        SELECT * FROM emojis;
-      `);
+    const dm = this.connection.execute_select_command(sql_query);
 
-      const iter = dm.create_iter();
-      const items = [];
+    const iter = dm.create_iter();
+    const items = [];
 
-      while (iter.move_next()) {
-        const unicode = iter.get_value_for_field("unicode");
-        const description = iter.get_value_for_field("description");
-        const skin_tone = iter.get_value_for_field("skin_tone");
-        const group = iter.get_value_for_field("emoji_group");
+    while (iter.move_next()) {
+      const unicode = iter.get_value_for_field("unicode");
+      const description = iter.get_value_for_field("description");
+      const skin_tone = iter.get_value_for_field("skin_tone");
+      const group = iter.get_value_for_field("emoji_group");
 
-        items.push({
-          unicode,
-          description,
-          skin_tone,
-          group,
-        });
-      }
-
-      return items;
-    } catch (error) {
-      console.error("Error executing select command:", error.message);
-      return [];
+      items.push({
+        unicode,
+        description,
+        skin_tone,
+        group,
+      });
     }
+
+    return items;
   }
 }
