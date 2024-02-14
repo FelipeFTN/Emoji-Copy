@@ -48,6 +48,9 @@ for line in data:
         if match:
             emoji = match.group(1)
             desc = match.group(2)
+            # skip skin color emojis as it would take too long to load all of them
+            if desc.find("skin tone") != -1:
+                continue
             emoji_group.append(emoji)
             key_words = emoji_map.get(emoji)
             if key_words:
