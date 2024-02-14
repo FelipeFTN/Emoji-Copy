@@ -1,5 +1,6 @@
 import St from "gi://St";
 import Clutter from "gi://Clutter";
+import SQLite from "./handlers/sqlite.js";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
 import { SkinTonesBar } from "./emojiOptionsBar.js";
@@ -17,6 +18,8 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
  */
 const EMOJIS_CHARACTERS = await ReadJsonFile("./data/emojisCharacters.json");
 const EMOJIS_KEYWORDS = await ReadJsonFile("./data/emojisKeywords.json");
+
+const sqlite = new SQLite("emojis.db");
 
 export class EmojiCategory {
   /**
@@ -67,21 +70,21 @@ export class EmojiCategory {
 
     this._built = false; // will be true once the user opens the category
     this._loaded = false; // will be true once loaded
-    this.validateKeywordsNumber();
+    // this.validateKeywordsNumber();
     this.load();
   }
 
-  validateKeywordsNumber() {
-    if (EMOJIS_CHARACTERS[this.id].length === EMOJIS_KEYWORDS[this.id].length) {
-      return true;
-    }
-    let main_message = _("Incorrect number of keywords for category '%s':");
-    this._addErrorLine(main_message.replace("%s", this.categoryName));
-    this._addErrorLine(EMOJIS_CHARACTERS[this.id].length + " emojis");
-    this._addErrorLine(EMOJIS_KEYWORDS[this.id].length + " keyword groups");
-    this._addErrorLine(_("Please report this bug"));
-    return false;
-  }
+  // validateKeywordsNumber() {
+  //   if (EMOJIS_CHARACTERS[this.id].length === EMOJIS_KEYWORDS[this.id].length) {
+  //     return true;
+  //   }
+  //   let main_message = _("Incorrect number of keywords for category '%s':");
+  //   this._addErrorLine(main_message.replace("%s", this.categoryName));
+  //   this._addErrorLine(EMOJIS_CHARACTERS[this.id].length + " emojis");
+  //   this._addErrorLine(EMOJIS_KEYWORDS[this.id].length + " keyword groups");
+  //   this._addErrorLine(_("Please report this bug"));
+  //   return false;
+  // }
 
   _addErrorLine(error_message) {
     let line = new PopupMenu.PopupBaseMenuItem({
