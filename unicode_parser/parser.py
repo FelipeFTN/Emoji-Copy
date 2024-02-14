@@ -8,9 +8,9 @@ import traceback
 
 # Constants
 UNICODE_URL = "https://unicode.org/Public/emoji/15.1/emoji-test.txt" # Source: https://unicode.org
-EMOJI_MAP = "emoji_map.json" # existing emojis mapped to keywords
-CHAR_FILE = "../emoji-copy@felipeftn/data/emojisCharacters.json" # Save emoji characters here
-KEY_FILE = "../emoji-copy@felipeftn/data/emojisKeywords.json" # Save description/keywords of emoji characters here
+EMOJI_MAP = "./unicode_parser/emoji_map.json" # existing emojis mapped to keywords
+CHAR_FILE = "./emoji-copy@felipeftn/data/emojisCharacters.json" # Save emoji characters here
+KEY_FILE = "./emoji-copy@felipeftn/data/emojisKeywords.json" # Save description/keywords of emoji characters here
 
 # Fetch unicode file from remote
 try:
