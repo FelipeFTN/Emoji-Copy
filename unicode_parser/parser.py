@@ -3,23 +3,37 @@
 import re
 import sys
 import json
+import requests
 import traceback
-from urllib.request import urlopen
-from emoji_map import emoji_map
 
 # Constants
 UNICODE_URL = "https://unicode.org/Public/emoji/15.1/emoji-test.txt" # Source: https://unicode.org
-CHAR_FILE = "./emoji-copy@felipeftn/data/emojisCharacters.json" # Emoji characters
-KEY_FILE = "./emoji-copy@felipeftn/data/emojisKeywords.json" # Description/keywords of emoji characters
+EMOJI_MAP = "emoji_map.json" # existing emojis mapped to keywords
+CHAR_FILE = "../emoji-copy@felipeftn/data/emojisCharacters.json" # Save emoji characters here
+KEY_FILE = "../emoji-copy@felipeftn/data/emojisKeywords.json" # Save description/keywords of emoji characters here
 
-# Read unicode file
+# Fetch unicode file from remote
 try:
-    data = urlopen(UNICODE_URL).read().decode("utf-8") # Read file from URL
+    print(f"Fetching unicode data from {UNICODE_URL}")
+    data = requests.get(UNICODE_URL).text
     data = data.split("\n") # then split it into lines
-except Exception as e:
-    print("Could not read unicode test file containing emoji and its description")
-    print(e)
+except:
+    print("Could not fetch unicode test file containing emoji and its description")
+    print(traceback.format_exc())
     sys.exit(1)
+
+# Load emoji:keywords map
+try:
+    with open(EMOJI_MAP, "r") as f:
+        emoji_map = json.load(f)
+except FileNotFoundError:
+    print("Could not fetch existing emojis mapped to keywords")
+    print(traceback.format_exc())
+    sys.exit(2)
+except json.JSONDecodeError:
+    print(f"Invalid JSON data received from file {EMOJI_MAP}")
+    print(traceback.format_exc())
+    sys.exit(2)
 
 # Parse unicode text into two lists of emoji and its corresponding description
 EMOJI = [] # list of grouped emojis
@@ -35,7 +49,7 @@ for line in data:
             emoji = match.group(1)
             desc = match.group(2)
             emoji_group.append(emoji)
-            key_words = emoji_map.get(emoji) # TODO: Read from JSON
+            key_words = emoji_map.get(emoji)
             if key_words:
                 try:
                     key_words.remove(desc)
@@ -49,7 +63,7 @@ for line in data:
         else:
             print("Could not parse unicode test file containing emoji and its description")
             print(traceback.format_exc())
-            sys.exit(2)
+            sys.exit(3)
     if emoji_group and desc_group and ( line.startswith("# group:") or line.startswith("#EOF") ):
         EMOJI.append(emoji_group)
         DESC.append(desc_group)
@@ -57,7 +71,9 @@ for line in data:
         desc_group = []
 
 # Save parsed data
-with open(CHAR_FILE, "w+") as f:
+print(f"Saving emoji characters to {CHAR_FILE}")
+with open(CHAR_FILE, "w") as f:
     json.dump(EMOJI, f, indent=2)
-with open(KEY_FILE, "w+") as f:
+print(f"Saving emoji descriptions/keywords to {KEY_FILE}")
+with open(KEY_FILE, "w") as f:
     json.dump(DESC, f, indent=2)
