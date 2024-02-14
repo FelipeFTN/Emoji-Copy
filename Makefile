@@ -10,13 +10,13 @@ ZIP_TEMP := zip-temp
 JS_FILES = $(shell find -type f -and \( -name "*.js" \))
 SCHEMA_FILE = $(EXTENSION)/schemas/org.gnome.shell.extensions.emoji-copy.gschema.xml
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
-EMOJI_JSON_FILES = $(EXTENSION)/data/emojisCharacters.json $(EXTENSION)/data/emojisKeywords.json
+EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
-ZIP_CONTENT = $(JS_FILES) $(EMOJI_JSON_FILES) $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE
+ZIP_CONTENT = $(JS_FILES) $(EMOJIS_DB) $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE
 
 all: clean build
 
-build: $(SCHEMA_COMPILED_FILE) $(EMOJI_JSON_FILES) $(ZIP_NAME)
+build: $(SCHEMA_COMPILED_FILE) $(EMOJIS_DB) $(ZIP_NAME)
 	@echo "[+] EMOJI COPY BUILT"
 
 install: build
@@ -28,7 +28,7 @@ uninstall:
 	@echo "Extension uninstalled successfully!"
 
 clean:
-	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJI_JSON_FILES)
+	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB)
 	
 debug: clean install
 	dbus-run-session -- gnome-shell --nested --wayland
@@ -49,5 +49,5 @@ $(SCHEMA_COMPILED_FILE): $(SCHEMA_FILE)
 	@glib-compile-schemas $(EXTENSION)/schemas
 	@echo "[+] SCHEMA COMPILED"
 
-$(EMOJI_JSON_FILES):
-	@python3 ./unicode_parser/parser.py
+$(EMOJIS_DB):
+	@python3 ./build/parser.py
