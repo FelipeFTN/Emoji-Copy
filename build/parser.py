@@ -5,12 +5,12 @@ import sys
 import json
 import requests
 import traceback
-
 from sqlite import SQLite
 
 # Constants
-UNICODE_URL = "https://unicode.org/Public/emoji/15.1/emoji-test.txt" # Source: https://unicode.org
+UNICODE_URL = "https://unicode.org/Public/emoji/15.1/emoji-test.txt" # emoji keyboard/display test data
 EMOJI_MAP = "./build/emoji_map.json" # existing emojis mapped to keywords
+DB_PATH = "./emoji-copy@felipeftn/data/emojis.db" # path to SQLite DB for storing emojis
 
 # Fetch unicode file from remote
 try:
@@ -35,55 +35,60 @@ except json.JSONDecodeError:
     print(traceback.format_exc())
     sys.exit(2)
 
-EmojisDB = SQLite(r'./emoji-copy@felipeftn/data/emojis.db')
+# Connect to SQLite database
+EmojisDB = SQLite(DB_PATH)
 EmojisDB.drop_table()
 EmojisDB.create_table()
 
+print("[+] Loading existing emojis from emoji_map.json to database... 🍳")
+items = []
 for emoji in emoji_map:
-    desc = ' '.join(emoji_map[emoji]) # Get array of string and combine into a single string
-    item = [emoji, desc, "", ""]
-    EmojisDB.insert_or_update(item) # Maybe do batch insert here + threads and stuff
+    desc = " ".join(emoji_map[emoji]) # Get array of string and combine into a single string.
+    item = (emoji, desc, "", "")
+    items.append(item)
+EmojisDB.insert_many(items)
 
-print("[+] Finished loading emoji_map.json! 🎉")
-print("[+] Loading Official Unicode emojis... 🍳")
+print("[+] Finished loading existing emojis to database! 🎉")
+print("[+] Loading official unicode emojis... 🍳")
 
 # Global variables
 GROUP = ""
 SUBGROUP = ""
+ITEM = []
 
 for line in data:
     if line.startswith("# subgroup"):
         subgroup_match = re.search(r"# subgroup: ([a-z\-]+)", line, re.IGNORECASE)
         if subgroup_match != None:
             SUBGROUP = f" {subgroup_match.group(1)}"
-
-    if line.startswith("# group"):
+    
+    elif line.startswith("# group"):
         group_match = re.search(r"# group: ([a-z\ &]+)", line, re.IGNORECASE)
         if group_match != None:
             GROUP = f"{group_match.group(1)}"
-
+    
+    # attempt to parse the emoji and its description
     match = re.search(r"# (\S+) E\d+\.\d+ (.+)$", line, re.IGNORECASE)
-    if match == None:
+    if not match:
         continue
-
-    # Keep the code if everything is allright
     emoji = match.group(1)
     desc = match.group(2)
     if SUBGROUP not in desc:
         desc = match.group(2) + SUBGROUP
-
-    skin_tone_match = re.search(r":\ ([a-z\-]+)", desc)
-    skin_tone = ""
-
-    if skin_tone_match != None:
-        skin_tone = skin_tone_match.group(1)
-
-    item = [emoji, desc, skin_tone, GROUP]
-    EmojisDB.insert_or_update(item) # Maybe do batch insert here + threads and stuff
-
-print()
-# print(EmojisDB.get_many(50))
-print(f"[!] Item Count: {EmojisDB.get_count()}")
     
+    skin_tone_match = re.search(r":\ ([a-z\-]+)", desc)
+    if skin_tone_match:
+        skin_tone = skin_tone_match.group(1)
+    else:
+        skin_tone = ""
+    
+    item = (emoji, desc, skin_tone, GROUP)
+    ITEM.append(item)
+
+# insert all emojis into DB
+EmojisDB.insert_many(ITEM)
+
+print("[+] Finished loading official unicode emojis to database! 🎉")
+print(f"[!] Emoji Count: {EmojisDB.get_count()}")
 EmojisDB.close() # Never forget doing this
 print("[!] run `du -ah ./emoji-copy@felipeftn/data/` to get the DBs current size.")
