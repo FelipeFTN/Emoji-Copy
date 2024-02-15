@@ -30,7 +30,7 @@ export class SQLite {
 
   select_by_group(group) {
     return this.query(`
-      SELECT * FROM emojis WHERE emoji_group='${group}';
+      SELECT * FROM emojis WHERE emoji_group='${group}' AND (skin_tone='' OR skin_tone='person');
     `);
   }
 
