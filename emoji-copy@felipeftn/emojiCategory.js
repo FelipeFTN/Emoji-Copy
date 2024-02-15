@@ -3,25 +3,28 @@ import Clutter from "gi://Clutter";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
 import { SkinTonesBar } from "./emojiOptionsBar.js";
-import { ReadJsonFile } from "./handlers/files.js";
 import { EmojiButton } from "./emojiButton.js";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
 
-/**
- * This imports data (array of arrays of characters, and array of arrays
- * of strings). Keywords are used for both:
- * - search
- * - skin tone management
- * - gender management
- */
-const EMOJIS_CHARACTERS = await ReadJsonFile("./data/emojisCharacters.json");
-const EMOJIS_KEYWORDS = await ReadJsonFile("./data/emojisKeywords.json");
+// Map of emoji's group
+const EMOJIS_CATEGORIES = {
+  0: "Smileys & Emotion",
+  1: "People & Body",
+  2: "Animals & Nature",
+  3: "Food & Drink",
+  4: "Travel & Places",
+  5: "Activities",
+  6: "Objects",
+  7: "Symbols",
+  8: "Flags",
+};
 
 export class EmojiCategory {
   /**
-   * The category and its button have to be built without being loaded, to
+   * The category and its button have to be built without being loaded, to "avoid"
    * memory issues with emojis' image textures.
+   * PS: For some reason, when we render everything, there is a bunch of Lag...
    */
   constructor(emojiCopy, categoryName, iconName, id) {
     this.super_item = new PopupMenu.PopupSubMenuMenuItem(categoryName);
@@ -31,6 +34,9 @@ export class EmojiCategory {
     this.emojiButtons = []; // used for searching, and for updating the size/style
     this._nbColumns = 10; // some random default value
     this.id = id;
+    this.emojis = this.emojiCopy.sqlite.select_by_group(
+      EMOJIS_CATEGORIES[this.id],
+    );
 
     this.super_item.actor.visible = false;
     this.super_item.actor.reactive = false;
@@ -67,20 +73,7 @@ export class EmojiCategory {
 
     this._built = false; // will be true once the user opens the category
     this._loaded = false; // will be true once loaded
-    this.validateKeywordsNumber();
     this.load();
-  }
-
-  validateKeywordsNumber() {
-    if (EMOJIS_CHARACTERS[this.id].length === EMOJIS_KEYWORDS[this.id].length) {
-      return true;
-    }
-    let main_message = _("Incorrect number of keywords for category '%s':");
-    this._addErrorLine(main_message.replace("%s", this.categoryName));
-    this._addErrorLine(EMOJIS_CHARACTERS[this.id].length + " emojis");
-    this._addErrorLine(EMOJIS_KEYWORDS[this.id].length + " keyword groups");
-    this._addErrorLine(_("Please report this bug"));
-    return false;
   }
 
   _addErrorLine(error_message) {
@@ -108,11 +101,11 @@ export class EmojiCategory {
   load() {
     if (this._loaded) return;
 
-    for (let i = 0; i < EMOJIS_CHARACTERS[this.id].length; i++) {
+    for (let i = 0; i < this.emojis.length; i++) {
       let button = new EmojiButton(
         this.emojiCopy,
-        EMOJIS_CHARACTERS[this.id][i],
-        EMOJIS_KEYWORDS[this.id][i],
+        this.emojis[i].unicode,
+        this.emojis[i].description,
       );
       this.emojiButtons.push(button);
     }
@@ -122,52 +115,7 @@ export class EmojiCategory {
   clear() {
     this.super_item.menu.removeAll();
     this.emojiButtons = [];
-  }
-
-  searchEmoji(searchedText, results, recentlyUsed, neededresults, priority) {
-    let searchResults = [];
-    for (let i = 0; i < this.emojiButtons.length; i++) {
-      if (results.includes(this.emojiButtons[i].baseCharacter)) {
-        continue;
-      }
-      if (neededresults >= 0) {
-        let isMatching = false;
-        if (priority === 4) {
-          isMatching = this._searchRecentMatch(searchedText, i, recentlyUsed);
-        } else if (priority === 3) {
-          isMatching = this._searchExactMatch(searchedText, i);
-        } else if (priority === 2) {
-          isMatching = this._searchInName(searchedText, i);
-        } else {
-          isMatching = this._searchInKeywords(searchedText, i);
-        }
-        if (isMatching) {
-          searchResults.push(this.emojiButtons[i].baseCharacter);
-          neededresults--;
-        }
-      }
-    }
-    return searchResults;
-  }
-
-  _searchRecentMatch(searchedText, i, recentlyUsed) {
-    return recentlyUsed.includes(this.emojiButtons[i].baseCharacter) && (
-      this._searchExactMatch(searchedText, i) ||
-      this._searchInName(searchedText, i) ||
-      this._searchInKeywords(searchedText, i)
-    );
-  }
-
-  _searchExactMatch(searchedText, i) {
-    return this.emojiButtons[i].keywords[0] === searchedText;
-  }
-
-  _searchInName(searchedText, i) {
-    return this.emojiButtons[i].keywords[0].includes(searchedText);
-  }
-
-  _searchInKeywords(searchedText, i) {
-    return this.emojiButtons[i].keywords.some((e) => e.includes(searchedText));
+    this.emojis = [];
   }
 
   /**
@@ -217,17 +165,15 @@ export class EmojiCategory {
 
     this.categoryButton.set_checked(true);
     this.super_item.actor.visible = true;
-    this.super_item.setSubmenuShown(true);
-    this.emojiCopy._activeCat = this.id;
+    this.super_item.setSubmenuShown(true); // This is causing the Lag!
     this.emojiCopy._onSearchTextChanged();
   }
 
   updateStyle() {
-    let fontStyle = "font-size: " + this._settings.get_int("emojisize") +
-      "px;";
-    fontStyle += " color: #FFFFFF;";
+    const emoji_size = this._settings.get_int("emojisize");
+    const style = `font-size: ${emoji_size}px;\ncolor: #FFFFFF`;
     this.emojiButtons.forEach(function (b) {
-      b.updateStyle(fontStyle);
+      b.updateStyle(style);
     });
   }
 

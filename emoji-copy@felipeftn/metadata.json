@@ -1,7 +1,7 @@
 {
   "uuid": "emoji-copy@felipeftn",
   "name": "Emoji Copy",
-  "description": "Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.\n\nIt is a fork of Emoji Selector.",
+  "description": "Emoji copy is a versatile extension designed to simplify emoji selection and clipboard management.\n\nYou need libgda for this extension to work, but don't worry, it's pretty easy to install:\n\nFedora: sudo dnf install libgda libgda-sqlite\nArch Linux: sudo pacman -S libgda\nUbuntu/Debian: sudo apt install gir1.2-gda-5.0\nopenSUSE: sudo zypper install libgda-6_0-sqlite typelib-1_0-Gda-6_0\n\nIt is a fork of Emoji Selector.",
   "shell-version": ["45"],
   "url": "https://github.com/felipeftn/emoji-copy",
   "settings-schema": "org.gnome.shell.extensions.emoji-copy",

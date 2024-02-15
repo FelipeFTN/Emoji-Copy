@@ -4,19 +4,20 @@ SHELL := /bin/bash
 
 EXTENSION := emoji-copy@felipeftn
 EXTENSION_NAME := emoji-copy
+EXTENSION_PATH = ~/.local/share/gnome-shell/extensions/$(EXTENSION)
 ZIP_NAME := $(EXTENSION).zip
 ZIP_TEMP := zip-temp
 
 JS_FILES = $(shell find -type f -and \( -name "*.js" \))
 SCHEMA_FILE = $(EXTENSION)/schemas/org.gnome.shell.extensions.emoji-copy.gschema.xml
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
-EMOJI_JSON_FILES = $(EXTENSION)/data/emojisCharacters.json $(EXTENSION)/data/emojisKeywords.json
+EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
-ZIP_CONTENT = $(JS_FILES) $(EMOJI_JSON_FILES) $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE
+ZIP_CONTENT = $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE $(JS_FILES) $(EMOJIS_DB)
 
 all: clean build
 
-build: $(SCHEMA_COMPILED_FILE) $(EMOJI_JSON_FILES) $(ZIP_NAME)
+build: $(SCHEMA_COMPILED_FILE) $(EMOJIS_DB) $(ZIP_NAME)
 	@echo "[+] EMOJI COPY BUILT"
 
 install: build
@@ -28,17 +29,17 @@ uninstall:
 	@echo "Extension uninstalled successfully!"
 
 clean:
-	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJI_JSON_FILES)
+	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB) $(EXTENSION_PATH)
 	
 debug: clean install
 	dbus-run-session -- gnome-shell --nested --wayland
 
 # Just to make it clear ($@ => First argument; $^ second argument)
 # e.g: $@ => $(ZIP_NAME); $^ => $(ZIP_CONTENT).
-$(ZIP_NAME): $(ZIP_CONTENT)
+$(ZIP_NAME):
 	@echo "[-] ZIPPING EMOJI COPY..."
 	@mkdir -p zip-temp
-	@cp -r $^ $(ZIP_TEMP)
+	@cp -r $(ZIP_CONTENT) $(ZIP_TEMP)
 	@rm --force $@
 	@cd $(ZIP_TEMP) && zip -r ../$@ .
 	@cd $(ZIP_TEMP) && zip -d ../$@ **/*.pot
@@ -49,5 +50,5 @@ $(SCHEMA_COMPILED_FILE): $(SCHEMA_FILE)
 	@glib-compile-schemas $(EXTENSION)/schemas
 	@echo "[+] SCHEMA COMPILED"
 
-$(EMOJI_JSON_FILES):
-	@python3 ./unicode_parser/parser.py
+$(EMOJIS_DB):
+	@python3 ./build/parser.py
