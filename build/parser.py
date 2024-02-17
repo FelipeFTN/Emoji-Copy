@@ -46,6 +46,8 @@ for emoji in emoji_map:
     desc = " ".join(emoji_map[emoji]) # Get array of string and combine into a single string.
     item = (emoji, desc, "", "")
     items.append(item)
+
+# insert all existing emojis into db
 EmojisDB.insert_many(items)
 
 print("[+] Finished loading existing emojis to database! 🎉")
@@ -58,14 +60,14 @@ ITEM = []
 
 for line in data:
     if line.startswith("# subgroup"):
-        subgroup_match = re.search(r"# subgroup: ([a-z\-]+)", line, re.IGNORECASE)
-        if subgroup_match != None:
-            SUBGROUP = f" {subgroup_match.group(1)}"
+        subgroup_match = re.search(r"# subgroup: ([a-z&-]+)$", line, re.IGNORECASE)
+        if subgroup_match:
+            SUBGROUP = subgroup_match.group(1)
     
     elif line.startswith("# group"):
-        group_match = re.search(r"# group: ([a-z\ &]+)", line, re.IGNORECASE)
-        if group_match != None:
-            GROUP = f"{group_match.group(1)}"
+        group_match = re.search(r"# group: ([a-z&-]+)$", line, re.IGNORECASE)
+        if group_match:
+            GROUP = group_match.group(1)
     
     # attempt to parse the emoji and its description
     match = re.search(r"# (\S+) E\d+\.\d+ (.+)$", line, re.IGNORECASE)
@@ -74,18 +76,17 @@ for line in data:
     emoji = match.group(1)
     desc = match.group(2)
     if SUBGROUP not in desc:
-        desc = match.group(2) + SUBGROUP
+        desc = f"{match.group(2)} {SUBGROUP}"
     
-    skin_tone_match = re.search(r":\ ([a-z\-]+)", desc)
+    skin_tone_match = re.search(r": ([a-z-]+)$", desc)
+    skin_tone = ""
     if skin_tone_match:
         skin_tone = skin_tone_match.group(1)
-    else:
-        skin_tone = ""
     
     item = (emoji, desc, skin_tone, GROUP)
     ITEM.append(item)
 
-# insert all emojis into DB
+# insert all official emojis into db
 EmojisDB.insert_many(ITEM)
 
 print("[+] Finished loading official unicode emojis to database! 🎉")
