@@ -69,6 +69,11 @@ for line in data:
         if subgroup_match:
             SUBGROUP = subgroup_match.group(1)
     
+    # parse only fully qualified emojis to prevent "copies" and useless components
+    # see https://unicode.org/reports/tr51/#def_fully_qualified_emoji
+    if line.find("fully-qualified") == -1:
+        continue
+    
     # attempt to parse the emoji and its description
     match = re.search(r"# (\S+) E\d+\.\d+ (.+)$", line, re.IGNORECASE)
     if not match:
@@ -81,6 +86,8 @@ for line in data:
     skin_tone = ""
     if skin_tone_match:
         skin_tone = skin_tone_match.group(1)
+        if skin_tone.find("skin tone") == -1:
+            skin_tone = ""
     
     if SUBGROUP not in desc:
         desc = f"{match.group(2)} {SUBGROUP}"
