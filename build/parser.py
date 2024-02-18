@@ -77,7 +77,7 @@ for line in data:
     desc = match.group(2)
     
     # skin tone match must be done before modifying desc with sub group
-    skin_tone_match = re.search(r": ([a-z -]+)$", desc)
+    skin_tone_match = re.search(r": ([a-z, -]+)$", desc)
     skin_tone = ""
     if skin_tone_match:
         skin_tone = skin_tone_match.group(1)
