@@ -8,12 +8,11 @@ EXTENSION_PATH = ~/.local/share/gnome-shell/extensions/$(EXTENSION)
 ZIP_NAME := $(EXTENSION).zip
 ZIP_TEMP := zip-temp
 
-JS_FILES = $(shell find -type f -and \( -name "*.js" \))
 SCHEMA_FILE = $(EXTENSION)/schemas/org.gnome.shell.extensions.emoji-copy.gschema.xml
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
 EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
-ZIP_CONTENT = $(EXTENSION)/handlers $(EXTENSION)/schemas $(EXTENSION)/data $(EXTENSION)/locale $(EXTENSION)/icons $(EXTENSION)/metadata.json $(EXTENSION)/stylesheet.css LICENSE $(JS_FILES) $(EMOJIS_DB)
+ZIP_CONTENT = $(EXTENSION)/*
 
 all: clean build
 

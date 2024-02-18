@@ -67,7 +67,7 @@ export class EmojiButton {
             .replaceAll("HAS_TONE", "")
             .replaceAll("HAS_GENDER", "")
             .replaceAll("OK", "")
-            .substring(0, 25)
+            .substring(0, 35)
         }...`;
       } else {
         category.super_item.label.text = category.categoryName;
