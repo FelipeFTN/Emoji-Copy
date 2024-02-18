@@ -61,8 +61,8 @@ export class EmojiSearchItem {
     let firstEmptyIndex = 0;
     for (let i = 0; i < results.length; i++) {
       if (i < this._nbColumns) {
-        this._recents[firstEmptyIndex].super_btn.label = results[i][0];
-        this._recents[firstEmptyIndex].super_btn.text = results[i][1];
+        this._recents[firstEmptyIndex].super_btn.label = results[i].unicode;
+        this._recents[firstEmptyIndex].super_btn.text = results[i].description;
         firstEmptyIndex++;
       }
     }
