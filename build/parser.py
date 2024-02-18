@@ -59,15 +59,15 @@ SUBGROUP = ""
 ITEM = []
 
 for line in data:
-    if line.startswith("# subgroup"):
-        subgroup_match = re.search(r"# subgroup: ([a-z&-]+)$", line, re.IGNORECASE)
-        if subgroup_match:
-            SUBGROUP = subgroup_match.group(1)
-    
-    elif line.startswith("# group"):
-        group_match = re.search(r"# group: ([a-z&-]+)$", line, re.IGNORECASE)
+    if line.startswith("# group"):
+        group_match = re.search(r"# group: ([a-z &-]+)$", line, re.IGNORECASE)
         if group_match:
             GROUP = group_match.group(1)
+    
+    elif line.startswith("# subgroup"):
+        subgroup_match = re.search(r"# subgroup: ([a-z &-]+)$", line, re.IGNORECASE)
+        if subgroup_match:
+            SUBGROUP = subgroup_match.group(1)
     
     # attempt to parse the emoji and its description
     match = re.search(r"# (\S+) E\d+\.\d+ (.+)$", line, re.IGNORECASE)
@@ -75,15 +75,18 @@ for line in data:
         continue
     emoji = match.group(1)
     desc = match.group(2)
-    if SUBGROUP not in desc:
-        desc = f"{match.group(2)} {SUBGROUP}"
     
-    skin_tone_match = re.search(r": ([a-z-]+)$", desc)
+    # skin tone match must be done before modifying desc with sub group
+    skin_tone_match = re.search(r": ([a-z -]+)$", desc)
     skin_tone = ""
     if skin_tone_match:
         skin_tone = skin_tone_match.group(1)
     
+    if SUBGROUP not in desc:
+        desc = f"{match.group(2)} {SUBGROUP}"
+    
     item = (emoji, desc, skin_tone, GROUP)
+    #print(item)
     ITEM.append(item)
 
 # insert all official emojis into db
