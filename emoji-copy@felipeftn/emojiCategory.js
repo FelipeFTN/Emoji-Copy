@@ -104,8 +104,8 @@ export class EmojiCategory {
     for (let i = 0; i < this.emojis.length; i++) {
       let button = new EmojiButton(
         this.emojiCopy,
-        this.emojis[i].unicode,
-        this.emojis[i].description,
+        this.emojis[i][0],
+        this.emojis[i][1],
       );
       this.emojiButtons.push(button);
     }
