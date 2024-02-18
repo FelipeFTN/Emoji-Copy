@@ -1,25 +1,33 @@
-import Gda from "gi://Gda";
+import Gio from "gi://Gio";
 import GLib from "gi://GLib";
+// We use sql.js as GDA is broken in OpenSuse
+// Bug report: https://bugzilla.opensuse.org/show_bug.cgi?id=1219970
+import { initSqlJs } from './sql.js';
+
+async function ReadDb() {
+  const p = GLib.build_filenamev([
+    GLib.get_home_dir(),
+    ".local",
+    "share",
+    "gnome-shell",
+    "extensions",
+    "emoji-copy@felipeftn",
+    "data",
+    "emojis.db"
+  ]);
+  const f = Gio.File.new_for_path(p);
+  const [_ok, content, _etag] = await f.load_contents(null);
+  console.info("Read database contents from file!")
+  return content;
+}
+
+// Load the db
+const dataPromise = await ReadDb();
+const [SQL, buf] = await Promise.all([initSqlJs(), dataPromise])
 
 export class SQLite {
   constructor(dbname) {
-    const p = GLib.build_filenamev([
-      GLib.get_home_dir(),
-      ".local",
-      "share",
-      "gnome-shell",
-      "extensions",
-      "emoji-copy@felipeftn",
-      "data",
-    ]);
-    this.connection = new Gda.Connection({
-      provider: Gda.Config.get_provider("SQLite"),
-      cnc_string: `DB_DIR=${p};DB_NAME=${dbname}`,
-    });
-    if (this.connection === null) {
-      console.error("Error opening database connection!");
-    }
-    this.connection.open();
+    this.db = new SQL.Database(new Uint8Array(buf));
   }
 
   select_like_description(description) {
@@ -41,32 +49,26 @@ export class SQLite {
   }
 
   query(sql_query) {
-    if (
-      this.connection === undefined || !this.connection ||
-      !this.connection.is_opened()
-    ) {
-      return [];
+    const res = this.db.exec(sql_query);
+    if (res.length == 0) {
+      console.error(sql_query);
+      console.error(res);
+      return res;
+    } else {
+      /*
+      Result is array of arrays, with each array containing requested column values.
+      Following example shows output for select_all()
+      [
+        [
+          "👋🏻",
+          "waving hand: light skin tone hand-fingers-open",
+          "light skin tone",
+          "People & Body"
+        ],
+        ...
+      ]
+      */
+      return res[0].values;
     }
-
-    const dm = this.connection.execute_select_command(sql_query);
-
-    const iter = dm.create_iter();
-    const items = [];
-
-    while (iter.move_next()) {
-      const unicode = iter.get_value_for_field("unicode");
-      const description = iter.get_value_for_field("description");
-      const skin_tone = iter.get_value_for_field("skin_tone");
-      const group = iter.get_value_for_field("emoji_group");
-
-      items.push({
-        unicode,
-        description,
-        skin_tone,
-        group,
-      });
-    }
-
-    return items;
   }
 }
