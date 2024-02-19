@@ -37,6 +37,16 @@ export class SQLite {
       SELECT * FROM emojis WHERE description LIKE '%${description}%';
     `);
   }
+  
+  search_description(search_text) {
+    const sql_string = search_text
+      .split(" ")
+      .flatMap((word) => `description LIKE '%${word}%'`)
+      .join(" AND ");
+    return this.query(`
+      SELECT * FROM emojis WHERE ${sql_string} ORDER BY LENGTH(description);
+    `);
+  }
 
   select_by_group(group) {
     return this.query(`
