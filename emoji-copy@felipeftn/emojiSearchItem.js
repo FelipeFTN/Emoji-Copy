@@ -56,7 +56,7 @@ export class EmojiSearchItem {
       this._recents[j].super_btn.label = "";
     }
 
-    const results = this.emojiCopy.sqlite.select_like_description(searchedText);
+    const results = this.emojiCopy.sqlite.search_description(searchedText);
 
     let firstEmptyIndex = 0;
     for (let i = 0; i < results.length; i++) {
