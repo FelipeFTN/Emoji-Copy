@@ -35,29 +35,14 @@ except json.JSONDecodeError:
     print(traceback.format_exc())
     sys.exit(2)
 
-# Connect to SQLite database
-EmojisDB = SQLite(DB_PATH)
-EmojisDB.drop_table()
-EmojisDB.create_table()
-
-print("[+] Loading existing emojis from emoji_map.json to database... 🍳")
-items = []
-for emoji in emoji_map:
-    desc = " ".join(emoji_map[emoji]) # Get array of string and combine into a single string.
-    item = (emoji, desc, "", "")
-    items.append(item)
-
-# insert all existing emojis into db
-EmojisDB.insert_many(items)
-
-print("[+] Finished loading existing emojis to database! 🎉")
-print("[+] Loading official unicode emojis... 🍳")
+print("[+] Parsing and loading emojis into database... 🍳")
 
 # Global variables
 GROUP = ""
 SUBGROUP = ""
 ITEM = []
 
+# parse emojis fetched from unicode
 for line in data:
     if line.startswith("# group"):
         group_match = re.search(r"# group: ([a-z &-]+)$", line, re.IGNORECASE)
@@ -89,17 +74,26 @@ for line in data:
         if skin_tone.find("skin tone") == -1:
             skin_tone = ""
     
+    # check if emoji exists in old emoji_map, so we can get its keywords
+    if emoji in emoji_map.keys():
+        keywords = emoji_map.get(emoji)
+        if desc not in keywords:
+            desc = f"{desc} {' '.join(keywords)}"
+    
     if SUBGROUP not in desc:
-        desc = f"{match.group(2)} {SUBGROUP}"
+        desc = f"{desc} {SUBGROUP}"
     
     item = (emoji, desc, skin_tone, GROUP)
     #print(item)
     ITEM.append(item)
 
-# insert all official emojis into db
+# Insert all emojis into database
+EmojisDB = SQLite(DB_PATH)
+EmojisDB.drop_table()
+EmojisDB.create_table()
 EmojisDB.insert_many(ITEM)
 
-print("[+] Finished loading official unicode emojis to database! 🎉")
+print("[+] Finished loading emojis into database! 🎉")
 print(f"[!] Emoji Count: {EmojisDB.get_count()}")
 EmojisDB.close() # Never forget doing this
 print("[!] run `du -ah ./emoji-copy@felipeftn/data/` to get the DBs current size.")
