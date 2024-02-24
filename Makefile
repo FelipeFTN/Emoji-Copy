@@ -12,7 +12,7 @@ SCHEMA_FILE = $(EXTENSION)/schemas/org.gnome.shell.extensions.emoji-copy.gschema
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
 EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
-ZIP_CONTENT = $(EXTENSION)/*
+ZIP_CONTENT = $(EXTENSION)/* LICENSE
 
 all: clean build
 
@@ -39,10 +39,11 @@ $(ZIP_NAME):
 	@echo "[-] ZIPPING EMOJI COPY..."
 	@mkdir -p zip-temp
 	@cp -r $(ZIP_CONTENT) $(ZIP_TEMP)
+	@cd $(ZIP_TEMP) && find . -name ".gitkeep" -type f | xargs rm -rf
+	@cd $(ZIP_TEMP) && find . -name "*.pot" -type f | xargs rm -rf
+	@cd $(ZIP_TEMP) && find . -name "*.po" -type f | xargs rm -rf
 	@rm --force $@
 	@cd $(ZIP_TEMP) && zip -r ../$@ .
-	@cd $(ZIP_TEMP) && zip -d ../$@ **/*.pot
-	@cd $(ZIP_TEMP) && zip -d ../$@ **/*.po
 
 $(SCHEMA_COMPILED_FILE): $(SCHEMA_FILE)
 	@echo "[-] COMPILING SCHEMA..."

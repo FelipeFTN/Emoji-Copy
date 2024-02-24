@@ -36,7 +36,7 @@ import { EmojiSearchItem } from "./emojiSearchItem.js";
 import { SQLite } from "./handlers/sql.js";
 
 export default class EmojiCopy extends Extension {
-  enable() {
+  async enable() {
     this.signaux = [];
     this.timeoutSourceId = null;
     this._settings = this.getSettings();
@@ -44,6 +44,8 @@ export default class EmojiCopy extends Extension {
     this._permanentItems = 0;
 
     this.sqlite = new SQLite();
+    await this.sqlite.initializeDB();
+
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
     let box = new St.BoxLayout();
     let icon = new St.Icon({
@@ -138,10 +140,12 @@ export default class EmojiCopy extends Extension {
       this.timeoutSourceId = null;
     }
 
+    this.sqlite.destroy();
     this.super_btn.destroy();
     this.searchItem = null;
     this._settings = null;
     this.super_btn = null;
+    this.sqlite = null;
     this.signaux = [];
   }
 
