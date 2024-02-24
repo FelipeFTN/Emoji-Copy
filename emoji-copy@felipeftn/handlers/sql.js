@@ -7,7 +7,7 @@ import GLib from "gi://GLib";
 
 import { initSqlJs } from "../libs/sql/sql.js";
 
-async function ReadDb() {
+async function ReadDB() {
   const p = GLib.build_filenamev([
     GLib.get_home_dir(),
     ".local",
@@ -23,13 +23,22 @@ async function ReadDb() {
   return content;
 }
 
-// Load the db
-const dataPromise = await ReadDb();
-const [SQL, db] = await Promise.all([initSqlJs(), dataPromise]);
-
 export class SQLite {
   constructor() {
-    this.db = new SQL.Database(new Uint8Array(db));
+    this.db = null;
+  }
+
+  async initializeDB() {
+    try {
+      const [SQL, db] = await Promise.all([initSqlJs(), ReadDB()]);
+      this.db = new SQL.Database(new Uint8Array(db));
+    } catch (error) {
+      console.error("Error initializing database:", error);
+    }
+  }
+
+  destroy() {
+    this.db = null;
   }
 
   select_like_description(description) {
@@ -37,7 +46,7 @@ export class SQLite {
       SELECT * FROM emojis WHERE description LIKE '%${description}%';
     `);
   }
-  
+
   search_description(search_text) {
     const sql_string = search_text
       .split(" ")
