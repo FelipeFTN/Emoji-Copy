@@ -5,7 +5,5 @@ package-lock.json
 # Ignores builded files
 _*
 *.zip
-zip-temp
 gschemas.compiled
-emoji-copy@felipeftn/data/*.json
-emoji-copy@felipeftn/data/*.db
+zip-temp

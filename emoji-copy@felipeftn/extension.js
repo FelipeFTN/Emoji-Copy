@@ -33,18 +33,15 @@ import {
 
 import { EmojiCategory } from "./emojiCategory.js";
 import { EmojiSearchItem } from "./emojiSearchItem.js";
-import { SQLite } from "./handlers/sql.js";
 
 export default class EmojiCopy extends Extension {
-  async enable() {
+  enable() {
     this.signaux = [];
     this.timeoutSourceId = null;
     this._settings = this.getSettings();
     this.position = this._settings.get_string("position");
     this._permanentItems = 0;
-
-    this.sqlite = new SQLite();
-    await this.sqlite.initializeDB();
+    this._activeCat = -1;
 
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
     let box = new St.BoxLayout();
@@ -140,12 +137,10 @@ export default class EmojiCopy extends Extension {
       this.timeoutSourceId = null;
     }
 
-    this.sqlite.destroy();
     this.super_btn.destroy();
     this.searchItem = null;
     this._settings = null;
     this.super_btn = null;
-    this.sqlite = null;
     this.signaux = [];
   }
 
@@ -206,6 +201,7 @@ export default class EmojiCopy extends Extension {
       }
     }
 
+    this._activeCat = -1;
     this._onSearchTextChanged();
   }
 

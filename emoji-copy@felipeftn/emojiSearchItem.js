@@ -49,20 +49,33 @@ export class EmojiSearchItem {
       this._buildRecents();
       this._updateSensitivity();
       return;
-    }
-    searchedText = searchedText.toLowerCase().trim();
+    } // else { ...
+    searchedText = searchedText.toLowerCase();
 
     for (let j = 0; j < this._nbColumns; j++) {
       this._recents[j].super_btn.label = "";
     }
 
-    const results = this.emojiCopy.sqlite.search_description(searchedText);
+    let minCat = 0;
+    let maxCat = this.emojiCopy.emojiCategories.length;
+    let activeCat = this.emojiCopy._activeCat;
+    if (activeCat != -1) {
+      minCat = activeCat;
+      maxCat = activeCat + 1;
+    }
+
+    let results = [];
+    // First, search for an exact match with emoji names
+    results = this._getResults(searchedText, minCat, maxCat, results, 3);
+    // Then, search only across emoji names
+    results = this._getResults(searchedText, minCat, maxCat, results, 2);
+    // Finally, search across all keywords
+    results = this._getResults(searchedText, minCat, maxCat, results, 1);
 
     let firstEmptyIndex = 0;
     for (let i = 0; i < results.length; i++) {
       if (i < this._nbColumns) {
-        this._recents[firstEmptyIndex].super_btn.label = results[i].unicode;
-        this._recents[firstEmptyIndex].super_btn.text = results[i].description;
+        this._recents[firstEmptyIndex].super_btn.label = results[i];
         firstEmptyIndex++;
       }
     }
@@ -75,6 +88,26 @@ export class EmojiSearchItem {
       this._recents[i].super_btn.set_can_focus(can_focus);
       this._recents[i].super_btn.set_track_hover(can_focus);
     }
+  }
+
+  // Search results are queried in several steps, from more important criteria
+  // to very general string matching.
+  _getResults(searchedText, minCat, maxCat, results, priority) {
+    for (let cat = minCat; cat < maxCat; cat++) {
+      let availableSlots = this._recents.length - results.length;
+      if (availableSlots > 0) {
+        let emojiCategory = this.emojiCopy.emojiCategories[cat];
+        let catResults = emojiCategory.searchEmoji(
+          searchedText,
+          results,
+          this._recents,
+          availableSlots,
+          priority,
+        );
+        results = results.concat(catResults);
+      }
+    }
+    return results;
   }
 
   // Initializes the container showing the recently used emojis as buttons
