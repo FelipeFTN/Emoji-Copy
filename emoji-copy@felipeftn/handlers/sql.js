@@ -39,6 +39,7 @@ export class SQLite {
 
   destroy() {
     this.db.close();
+    this.db = null;
   }
 
   select_like_description(description) {
