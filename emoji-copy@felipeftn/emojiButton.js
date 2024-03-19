@@ -2,7 +2,6 @@ import St from "gi://St";
 import Clutter from "gi://Clutter";
 import GLib from "gi://GLib";
 
-const Clipboard = St.Clipboard.get_default();
 const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;
 
 const VirtualKeyboard = (() => {
@@ -26,6 +25,7 @@ export class EmojiButton {
     this.baseCharacter = baseCharacter;
     this.emojiCopy = emojiCopy;
     this._settings = this.emojiCopy._settings;
+    this.clipboard = St.Clipboard.get_default();
 
     let tonable = false;
     let genrable = false;
@@ -141,7 +141,7 @@ export class EmojiButton {
   }
 
   replaceClipboardAndClose(emojiToCopy) {
-    Clipboard.set_text(
+    this.clipboard.set_text(
       CLIPBOARD_TYPE,
       emojiToCopy,
     );
@@ -155,7 +155,7 @@ export class EmojiButton {
   }
 
   replaceClipboardAndStay(emojiToCopy) {
-    Clipboard.set_text(
+    this.clipboard.set_text(
       CLIPBOARD_TYPE,
       emojiToCopy,
     );
@@ -168,8 +168,8 @@ export class EmojiButton {
   }
 
   addToClipboardAndStay(emojiToCopy) {
-    Clipboard.get_text(CLIPBOARD_TYPE, function (_, text) {
-      Clipboard.set_text(
+    this.clipboard.get_text(CLIPBOARD_TYPE, function (_, text) {
+      this.clipboard.set_text(
         CLIPBOARD_TYPE,
         text + emojiToCopy,
       );
