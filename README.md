@@ -59,13 +59,31 @@ Work in progress...
 
 You may need to restart the GNOME Shell environment (<kbd>Alt</kbd>+<kbd>F2</kbd> -> `restart` -> <kbd>Enter</kbd>).<br> _(X11 only, if you are in Wayland, sign out and sign in from the session manually)._
 
+## Debug and Test 🏗
+
+We have a lot of ways to debug and test our code. Currently, we already have a complete guide to debug and test our extension in a local environment described in [debug.md](./debug.md) file.<br>
+In a simpler way, you can debug the code in two ways:
+
+```bash
+    --> Make 🔥
+    $ make debug
+
+    --> Gnome Dbus Session 🚧
+    $ make && dbus-run-session -- gnome-shell --nested --wayland
+```
+
 ## Memory performance 👾
 
 Loading hundreds of small pictures and thousands of keywords into the memory is
 a lot. Despite a few attempts to optimize their loading, I'm not an expert at
 all concerning memory management, and the extension may be responsible for
 between 10MB and 60MB of memory usage, which is a lot. Don't blame the actual GS
-devs for it.
+devs for it.<br>
+
+**✨ Update:**<br>
+Currently, we are loading emojis with SQLite. With a SQL query system, we were
+able to load just the necessary amount of emojis for each category. All the emojis are "pre-compiled" during the building process, and generates a `emojis.db` file at data directory _(inside extension's directory)_.<br>
+We still can do a lot of improvements in the way we load and display these emojis. Maybe some skeletons and non-syncronous loading should be great to avoid slow loadings.
 
 ## Fonts 🔠
 
@@ -83,6 +101,8 @@ Various contributions to the code itself:
 - [xurizaemon](https://github.com/xurizaemon)
 - [khaled-0](https://github.com/khaled-0)
 - [VortexAcherontic](https://github.com/VortexAcherontic)
+- [NatVIII](https://github.com/NatVIII)
+- [pavinjosdev](https://github.com/pavinjosdev)
 
 The extension is currently available in the following languages:
 

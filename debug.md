@@ -13,6 +13,15 @@ some useful commands I used to debug this extension.
 
 ### Start a new debug session
 
+Build and Debug:
+`make debug`
+
+#### OR
+
+First, build the extension:
+`make`
+
+Then, run an virtual wayland session:
 `dbus-run-session -- gnome-shell --nested --wayland`
 
 ### Symbolic link
