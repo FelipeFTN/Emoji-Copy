@@ -7,14 +7,9 @@ import GLib from "gi://GLib";
 
 import { initSqlJs } from "../libs/sql/sql.js";
 
-async function ReadDB() {
+async function ReadDB(extensionPath) {
   const p = GLib.build_filenamev([
-    GLib.get_home_dir(),
-    ".local",
-    "share",
-    "gnome-shell",
-    "extensions",
-    "emoji-copy@felipeftn",
+    extensionPath,
     "data",
     "emojis.db",
   ]);
@@ -28,9 +23,9 @@ export class SQLite {
     this.db = null;
   }
 
-  async initializeDB() {
+  async initializeDB(extensionPath) {
     try {
-      const [SQL, db] = await Promise.all([initSqlJs(), ReadDB()]);
+      const [SQL, db] = await Promise.all([initSqlJs(), ReadDB(extensionPath)]);
       this.db = new SQL.Database(new Uint8Array(db));
     } catch (error) {
       console.error("Error initializing database:", error);
