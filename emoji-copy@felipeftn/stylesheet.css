@@ -1,61 +1,77 @@
 /* The toggle buttons for the categories */
 
 .EmojisCategory {
-    background-color: #3c3c3c;
-    color: #eeeeec;
-    border-radius: 32px;
-    padding: 12px;
-    border: 1px solid #282828;
+  background-color: #3c3c3c;
+  color: #eeeeec;
+  border-radius: 32px;
+  padding: 12px;
+  border: 1px solid #282828;
 }
 
-.EmojisCategory:hover, .EmojisCategory:focus {
-    background-color: rgba(120, 120, 120, 1.0);
-    color: #ffffff;
+.EmojisCategory:hover,
+.EmojisCategory:focus {
+  background-color: rgba(120, 120, 120, 1);
+  color: #ffffff;
 }
 
-.EmojisCategory:active, .EmojisCategory:checked {
-    background-color: rgba(120, 120, 120, 1.0);
-    color: #ffffff;
-    border-radius: 12px;
+.EmojisCategory:active,
+.EmojisCategory:checked {
+  background-color: rgba(120, 120, 120, 1);
+  color: #ffffff;
+  border-radius: 12px;
 }
 
 /* The actual emojis */
 
 .EmojisItemStyle {
-    font-family: JoyPixels Color, Twitter Color Emoji, Noto Emoji;
-    height: 1.5em;
-    width: 1.5em;
+  font-family:
+    JoyPixels Color,
+    Twitter Color Emoji,
+    Noto Emoji;
+  height: 1.5em;
+  width: 1.5em;
 }
 
-.EmojisItemStyle:hover, .EmojisItemStyle:focus {
-    background-color: rgba(120, 120, 120, 1.0);
-    border-radius: 6px;
+.EmojisItemStyle:hover,
+.EmojisItemStyle:focus {
+  background-color: rgba(120, 120, 120, 1);
+  border-radius: 6px;
 }
 
 .EmojisList {
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 /* The UI for options */
 
-.EmojisGender, .EmojisTone {
-	border-width: 1px;
-	border-radius: 10px;
-	height: 20px;
-	width: 20px;
-	border-style: solid;
-	border-color: black;
+.EmojisGender,
+.EmojisTone {
+  border-width: 1px;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  font-size: 12px;
+  border-style: solid;
+  border-color: black;
 }
 
-.EmojisGender:hover, .EmojisGender:focus, .EmojisGender:active, .EmojisGender:checked,
-.EmojisTone:hover, .EmojisTone:focus, .EmojisTone:active, .EmojisTone:checked {
-	border-width: 3px;
-	height: 16px;
-	width: 16px;
+.EmojisGender:hover,
+.EmojisGender:focus,
+.EmojisGender:active,
+.EmojisGender:checked,
+.EmojisTone:hover,
+.EmojisTone:focus,
+.EmojisTone:active,
+.EmojisTone:checked {
+  border-width: 3px;
+  height: 16px;
+  width: 16px;
 }
 
-.EmojisGender:active, .EmojisGender:checked,
-.EmojisTone:active, .EmojisTone:checked {
-	border-radius: 6px;
+.EmojisGender:active,
+.EmojisGender:checked,
+.EmojisTone:active,
+.EmojisTone:checked {
+  border-radius: 6px;
 }

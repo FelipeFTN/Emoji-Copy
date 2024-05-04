@@ -7,12 +7,12 @@ export class SkinTonesBar {
     this._settings = emojiCopy._settings;
     this._toneArray = [];
 
-    this._buildToneButton(_("No skin tone"), "#FFEE00");
-    this._buildToneButton(_("Light skin tone"), "#FFD8A8");
-    this._buildToneButton(_("Medium light skin tone"), "#E5B590");
-    this._buildToneButton(_("Medium skin tone"), "#B88750");
-    this._buildToneButton(_("Medium dark skin tone"), "#9B6020");
-    this._buildToneButton(_("Dark skin tone"), "#4B2000");
+    this._buildToneButton(1, _("No skin tone"), "#FFEE00");
+    this._buildToneButton(2, _("Light skin tone"), "#FFD8A8");
+    this._buildToneButton(3, _("Medium light skin tone"), "#E5B590");
+    this._buildToneButton(4, _("Medium skin tone"), "#B88750");
+    this._buildToneButton(5, _("Medium dark skin tone"), "#9B6020");
+    this._buildToneButton(6, _("Dark skin tone"), "#4B2000");
 
     this._genderArray = [];
     if (hasGender) {
@@ -48,13 +48,6 @@ export class SkinTonesBar {
       }
     });
     this._genderArray.push(btn);
-  }
-
-  // Signal callback when the user clicks on a tone button
-  _updateToneBtn(intToSet, btn) {
-    this.removeCircle();
-    btn.set_checked(true);
-    this._settings.set_int("skin-tone", intToSet);
   }
 
   _setGender(intToSet) {
@@ -98,7 +91,7 @@ export class SkinTonesBar {
   }
 
   // Build a button for a specific skin tone
-  _buildToneButton(accessibleName, color) {
+  _buildToneButton(intId, accessibleName, color) {
     let btn = new St.Button({
       reactive: true,
       can_focus: true,
@@ -108,9 +101,17 @@ export class SkinTonesBar {
       style_class: "EmojisTone",
       style: "background-color: " + color + ";",
     });
-
-    let intId = this._toneArray.length;
-    btn.connect("clicked", this._updateToneBtn.bind(this, intId));
+    btn.connect("clicked", () => {
+      if (this._settings.get_int("skin-tone") != intId) {
+        this.removeCircle();
+        btn.set_checked(true);
+        this._settings.set_int("skin-tone", intId);
+      } else {
+        this.removeCircle();
+        btn.set_checked(false);
+        this._settings.set_int("skin-tone", 0);
+      }
+    });
     this._toneArray.push(btn);
   }
 }
