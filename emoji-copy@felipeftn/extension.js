@@ -44,7 +44,7 @@ export default class EmojiCopy extends Extension {
     this._permanentItems = 0;
 
     this.sqlite = new SQLite();
-    await this.sqlite.initializeDB();
+    await this.sqlite.initializeDB(this.path);
 
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
     let box = new St.BoxLayout();
