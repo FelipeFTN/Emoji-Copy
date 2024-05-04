@@ -7,12 +7,12 @@ export class SkinTonesBar {
     this._settings = emojiCopy._settings;
     this._toneArray = [];
 
-    this._buildToneButton(1, _("No skin tone"), "#FFEE00");
-    this._buildToneButton(2, _("Light skin tone"), "#FFD8A8");
-    this._buildToneButton(3, _("Medium light skin tone"), "#E5B590");
-    this._buildToneButton(4, _("Medium skin tone"), "#B88750");
-    this._buildToneButton(5, _("Medium dark skin tone"), "#9B6020");
-    this._buildToneButton(6, _("Dark skin tone"), "#4B2000");
+    this._buildToneButton(0, _("No skin tone"), "#FFEE00");
+    this._buildToneButton(1, _("Light skin tone"), "#FFD8A8");
+    this._buildToneButton(2, _("Medium light skin tone"), "#E5B590");
+    this._buildToneButton(3, _("Medium skin tone"), "#B88750");
+    this._buildToneButton(4, _("Medium dark skin tone"), "#9B6020");
+    this._buildToneButton(5, _("Dark skin tone"), "#4B2000");
 
     this._genderArray = [];
     if (hasGender) {
@@ -76,7 +76,7 @@ export class SkinTonesBar {
   // Update buttons appearance, reflecting the current state of the settings
   update() {
     this.removeCircle();
-    this._toneArray[this._settings.get_int("skin-tone")].set_checked(true);
+    // this._toneArray[this._settings.get_int("skin-tone")].set_checked(true);
     this._genderArray.forEach(function (b) {
       if (b) { // index 0 contains null
         b.set_checked(false);
