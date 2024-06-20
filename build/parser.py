@@ -77,8 +77,8 @@ for line in data:
     # check if emoji exists in old emoji_map, so we can get its keywords
     if emoji in emoji_map.keys():
         keywords = emoji_map.get(emoji)
-        if desc not in keywords:
-            desc = f"{desc} {' '.join(keywords)}"
+        keywords = [kw for kw in keywords if kw != desc]
+        desc = f"{desc} {' '.join(keywords)}"
     
     if SUBGROUP not in desc:
         desc = f"{desc} {SUBGROUP}"
