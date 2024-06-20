@@ -868,8 +868,7 @@
     "selfie",
     "camera",
     "phone",
-    "selfie",
-    "HAS_TONE"
+    "selfie"
   ],
   "\ud83d\udcaa": [
     "flexed biceps",
@@ -877,8 +876,7 @@
     "comic",
     "flex",
     "muscle",
-    "arm",
-    "HAS_TONE"
+    "arm"
   ],
   "\ud83e\uddbe": [
     "flexed biceps",
@@ -896,8 +894,7 @@
     "finger",
     "hand",
     "index",
-    "point",
-    "HAS_TONE"
+    "point"
   ],
   "\ud83d\udc49": [
     "backhand index pointing right",
@@ -905,8 +902,7 @@
     "finger",
     "hand",
     "index",
-    "point",
-    "HAS_TONE"
+    "point"
   ],
   "\ud83d\udc46": [
     "backhand index pointing up",
@@ -915,14 +911,12 @@
     "hand",
     "index",
     "point",
-    "up",
-    "HAS_TONE"
+    "up"
   ],
   "\ud83d\udd95": [
     "middle finger",
     "finger",
-    "hand",
-    "HAS_TONE"
+    "hand"
   ],
   "\ud83d\udc47": [
     "backhand index pointing down",
@@ -931,163 +925,139 @@
     "finger",
     "hand",
     "index",
-    "point",
-    "HAS_TONE"
+    "point"
   ],
   "\u270c\ufe0f": [
     "victory hand",
     "hand",
     "v",
-    "victory",
-    "HAS_TONE"
+    "victory"
   ],
   "\ud83e\udd1e": [
     "crossed fingers",
     "cross",
     "finger",
     "hand",
-    "luck",
-    "HAS_TONE"
+    "luck"
   ],
   "\ud83d\udd96": [
     "vulcan salute",
     "finger",
     "hand",
     "spock",
-    "vulcan",
-    "HAS_TONE"
+    "vulcan"
   ],
   "\ud83e\udd18": [
     "sign of the horns",
     "finger",
     "hand",
     "horns",
-    "rock-on",
-    "HAS_TONE"
+    "rock-on"
   ],
   "\ud83e\udd19": [
     "call me hand",
     "call",
-    "hand",
-    "HAS_TONE"
+    "hand"
   ],
   "\ud83d\udd90\ufe0f": [
     "raised hand with fingers splayed",
     "finger",
     "hand",
-    "splayed",
-    "HAS_TONE"
+    "splayed"
   ],
   "\u270b": [
     "raised hand",
-    "hand",
-    "HAS_TONE"
+    "hand"
   ],
   "\ud83e\udd0f": [
     "pinching hand",
     "hand",
     "small",
-    "close",
-    "HAS_TONE"
+    "close"
   ],
   "\ud83d\udc4c": [
     "ok hand",
     "ok",
     "ok",
-    "hand",
-    "HAS_TONE"
+    "hand"
   ],
   "\ud83d\udc4d": [
     "thumbs up",
     "hand",
     "thumb",
-    "up",
-    "HAS_TONE"
+    "up"
   ],
   "\ud83d\udc4e": [
     "thumbs down",
     "down",
     "hand",
-    "thumb",
-    "HAS_TONE"
+    "thumb"
   ],
   "\u270a": [
     "raised fist",
     "clenched",
     "fist",
     "hand",
-    "punch",
-    "HAS_TONE"
+    "punch"
   ],
   "\ud83d\udc4a": [
     "oncoming fist",
     "clenched",
     "fist",
     "hand",
-    "punch",
-    "HAS_TONE"
+    "punch"
   ],
   "\ud83e\udd1b": [
     "left-facing fist",
     "fist",
-    "leftwards",
-    "HAS_TONE"
+    "leftwards"
   ],
   "\ud83e\udd1c": [
     "right-facing fist",
     "fist",
-    "rightwards",
-    "HAS_TONE"
+    "rightwards"
   ],
   "\ud83e\udd1a": [
     "raised back of hand",
     "backhand",
-    "raised",
-    "HAS_TONE"
+    "raised"
   ],
   "\ud83d\udc4b": [
     "waving hand",
     "hand",
     "wave",
-    "waving",
-    "HAS_TONE"
+    "waving"
   ],
   "\ud83e\udd1f": [
     "love-you gesture",
     "hand",
-    "love",
-    "HAS_TONE"
+    "love"
   ],
   "\u270d": [
     "writing hand",
     "hand",
-    "write",
-    "HAS_TONE"
+    "write"
   ],
   "\ud83d\udc4f": [
     "clapping hands",
     "clap",
-    "hand",
-    "HAS_TONE"
+    "hand"
   ],
   "\ud83d\udc50": [
     "open hands",
     "hand",
-    "open",
-    "HAS_TONE"
+    "open"
   ],
   "\ud83d\ude4c": [
     "raising hands",
     "celebration",
     "hand",
     "hooray",
-    "raised",
-    "HAS_TONE"
+    "raised"
   ],
   "\ud83e\udd32": [
     "palms up together",
-    "hand",
-    "HAS_TONE"
+    "hand"
   ],
   "\ud83d\ude4f": [
     "folded hands",
@@ -1097,8 +1067,7 @@
     "hand",
     "please",
     "pray",
-    "thanks",
-    "HAS_TONE"
+    "thanks"
   ],
   "\ud83e\udd1d": [
     "handshake",
@@ -1106,8 +1075,7 @@
     "hand",
     "handshake",
     "meeting",
-    "shake",
-    "HAS_TONE"
+    "shake"
   ],
   "\ud83d\udc85": [
     "nail polish",
@@ -1115,13 +1083,11 @@
     "cosmetics",
     "manicure",
     "nail",
-    "polish",
-    "HAS_TONE"
+    "polish"
   ],
   "\ud83d\udc42": [
     "ear",
-    "body",
-    "HAS_TONE"
+    "body"
   ],
   "\ud83e\uddbb": [
     "ear",
@@ -1132,13 +1098,11 @@
   ],
   "\ud83d\udc43": [
     "nose",
-    "body",
-    "HAS_TONE"
+    "body"
   ],
   "\ud83e\uddb5": [
     "leg",
-    "body",
-    "HAS_TONE"
+    "body"
   ],
   "\ud83e\uddbf": [
     "leg",
@@ -1149,8 +1113,7 @@
   "\ud83e\uddb6": [
     "foot",
     "fetish",
-    "body",
-    "HAS_TONE"
+    "body"
   ],
   "\ud83d\udc63": [
     "footprints",
@@ -1195,230 +1158,170 @@
   "\ud83d\udc76": [
     "baby",
     "baby",
-    "young",
-    "HAS_TONE"
+    "young"
   ],
   "\ud83e\uddd2": [
     "child",
     "young",
-    "kid",
-    "HAS_TONE"
+    "kid"
   ],
   "\ud83d\udc66": [
     "boy",
     "young",
-    "kid",
-    "HAS_TONE"
+    "kid"
   ],
   "\ud83d\udc67": [
     "girl",
     "young",
-    "kid",
-    "HAS_TONE"
+    "kid"
   ],
   "\ud83e\uddd1": [
     "adult",
     "guy",
     "grownup",
     "human",
-    "person",
-    "HAS_TONE"
+    "person"
   ],
   "\ud83d\udc68": [
-    "man",
-    "HAS_TONE"
+    "man"
   ],
   "\ud83d\udc69": [
-    "woman",
-    "HAS_TONE"
+    "woman"
   ],
   "\ud83e\uddd3": [
     "older adult",
     "adult",
     "old",
-    "person",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "person"
   ],
   "\ud83e\uddd1\u200d\ud83e\uddb0": [
     "person red hair",
     "ginger hair",
-    "orange hair",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "orange hair"
   ],
   "\ud83e\uddd1\u200d\ud83e\uddb1": [
     "person curly hair",
-    "curls",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "curls"
   ],
   "\ud83e\uddd1\u200d\ud83e\uddb3": [
     "person white hair",
-    "person with white hair",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "person with white hair"
   ],
   "\ud83e\uddd1\u200d\ud83e\uddb2": [
     "person bald",
-    "alopecia",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "alopecia"
   ],
   "\ud83e\uddd1\u200d\u2695\ufe0f": [
     "health worker",
     "doctor",
     "healthcare",
     "nurse",
-    "therapist",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "therapist"
   ],
   "\ud83e\uddd1\u200d\ud83c\udf93": [
     "student",
-    "university",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "university"
   ],
   "\ud83e\uddd1\u200d\ud83c\udfeb": [
-    "judge",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "judge"
   ],
   "\ud83e\uddd1\u200d\ud83c\udf3e": [
     "farmer",
     "farm",
-    "worker",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "worker"
   ],
   "\ud83e\uddd1\u200d\ud83c\udf73": [
     "cook",
     "cooking",
-    "chef",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "chef"
   ],
   "\ud83e\uddd1\u200d\ud83d\udd27": [
     "mechanic",
-    "worker",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "worker"
   ],
   "\ud83e\uddd1\u200d\ud83c\udfed": [
     "factory worker",
-    "factory",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "factory"
   ],
   "\ud83e\uddd1\u200d\ud83d\udcbc": [
     "office worker",
     "office",
-    "office worker",
-    "HAS_TONE",
-    "IS_GENDERED"
+    "office worker"
   ],
   "\ud83e\uddd1\u200d\ud83d\udd2c": [
     "scientist",
-    "scientist",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "scientist"
   ],
   "\ud83e\uddd1\u200d\ud83d\udcbb": [
     "technologist",
     "hacker",
     "matrix",
-    "computing",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "computing"
   ],
   "\ud83e\uddd1\u200d\ud83c\udfa4": [
     "singer",
     "star",
     "rock",
-    "music",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "music"
   ],
   "\ud83e\uddd1\u200d\ud83c\udfa8": [
     "artist",
-    "painter",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "painter"
   ],
   "\ud83e\uddd1\u200d\u2708\ufe0f": [
     "airplane pilot",
-    "pilot",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "pilot"
   ],
   "\ud83e\uddd1\u200d\ud83d\ude80": [
     "astronaut",
     "cosmonaut",
-    "spationaut",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "spationaut"
   ],
   "\ud83e\uddd1\u200d\ud83d\ude92": [
     "firefighter",
-    "fire",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "fire"
   ],
   "\ud83d\udc6e": [
     "police officer",
     "cop",
     "officer",
-    "police",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "police"
   ],
   "\ud83d\udd75": [
     "detective",
     "detective",
     "sleuth",
-    "spy",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "spy"
   ],
   "\ud83d\udc82": [
     "guard",
-    "royal guard",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "royal guard"
   ],
   "\ud83d\udc77": [
     "construction worker",
     "construction",
     "hat",
     "worker",
-    "ci build",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "ci build"
   ],
   "\ud83e\udd34": [
     "prince",
-    "king",
-    "HAS_TONE"
+    "king"
   ],
   "\ud83d\udc78": [
     "princess",
     "fairy tale",
-    "fantasy",
-    "HAS_TONE"
+    "fantasy"
   ],
   "\ud83d\udc73": [
     "person wearing turban",
-    "turban",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "turban"
   ],
   "\ud83d\udc72": [
     "man with chinese cap",
     "gua pi mao",
     "hat",
-    "chinese",
-    "HAS_TONE"
+    "chinese"
   ],
   "\ud83e\uddd5": [
     "woman with headscarf",
@@ -1427,54 +1330,45 @@
     "mantilla",
     "tichel",
     "bandana",
-    "head kerchief",
-    "HAS_TONE"
+    "head kerchief"
   ],
   "\ud83e\uddd4": [
     "bearded person",
-    "beard",
-    "HAS_TONE"
+    "beard"
   ],
   "\ud83d\udc71": [
     "blond-haired person",
-    "blond",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "blond"
   ],
   "\ud83e\udd35": [
     "man in tuxedo",
     "groom",
     "tuxedo",
-    "wedding",
-    "HAS_TONE"
+    "wedding"
   ],
   "\ud83d\udc70": [
     "bride with veil",
     "bride",
     "veil",
-    "wedding",
-    "HAS_TONE"
+    "wedding"
   ],
   "\ud83e\udd30": [
     "pregnant woman",
     "pregnant",
-    "woman",
-    "HAS_TONE"
+    "woman"
   ],
   "\ud83e\udd31": [
     "breast-feeding",
     "breast",
     "woman",
     "baby",
-    "milk",
-    "HAS_TONE"
+    "milk"
   ],
   "\ud83d\udc7c": [
     "baby angel",
     "angel",
     "baby",
-    "fantasy",
-    "HAS_TONE"
+    "fantasy"
   ],
   "\ud83c\udf85": [
     "santa claus",
@@ -1482,8 +1376,7 @@
     "celebration",
     "claus",
     "father",
-    "santa",
-    "HAS_TONE"
+    "santa"
   ],
   "\ud83e\udd36": [
     "mrs. claus",
@@ -1491,81 +1384,60 @@
     "mrs.",
     "celebration",
     "claus",
-    "mother",
-    "HAS_TONE"
+    "mother"
   ],
   "\ud83e\uddb8": [
     "superhero",
     "hero",
-    "comics",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "comics"
   ],
   "\ud83e\uddb9": [
     "supervillain",
     "villain",
-    "comics",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "comics"
   ],
   "\ud83e\uddd9": [
     "mage",
     "magus",
     "wizard",
-    "fantasy",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "fantasy"
   ],
   "\ud83e\uddda": [
     "fairy",
     "pixy",
-    "fantasy",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "fantasy"
   ],
   "\ud83e\udddb": [
     "vampire",
     "blood",
-    "fantasy",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "fantasy"
   ],
   "\ud83e\udddc": [
     "mermaid",
     "merperson",
-    "sea",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "sea"
   ],
   "\ud83e\udddd": [
     "elf",
-    "fantasy",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "fantasy"
   ],
   "\ud83e\uddde": [
     "genie",
     "wish",
-    "jinn",
-    "HAS_GENDER"
+    "jinn"
   ],
   "\ud83e\udddf": [
-    "zombie",
-    "HAS_GENDER"
+    "zombie"
   ],
   "\ud83d\ude4d": [
     "person frowning",
     "frown",
-    "gesture",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "gesture"
   ],
   "\ud83d\ude4e": [
     "person pouting",
     "gesture",
-    "pouting",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "pouting"
   ],
   "\ud83d\ude45": [
     "person gesturing no",
@@ -1574,17 +1446,13 @@
     "hand",
     "no",
     "not",
-    "prohibited",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "prohibited"
   ],
   "\ud83d\ude46": [
     "person gesturing ok",
     "ok",
     "gesture",
-    "hand",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "hand"
   ],
   "\ud83d\udc81": [
     "person tipping hand",
@@ -1592,67 +1460,51 @@
     "help",
     "information",
     "sassy",
-    "tipping",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "tipping"
   ],
   "\ud83d\ude4b": [
     "person raising hand",
     "gesture",
     "hand",
     "happy",
-    "raised",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "raised"
   ],
   "\ud83d\ude47": [
     "person bowing",
     "apology",
     "bow",
     "gesture",
-    "sorry",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "sorry"
   ],
   "\ud83e\udd26": [
     "person facepalming",
     "disbelief",
     "exasperation",
-    "palm",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "palm"
   ],
   "\ud83e\udd37": [
     "person shrugging",
     "doubt",
     "ignorance",
     "indifference",
-    "shrug",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "shrug"
   ],
   "\ud83e\uddcf": [
     "deaf person",
     "hearing loss",
-    "sign language",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "sign language"
   ],
   "\ud83d\udc86": [
     "person getting massage",
     "massage",
-    "salon",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "salon"
   ],
   "\ud83d\udc87": [
     "person getting haircut",
     "barber",
     "beauty",
     "haircut",
-    "parlor",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "parlor"
   ],
   "\ud83e\uddcd": [
     "person standing",
@@ -1660,51 +1512,37 @@
     "stop",
     "loitering",
     "awkwardness",
-    "facing forward",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "facing forward"
   ],
   "\ud83d\udeb6": [
     "person walking",
     "hike",
     "walk",
-    "walking",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "walking"
   ],
   "\ud83c\udfc3": [
     "person running",
     "marathon",
-    "running",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "running"
   ],
   "\ud83e\uddce": [
     "person kneeling",
     "prayer",
-    "kneel down",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "kneel down"
   ],
   "\ud83e\uddd1\u200d\ud83e\uddaf": [
     "person with white cane",
     "blind person",
     "walking",
-    "disability",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "disability"
   ],
   "\ud83e\uddd1\u200d\ud83e\uddbc": [
     "person in motorized wheelchair",
-    "disability",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "disability"
   ],
   "\ud83e\uddd1\u200d\ud83e\uddbd": [
     "person in manual wheelchair",
-    "disability",
-    "IS_GENDERED",
-    "HAS_TONE"
+    "disability"
   ],
   "\ud83d\udc83": [
     "woman dancing",
@@ -1720,8 +1558,7 @@
     "people with bunny ears partying",
     "bunny ear",
     "dancer",
-    "partying",
-    "HAS_GENDER"
+    "partying"
   ],
   "\ud83d\udec0": [
     "person taking bath",
@@ -4561,8 +4398,7 @@
     "horse",
     "jockey",
     "racehorse",
-    "racing",
-    "HAS_TONE"
+    "racing"
   ],
   "\u26f7": [
     "skier",
@@ -4573,64 +4409,47 @@
     "snowboarder",
     "ski",
     "snow",
-    "snowboard",
-    "HAS_TONE"
+    "snowboard"
   ],
   "\ud83c\udfcc": [
     "person golfing",
     "ball",
-    "golf",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "golf"
   ],
   "\ud83c\udfc4": [
     "person surfing",
-    "surfing",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "surfing"
   ],
   "\ud83d\udea3": [
     "person rowing boat",
     "boat",
-    "rowboat",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "rowboat"
   ],
   "\ud83c\udfca": [
     "person swimming",
-    "swim",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "swim"
   ],
   "\u26f9": [
     "person bouncing ball",
-    "ball",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "ball"
   ],
   "\ud83c\udfcb": [
     "person lifting weights",
     "lifter",
-    "weight",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "weight"
   ],
   "\ud83d\udeb4": [
     "person biking",
     "bicycle",
     "biking",
-    "cyclist",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "cyclist"
   ],
   "\ud83d\udeb5": [
     "person mountain biking",
     "bicycle",
     "bike",
     "cyclist",
-    "mountain",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "mountain"
   ],
   "\ud83c\udfce": [
     "racing car",
@@ -4644,59 +4463,44 @@
   "\ud83e\udd38": [
     "person cartwheeling",
     "cartwheel",
-    "gymnastics",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "gymnastics"
   ],
   "\ud83e\udd3c": [
     "people wrestling",
     "wrestle",
-    "wrestler",
-    "HAS_GENDER"
+    "wrestler"
   ],
   "\ud83e\udd3d": [
     "person playing water polo",
     "polo",
-    "water",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "water"
   ],
   "\ud83e\udd3e": [
     "person playing handball",
     "ball",
-    "handball",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "handball"
   ],
   "\ud83e\udd39": [
     "person juggling",
     "balance",
     "juggle",
     "multitask",
-    "skill",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "skill"
   ],
   "\ud83e\uddd6": [
     "person in steamy room",
     "steam",
-    "sauna",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "sauna"
   ],
   "\ud83e\uddd7": [
     "person climbing",
     "climbing",
-    "cliff",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "cliff"
   ],
   "\ud83e\uddd8": [
     "person in lotus position",
     "yoga",
-    "lotus",
-    "HAS_GENDER",
-    "HAS_TONE"
+    "lotus"
   ],
   "\ud83d\udcf1": [
     "mobile phone",
