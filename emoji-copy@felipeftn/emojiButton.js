@@ -102,6 +102,7 @@ export class EmojiButton {
       symbol == Clutter.KP_Enter
     ) {
       let emojiToCopy = this.getTaggedEmoji();
+      this.emojiCopy.sqlite.increment_selection(emojiToCopy);
       let [_x, _y, mods] = global.get_pointer();
       let majPressed = (mods & Clutter.ModifierType.SHIFT_MASK) != 0;
       let ctrlPressed = (mods & Clutter.ModifierType.CONTROL_MASK) != 0;
@@ -129,6 +130,7 @@ export class EmojiButton {
     if (emojiToCopy == null) {
       return Clutter.EVENT_PROPAGATE;
     }
+    this.emojiCopy.sqlite.increment_selection(emojiToCopy);
 
     if (mouseButton == 1) {
       return this.replaceClipboardAndClose(emojiToCopy);

@@ -43,6 +43,12 @@ export class SQLite {
     `);
   }
 
+  increment_selection(unicode) {
+    this.query(
+      `UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = '${unicode}'`
+    )
+  }
+
   search_description(search_text, skin_tone = 0) {
     const sql_string = search_text
       .split(" ")
@@ -53,12 +59,12 @@ export class SQLite {
     if (skin_tone != 0) {
       const skin_tone_str = this.get_skin_tone(skin_tone);
       return this.query(`
-        SELECT * FROM emojis WHERE (${sql_string}) AND skin_tone LIKE '%${skin_tone_str}%' ORDER BY LENGTH(description);
+        SELECT * FROM emojis WHERE (${sql_string}) AND skin_tone LIKE '%${skin_tone_str}%' ORDER BY clicked_times DESC;
       `);
     }
 
     return this.query(`
-      SELECT * FROM emojis WHERE ${sql_string} ORDER BY LENGTH(description);
+      SELECT * FROM emojis WHERE ${sql_string} ORDER BY clicked_times DESC;
     `);
   }
 
@@ -87,6 +93,7 @@ export class SQLite {
       item.description = data[1];
       item.skin_tone = data[2];
       item.group = data[3];
+      item.clicked_times = data[4]
       return item;
     });
     return result;
