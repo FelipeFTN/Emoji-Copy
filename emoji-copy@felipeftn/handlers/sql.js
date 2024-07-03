@@ -44,9 +44,9 @@ export class SQLite {
   }
 
   increment_selection(unicode) {
-    this.query(
-      `UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = '${unicode}'`
-    )
+    return this.query(`
+      UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = '${unicode}'
+      `);
   }
 
   search_description(search_text, skin_tone = 0) {
@@ -93,7 +93,7 @@ export class SQLite {
       item.description = data[1];
       item.skin_tone = data[2];
       item.group = data[3];
-      item.clicked_times = data[4]
+      item.clicked_times = data[4];
       return item;
     });
     return result;
