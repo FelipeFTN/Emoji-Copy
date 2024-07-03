@@ -49,7 +49,7 @@ export class EmojiButton {
       can_focus: true,
       label: this.baseCharacter,
     });
-
+    
     // Copy the emoji to the clipboard with adequate tags and behavior
     this.super_btn.connect("button-press-event", this.onButtonPress.bind(this));
     this.super_btn.connect("key-press-event", this.onKeyPress.bind(this));
@@ -162,24 +162,16 @@ export class EmojiButton {
       emojiToCopy,
     );
 
-    if (this._settings.get_boolean("paste-on-select")) {
-      this.triggerPasteHack();
-    }
-
     return Clutter.EVENT_STOP;
   }
 
   addToClipboardAndStay(emojiToCopy) {
-    this.clipboard.get_text(CLIPBOARD_TYPE, function (_, text) {
+    this.clipboard.get_text(CLIPBOARD_TYPE, (_, text) => {
       this.clipboard.set_text(
         CLIPBOARD_TYPE,
         text + emojiToCopy,
       );
     });
-
-    if (this._settings.get_boolean("paste-on-select")) {
-      this.triggerPasteHack();
-    }
 
     return Clutter.EVENT_STOP;
   }
