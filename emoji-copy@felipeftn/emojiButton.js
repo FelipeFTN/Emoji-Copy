@@ -49,7 +49,7 @@ export class EmojiButton {
       can_focus: true,
       label: this.baseCharacter,
     });
-
+    
     // Copy the emoji to the clipboard with adequate tags and behavior
     this.super_btn.connect("button-press-event", this.onButtonPress.bind(this));
     this.super_btn.connect("key-press-event", this.onKeyPress.bind(this));
@@ -102,6 +102,7 @@ export class EmojiButton {
       symbol == Clutter.KP_Enter
     ) {
       let emojiToCopy = this.getTaggedEmoji();
+      this.emojiCopy.sqlite.increment_selection(emojiToCopy);
       let [_x, _y, mods] = global.get_pointer();
       let majPressed = (mods & Clutter.ModifierType.SHIFT_MASK) != 0;
       let ctrlPressed = (mods & Clutter.ModifierType.CONTROL_MASK) != 0;
@@ -129,6 +130,7 @@ export class EmojiButton {
     if (emojiToCopy == null) {
       return Clutter.EVENT_PROPAGATE;
     }
+    this.emojiCopy.sqlite.increment_selection(emojiToCopy);
 
     if (mouseButton == 1) {
       return this.replaceClipboardAndClose(emojiToCopy);
@@ -160,24 +162,16 @@ export class EmojiButton {
       emojiToCopy,
     );
 
-    if (this._settings.get_boolean("paste-on-select")) {
-      this.triggerPasteHack();
-    }
-
     return Clutter.EVENT_STOP;
   }
 
   addToClipboardAndStay(emojiToCopy) {
-    this.clipboard.get_text(CLIPBOARD_TYPE, function (_, text) {
+    this.clipboard.get_text(CLIPBOARD_TYPE, (_, text) => {
       this.clipboard.set_text(
         CLIPBOARD_TYPE,
         text + emojiToCopy,
       );
     });
-
-    if (this._settings.get_boolean("paste-on-select")) {
-      this.triggerPasteHack();
-    }
 
     return Clutter.EVENT_STOP;
   }

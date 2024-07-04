@@ -11,13 +11,14 @@ CREATE TABLE IF NOT EXISTS emojis(
     unicode VARCHAR(255) PRIMARY KEY,
     description VARCHAR(255),
     skin_tone VARCHAR(255),
-    emoji_group VARCHAR(255)
+    emoji_group VARCHAR(255),
+    clicked_times NUMBER default 0
 )
 """
 
 # SQL query to insert/replace/update emoji in table
 INSERT_TBL = """
-REPLACE INTO emojis VALUES (?, ?, ?, ?)
+REPLACE INTO emojis VALUES (?, ?, ?, ?, 0)
 """
 
 # SQL query to get all entries from table
