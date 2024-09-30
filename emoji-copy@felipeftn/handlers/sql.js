@@ -59,7 +59,7 @@ export class SQLite {
     if (skin_tone != 0) {
       const skin_tone_str = this.get_skin_tone(skin_tone);
       return this.query(`
-        SELECT * FROM emojis WHERE (${sql_string}) AND skin_tone LIKE '%${skin_tone_str}%' ORDER BY clicked_times DESC;
+        SELECT * FROM emojis WHERE (${sql_string}) AND (skin_tone = '' OR skin_tone LIKE '%${skin_tone_str}%') ORDER BY clicked_times DESC;
       `);
     }
 
