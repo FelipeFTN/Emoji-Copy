@@ -1,0 +1,243 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020,2021,2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
+"PO-Revision-Date: 2022-11-16 20:17+0100\n"
+"Last-Translator: Jasur Sadikov<jasur@sadikoff.com>\n"
+"Language-Team:russian\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
+msgid "Emoji Copy"
+msgstr "Emoji Copy"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Smileys & Body"
+msgstr "Смайлы и люди"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Peoples & Clothing"
+msgstr "Одежда и люди"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Animals & Nature"
+msgstr "Природа"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Food & Drink"
+msgstr "Еда и напитки"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Travel & Places"
+msgstr "Viaggi & Luoghi"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Activities & Sports"
+msgstr "Занятия"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Objects"
+msgstr "Объекты"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Symbols"
+msgstr "Символы"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Flags"
+msgstr "Флаги"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"Displaying the interface from the bottom is better if you use a bottom panel "
+"instead of the default top bar. Modifications will be effective after "
+"reloading the extension."
+msgstr ""
+"Отображение интерфейса снизу лучше, если вы используете нижнюю панель "
+"вместо стандартной верхней. Изменения вступят в силу после перезагрузки расширения."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "General layout"
+msgstr "Обычная разметка"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Number of emojis per line"
+msgstr "Количество эмодзи в строке"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Size of emojis (px)"
+msgstr "Размеры эмодзи (px)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Layout"
+msgstr "Разметка"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Use a keyboard shortcut to toggle the menu"
+msgstr "Использовать комбинацию клавиш чтобы показать меню"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Help"
+msgstr "Помощь"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Apply"
+msgstr "Применить"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Always show the icon in the panel"
+msgstr "Всегда показывать иконку на панели"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"If you access the menu with the keyboard shortcut, you don't need to always "
+"display the icon."
+msgstr ""
+"Если вы используете комбинацию клавиш для вызова меню, вам не обязательно"
+"показывать иконку."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Keyboard bindings"
+msgstr "Комбинация клавиш"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
+msgstr "Emoji copy - расшение созданное для упрощения выбора эмодзи"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Report bugs or ideas"
+msgstr "Сообщить об ошибке"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Author"
+msgstr "Автор"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Translator(s)"
+msgstr "Переводчик(и)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "translator-credits"
+msgstr "Jasur Sadikov"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Original Owner"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "About"
+msgstr "О расширении"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "List of valid key names"
+msgstr "Список доступных клавиш"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Modifier keys must be between chevrons"
+msgstr "Название клавиш должны быть за угловыми скобками."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Don't use a keyboard shortcut that already exists."
+msgstr "Сочитание клавиш уже занято."
+
+#: emoji-copy@felipeftn/emojiCategory.js
+#, javascript-format
+msgid "Incorrect number of keywords for category '%s':"
+msgstr "Неверное число ключевых слов для категории '%s':"
+
+#: emoji-copy@felipeftn/emojiCategory.js
+msgid "Please report this bug"
+msgstr "Пожалуйста, сообщите об ошибке"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Без оттенка кожи"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Светлый оттенок"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Средний оттенок"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Средний тёмный оттенок "
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Тёмный оттенок"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Tonalità della pelle scura"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Женщины"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Мужчины"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Введите текст для поиска..."
+
+#~ msgid "Modifications will be effective after reloading the extension."
+#~ msgstr ""
+#~ "Изменения вступят в силу после перезапуска расширения"
+
+#~ msgid "From top to bottom"
+#~ msgstr "Сверху вниз"
+
+#~ msgid "From bottom to top"
+#~ msgstr "Снизу вверх"
+
+#, javascript-format
+#~ msgid "The default value is %s"
+#~ msgstr "Значение по умолчанию %s"
+
+#, javascript-format
+#~ msgid "version %s"
+#~ msgstr "версия %s"
+
+#~ msgid ""
+#~ "This extension provides a parametrable popup menu displaying most emojis, "
+#~ "clicking on an emoji copies it to the clipboard."
+#~ msgstr ""
+#~ "Это расширение предоставляет настраивоемое всплывающее меню отоброжающее большинство эмодзи "
+#~ "нажатие на эмодзи добавляет его в буфер обмена "
+
+#~| msgid "Contributors:"
+#~ msgid "Contributors"
+#~ msgstr "Контрибьюторы"
+
+#~ msgid "Settings"
+#~ msgstr "Настройки"
+
+#~ msgid "Default value is:"
+#~ msgstr "Значение по умолчанию:"
+
+#~ msgid "Use dark font"
+#~ msgstr "Использовать тёмный шрифт"
+
+#~ msgid "Appearance"
+#~ msgstr "Внешний вид"
