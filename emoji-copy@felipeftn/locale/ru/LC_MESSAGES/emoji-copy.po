@@ -39,7 +39,7 @@ msgstr "Еда и напитки"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Travel & Places"
-msgstr "Viaggi & Luoghi"
+msgstr "Путешествия и места"
 
 #: emoji-copy@felipeftn/extension.js
 msgid "Activities & Sports"
@@ -175,19 +175,19 @@ msgstr "Светлый оттенок"
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Medium light skin tone"
-msgstr "Средний оттенок"
+msgstr "Средний светлый оттенок"
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Medium skin tone"
-msgstr "Средний тёмный оттенок "
+msgstr "Средний оттенок"
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Medium dark skin tone"
-msgstr "Тёмный оттенок"
+msgstr "Средний тёмный оттенок"
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Dark skin tone"
-msgstr "Tonalità della pelle scura"
+msgstr "Тёмный оттенок"
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Women"
