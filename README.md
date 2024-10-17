@@ -106,14 +106,15 @@ Various contributions to the code itself:
 
 The extension is currently available in the following languages:
 
-- Castillan (thanks to mario-mra)
-- Simplified chinese (thanks to larryw3i)
-- Dutch (thanks to vistaus)
-- Esperanto (thanks to nicolasmaia)
-- German (thanks to jonnius)
-- Italian (thanks to amivaleo)
-- Polish (thanks to alex4401)
-- Brazilian portuguese (thanks to nicolasmaia, picsi & frnogueira)
-- Turkish (thanks to mimoguz)
+- Castillan (thanks to @mario-mra)
+- Simplified chinese (thanks to @larryw3i)
+- Dutch (thanks to @vistaus)
+- Esperanto (thanks to @nicolasmaia)
+- German (thanks to @jonnius)
+- Italian (thanks to @amivaleo)
+- Polish (thanks to @alex4401)
+- Brazilian portuguese (thanks to @nicolasmaia, @picsi & @frnogueira)
+- Turkish (thanks to @mimoguz)
+- Russsian (thanks to @jasursadikov)
 
 If you need another language, please contribute! ♥
