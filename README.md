@@ -106,15 +106,15 @@ Various contributions to the code itself:
 
 The extension is currently available in the following languages:
 
-- Castillan (thanks to @mario-mra)
-- Simplified chinese (thanks to @larryw3i)
-- Dutch (thanks to @vistaus)
-- Esperanto (thanks to @nicolasmaia)
-- German (thanks to @jonnius)
-- Italian (thanks to @amivaleo)
-- Polish (thanks to @alex4401)
-- Brazilian portuguese (thanks to @nicolasmaia, @picsi & @frnogueira)
-- Turkish (thanks to @mimoguz)
-- Russsian (thanks to @jasursadikov)
+- 🇪🇸 Castillan (Thanks to @mario-mra)
+- 🇨🇳 Simplified chinese (Thanks to [@larryw3i](https://github.com/larryw3i/))
+- 🇳🇱 Dutch (Thanks to [@vistaus](https://github.com/vistaus/))
+- 🇺🇳 Esperanto (Thanks to [@nicolasmaia](https://github.com/nicolasmaia/))
+- 🇩🇪 German (Thanks to [@jonnius](https://github.com/jonnius/))
+- 🇮🇹 Italian (Thanks to [@amivaleo](https://github.com/amivaleo/))
+- 🇵🇱 Polish (Thanks to [@alex4401](https://github.com/alex4401/))
+- 🇧🇷 Brazilian/🇵🇹 Portuguese (Thanks to [@nicolasmaia](https://github.com/nicolasmaia/), [@picsi](https://github.com/picsi) & [@frnogueira](https://github.com/frnogueira/))
+- 🇹🇷 Turkish (Thanks to [@mimoguz](https://github.com/mimoguz))
+- 🇷🇺 Russian (Thanks to [@jasursadikov](https://github.com/jasursadikov))
 
-If you need another language, please contribute! ♥
+If you need another language, please contribute! ❤️
