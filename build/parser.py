@@ -8,7 +8,7 @@ import traceback
 from sqlite import SQLite
 
 # Constants
-UNICODE_URL = "https://unicode.org/Public/emoji/15.1/emoji-test.txt" # emoji keyboard/display test data
+UNICODE_URL = "https://unicode.org/Public/emoji/latest/emoji-test.txt" # emoji keyboard/display test data
 EMOJI_MAP = "./build/emoji_map.json" # existing emojis mapped to keywords
 DB_PATH = "./emoji-copy@felipeftn/data/emojis.db" # path to SQLite DB for storing emojis
 
