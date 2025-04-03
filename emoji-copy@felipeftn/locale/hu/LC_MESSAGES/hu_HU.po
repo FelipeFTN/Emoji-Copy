@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-03 00:19-0300\n"
+"PO-Revision-Date: 2025-04-03 12:50+0200\n"
+"Last-Translator: summoner <summoner@vivaldi.net>\n"
+"Language-Team: \n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
+msgid "Emoji Copy"
+msgstr "Emoji Copy"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Smileys & Body"
+msgstr "Mosolyok és test"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Peoples & Clothing"
+msgstr "Emberek és ruházat"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Animals & Nature"
+msgstr "Állatok és természet"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Food & Drink"
+msgstr "Étel és ital"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Travel & Places"
+msgstr "Utazás és helyek"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Activities & Sports"
+msgstr "Tevékenységek és sportok"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Objects"
+msgstr "Tárgyak"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Symbols"
+msgstr "Szimbólumok"
+
+#: emoji-copy@felipeftn/extension.js
+msgid "Flags"
+msgstr "Zászlók"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"Displaying the interface from the bottom is better if you use a bottom panel "
+"instead of the default top bar. Modifications will be effective after "
+"reloading the extension."
+msgstr ""
+"A felület alulról történő megjelenítése jobb, ha alsó panelt használ az "
+"alapértelmezett felső sáv helyett. A módosítások a bővítmény újratöltése "
+"után lépnek életbe."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "General layout"
+msgstr "Általános elrendezés"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Number of emojis per line"
+msgstr "Emodzsik száma soronként"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Size of emojis (px)"
+msgstr "Emodzsik mérete (px)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Paste upon emoji selection"
+msgstr "Beillesztés az emodzsi kiválasztása után"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Layout"
+msgstr "Elrendezés"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Use a keyboard shortcut to toggle the menu"
+msgstr "Billentyűparancs használata a menü váltásához"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Help"
+msgstr "Súgó"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Apply"
+msgstr "Alkalmaz"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Always show the icon in the panel"
+msgstr "Mindig jelenítse meg a bővítmény ikonját a panelen"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"If you access the menu with the keyboard shortcut, you don't need to always "
+"display the icon."
+msgstr ""
+"Ha a menüt egy billentyűparanccsal éri el, nem kell mindig megjeleníteni az "
+"ikont."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Keyboard bindings"
+msgstr "Billentyűkötések"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid ""
+"Emoji copy is a versatile extension designed to simplify emoji selection and "
+"clipboard management."
+msgstr ""
+"Az Emoji copy egy sokoldalú bővítmény, amelyet az emodzsik kiválasztásának "
+"és a vágólap kezelésének egyszerűsítésére terveztek."
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Report bugs or ideas"
+msgstr "Hibák vagy ötletek jelentése"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Author"
+msgstr "Szerző"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Translator(s)"
+msgstr "Fordító(k)"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "translator-credits"
+msgstr "fordító-készítők"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Original Owner"
+msgstr "Eredeti tulajdonos"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "About"
+msgstr "Névjegy"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "List of valid key names"
+msgstr "Érvényes kulcsnevek listája"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Modifier keys must be between chevrons"
+msgstr "A módosító billentyűknek kúpos zárójelek <> között kell lenniük"
+
+#: emoji-copy@felipeftn/prefs.ui
+msgid "Don't use a keyboard shortcut that already exists."
+msgstr "Ne használjon olyan billentyűparancsot, amely már létezik."
+
+#: emoji-copy@felipeftn/emojiCategory.js
+#, javascript-format
+msgid "Incorrect number of keywords for category '%s':"
+msgstr "Helytelen számú kulcsszó a(z) „%s” kategóriában:"
+
+#: emoji-copy@felipeftn/emojiCategory.js
+msgid "Please report this bug"
+msgstr "Jelentse ezt a hibát"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "No skin tone"
+msgstr "Nincs bőrszín"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Light skin tone"
+msgstr "Világos bőrszín"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium light skin tone"
+msgstr "Közepesen világos bőrszín"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium skin tone"
+msgstr "Közepes bőrszín"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Medium dark skin tone"
+msgstr "Közepesen sötét bőrszín"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Dark skin tone"
+msgstr "Sötét bőrszín"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Women"
+msgstr "Nő"
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
+msgid "Men"
+msgstr "Férfi"
+
+#: emoji-copy@felipeftn/emojiSearchItem.js
+msgid "Type here to search…"
+msgstr "Keresés…"
