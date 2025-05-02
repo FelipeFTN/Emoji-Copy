@@ -1,4 +1,5 @@
 import St from "gi://St";
+import Clutter from "gi://Clutter";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
 import { EmojiButton } from "./emojiButton.js";
@@ -35,9 +36,64 @@ export class EmojiSearchItem {
     // initializing the "recently used" buttons
     this.recentlyUsedItem = this._recentlyUsedInit();
 
-    // pressing "enter" when no item is focused == activating the first one
-    this.searchEntry.clutter_text.connect("key-press-event", (o, e) => {
-      this._recents[0].onKeyPress(o, e);
+    this.searchEntry.clutter_text.connect("key-press-event", (actor, event) => {
+      const symbol = event.get_key_symbol();
+      const relevantActor = global.stage.get_key_focus();
+
+      if (relevantActor !== this.searchEntry.clutter_text) {
+        return Clutter.EVENT_PROPAGATE;
+      }
+
+      switch (symbol) {
+        // Existing Enter key logic - find first recent/result and activate
+        case Clutter.KEY_Return:
+        case Clutter.KEY_KP_Enter:
+          let firstRecent = this._recents.find(
+            (btn) => btn.super_btn.visible && btn.super_btn.can_focus
+          );
+
+          if (firstRecent) {
+            firstRecent.onKeyPress(actor, event);
+            return Clutter.EVENT_STOP;
+          }
+
+          return Clutter.EVENT_PROPAGATE;
+
+        case Clutter.KEY_Down:
+          let firstFocusableRecent = this._recents.find(
+            (btn) =>
+              btn.super_btn && btn.super_btn.visible && btn.super_btn.can_focus
+          );
+
+          if (firstFocusableRecent) {
+            global.stage.set_key_focus(firstFocusableRecent.super_btn);
+            return Clutter.EVENT_STOP;
+          }
+
+          return Clutter.EVENT_PROPAGATE;
+
+        case Clutter.KEY_Up:
+          if (!this.emojiCopy || !this.emojiCopy.emojiCategories) {
+            return Clutter.EVENT_PROPAGATE;
+          }
+
+          let firstFocusableCategoryBtn = this.emojiCopy.emojiCategories.find(
+            (cat) => {
+              const btn = cat.getButton();
+              return btn && btn.visible && btn.can_focus;
+            }
+          );
+
+          if (firstFocusableCategoryBtn) {
+            global.stage.set_key_focus(firstFocusableCategoryBtn.getButton());
+            return Clutter.EVENT_STOP;
+          }
+
+          return Clutter.EVENT_PROPAGATE;
+
+        default:
+          return Clutter.EVENT_PROPAGATE;
+      }
     });
   }
 
