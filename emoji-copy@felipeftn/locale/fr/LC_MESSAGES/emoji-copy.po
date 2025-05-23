@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-23 19:01+0200\n"
-"PO-Revision-Date: 2025-05-23 20:50+0200\n"
+"PO-Revision-Date: 2025-05-23 21:06+0200\n"
 "Last-Translator: p-sage\n"
 "Language-Team: French <none>\n"
 "Language: fr\n"
@@ -83,7 +83,7 @@ msgstr "Coller automatiquement l'émoji sélectionné."
 
 #: emoji-copy@felipeftn/prefs.js:52
 msgid "Use Keybind"
-msgstr "Utiliser le raccourci"
+msgstr "Utiliser un raccourci"
 
 #: emoji-copy@felipeftn/prefs.js:53
 msgid "Enable your default keybind to open the emoji menu."
