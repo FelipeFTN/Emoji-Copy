@@ -116,5 +116,6 @@ The extension is currently available in the following languages:
 - 🇧🇷 Brazilian/🇵🇹 Portuguese (Thanks to [@nicolasmaia](https://github.com/nicolasmaia/), [@picsi](https://github.com/picsi) & [@frnogueira](https://github.com/frnogueira/))
 - 🇹🇷 Turkish (Thanks to [@mimoguz](https://github.com/mimoguz))
 - 🇷🇺 Russian (Thanks to [@jasursadikov](https://github.com/jasursadikov))
+- 🇧🇬 Bulgarian (Thanks to [@iatanas0v](https://github.com/iatanas0v))
 
 If you need another language, please contribute! ❤️
