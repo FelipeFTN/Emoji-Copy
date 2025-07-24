@@ -37,36 +37,39 @@ export class SQLite {
     this.db = null;
   }
 
-  select_like_description(description) {
-    return this.query(`
-      SELECT * FROM emojis WHERE description LIKE '%${description}%';
-    `);
-  }
-
   increment_selection(unicode) {
     return this.query(`
       UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = '${unicode}'
-      `);
-  }
-
-  search_description(search_text, skin_tone = 0) {
-    const sql_string = search_text
-      .split(" ")
-      .flatMap((word) => `description LIKE '%${word}%'`)
-      .join(" AND ");
-
-    // If skin_tone is not 0, we need to filter by skin_tone
-    if (skin_tone != 0) {
-      const skin_tone_str = this.get_skin_tone(skin_tone);
-      return this.query(`
-        SELECT * FROM emojis WHERE (${sql_string}) AND (skin_tone = '' OR skin_tone LIKE '%${skin_tone_str}%') ORDER BY clicked_times DESC;
-      `);
-    }
-
-    return this.query(`
-      SELECT * FROM emojis WHERE ${sql_string} ORDER BY clicked_times DESC;
     `);
   }
+
+search_description(search_text, skin_tone = 0) {
+  const buildQuery = (pattern) => {
+    const sql_string = search_text
+      .split(" ")
+      .flatMap((word) => `description LIKE '${pattern.replace('WORD', word)}'`)
+      .join(" AND ");
+
+    const skin_filter = skin_tone != 0 
+      ? ` AND (skin_tone = '' OR skin_tone LIKE '%${this.get_skin_tone(skin_tone)}%')`
+      : '';
+
+    return `SELECT * FROM emojis WHERE ${sql_string}${skin_filter} ORDER BY clicked_times DESC;`;
+  };
+
+  // Try prefix search first
+  const prefix_results = this.query(buildQuery('WORD%'));
+  
+  if (prefix_results.length >= 11) {
+    return prefix_results;
+  }
+
+  // Fallback to contains search and combine results
+  const contains_results = this.query(buildQuery('%WORD%'));
+  const seen = new Set(prefix_results.map(item => item.unicode));
+  
+  return [...prefix_results, ...contains_results.filter(item => !seen.has(item.unicode))];
+}
 
   select_by_group(group) {
     return this.query(`
