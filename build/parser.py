@@ -87,6 +87,30 @@ for line in data:
     #print(item)
     ITEM.append(item)
 
+# Insert custom emojis from custom.py
+print("[+] Loading custom emojis from custom.py... 🔧")
+try:
+    from custom import get_custom_emojis
+    custom_emojis, keywords = get_custom_emojis()
+    for emoji in custom_emojis:
+        # If the emoji is already in the ITEM list, skip it
+        if any(item[0] == emoji for item in ITEM):
+            print(f"[!] Emoji {emoji} already exists in ITEM. Skipping.")
+            continue
+        
+        # Use a default description if not provided
+        for emoji_group in keywords.keys():
+            if keywords[emoji_group][emoji]:
+                desc = " ".join(keywords[emoji_group][emoji])
+                item = (emoji, desc, "", emoji_group)
+                ITEM.append(item)
+except ImportError:
+    print("[!] No custom emojis found. Skipping custom emojis.")
+except Exception as e:
+    print("[X] An error occurred while loading custom emojis:")
+    print(traceback.format_exc())
+    sys.exit(3)
+
 # Insert all emojis into database
 EmojisDB = SQLite(DB_PATH)
 EmojisDB.drop_table()
