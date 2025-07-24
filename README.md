@@ -111,6 +111,7 @@ The extension is currently available in the following languages:
 - 🇳🇱 Dutch (Thanks to [@vistaus](https://github.com/vistaus/))
 - 🇺🇳 Esperanto (Thanks to [@nicolasmaia](https://github.com/nicolasmaia/))
 - 🇩🇪 German (Thanks to [@jonnius](https://github.com/jonnius/))
+- 🇫🇷 French (Thanks to [@maoschanz](https://github.com/maoschanz) & [@p-sage](github.com/p-sage))
 - 🇮🇹 Italian (Thanks to [@amivaleo](https://github.com/amivaleo/))
 - 🇵🇱 Polish (Thanks to [@alex4401](https://github.com/alex4401/))
 - 🇧🇷 Brazilian/🇵🇹 Portuguese (Thanks to [@nicolasmaia](https://github.com/nicolasmaia/), [@picsi](https://github.com/picsi) & [@frnogueira](https://github.com/frnogueira/))
