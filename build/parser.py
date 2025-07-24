@@ -91,19 +91,18 @@ for line in data:
 print("[+] Loading custom emojis from custom.py... 🔧")
 try:
     from custom import get_custom_emojis
-    custom_emojis, keywords = get_custom_emojis()
-    for emoji in custom_emojis:
+    custom_emojis = get_custom_emojis()
+    for emoji in custom_emojis.keys():
         # If the emoji is already in the ITEM list, skip it
         if any(item[0] == emoji for item in ITEM):
             print(f"[!] Emoji {emoji} already exists in ITEM. Skipping.")
             continue
         
         # Use a default description if not provided
-        for emoji_group in keywords.keys():
-            if keywords[emoji_group][emoji]:
-                desc = " ".join(keywords[emoji_group][emoji])
-                item = (emoji, desc, "", emoji_group)
-                ITEM.append(item)
+        if custom_emojis[emoji]:
+            desc = " ".join(custom_emojis[emoji].get("description", []))
+            item = (emoji, desc, "", custom_emojis[emoji].get("group", "Symbols"))
+            ITEM.append(item)
 except ImportError:
     print("[!] No custom emojis found. Skipping custom emojis.")
 except Exception as e:

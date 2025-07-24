@@ -2,39 +2,38 @@
 
 ### THIS FILE SHOULD CONTAIN ALL THE EMOJIS WE WANT TO EXPLICITLY INCLUDE IN THE DB FILE
 
-REGIONAL_INDICATORS = [
-    "🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯",
-    "🇰", "🇱", "🇲", "🇳", "🇴", "🇵", "🇶", "🇷", "🇸", "🇹",
-    "🇺", "🇻", "🇼", "🇽", "🇾", "🇿"
-]
+# UNICODE: DESCRIPTION
+CUSTOM_EMOJIS = {
+    "🇦": {"description": ["regional indicator", "letter a"], "group": "Symbols"},
+    "🇧": {"description": ["regional indicator", "letter b"], "group": "Symbols"},
+    "🇨": {"description": ["regional indicator", "letter c"], "group": "Symbols"},
+    "🇩": {"description": ["regional indicator", "letter d"], "group": "Symbols"},
+    "🇪": {"description": ["regional indicator", "letter e"], "group": "Symbols"},
+    "🇫": {"description": ["regional indicator", "letter f"], "group": "Symbols"},
+    "🇬": {"description": ["regional indicator", "letter g"], "group": "Symbols"},
+    "🇭": {"description": ["regional indicator", "letter h"], "group": "Symbols"},
+    "🇮": {"description": ["regional indicator", "letter i"], "group": "Symbols"},
+    "🇯": {"description": ["regional indicator", "letter j"], "group": "Symbols"},
+    "🇰": {"description": ["regional indicator", "letter k"], "group": "Symbols"},
+    "🇱": {"description": ["regional indicator", "letter l"], "group": "Symbols"},
+    "🇲": {"description": ["regional indicator", "letter m"], "group": "Symbols"},
+    "🇳": {"description": ["regional indicator", "letter n"], "group": "Symbols"},
+    "🇴": {"description": ["regional indicator", "letter o"], "group": "Symbols"},
+    "🇵": {"description": ["regional indicator", "letter p"], "group": "Symbols"},
+    "🇶": {"description": ["regional indicator", "letter q"], "group": "Symbols"},
+    "🇷": {"description": ["regional indicator", "letter r"], "group": "Symbols"},
+    "🇸": {"description": ["regional indicator", "letter s"], "group": "Symbols"},
+    "🇹": {"description": ["regional indicator", "letter t"], "group": "Symbols"},
+    "🇺": {"description": ["regional indicator", "letter u"], "group": "Symbols"},
+    "🇻": {"description": ["regional indicator", "letter v"], "group": "Symbols"},
+    "🇼": {"description": ["regional indicator", "letter w"], "group": "Symbols"},
+    "🇽": {"description": ["regional indicator", "letter x"], "group": "Symbols"},
+    "🇾": {"description": ["regional indicator", "letter y"], "group": "Symbols"},
+    "🇿": {"description": ["regional indicator", "letter z"], "group": "Symbols"},
 
-REGIONAL_TO_KEYWORDS = {
-    "🇦": ["regional indicator", "letter a"],
-    "🇧": ["regional indicator", "letter b"],
-    "🇨": ["regional indicator", "letter c"],
-    "🇩": ["regional indicator", "letter d"],
-    "🇪": ["regional indicator", "letter e"],
-    "🇫": ["regional indicator", "letter f"],
-    "🇬": ["regional indicator", "letter g"],
-    "🇭": ["regional indicator", "letter h"],
-    "🇮": ["regional indicator", "letter i"],
-    "🇯": ["regional indicator", "letter j"],
-    "🇰": ["regional indicator", "letter k"],
-    "🇱": ["regional indicator", "letter l"],
-    "🇲": ["regional indicator", "letter m"],
-    "🇳": ["regional indicator", "letter n"],
-    "🇴": ["regional indicator", "letter o"],
-    "🇵": ["regional indicator", "letter p"],
-    "🇶": ["regional indicator", "letter q"],
-    "🇷": ["regional indicator", "letter r"],
-    "🇸": ["regional indicator", "letter s"],
-    "🇹": ["regional indicator", "letter t"],
-    "🇺": ["regional indicator", "letter u"],
-    "🇻": ["regional indicator", "letter v"],
-    "🇼": ["regional indicator", "letter w"],
-    "🇽": ["regional indicator", "letter x"],
-    "🇾": ["regional indicator", "letter y"],
-    "🇿": ["regional indicator", "letter z"]
+    # Other custom emojis can be added here
+    # For example:
+    # "🥰": {"description": ["smiling face with hearts"], "group": "Smileys & Body"},
 }
 
 def get_custom_emojis():
@@ -43,16 +42,4 @@ def get_custom_emojis():
     This function is used to explicitly define emojis that should be included,
     such as regional indicators and other specific emojis.
     """
-    custom_emojis = [
-        # Regional indicators
-        *REGIONAL_INDICATORS,
-        
-        # Other custom emojis can be added here
-        # "❤️", "👍", "😊", "😂", "🔥", "✨", "🌟", "💯"
-    ]
-
-    custom_keywords = {
-        "Symbols": REGIONAL_TO_KEYWORDS
-    }
-    
-    return custom_emojis, custom_keywords
+    return CUSTOM_EMOJIS
