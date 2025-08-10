@@ -197,12 +197,12 @@ export default class EmojiCopy extends Extension {
     if (this.position == "top") {
       for (let i = this._permanentItems; i < items.length; i++) {
         items[i].setSubmenuShown(false);
-        items[i].actor.visible = false;
+        items[i].visible = false;
       }
     } else {
       for (let i = 0; i < (items.length - this._permanentItems); i++) {
         items[i].setSubmenuShown(false);
-        items[i].actor.visible = false;
+        items[i].visible = false;
       }
     }
 
@@ -264,7 +264,7 @@ export default class EmojiCopy extends Extension {
     });
     this.categoryButton = [];
     for (let i = 0; i < this.emojiCategories.length; i++) {
-      this._buttonMenuItem.actor.add_child(this.emojiCategories[i].getButton());
+      this._buttonMenuItem.add_child(this.emojiCategories[i].getButton());
     }
   }
 

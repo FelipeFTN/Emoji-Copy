@@ -38,8 +38,8 @@ export class EmojiCategory {
       EMOJIS_CATEGORIES[this.id],
     );
 
-    this.super_item.actor.visible = false;
-    this.super_item.actor.reactive = false;
+    this.super_item.visible = false;
+    this.super_item.reactive = false;
     this.super_item._triangleBin.visible = false;
 
     // These options bar widgets have the same type for all categories to
@@ -52,7 +52,7 @@ export class EmojiCategory {
 
     // Smileys & body Peoples Activities
     if ((this.id == 0) || (this.id == 1) || (this.id == 5)) {
-      this.skinTonesBar.addBar(this.super_item.actor);
+      this.skinTonesBar.addBar(this.super_item);
     }
 
     this.categoryButton = new St.Button({
@@ -81,7 +81,7 @@ export class EmojiCategory {
       reactive: false,
       can_focus: false,
     });
-    line.actor.add_child(
+    line.add_child(
       new St.Label({
         text: error_message,
       }),
@@ -133,9 +133,9 @@ export class EmojiCategory {
           reactive: false,
           can_focus: false,
         });
-        ln.actor.track_hover = false;
+        ln.track_hover = false;
         container = new St.BoxLayout();
-        ln.actor.add_child(container);
+        ln.add_child(container);
         this.super_item.menu.addMenuItem(ln);
       }
       this.emojiButtons[i].build(this);
@@ -145,7 +145,7 @@ export class EmojiCategory {
   }
 
   _toggle() {
-    if (this.super_item._getOpenState()) {
+    if (this.super_item.menu && this.super_item.menu.isOpen) {
       this.emojiCopy.clearCategories();
     } else {
       this._openCategory();
@@ -164,7 +164,7 @@ export class EmojiCategory {
     this.skinTonesBar.update();
 
     this.categoryButton.set_checked(true);
-    this.super_item.actor.visible = true;
+    this.super_item.visible = true;
     this.super_item.setSubmenuShown(true); // This is causing the Lag!
     this.emojiCopy._onSearchTextChanged();
   }
