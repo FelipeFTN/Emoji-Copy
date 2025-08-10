@@ -49,7 +49,7 @@ export class EmojiButton {
       can_focus: true,
       label: this.baseCharacter,
     });
-    
+
     // Copy the emoji to the clipboard with adequate tags and behavior
     this.super_btn.connect("button-press-event", this.onButtonPress.bind(this));
     this.super_btn.connect("key-press-event", this.onKeyPress.bind(this));
@@ -103,9 +103,9 @@ export class EmojiButton {
     ) {
       let emojiToCopy = this.getTaggedEmoji();
       this.emojiCopy.sqlite.increment_selection(emojiToCopy);
-      let [_x, _y, mods] = global.get_pointer();
-      let majPressed = (mods & Clutter.ModifierType.SHIFT_MASK) != 0;
-      let ctrlPressed = (mods & Clutter.ModifierType.CONTROL_MASK) != 0;
+      const state = typeof e.get_state === 'function' ? e.get_state() : 0;
+      const majPressed = (state & Clutter.ModifierType.SHIFT_MASK) !== 0;
+      const ctrlPressed = (state & Clutter.ModifierType.CONTROL_MASK) !== 0;
       if (majPressed) {
         return this.addToClipboardAndStay(emojiToCopy);
       } else if (ctrlPressed) {
