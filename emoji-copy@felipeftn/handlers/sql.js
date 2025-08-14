@@ -86,7 +86,7 @@ search_description(search_text, skin_tone = 0) {
   query(sql_query) {
     const res = this.db.exec(sql_query);
     if (res.length == 0) {
-      return {};
+      return [];
     }
 
     // Transform the result from array of arrays to emoji item object
