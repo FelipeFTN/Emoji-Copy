@@ -23,23 +23,7 @@ Keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
 
 ### Recommended
 
-- Install from GNOME Extensions: [emoji-copy](https://extensions.gnome.org/extension/6242/emoji-copy/)
-
-- Or install your local fork (GNOME 49 compatible) with the helper script:
-
-```bash
-# Dependencies (Ubuntu/Debian)
-sudo apt update
-sudo apt install -y libglib2.0-bin gnome-shell-extensions zip python3
-
-# From the repo root
-./build-and-install.sh
-
-# Enable (if needed)
-gnome-extensions enable emoji-copy@felipeftn
-
-# Wayland: log out/in for a full refresh
-```
+The easiest way to install it is directly from Gnome Extensions: [emoji-copy](https://extensions.gnome.org/extension/6242/emoji-copy/)
 
 ### Native packages
 
@@ -57,11 +41,7 @@ Work in progress...
 **Not recommended at all:** installing the extension this way will prevent any further updates.
 
 1. Download and extract the ZIP, then open a terminal in the project's directory.
-2. Ensure you have a database at `emoji-copy@felipeftn/data/emojis.db`:
-   - Easiest: copy from an existing install:
-     - `cp ~/.local/share/gnome-shell/extensions/emoji-copy@felipeftn/data/emojis.db emoji-copy@felipeftn/data/`
-   - Or generate: `python3 ./build/parser.py`
-3. Choose a way to install the extension:
+2. Choose a way to install the extension:
 
 ```bash
     --> Make 🔥
