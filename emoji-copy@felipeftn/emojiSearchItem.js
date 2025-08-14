@@ -31,7 +31,7 @@ export class EmojiSearchItem {
       this._onSearchTextChanged.bind(this),
     );
 
-    this.super_item.actor.add_child(this.searchEntry);
+    this.super_item.add_child(this.searchEntry);
 
     // initializing the "recently used" buttons
     this.recentlyUsedItem = this._recentlyUsedInit();
@@ -140,7 +140,7 @@ export class EmojiSearchItem {
       can_focus: false,
     });
     let container = new St.BoxLayout();
-    recentlyUsed.actor.add_child(container);
+    recentlyUsed.add_child(container);
     this._recents = [];
 
     for (let i = 0; i < this._nbColumns; i++) {
