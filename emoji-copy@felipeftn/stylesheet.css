@@ -5,11 +5,12 @@
   color: #eeeeec;
   border-radius: 32px;
   padding: 12px;
+  border: 1px solid #282828;
 }
 
 .EmojisCategory:hover,
 .EmojisCategory:focus {
-  background-color: #1c1c1c;
+  background-color: rgba(120, 120, 120, 1);
   color: #ffffff;
 }
 
