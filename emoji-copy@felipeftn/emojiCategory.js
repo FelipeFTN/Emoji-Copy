@@ -42,6 +42,10 @@ export class EmojiCategory {
     this.super_item.reactive = false;
     this.super_item._triangleBin.visible = false;
 
+    const emoji_size = this._settings.get_int("emojisize");
+    const nbcols = this._nbColumns;
+    this.super_item.label.set_style(`width: ${emoji_size * Math.max(1, nbcols - 3) }px;`);
+
     // These options bar widgets have the same type for all categories to
     // simplify the update method
     if ((this.id == 1) || (this.id == 5)) {
