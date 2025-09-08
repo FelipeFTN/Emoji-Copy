@@ -233,25 +233,28 @@ export class EmojiButton {
       GLib.PRIORITY_DEFAULT,
       1,
       () => {
+        const KEY_Shift_L = 42;
+        const KEY_Insert = 110;
+
         const eventTime = Clutter.get_current_event_time() * 1000;
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Shift_L,
+          KEY_Shift_L,
           Clutter.KeyState.PRESSED,
         );
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Insert,
+          KEY_Insert,
           Clutter.KeyState.PRESSED,
         );
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Insert,
+          KEY_Insert,
           Clutter.KeyState.RELEASED,
         );
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Shift_L,
+          KEY_Shift_L,
           Clutter.KeyState.RELEASED,
         );
 
