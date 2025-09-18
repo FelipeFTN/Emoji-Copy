@@ -1,5 +1,15 @@
 /* The toggle buttons for the categories */
 
+.emoji-tooltip {
+  background-color: #222;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+}
+
 .EmojisCategory {
   background-color: #3c3c3c;
   color: #eeeeec;
