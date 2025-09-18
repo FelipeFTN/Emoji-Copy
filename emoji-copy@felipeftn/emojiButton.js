@@ -3,6 +3,7 @@ import Clutter from "gi://Clutter";
 import GLib from "gi://GLib";
 
 const CLIPBOARD_TYPE = St.ClipboardType.CLIPBOARD;
+const PRIMARY_CLIPBOARD_TYPE = St.ClipboardType.PRIMARY; // For pastes into terminal emulators.
 
 const VirtualKeyboard = (() => {
   let VirtualKeyboard;
@@ -145,6 +146,10 @@ export class EmojiButton {
       CLIPBOARD_TYPE,
       emojiToCopy,
     );
+    this.clipboard.set_text(
+      PRIMARY_CLIPBOARD_TYPE,
+      emojiToCopy,
+    );
     this.emojiCopy.get_super_btn().menu.close();
 
     if (this._settings.get_boolean("paste-on-select")) {
@@ -159,6 +164,10 @@ export class EmojiButton {
       CLIPBOARD_TYPE,
       emojiToCopy,
     );
+    this.clipboard.set_text(
+      PRIMARY_CLIPBOARD_TYPE,
+      emojiToCopy,
+    );
 
     return Clutter.EVENT_STOP;
   }
@@ -167,6 +176,10 @@ export class EmojiButton {
     this.clipboard.get_text(CLIPBOARD_TYPE, (_, text) => {
       this.clipboard.set_text(
         CLIPBOARD_TYPE,
+        text + emojiToCopy,
+      );
+      this.clipboard.set_text(
+        PRIMARY_CLIPBOARD_TYPE,
         text + emojiToCopy,
       );
     });
@@ -218,25 +231,28 @@ export class EmojiButton {
       GLib.PRIORITY_DEFAULT,
       1,
       () => {
+        const KEY_Shift_L = 42;
+        const KEY_Insert = 110;
+
         const eventTime = Clutter.get_current_event_time() * 1000;
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Shift_L,
+          KEY_Shift_L,
           Clutter.KeyState.PRESSED,
         );
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Insert,
+          KEY_Insert,
           Clutter.KeyState.PRESSED,
         );
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Insert,
+          KEY_Insert,
           Clutter.KeyState.RELEASED,
         );
-        VirtualKeyboard().notify_keyval(
+        VirtualKeyboard().notify_key(
           eventTime,
-          Clutter.KEY_Shift_L,
+          KEY_Shift_L,
           Clutter.KeyState.RELEASED,
         );
 
