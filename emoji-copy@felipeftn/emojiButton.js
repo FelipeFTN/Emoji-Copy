@@ -42,6 +42,17 @@ export class EmojiButton {
     }
     this.tags = [tonable, genrable, gendered];
     this.keywords = keywords;
+
+    // Tooltip label (shared for all EmojiButtons)
+    if (!EmojiButton.tooltipLabel) {
+      EmojiButton.tooltipLabel = new St.Label({
+        style_class: 'emoji-tooltip',
+        visible: false,
+        opacity: 230,
+      });
+      // Add to the main UI group
+      global.stage.add_child(EmojiButton.tooltipLabel);
+    }
   }
 
   build(category) {
@@ -62,15 +73,48 @@ export class EmojiButton {
     // Update the category label on hover, allowing the user to know the
     // name of the emoji he's copying.
     this.super_btn.connect("notify::hover", (a, _) => {
+      // Show the emoji name in the category label
       if (a.hover) {
         category.super_item.label.text =
           this.keywords
             .replaceAll("HAS_TONE", "")
             .replaceAll("HAS_GENDER", "")
             .replaceAll("OK", "");
+
+        // Starts a timer to show the tooltip
+        this._tooltipTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 500, () => {
+          let [x, y, _] = global.get_pointer();
+          let clean = this.keywords
+            .replaceAll("HAS_TONE", "")
+            .replaceAll("HAS_GENDER", "")
+            .replaceAll("OK", "")
+            .trim();
+          EmojiButton.tooltipLabel.text = `${clean.split(" ")[0]} ${clean.split(" ")[1]}`;
+          EmojiButton.tooltipLabel.set_position(x + 16, y - 8);
+          EmojiButton.tooltipLabel.visible = true;
+          this._tooltipTimeoutId = null;
+          return GLib.SOURCE_REMOVE;
+        });
       } else {
+        // Set back the category label
         category.super_item.label.text = category.categoryName;
+        EmojiButton.tooltipLabel.visible = false;
+        // Cancel the tooltip timer if mouse leaves early
+        if (this._tooltipTimeoutId) {
+          // Remove the timeout source
+          GLib.source_remove(this._tooltipTimeoutId);
+          this._tooltipTimeoutId = null;
+        }
       }
+    });
+
+    // Move tooltip with mouse
+    this.super_btn.connect('motion-event', (actor, event) => {
+      if (EmojiButton.tooltipLabel.visible) {
+        let [x, y] = event.get_coords();
+        EmojiButton.tooltipLabel.set_position(x + 16, y - 8);
+      }
+      return Clutter.EVENT_PROPAGATE;
     });
   }
 
