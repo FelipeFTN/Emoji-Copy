@@ -71,9 +71,23 @@ search_description(search_text, skin_tone = 0) {
   return [...prefix_results, ...contains_results.filter(item => !seen.has(item.unicode))];
 }
 
-  select_by_group(group) {
+  /**
+   * Selects emojis by group, filtered by skin tone if provided.
+   * If skin_tone is not 0, only emojis with the matching skin tone or no skin tone (e.g., objects) are returned.
+   * @param {string} group - The emoji group/category
+   * @param {number} skin_tone - The selected skin tone (0 = no filter)
+   */
+  select_by_group(group, skin_tone = 0) {
+    let skin_filter = '';
+    if (skin_tone != 0) {
+      // Show emojis that either have no skin tone (objects, etc) or match the selected skin tone
+      skin_filter = ` AND (skin_tone = '' OR skin_tone LIKE '%${this.get_skin_tone(skin_tone)}%')`;
+    } else {
+      // Show all emojis in the group
+      skin_filter = '';
+    }
     return this.query(`
-      SELECT * FROM emojis WHERE emoji_group='${group}' AND (skin_tone='' OR skin_tone='person');
+      SELECT * FROM emojis WHERE emoji_group='${group}'${skin_filter};
     `);
   }
 

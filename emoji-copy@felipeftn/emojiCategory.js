@@ -25,6 +25,14 @@ export class EmojiCategory {
    * The category and its button have to be built without being loaded, to "avoid"
    * memory issues with emojis' image textures.
    * PS: For some reason, when we render everything, there is a bunch of Lag...
+   * I will be using jsdocs on the functions in the future for better documentation & readable code.
+   */
+  /**
+   * EmojiCategory constructor sets up the emoji category UI, loads emojis, and connects skin tone change events.
+   * @param {*} emojiCopy - Main extension object
+   * @param {*} categoryName - Name of the emoji category
+   * @param {*} iconName - Icon for the category
+   * @param {*} id - Category ID
    */
   constructor(emojiCopy, categoryName, iconName, id) {
     this.super_item = new PopupMenu.PopupSubMenuMenuItem(categoryName);
@@ -34,31 +42,22 @@ export class EmojiCategory {
     this.emojiButtons = []; // used for searching, and for updating the size/style
     this._nbColumns = 10; // some random default value
     this.id = id;
+    // Load only yellow (no skin tone) emojis for this category
     this.emojis = this.emojiCopy.sqlite.select_by_group(
-      EMOJIS_CATEGORIES[this.id],
-    );
+      EMOJIS_CATEGORIES[this.id]
+    ).filter(e => !e.skin_tone || e.skin_tone === '');
 
-    this.super_item.visible = false;
-    this.super_item.reactive = false;
-    this.super_item._triangleBin.visible = false;
-
-    const emoji_size = this._settings.get_int("emojisize");
-    const nbcols = this._nbColumns;
-    this.super_item.label.set_style(`width: ${emoji_size * Math.max(1, nbcols - 3) }px;`);
-
-    // These options bar widgets have the same type for all categories to
-    // simplify the update method
+    // Set up the options bar (skin tone/gender selectors)
     if ((this.id == 1) || (this.id == 5)) {
       this.skinTonesBar = new SkinTonesBar(this.emojiCopy, true);
     } else {
       this.skinTonesBar = new SkinTonesBar(this.emojiCopy, false);
     }
-
-    // Smileys & body Peoples Activities
     if ((this.id == 0) || (this.id == 1) || (this.id == 5)) {
       this.skinTonesBar.addBar(this.super_item);
     }
 
+    // Set up the category button
     this.categoryButton = new St.Button({
       reactive: true,
       can_focus: true,
@@ -75,10 +74,27 @@ export class EmojiCategory {
     });
     this.categoryButton.connect("clicked", this._toggle.bind(this));
 
+
+
+
+    // Set initial visibility and style for the category menu item
+    this.super_item.visible = false;
+    this.super_item.reactive = false;
+    this.super_item._triangleBin.visible = false;
+
+    // Set the label width based on emoji size and columns
+    const emoji_size = this._settings.get_int("emojisize");
+    const nbcols = this._nbColumns;
+    this.super_item.label.set_style(`width: ${emoji_size * Math.max(1, nbcols - 3) }px;`);
+
     this._built = false; // will be true once the user opens the category
     this._loaded = false; // will be true once loaded
     this.load();
   }
+
+
+
+
 
   _addErrorLine(error_message) {
     let line = new PopupMenu.PopupBaseMenuItem({
