@@ -36,6 +36,17 @@ DROP_TBL = """
 DROP TABLE IF EXISTS emojis
 """
 
+# SQL query to enable full auto vacuum
+ENABLE_FULL_AUTO_VACUUM = """
+PRAGMA auto_vacuum=FULL
+"""
+
+# SQL query to vacuum database
+VACUUM = """
+VACUUM
+"""
+
+
 class SQLite:
     def __init__(self, database):
         self.database = database
@@ -64,6 +75,10 @@ class SQLite:
 
     def drop_table(self):
         self.cur.execute(DROP_TBL)
+
+    def vacuum(self):
+        self.cur.execute(ENABLE_FULL_AUTO_VACUUM)
+        self.cur.execute(VACUUM)
 
     def close(self):
         self.conn.close()

@@ -48,24 +48,24 @@ for line in data:
         group_match = re.search(r"# group: ([a-z &-]+)$", line, re.IGNORECASE)
         if group_match:
             GROUP = group_match.group(1)
-    
+
     elif line.startswith("# subgroup"):
         subgroup_match = re.search(r"# subgroup: ([a-z &-]+)$", line, re.IGNORECASE)
         if subgroup_match:
             SUBGROUP = subgroup_match.group(1)
-    
+
     # parse only fully qualified emojis to prevent "copies" and useless components
     # see https://unicode.org/reports/tr51/#def_fully_qualified_emoji
     if line.find("fully-qualified") == -1:
         continue
-    
+
     # attempt to parse the emoji and its description
     match = re.search(r"# (\S+) E\d+\.\d+ (.+)$", line, re.IGNORECASE)
     if not match:
         continue
     emoji = match.group(1)
     desc = match.group(2)
-    
+
     # skin tone match must be done before modifying desc with sub group
     skin_tone_match = re.search(r": ([a-z, -]+)$", desc)
     skin_tone = ""
@@ -73,16 +73,16 @@ for line in data:
         skin_tone = skin_tone_match.group(1)
         if skin_tone.find("skin tone") == -1:
             skin_tone = ""
-    
+
     # check if emoji exists in old emoji_map, so we can get its keywords
     if emoji in emoji_map.keys():
         keywords = emoji_map.get(emoji)
         keywords = [kw for kw in keywords if kw != desc]
         desc = f"{desc} {' '.join(keywords)}"
-    
+
     if SUBGROUP not in desc:
         desc = f"{desc} {SUBGROUP}"
-    
+
     item = (emoji, desc, skin_tone, GROUP)
     #print(item)
     ITEM.append(item)
@@ -97,7 +97,7 @@ try:
         if any(item[0] == emoji for item in ITEM):
             print(f"[!] Emoji {emoji} already exists in ITEM. Skipping.")
             continue
-        
+
         # Use a default description if not provided
         if custom_emojis[emoji]:
             desc = " ".join(custom_emojis[emoji].get("description", []))
@@ -115,6 +115,7 @@ EmojisDB = SQLite(DB_PATH)
 EmojisDB.drop_table()
 EmojisDB.create_table()
 EmojisDB.insert_many(ITEM)
+EmojisDB.vacuum()
 
 print("[+] Finished loading emojis into database! 🎉")
 print(f"[!] Emoji Count: {EmojisDB.get_count()}")
