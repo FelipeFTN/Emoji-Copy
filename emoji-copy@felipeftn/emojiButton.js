@@ -62,13 +62,11 @@ export class EmojiButton {
     // name of the emoji he's copying.
     this.super_btn.connect("notify::hover", (a, _) => {
       if (a.hover) {
-        category.super_item.label.text = `${
+        category.super_item.label.text =
           this.keywords
             .replaceAll("HAS_TONE", "")
             .replaceAll("HAS_GENDER", "")
-            .replaceAll("OK", "")
-            .substring(0, 35)
-        }...`;
+            .replaceAll("OK", "");
       } else {
         category.super_item.label.text = category.categoryName;
       }
