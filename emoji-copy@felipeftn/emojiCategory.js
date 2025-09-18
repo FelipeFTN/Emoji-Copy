@@ -30,9 +30,9 @@ export class EmojiCategory {
   /**
    * EmojiCategory constructor sets up the emoji category UI, loads emojis, and connects skin tone change events.
    * @param {*} emojiCopy - Main extension object
-   * @param {*} categoryName - Name of the emoji category
-   * @param {*} iconName - Icon for the category
-   * @param {*} id - Category ID
+   * @param {string} categoryName - Name of the emoji category
+   * @param {string} iconName - Icon for the category
+   * @param {number} id - Category ID
    */
   constructor(emojiCopy, categoryName, iconName, id) {
     this.super_item = new PopupMenu.PopupSubMenuMenuItem(categoryName);
@@ -74,9 +74,6 @@ export class EmojiCategory {
     });
     this.categoryButton.connect("clicked", this._toggle.bind(this));
 
-
-
-
     // Set initial visibility and style for the category menu item
     this.super_item.visible = false;
     this.super_item.reactive = false;
@@ -91,10 +88,6 @@ export class EmojiCategory {
     this._loaded = false; // will be true once loaded
     this.load();
   }
-
-
-
-
 
   _addErrorLine(error_message) {
     let line = new PopupMenu.PopupBaseMenuItem({

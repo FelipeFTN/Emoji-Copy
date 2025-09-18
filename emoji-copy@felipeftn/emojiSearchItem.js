@@ -6,7 +6,6 @@ import { EmojiButton } from "./emojiButton.js";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
 
-// DEPRECATED?
 export class EmojiSearchItem {
   constructor(emojiCopy, nbColumns) {
     this.super_item = new PopupMenu.PopupBaseMenuItem({
