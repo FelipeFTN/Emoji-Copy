@@ -66,13 +66,11 @@ for line in data:
     emoji = match.group(1)
     desc = match.group(2)
 
-    # skin tone match must be done before modifying desc with sub group
-    skin_tone_match = re.search(r": ([a-z, -]+)$", desc)
+    # Extract only a single, normalized skin tone value (or empty string)
     skin_tone = ""
+    skin_tone_match = re.search(r"(light|medium-light|medium|medium-dark|dark) skin tone", desc)
     if skin_tone_match:
-        skin_tone = skin_tone_match.group(1)
-        if skin_tone.find("skin tone") == -1:
-            skin_tone = ""
+        skin_tone = skin_tone_match.group(0)
 
     # check if emoji exists in old emoji_map, so we can get its keywords
     if emoji in emoji_map.keys():
