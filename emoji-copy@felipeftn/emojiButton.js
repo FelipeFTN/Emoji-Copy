@@ -84,6 +84,7 @@ export class EmojiButton {
     this.super_btn.connect("notify::hover", (actor, _) => {
       // Show the emoji name in the category label
       if (actor.hover) {
+        // Cache cleaned keywords to avoid duplicate processing
         const cleanKeywords = this._cleanKeywords();
         category.super_item.label.text = cleanKeywords;
 
@@ -94,8 +95,8 @@ export class EmojiButton {
         }
         this._tooltipTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 500, () => {
           const [x, y] = global.get_pointer();
-          const clean = this._cleanKeywords();
-          const words = clean.split(" ");
+          // Reuse cleanKeywords from closure instead of recalculating
+          const words = cleanKeywords.split(" ");
           EmojiButton.tooltipLabel.text = `${words[0] || ''} ${words[1] || ''}`.trim();
           EmojiButton.tooltipLabel.set_position(x + 16, y - 8);
           EmojiButton.tooltipLabel.visible = true;

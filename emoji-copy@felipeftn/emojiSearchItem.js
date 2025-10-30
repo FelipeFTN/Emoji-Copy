@@ -204,12 +204,12 @@ export class EmojiSearchItem {
   }
 
   updateStyleRecents() {
-    let fontStyle = "font-size: " + this._settings.get_int("emojisize") +
-      "px;";
-    fontStyle += " color: #FFFFFF;";
-    this._recents.forEach(function (b) {
-      b.updateStyle(fontStyle);
-    });
+    // Use template literal for cleaner string concatenation
+    const fontStyle = `font-size: ${this._settings.get_int("emojisize")}px; color: #FFFFFF;`;
+    // Use for loop instead of forEach for better performance
+    for (let i = 0; i < this._recents.length; i++) {
+      this._recents[i].updateStyle(fontStyle);
+    }
   }
 
   shiftFor(currentEmoji) {

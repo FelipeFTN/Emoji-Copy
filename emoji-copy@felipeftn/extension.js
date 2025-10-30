@@ -155,16 +155,18 @@ export default class EmojiCopy extends Extension {
 
   updateStyle() {
     this.searchItem.updateStyleRecents();
-    this.emojiCategories.forEach(function (c) {
-      c.updateStyle();
-    });
+    // Use for loop instead of forEach for better performance
+    for (let i = 0; i < this.emojiCategories.length; i++) {
+      this.emojiCategories[i].updateStyle();
+    }
   }
 
   updateNbCols() {
     let nbCols = this._settings.get_int("nbcols");
-    this.emojiCategories.forEach(function (c) {
-      c.setNbCols(nbCols);
-    });
+    // Use for loop instead of forEach for better performance
+    for (let i = 0; i < this.emojiCategories.length; i++) {
+      this.emojiCategories[i].setNbCols(nbCols);
+    }
 
     this.searchItem = new EmojiSearchItem(this, nbCols);
   }
