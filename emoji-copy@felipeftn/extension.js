@@ -57,6 +57,13 @@ export default class EmojiCopy extends Extension {
     this.super_btn.add_child(box);
     this.super_btn.visible = this._settings.get_boolean("always-show");
 
+    // Remove any stale indicator from a previous enable/disable cycle
+    // (e.g. after screen lock/unlock) to avoid "Extension point conflict"
+    const existingIndicator = Main.panel.statusArea[this.uuid];
+    if (existingIndicator) {
+      existingIndicator.destroy();
+    }
+
     Main.panel.addToStatusArea(
       this.uuid,
       this.super_btn,
