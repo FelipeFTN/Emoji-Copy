@@ -21,8 +21,11 @@ Build and Debug:
 First, build the extension:
 `make`
 
-Then, run an virtual wayland session:
+Then, run an virtual wayland session (Gnome 48 and earlier):
 `dbus-run-session -- gnome-shell --nested --wayland`
+
+Or, run an virtual wayland session (Gnome 49 and later):
+`dbus-run-session gnome-shell --devkit --wayland`
 
 ### Symbolic link
 

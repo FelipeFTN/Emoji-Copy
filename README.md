@@ -25,18 +25,29 @@ Keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
 
 The easiest way to install it is directly from Gnome Extensions: [emoji-copy](https://extensions.gnome.org/extension/6242/emoji-copy/)
 
-### Native packages
+### How to Upgrade Emoji Copy to your Gnome Shell version?
 
-Work in progress...
+Emoji Copy is frequently updated to the latest Gnome Shell version through Pull Requests.
+Sometimes the Gnome Extensions team can take a bit of time to review and publish the new version, making the extension unavailable for some users.
+**If you want to upgrade the extension by yourself to make it work in your Gnome version, you can:**
 
-> We need to publish this project to most known package managers, like AUR, Fedora and so on.
+1. Upgrade the version installed in your system just by running this:
 
-<!-- - [`gnome-shell-extension-emoji-selector` (**Fedora**)](https://src.fedoraproject.org/rpms/gnome-shell-extension-emoji-selector) -->
-<!-- - `gnome-shell-emoji-selector` (**nixOS**) -->
-<!-- - [`gnome-shell-extension-emoji-selector-git` (**AUR**)](https://aur.archlinux.org/packages/gnome-shell-extension-emoji-selector-git/) -->
-<!-- - ...<!-1- TODO à compléter -1-> -->
+```bash
+    $ sed -i 's/"\]/", "50"\]/' ~/.local/share/gnome-shell/extensions/emoji-copy\@felipeftn/metadata.json
+```
 
-#### Manual installation
+This command will change the `metadata.json` file of the extension, making it compatible with Gnome Shell 50. You can change the version number to any other version you want, just make sure to use the correct version for your system.
+
+2. You can also disable the version check by running this command:
+
+```bash
+    $ gsettings set org.gnome.shell disable-extension-version-validation true
+```
+
+This command will disable the version check for all extensions, allowing you to use any extension regardless of its compatibility with your Gnome Shell version. However, this is not recommended as it may cause issues with other extensions that are not compatible with your Gnome Shell version.
+
+### Manual installation
 
 **Not recommended at all:** installing the extension this way will prevent any further updates.
 
@@ -47,12 +58,6 @@ Work in progress...
     --> Make 🔥
     $ make install
 
-    --> NPM 😇
-    $ npm run deploy
-
-    --> Shell scripts 🤨
-    $ sh install.sh
-
     --> Hardcore 💀
     $ cp -a ./emoji-copy@felipeftn $HOME/.local/share/gnome-shell/extensions
 ```
@@ -62,28 +67,17 @@ You may need to restart the GNOME Shell environment (<kbd>Alt</kbd>+<kbd>F2</kbd
 ## Debug and Test 🏗
 
 We have a lot of ways to debug and test our code. Currently, we already have a complete guide to debug and test our extension in a local environment described in [debug.md](./debug.md) file.<br>
-In a simpler way, you can debug the code in two ways:
 
-```bash
-    --> Make 🔥
-    $ make debug
+Debug documentation can be found in two places:
 
-    --> Gnome Dbus Session 🚧
-    $ make && dbus-run-session -- gnome-shell --nested --wayland
-```
+- [Debug documentation](./debug.md) file
+- [GJS extensions guide](https://gjs.guide/extensions/development/debugging.html)
 
 ## Memory performance 👾
 
-Loading hundreds of small pictures and thousands of keywords into the memory is
-a lot. Despite a few attempts to optimize their loading, I'm not an expert at
-all concerning memory management, and the extension may be responsible for
-between 10MB and 60MB of memory usage, which is a lot. Don't blame the actual GS
-devs for it.<br>
-
-**✨ Update:**<br>
 Currently, we are loading emojis with SQLite. With a SQL query system, we were
 able to load just the necessary amount of emojis for each category. All the emojis are "pre-compiled" during the building process, and generates a `emojis.db` file at data directory _(inside extension's directory)_.<br>
-We still can do a lot of improvements in the way we load and display these emojis. Maybe some skeletons and non-syncronous loading should be great to avoid slow loadings.
+We still can do a lot of improvements in the way we load and display these emojis. Maybe some skeletons and non-syncronous loading should be great to avoid slow loadings; but works pretty well for now. ⚡️
 
 ## Fonts 🔠
 
