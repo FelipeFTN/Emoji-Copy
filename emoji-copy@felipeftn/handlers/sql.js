@@ -38,17 +38,25 @@ export class SQLite {
   }
 
   increment_selection(unicode) {
+    // Escape single quotes to prevent SQL injection
+    const escaped = unicode.replace(/'/g, "''");
     return this.query(`
-      UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = '${unicode}'
+      UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = '${escaped}'
     `);
   }
 
-search_description(search_text, skin_tone = 0, gender = 0) {
-  const buildQuery = (pattern) => {
-    const sql_string = search_text
-      .split(" ")
-      .flatMap((word) => `description LIKE '${pattern.replace('WORD', word)}'`)
-      .join(" AND ");
+  search_description(search_text, skin_tone = 0, gender = 0) {
+    // Escape single quotes to prevent SQL injection
+    const escaped_text = search_text.replace(/'/g, "''");
+    const words = escaped_text.split(" ");
+    
+    // Build SQL conditions efficiently with a single pass
+    const conditions = [];
+    for (let i = 0; i < words.length; i++) {
+      // Use LIKE with prefix match first, then fallback pattern
+      conditions.push(`(description LIKE '${words[i]}%' OR description LIKE '%${words[i]}%')`);
+    }
+    const sql_string = conditions.join(" AND ");
 
     const skin_filter = skin_tone != 0 
       ? ` AND skin_tone LIKE '%${this.get_skin_tone(skin_tone)}%'`
@@ -56,22 +64,18 @@ search_description(search_text, skin_tone = 0, gender = 0) {
 
     const gender_filter = this.get_gender_filter(gender);
 
-    return `SELECT * FROM emojis WHERE ${sql_string}${skin_filter}${gender_filter} ORDER BY clicked_times DESC;`;
-  };
-
-  // Try prefix search first
-  const prefix_results = this.query(buildQuery('WORD%'));
-  
-  if (prefix_results.length >= 11) {
-    return prefix_results;
+    // Single optimized query that handles both prefix and contains matching
+    return this.query(`
+      SELECT * FROM emojis 
+      WHERE ${sql_string}${skin_filter}${gender_filter} 
+      ORDER BY 
+        CASE 
+          WHEN description LIKE '${words[0]}%' THEN 0
+          ELSE 1
+        END,
+        clicked_times DESC;
+    `);
   }
-
-  // Fallback to contains search and combine results
-  const contains_results = this.query(buildQuery('%WORD%'));
-  const seen = new Set(prefix_results.map(item => item.unicode));
-  
-  return [...prefix_results, ...contains_results.filter(item => !seen.has(item.unicode))];
-}
 
   /**
    * Selects emojis by group, filtered by skin tone and gender if provided.
@@ -82,6 +86,8 @@ search_description(search_text, skin_tone = 0, gender = 0) {
    * @param {number} gender - The selected gender (0 = no filter, 1 = women, 2 = men)
    */
   select_by_group(group, skin_tone = 0, gender = 0) {
+    // Escape single quotes to prevent SQL injection
+    const escaped_group = group.replace(/'/g, "''");
     let skin_filter = '';
     if (skin_tone != 0) {
       // Show emojis that either have no skin tone (objects, etc) or match the selected skin tone
@@ -94,7 +100,7 @@ search_description(search_text, skin_tone = 0, gender = 0) {
     const gender_filter = this.get_gender_filter(gender);
 
     return this.query(`
-      SELECT * FROM emojis WHERE emoji_group='${group}'${skin_filter}${gender_filter};
+      SELECT * FROM emojis WHERE emoji_group='${escaped_group}'${skin_filter}${gender_filter};
     `);
   }
 

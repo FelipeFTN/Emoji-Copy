@@ -223,9 +223,10 @@ export class EmojiCategory {
   updateStyle() {
     const emoji_size = this._settings.get_int("emojisize");
     const style = `font-size: ${emoji_size}px;\ncolor: #FFFFFF`;
-    this.emojiButtons.forEach(function (b) {
-      b.updateStyle(style);
-    });
+    // Use for loop instead of forEach for better performance
+    for (let i = 0; i < this.emojiButtons.length; i++) {
+      this.emojiButtons[i].updateStyle(style);
+    }
   }
 
   getButton() {

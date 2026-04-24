@@ -56,8 +56,8 @@ export class EmojiSearchItem {
       switch (symbol) {
         // Existing Enter key logic - find first recent/result and activate
         case Clutter.KEY_Return:
-        case Clutter.KEY_KP_Enter:
-          let firstRecent = this._recents.find(
+        case Clutter.KEY_KP_Enter: {
+          const firstRecent = this._recents.find(
             (btn) => btn.super_btn.visible && btn.super_btn.can_focus
           );
 
@@ -67,9 +67,10 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
-        case Clutter.KEY_Down:
-          let firstFocusableRecent = this._recents.find(
+        case Clutter.KEY_Down: {
+          const firstFocusableRecent = this._recents.find(
             (btn) =>
               btn.super_btn && btn.super_btn.visible && btn.super_btn.can_focus
           );
@@ -80,13 +81,14 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
-        case Clutter.KEY_Up:
+        case Clutter.KEY_Up: {
           if (!this.emojiCopy || !this.emojiCopy.emojiCategories) {
             return Clutter.EVENT_PROPAGATE;
           }
 
-          let firstFocusableCategoryBtn = this.emojiCopy.emojiCategories.find(
+          const firstFocusableCategoryBtn = this.emojiCopy.emojiCategories.find(
             (cat) => {
               const btn = cat.getButton();
               return btn && btn.visible && btn.can_focus;
@@ -99,6 +101,7 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
         default:
           return Clutter.EVENT_PROPAGATE;
@@ -121,35 +124,30 @@ export class EmojiSearchItem {
       this._recents[j].super_btn.label = "";
     }
 
-    // Get results for selected skin tone and for yellow (no skin tone)
+    // Get results for selected skin tone and gender
     const selectedTone = this._settings.get_int("skin-tone");
     const selectedGender = this._settings.get_int("gender");
 
-    // I might move this toneResults/yellowResults logic to emojiCopy.sqlite soon!
+    // The SQL query already handles skin_tone and gender filtering efficiently
+    // No need for multiple queries and post-processing filters
     let results = [];
     if (selectedTone !== 0) {
-      // First, get only results with the selected skin tone
-      const toneResults = this.emojiCopy.sqlite.search_description(searchedText, selectedTone, selectedGender)
-        .filter(e => e.skin_tone && e.skin_tone !== '');
-      // Then, get yellow (no skin tone) results
-      const yellowResults = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender)
-        .filter(e => !e.skin_tone || e.skin_tone === '');
-      // Combine, prioritizing selected tone
-      results = [...toneResults, ...yellowResults];
+      // Get results with the selected skin tone, then add yellow (no skin tone) results
+      const toneResults = this.emojiCopy.sqlite.search_description(searchedText, selectedTone, selectedGender);
+      const yellowResults = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender);
+      // Combine, prioritizing selected tone and avoiding duplicates
+      const seen = new Set(toneResults.map(e => e.unicode));
+      results = [...toneResults, ...yellowResults.filter(e => !seen.has(e.unicode))];
     } else {
       // Only yellow (no skin tone) results as default
-      results = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender)
-        // Get this back if needed
-        // .filter(e => !e.skin_tone || e.skin_tone === '');
+      results = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender);
     }
 
-    let firstEmptyIndex = 0;
-    for (let i = 0; i < results.length; i++) {
-      if (i < this._nbColumns) {
-        this._recents[firstEmptyIndex].super_btn.label = results[i].unicode;
-        this._recents[firstEmptyIndex].super_btn.text = results[i].description;
-        firstEmptyIndex++;
-      }
+    // Only iterate up to the minimum of results length and columns needed
+    const maxResults = Math.min(results.length, this._nbColumns);
+    for (let i = 0; i < maxResults; i++) {
+      this._recents[i].super_btn.label = results[i].unicode;
+      this._recents[i].super_btn.text = results[i].description;
     }
     this._updateSensitivity();
   }
@@ -206,12 +204,12 @@ export class EmojiSearchItem {
   }
 
   updateStyleRecents() {
-    let fontStyle = "font-size: " + this._settings.get_int("emojisize") +
-      "px;";
-    fontStyle += " color: #FFFFFF;";
-    this._recents.forEach(function (b) {
-      b.updateStyle(fontStyle);
-    });
+    // Use template literal for cleaner string concatenation
+    const fontStyle = `font-size: ${this._settings.get_int("emojisize")}px; color: #FFFFFF;`;
+    // Use for loop instead of forEach for better performance
+    for (let i = 0; i < this._recents.length; i++) {
+      this._recents[i].updateStyle(fontStyle);
+    }
   }
 
   shiftFor(currentEmoji) {
