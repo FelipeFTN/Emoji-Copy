@@ -141,6 +141,7 @@ export default class EmojiCopy extends Extension {
     this._settings.disconnect(this.signaux[0]);
     this._settings.disconnect(this.signaux[1]);
     this._settings.disconnect(this.signaux[2]);
+    this._settings.disconnect(this.signaux[3]);
 
     if (this.timeoutSourceId) {
       GLib.Source.remove(this.timeoutSourceId);
@@ -148,6 +149,7 @@ export default class EmojiCopy extends Extension {
     }
 
     this.sqlite.destroy();
+    this.searchItem.destroy();
     this.super_btn.destroy();
     this.searchItem = null;
     this._settings = null;
@@ -173,6 +175,7 @@ export default class EmojiCopy extends Extension {
       c.setNbCols(nbCols);
     });
 
+    this.searchItem?.destroy();
     this.searchItem = new EmojiSearchItem(this, nbCols);
   }
 
