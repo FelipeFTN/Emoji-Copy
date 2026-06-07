@@ -30,6 +30,11 @@
       <summary>if paste on select is enabled</summary>
       <description>if true, Selecting an emoji will attempt to paste it on the focused textfield</description>
     </key>
+    <key type="s" name="paste-mode">
+      <default>'copy-only'</default>
+      <summary>behavior when selecting an emoji</summary>
+      <description>Possible values: 'copy-only' (copy to clipboard), 'paste-on-select' (copy then paste), 'paste-no-clip' (paste without keeping in clipboard).</description>
+    </key>
     <key type="b" name="active-keybind">
       <default>true</default>
       <summary>if keybinding is enabled</summary>
