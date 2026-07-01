@@ -47,6 +47,13 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(paste_on_select);
 
+        // Multiple Emoji to clipboard Switch
+        const multiple_emoji_to_clipboard = new Adw.SwitchRow({
+            title: _('Multiple Emoji to clipboard'),
+            subtitle: _('Accumulate multiple emojis in the clipboard using right click.'),
+        });
+        general_gp.add(multiple_emoji_to_clipboard);
+
         // Keybind active (true or false)
         const active_keybind = new Adw.SwitchRow({
             title: _('Use Keybind'),
@@ -93,6 +100,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         // Bind Adwaita field values to schema
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('multiple-emoji-to-clipboard', multiple_emoji_to_clipboard, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
     }
 

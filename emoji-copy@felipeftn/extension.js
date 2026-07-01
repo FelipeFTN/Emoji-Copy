@@ -42,6 +42,7 @@ export default class EmojiCopy extends Extension {
     this._settings = this.getSettings();
     this.position = this._settings.get_string("position");
     this._permanentItems = 0;
+    this._firstRightClick = true;
 
     this.sqlite = new SQLite();
     await this.sqlite.initializeDB(this.path);
@@ -184,6 +185,10 @@ export default class EmojiCopy extends Extension {
     this.super_btn.visible = open || this._settings.get_boolean("always-show");
     this.clearCategories();
     this.searchItem.searchEntry.set_text("");
+
+    if (open) {
+      this._firstRightClick = true;
+    }
 
     this.timeoutSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 20, () => {
       if (open) {

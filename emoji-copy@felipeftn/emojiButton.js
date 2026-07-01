@@ -186,7 +186,16 @@ export class EmojiButton {
     } else if (mouseButton == 2) {
       return this.replaceClipboardAndStay(emojiToCopy);
     } else if (mouseButton == 3) {
-      return this.addToClipboardAndStay(emojiToCopy);
+      if (this._settings.get_boolean("multiple-emoji-to-clipboard")) {
+        if (this.emojiCopy._firstRightClick) {
+          this.emojiCopy._firstRightClick = false;
+          return this.replaceClipboardAndStay(emojiToCopy);
+        } else {
+          return this.addToClipboardAndStay(emojiToCopy);
+        }
+      } else {
+        return this.addToClipboardAndStay(emojiToCopy);
+      }
     }
     return Clutter.EVENT_PROPAGATE;
   }
