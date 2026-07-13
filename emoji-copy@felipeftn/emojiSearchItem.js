@@ -30,14 +30,15 @@ export class EmojiSearchItem {
       this._onSearchTextChanged.bind(this),
     );
 
-    // Listen for skin tone changes and refresh search results
+    // Listen for skin tone changes and refresh search results. Keep the
+    // handler ids so destroy() can disconnect them: _settings outlives this
+    // item, and firing on a disposed searchEntry segfaults the shell.
+    this._settingsHandlerIds = [];
     if (this._settings && this._settings.connect) {
-      this._settings.connect('changed::skin-tone', () => {
-        this._onSearchTextChanged();
-      });
-      this._settings.connect('changed::gender', () => {
-        this._onSearchTextChanged();
-      });
+      this._settingsHandlerIds.push(
+        this._settings.connect('changed::skin-tone', () => this._onSearchTextChanged()),
+        this._settings.connect('changed::gender', () => this._onSearchTextChanged()),
+      );
     }
 
     this.super_item.add_child(this.searchEntry);
@@ -109,8 +110,8 @@ export class EmojiSearchItem {
   // Updates the "recently used" buttons content in reaction to a new search
   // query (the text changed or the category changed).
   _onSearchTextChanged() {
-    let searchedText = this.searchEntry.get_text();
-    if (searchedText === "") {
+    let searchedText = this.searchEntry?.get_text();
+    if (searchedText === null || searchedText === undefined || searchedText === "") {
       this._buildRecents();
       this._updateSensitivity();
       return;
@@ -230,5 +231,15 @@ export class EmojiSearchItem {
     this._buildRecents();
     this.saveRecents();
     this.emojiCopy._onSearchTextChanged();
+  }
+
+  destroy() {
+    if (this._settings && this._settingsHandlerIds) {
+      for (const id of this._settingsHandlerIds) {
+        this._settings.disconnect(id);
+      }
+    }
+    this._settingsHandlerIds = [];
+    this.super_item?.destroy();
   }
 }
