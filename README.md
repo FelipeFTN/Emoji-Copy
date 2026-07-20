@@ -112,6 +112,6 @@ The extension is currently available in the following languages:
 - 🇹🇷 Turkish (Thanks to [@mimoguz](https://github.com/mimoguz))
 - 🇷🇺 Russian (Thanks to [@jasursadikov](https://github.com/jasursadikov))
 - 🇧🇬 Bulgarian (Thanks to [@iatanas0v](https://github.com/iatanas0v))
--    Indonesian (Thanks to [@frijal](https://github.com/frijal))
+- 🇮🇩 Indonesian (Thanks to [@frijal](https://github.com/frijal))
 
 If you need another language, please contribute! ❤️
