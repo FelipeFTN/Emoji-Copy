@@ -30,6 +30,11 @@
       <summary>if paste on select is enabled</summary>
       <description>if true, Selecting an emoji will attempt to paste it on the focused textfield</description>
     </key>
+    <key type="b" name="multiple-emoji-to-clipboard">
+      <default>false</default>
+      <summary>Multiple Emoji to clipboard</summary>
+      <description>If true, right-clicking an emoji will replace the clipboard content on first click, and append all subsequent emojis until the menu is closed.</description>
+    </key>
     <key type="b" name="active-keybind">
       <default>true</default>
       <summary>if keybinding is enabled</summary>
