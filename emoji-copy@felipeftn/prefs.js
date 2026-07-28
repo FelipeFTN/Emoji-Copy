@@ -40,12 +40,37 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(show_indicator);
 
-        // Emoji copy paste on Select Switch
-        const paste_on_select = new Adw.SwitchRow({
-            title: _('Paste on Select'),
-            subtitle: _('Automatically paste the selected emoji.'),
+        // Paste mode selector (copy-only, paste-on-select, paste-no-clip)
+        const PASTE_MODES = ['copy-only', 'paste-on-select', 'paste-no-clip'];
+        const PASTE_LABELS = [
+            _('Copy only'),
+            _('Paste on select'),
+            _('Paste without copying'),
+        ];
+        const paste_mode_list = Gtk.StringList.new(PASTE_LABELS);
+
+        // Determine the effective mode (new key with fallback to old boolean)
+        const rawMode = this._window._settings.get_string('paste-mode');
+        let effectiveIndex = PASTE_MODES.indexOf(rawMode);
+        if (effectiveIndex === -1) {
+            // Fallback: old boolean key
+            effectiveIndex = this._window._settings.get_boolean('paste-on-select') ? 1 : 0;
+        }
+
+        const paste_mode = new Adw.ComboRow({
+            title: _('Paste Mode'),
+            subtitle: _('Behavior when selecting an emoji in the menu.'),
+            model: paste_mode_list,
+            selected: effectiveIndex,
         });
-        general_gp.add(paste_on_select);
+        general_gp.add(paste_mode);
+
+        paste_mode.connect('notify::selected', () => {
+            const idx = paste_mode.get_selected();
+            if (idx >= 0 && idx < PASTE_MODES.length) {
+                this._window._settings.set_string('paste-mode', PASTE_MODES[idx]);
+            }
+        });
 
         // Keybind active (true or false)
         const active_keybind = new Adw.SwitchRow({
@@ -92,7 +117,6 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
 
         // Bind Adwaita field values to schema
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
-        this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
     }
 

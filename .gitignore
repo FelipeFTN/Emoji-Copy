@@ -1,3 +1,10 @@
+# Ignore dot files
+.*
+!.github/
+!.eslint*
+!.gitignore
+!.gitattributes
+
 # Ignore node files
 node_modules/
 package-lock.json

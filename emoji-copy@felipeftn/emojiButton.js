@@ -191,21 +191,53 @@ export class EmojiButton {
     return Clutter.EVENT_PROPAGATE;
   }
 
-  replaceClipboardAndClose(emojiToCopy) {
-    this.clipboard.set_text(
-      CLIPBOARD_TYPE,
-      emojiToCopy,
-    );
-    this.clipboard.set_text(
-      PRIMARY_CLIPBOARD_TYPE,
-      emojiToCopy,
-    );
-    this.emojiCopy.get_super_btn().menu.close();
-
+  _getPasteMode() {
+    // Read the new string setting with fallback to the old boolean key
+    const newMode = this._settings.get_string("paste-mode");
+    if (newMode === "paste-on-select" || newMode === "paste-no-clip") {
+      return newMode;
+    }
+    // Default ("copy-only") or unknown value — check old boolean fallback
     if (this._settings.get_boolean("paste-on-select")) {
-      this.triggerPasteHack();
+      return "paste-on-select";
+    }
+    return "copy-only";
+  }
+
+  replaceClipboardAndClose(emojiToCopy) {
+    const mode = this._getPasteMode();
+
+    if (mode === "paste-no-clip") {
+      // Save clipboard, copy emoji momentarily, paste, then restore
+      this.clipboard.get_text(CLIPBOARD_TYPE, (_, savedText) => {
+        this.clipboard.set_text(CLIPBOARD_TYPE, emojiToCopy);
+        this.clipboard.set_text(PRIMARY_CLIPBOARD_TYPE, emojiToCopy);
+        this.triggerPasteHack();
+        // Restore the original clipboard contents after paste has been triggered
+        GLib.timeout_add(GLib.PRIORITY_DEFAULT, 50, () => {
+          this.clipboard.set_text(CLIPBOARD_TYPE, savedText || '');
+          this.clipboard.set_text(PRIMARY_CLIPBOARD_TYPE, savedText || '');
+          return GLib.SOURCE_REMOVE;
+        });
+      });
+    } else {
+      // Copy to clipboard (always happens for "copy-only" and "paste-on-select")
+      this.clipboard.set_text(
+        CLIPBOARD_TYPE,
+        emojiToCopy,
+      );
+      this.clipboard.set_text(
+        PRIMARY_CLIPBOARD_TYPE,
+        emojiToCopy,
+      );
+
+      if (mode === "paste-on-select") {
+        // skipped in "copy-only" mode: just copies, no paste
+        this.triggerPasteHack();
+      }
     }
 
+    this.emojiCopy.get_super_btn().menu.close();
     return Clutter.EVENT_STOP;
   }
 
