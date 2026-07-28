@@ -220,7 +220,8 @@ export class EmojiButton {
 
   addToClipboardAndStay(emojiToCopy) {
     this.clipboard.get_text(CLIPBOARD_TYPE, (_, text) => {
-      this._setClipboards(text + emojiToCopy);
+      // text is null when the clipboard is empty (e.g. a fresh session)
+      this._setClipboards((text ?? "") + emojiToCopy);
     });
 
     return Clutter.EVENT_STOP;
