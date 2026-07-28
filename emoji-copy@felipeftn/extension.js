@@ -229,6 +229,11 @@ export default class EmojiCopy extends Extension {
   }
 
   _onOpenStateChanged(_, open) {
+    if (open) {
+      // The clipboard still holds whatever was copied before opening the
+      // menu; the first "append" selection must not append to it.
+      this.clipboardOwned = false;
+    }
     this.super_btn.visible = open || this._settings.get_boolean("always-show");
     this.clearCategories();
     this.searchItem.searchEntry.set_text("");

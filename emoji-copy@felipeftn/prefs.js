@@ -18,6 +18,27 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         this._general();
     }
 
+    _shortcuts(page) {
+        const shortcuts_gp = new Adw.PreferencesGroup({
+            title: _('Shortcuts'),
+            description: _('Ways to pick an emoji from the menu'),
+        });
+        page.add(shortcuts_gp);
+
+        const shortcuts = [
+            [_('Left-click / Enter'), _('Copy the emoji and close the menu')],
+            [_('Middle-click / Ctrl+Enter'), _('Copy the emoji without closing the menu')],
+            [_('Right-click / Shift+Enter'), _('Add the emoji to the end of the clipboard content')],
+            [_('Tab'), _('Navigate between emojis')],
+        ];
+        for (const [keys, description] of shortcuts) {
+            shortcuts_gp.add(new Adw.ActionRow({
+                title: keys,
+                subtitle: description,
+            }));
+        }
+    }
+
     _general() {
         // General page
         const general_pg = new Adw.PreferencesPage({
@@ -70,6 +91,13 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(paste_on_select);
 
+        // Keep the emoji menu open after selecting an emoji
+        const keep_open = new Adw.SwitchRow({
+            title: _('Keep Open on Select'),
+            subtitle: _('Keep the emoji menu open after selecting an emoji.'),
+        });
+        general_gp.add(keep_open);
+
         // Keybind active (true or false)
         const active_keybind = new Adw.SwitchRow({
             title: _('Use Keybind'),
@@ -116,7 +144,11 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         // Bind Adwaita field values to schema
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('keep-open', keep_open, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
+
+        // Mouse and keyboard shortcuts reference
+        this._shortcuts(general_pg);
     }
 
     _openAboutPage() {

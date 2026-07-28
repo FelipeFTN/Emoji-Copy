@@ -39,6 +39,11 @@
       <summary>if paste on select is enabled</summary>
       <description>if true, Selecting an emoji will attempt to paste it on the focused textfield</description>
     </key>
+    <key type="b" name="keep-open">
+      <default>false</default>
+      <summary>if the menu stays open after selecting an emoji</summary>
+      <description>if true, the emoji menu will stay open after selecting an emoji, allowing to pick several emojis in a row.</description>
+    </key>
     <key type="b" name="active-keybind">
       <default>true</default>
       <summary>if keybinding is enabled</summary>
