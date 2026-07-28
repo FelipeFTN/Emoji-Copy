@@ -37,7 +37,6 @@ import { SQLite } from "./handlers/sql.js";
 
 export default class EmojiCopy extends Extension {
   async enable() {
-    this.signaux = [];
     this.timeoutSourceId = null;
     this._settings = this.getSettings();
     this.position = this._settings.get_string("position");
@@ -79,9 +78,10 @@ export default class EmojiCopy extends Extension {
     });
     Main.uiGroup.add_child(this._cursorAnchor);
 
-    this.super_btn.menu.connect(
+    this.super_btn.menu.connectObject(
       "open-state-changed",
       this._onOpenStateChanged.bind(this),
+      this,
     );
 
     let nbCols = this._settings.get_int("nbcols");
@@ -118,25 +118,24 @@ export default class EmojiCopy extends Extension {
       this._bindShortcut();
     }
 
-    this.signaux[0] = this._settings.connect("changed::emojisize", () => {
-      this.updateStyle();
-    });
-    this.signaux[1] = this._settings.connect("changed::always-show", () => {
-      this.super_btn.visible = this._settings.get_boolean(
-        "always-show",
-      );
-    });
-    this.signaux[2] = this._settings.connect("changed::active-keybind", (z) => {
-      if (z.get_boolean("active-keybind")) {
+    this._settings.connectObject(
+      "changed::emojisize", () => {
+        this.updateStyle();
+      },
+      "changed::always-show", () => {
+        this.super_btn.visible = this._settings.get_boolean("always-show");
+      },
+      "changed::active-keybind", (settings) => {
         Main.wm.removeKeybinding("emoji-keybind");
-        this._bindShortcut();
-      } else {
-        Main.wm.removeKeybinding("emoji-keybind");
-      }
-    });
-    this.signaux[3] = this._settings.connect("changed::nbcols", () => {
-      this.updateNbCols();
-    });
+        if (settings.get_boolean("active-keybind")) {
+          this._bindShortcut();
+        }
+      },
+      "changed::nbcols", () => {
+        this.updateNbCols();
+      },
+      this,
+    );
   }
 
   disable() {
@@ -152,10 +151,8 @@ export default class EmojiCopy extends Extension {
       this._cursorAnchor = null;
     }
 
-    this._settings.disconnect(this.signaux[0]);
-    this._settings.disconnect(this.signaux[1]);
-    this._settings.disconnect(this.signaux[2]);
-    this._settings.disconnect(this.signaux[3]);
+    this._settings.disconnectObject(this);
+    this.super_btn.menu.disconnectObject(this);
 
     if (this.timeoutSourceId) {
       GLib.Source.remove(this.timeoutSourceId);
@@ -164,17 +161,16 @@ export default class EmojiCopy extends Extension {
 
     this.sqlite.destroy();
     this.searchItem.destroy();
+    // Destroys the menu and all its children, including _buttonMenuItem
+    // and the categories' items; below we only drop our references.
     this.super_btn.destroy();
     this.searchItem = null;
     this._settings = null;
     this.super_btn = null;
     this.sqlite = null;
-    this.signaux = [];
+    this._buttonMenuItem = null;
+    this.emojiCategories = null;
   }
-
-  _connectSignals() {}
-
-  disconnectSignals() {}
 
   toggleMenu() {
     const windowLocation = this._settings.get_string("window-location");
@@ -322,7 +318,6 @@ export default class EmojiCopy extends Extension {
       reactive: false,
       can_focus: false,
     });
-    this.categoryButton = [];
     for (let i = 0; i < this.emojiCategories.length; i++) {
       this._buttonMenuItem.add_child(this.emojiCategories[i].getButton());
     }
