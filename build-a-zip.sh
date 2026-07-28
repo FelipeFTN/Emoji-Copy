@@ -6,7 +6,9 @@ EXT_ID=emoji-copy@felipeftn
 
 cd $EXT_ID
 
-glib-compile-schemas ./schemas
+# GNOME Shell 45+ compiles schemas itself; shipping gschemas.compiled
+# triggers the EGO-P-006 review warning.
+rm -f ./schemas/gschemas.compiled
 
 zip ../$EXT_ID.zip *.js
 zip ../$EXT_ID.zip prefs.ui

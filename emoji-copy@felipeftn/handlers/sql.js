@@ -7,6 +7,12 @@ import GLib from "gi://GLib";
 
 import { initSqlJs } from "../libs/sql/sql.js";
 
+Gio._promisify(
+  Gio.File.prototype,
+  "load_contents_async",
+  "load_contents_finish",
+);
+
 async function ReadDB(extensionPath) {
   const p = GLib.build_filenamev([
     extensionPath,
@@ -14,7 +20,7 @@ async function ReadDB(extensionPath) {
     "emojis.db",
   ]);
   const f = Gio.File.new_for_path(p);
-  const [_ok, content, _etag] = await f.load_contents(null);
+  const [content, _etag] = await f.load_contents_async(null);
   return content;
 }
 

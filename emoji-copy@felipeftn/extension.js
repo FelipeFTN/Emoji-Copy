@@ -161,8 +161,9 @@ export default class EmojiCopy extends Extension {
 
     this.sqlite.destroy();
     this.searchItem.destroy();
-    // Destroys the menu and all its children, including _buttonMenuItem
-    // and the categories' items; below we only drop our references.
+    this._buttonMenuItem.destroy();
+    // Destroys the menu and all its remaining children (the categories'
+    // items); below we only drop our references.
     this.super_btn.destroy();
     this.searchItem = null;
     this._settings = null;

@@ -8,7 +8,6 @@ EXTENSION_PATH = ~/.local/share/gnome-shell/extensions/$(EXTENSION)
 ZIP_NAME := $(EXTENSION).zip
 ZIP_TEMP := zip-temp
 
-SCHEMA_FILE = $(EXTENSION)/schemas/org.gnome.shell.extensions.emoji-copy.gschema.xml
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
 EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
@@ -16,7 +15,9 @@ ZIP_CONTENT = $(EXTENSION)/* LICENSE
 
 all: clean build
 
-build: $(SCHEMA_COMPILED_FILE) $(EMOJIS_DB) $(ZIP_NAME)
+# GNOME Shell 45+ compiles schemas itself; shipping gschemas.compiled
+# triggers the EGO-P-006 review warning.
+build: $(EMOJIS_DB) $(ZIP_NAME)
 	@echo "[+] EMOJI COPY BUILT"
 
 install: build
@@ -28,7 +29,7 @@ uninstall:
 	@echo "Extension uninstalled successfully!"
 
 clean:
-	@rm --force --recursive $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB) $(EXTENSION_PATH)
+	@rm -rf $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB) $(EXTENSION_PATH)
 	
 debug: clean install
 	dbus-run-session -- gnome-shell --devkit
@@ -42,13 +43,9 @@ $(ZIP_NAME):
 	@cd $(ZIP_TEMP) && find . -name ".gitkeep" -type f | xargs rm -rf
 	@cd $(ZIP_TEMP) && find . -name "*.pot" -type f | xargs rm -rf
 	@cd $(ZIP_TEMP) && find . -name "*.po" -type f | xargs rm -rf
-	@rm --force $@
+	@rm -f $(ZIP_TEMP)/schemas/gschemas.compiled
+	@rm -f $@
 	@cd $(ZIP_TEMP) && zip -r ../$@ .
-
-$(SCHEMA_COMPILED_FILE): $(SCHEMA_FILE)
-	@echo "[-] COMPILING SCHEMA..."
-	@glib-compile-schemas $(EXTENSION)/schemas
-	@echo "[+] SCHEMA COMPILED"
 
 $(EMOJIS_DB):
 	@python3 ./build/parser.py
