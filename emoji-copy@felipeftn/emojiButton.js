@@ -191,16 +191,19 @@ export class EmojiButton {
     return Clutter.EVENT_PROPAGATE;
   }
 
+  _setClipboards(text) {
+    this.clipboard.set_text(CLIPBOARD_TYPE, text);
+    this.clipboard.set_text(PRIMARY_CLIPBOARD_TYPE, text);
+  }
+
   replaceClipboardAndClose(emojiToCopy) {
-    this.clipboard.set_text(
-      CLIPBOARD_TYPE,
-      emojiToCopy,
-    );
-    this.clipboard.set_text(
-      PRIMARY_CLIPBOARD_TYPE,
-      emojiToCopy,
-    );
-    this.emojiCopy.get_super_btn().menu.close();
+    this._setClipboards(emojiToCopy);
+
+    // The "keep-open" setting turns the default action into a "stay" one,
+    // so several emojis can be picked in a row.
+    if (!this._settings.get_boolean("keep-open")) {
+      this.emojiCopy.get_super_btn().menu.close();
+    }
 
     if (this._settings.get_boolean("paste-on-select")) {
       this.triggerPasteHack();
@@ -210,28 +213,14 @@ export class EmojiButton {
   }
 
   replaceClipboardAndStay(emojiToCopy) {
-    this.clipboard.set_text(
-      CLIPBOARD_TYPE,
-      emojiToCopy,
-    );
-    this.clipboard.set_text(
-      PRIMARY_CLIPBOARD_TYPE,
-      emojiToCopy,
-    );
+    this._setClipboards(emojiToCopy);
 
     return Clutter.EVENT_STOP;
   }
 
   addToClipboardAndStay(emojiToCopy) {
     this.clipboard.get_text(CLIPBOARD_TYPE, (_, text) => {
-      this.clipboard.set_text(
-        CLIPBOARD_TYPE,
-        text + emojiToCopy,
-      );
-      this.clipboard.set_text(
-        PRIMARY_CLIPBOARD_TYPE,
-        text + emojiToCopy,
-      );
+      this._setClipboards(text + emojiToCopy);
     });
 
     return Clutter.EVENT_STOP;

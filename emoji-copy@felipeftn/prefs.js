@@ -70,6 +70,13 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(paste_on_select);
 
+        // Keep the emoji menu open after selecting an emoji
+        const keep_open = new Adw.SwitchRow({
+            title: _('Keep Open on Select'),
+            subtitle: _('Keep the emoji menu open after selecting an emoji.'),
+        });
+        general_gp.add(keep_open);
+
         // Keybind active (true or false)
         const active_keybind = new Adw.SwitchRow({
             title: _('Use Keybind'),
@@ -116,6 +123,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         // Bind Adwaita field values to schema
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('keep-open', keep_open, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
     }
 

@@ -12,6 +12,8 @@ Please feel free to use and contribute to this project. 😃
 - skin tone & gender modifiers
 - middle-click to set to the clipboard without closing the menu (or <kbd>Ctrl</kbd>+<kbd>Enter</kbd>)
 - right-click to add the emoji at the end of the current clipboard content (or <kbd>Shift</kbd>+<kbd>Enter</kbd>)
+- "Keep Open on Select" preference to keep the menu open after selecting an emoji, so you can pick several in a row
+- "Paste on Select" preference to automatically paste the selected emoji into the focused text field
 
 Keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
 
