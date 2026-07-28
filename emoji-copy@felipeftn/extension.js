@@ -71,6 +71,14 @@ export default class EmojiCopy extends Extension {
       "right",
     );
 
+    this._cursorAnchor = new St.Widget({
+      width: 1,
+      height: 1,
+      opacity: 0,
+      reactive: false,
+    });
+    Main.uiGroup.add_child(this._cursorAnchor);
+
     this.super_btn.menu.connect(
       "open-state-changed",
       this._onOpenStateChanged.bind(this),
@@ -138,6 +146,12 @@ export default class EmojiCopy extends Extension {
       Main.wm.removeKeybinding("emoji-keybind");
     }
 
+    if (this._cursorAnchor) {
+      Main.uiGroup.remove_child(this._cursorAnchor);
+      this._cursorAnchor.destroy();
+      this._cursorAnchor = null;
+    }
+
     this._settings.disconnect(this.signaux[0]);
     this._settings.disconnect(this.signaux[1]);
     this._settings.disconnect(this.signaux[2]);
@@ -162,6 +176,41 @@ export default class EmojiCopy extends Extension {
 
   disconnectSignals() {}
 
+  toggleMenu() {
+    const windowLocation = this._settings.get_string("window-location");
+
+    if (this.super_btn.menu.isOpen) {
+      this.super_btn.menu.close();
+      return;
+    }
+
+    if (!this._cursorAnchor) {
+      this._cursorAnchor = new St.Widget({
+        width: 1,
+        height: 1,
+        opacity: 0,
+        reactive: false,
+      });
+      Main.uiGroup.add_child(this._cursorAnchor);
+    }
+
+    if (windowLocation === "cursor") {
+      let x, y;
+      [x, y] = global.get_pointer();
+
+      const margin = 10;
+      const clampedX = Math.max(margin, Math.min(x, global.stage.width - margin));
+      const clampedY = Math.max(margin, Math.min(y, global.stage.height - margin));
+
+      this._cursorAnchor.set_position(clampedX, clampedY);
+      this.super_btn.menu.sourceActor = this._cursorAnchor;
+    } else {
+      this.super_btn.menu.sourceActor = this.super_btn;
+    }
+
+    this.super_btn.menu.open(true);
+  }
+
   updateStyle() {
     this.searchItem.updateStyleRecents();
     this.emojiCategories.forEach(function (c) {
@@ -177,10 +226,6 @@ export default class EmojiCopy extends Extension {
 
     this.searchItem?.destroy();
     this.searchItem = new EmojiSearchItem(this, nbCols);
-  }
-
-  toggle() {
-    this.super_btn.menu.toggle();
   }
 
   _onOpenStateChanged(_, open) {
@@ -284,7 +329,7 @@ export default class EmojiCopy extends Extension {
       this._settings,
       Meta.KeyBindingFlags.NONE,
       Shell.ActionMode.ALL,
-      this.toggle.bind(this),
+      this.toggleMenu.bind(this),
     );
   }
 

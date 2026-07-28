@@ -40,6 +40,29 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(show_indicator);
 
+        // Show emoji copy window next to cursor (true or false)
+        const location_options = ['top-bar', 'cursor'];
+        const window_location = new Adw.ComboRow({
+            title: _('Window Location'),
+            subtitle: _('Where to display the emoji menu window.'),
+            model: Gtk.StringList.new([
+                _('Top bar'),
+                _('Cursor'),
+            ]),
+        });
+        general_gp.add(window_location);
+
+        const current_location = this._window._settings.get_string('window-location');
+        const initial_index = location_options.indexOf(current_location);
+        window_location.set_selected(initial_index !== -1 ? initial_index : 0);
+
+        window_location.connect('notify::selected', () => {
+            const index = window_location.get_selected();
+            if (index >= 0 && index < location_options.length) {
+                this._window._settings.set_string('window-location', location_options[index]);
+            }
+        });
+
         // Emoji copy paste on Select Switch
         const paste_on_select = new Adw.SwitchRow({
             title: _('Paste on Select'),

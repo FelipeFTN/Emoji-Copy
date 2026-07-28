@@ -25,6 +25,15 @@
       <summary>default memorized emojis</summary>
       <description></description>
     </key>
+    <key name="window-location" type="s">
+      <choices>
+        <choice value="top-bar"/>
+        <choice value="cursor"/>
+      </choices>
+      <default>'top-bar'</default>
+      <summary>Window location mode</summary>
+      <description>Where to display the emoji window: 'Top bar', 'Cursor'.</description>
+    </key>
     <key type="b" name="paste-on-select">
       <default>true</default>
       <summary>if paste on select is enabled</summary>
