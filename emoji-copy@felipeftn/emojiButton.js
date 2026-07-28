@@ -194,6 +194,9 @@ export class EmojiButton {
   _setClipboards(text) {
     this.clipboard.set_text(CLIPBOARD_TYPE, text);
     this.clipboard.set_text(PRIMARY_CLIPBOARD_TYPE, text);
+    // From now on the clipboard only holds emojis picked in this menu
+    // session, so further "append" selections may append to it.
+    this.emojiCopy.clipboardOwned = true;
   }
 
   replaceClipboardAndClose(emojiToCopy) {
@@ -219,6 +222,13 @@ export class EmojiButton {
   }
 
   addToClipboardAndStay(emojiToCopy) {
+    // Content copied before the menu was opened is not ours to append to:
+    // the first selection replaces it, the following ones append.
+    if (!this.emojiCopy.clipboardOwned) {
+      this._setClipboards(emojiToCopy);
+      return Clutter.EVENT_STOP;
+    }
+
     this.clipboard.get_text(CLIPBOARD_TYPE, (_, text) => {
       // text is null when the clipboard is empty (e.g. a fresh session)
       this._setClipboards((text ?? "") + emojiToCopy);
