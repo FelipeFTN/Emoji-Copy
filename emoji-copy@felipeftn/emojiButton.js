@@ -138,7 +138,10 @@ export class EmojiButton {
   }
 
   updateStyle(forcedStyle) {
-    const fontStyle = forcedStyle || 
+    // Unbuilt buttons have no super_btn yet; they get styled right after
+    // build() by the category's updateStyle() sweep.
+    if (!this.super_btn) return;
+    const fontStyle = forcedStyle ||
       `font-size: ${this._settings.get_int("emojisize")}px; color: #FFFFFF;`;
     this.super_btn.style = fontStyle;
   }
