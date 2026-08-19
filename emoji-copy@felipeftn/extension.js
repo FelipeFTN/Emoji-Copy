@@ -31,6 +31,7 @@ import {
   gettext as _,
 } from "resource:///org/gnome/shell/extensions/extension.js";
 
+import { EmojiButton } from "./emojiButton.js";
 import { EmojiCategory } from "./emojiCategory.js";
 import { EmojiSearchItem } from "./emojiSearchItem.js";
 import { SQLite } from "./handlers/sql.js";
@@ -92,7 +93,9 @@ export default class EmojiCopy extends Extension {
 
     this.searchItem = new EmojiSearchItem(this, nbCols);
 
-    let recentlyUsed = this.searchItem._recentlyUsedInit();
+    // The constructor already built the recents row; building a second one
+    // here would orphan the first.
+    let recentlyUsed = this.searchItem.recentlyUsedItem;
 
     if (this.position === "top") {
       this.super_btn.menu.addMenuItem(this._buttonMenuItem);
@@ -161,6 +164,10 @@ export default class EmojiCopy extends Extension {
 
     this.sqlite.destroy();
     this.searchItem.destroy();
+    // Disconnects the categories' settings handlers; leaving them connected
+    // would fire _onFilterChanged on destroyed items after re-enable.
+    this.emojiCategories.forEach((c) => c.destroy());
+    EmojiButton.destroyTooltip();
     this._buttonMenuItem.destroy();
     // Destroys the menu and all its remaining children (the categories'
     // items); below we only drop our references.
@@ -221,8 +228,9 @@ export default class EmojiCopy extends Extension {
       c.setNbCols(nbCols);
     });
 
-    this.searchItem?.destroy();
-    this.searchItem = new EmojiSearchItem(this, nbCols);
+    // Update in place: recreating the EmojiSearchItem would remove the
+    // search entry and recents row from the menu without re-adding them.
+    this.searchItem.setNbCols(nbCols);
   }
 
   _onOpenStateChanged(_, open) {

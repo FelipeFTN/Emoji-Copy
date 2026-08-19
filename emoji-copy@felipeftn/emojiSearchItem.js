@@ -170,19 +170,33 @@ export class EmojiSearchItem {
       reactive: false,
       can_focus: false,
     });
-    let container = new St.BoxLayout();
-    recentlyUsed.add_child(container);
+    this._recentsContainer = new St.BoxLayout();
+    recentlyUsed.add_child(this._recentsContainer);
+    this._recents = [];
+    this._rebuildRecentsButtons();
+    return recentlyUsed;
+  }
+
+  // (Re)creates the recents row to match this._nbColumns
+  _rebuildRecentsButtons() {
+    this._recents.forEach((b) => b.destroy());
     this._recents = [];
 
     for (let i = 0; i < this._nbColumns; i++) {
       this._recents[i] = new EmojiButton(this.emojiCopy, "", []);
       this._recents[i].build(null);
-      container.add_child(this._recents[i].super_btn);
+      this._recentsContainer.add_child(this._recents[i].super_btn);
     }
 
     this._buildRecents();
     this.updateStyleRecents();
-    return recentlyUsed;
+  }
+
+  // Updates the number of columns in place, keeping the search entry and
+  // recents row in the menu (recreating the whole item would drop them).
+  setNbCols(nbColumns) {
+    this._nbColumns = nbColumns;
+    this._rebuildRecentsButtons();
   }
 
   saveRecents() {
@@ -241,6 +255,11 @@ export class EmojiSearchItem {
       }
     }
     this._settingsHandlerIds = [];
+    // Destroy the wrappers first to cancel pending tooltip timers
+    this._recents.forEach((b) => b.destroy());
+    this._recents = [];
+    this.recentlyUsedItem?.destroy();
+    this.recentlyUsedItem = null;
     this.super_item?.destroy();
   }
 }

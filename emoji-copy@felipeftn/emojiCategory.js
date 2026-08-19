@@ -60,15 +60,14 @@ export class EmojiCategory {
       this.skinTonesBar.addBar(this.super_item);
     }
 
-    // Listen for skin tone changes and refresh search results
-    if (this._settings && this._settings.connect) {
-      this._settings.connect('changed::skin-tone', () => {
-        this._onFilterChanged();
-      });
-      this._settings.connect('changed::gender', () => {
-        this._onFilterChanged();
-      });
-    }
+    // Listen for skin tone changes and refresh search results. Owned by
+    // `this` so destroy() can disconnect them: _settings outlives the
+    // category, and firing on a destroyed super_item crashes the shell.
+    this._settings.connectObject(
+      "changed::skin-tone", () => this._onFilterChanged(),
+      "changed::gender", () => this._onFilterChanged(),
+      this,
+    );
 
     this.categoryButton = new St.Button({
       reactive: true,
@@ -100,7 +99,6 @@ export class EmojiCategory {
    */
   _onFilterChanged() {
     if (this.super_item.menu && this.super_item.menu.isOpen) {
-      this.emojiButtons = [];
       this.clear();
       // Get results for selected skin tone and for yellow (no skin tone)
       const selectedTone = this._settings.get_int("skin-tone");
@@ -164,6 +162,9 @@ export class EmojiCategory {
   }
 
   clear() {
+    // Destroy the button wrappers first so their pending tooltip timers are
+    // cancelled; removeAll() only destroys the actors.
+    this.emojiButtons.forEach((b) => b.destroy());
     this.super_item.menu.removeAll();
     this.emojiButtons = [];
     this.emojis = [];
@@ -226,6 +227,14 @@ export class EmojiCategory {
     this.emojiButtons.forEach(function (b) {
       b.updateStyle(style);
     });
+  }
+
+  destroy() {
+    this._settings.disconnectObject(this);
+    // Cancels pending tooltip timers; the actors themselves are destroyed
+    // along with the panel menu.
+    this.emojiButtons.forEach((b) => b.destroy());
+    this.emojiButtons = [];
   }
 
   getButton() {

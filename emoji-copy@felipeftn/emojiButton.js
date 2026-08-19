@@ -134,7 +134,20 @@ export class EmojiButton {
       GLib.source_remove(this._tooltipTimeoutId);
       this._tooltipTimeoutId = null;
     }
-    this.super_btn.destroy();
+    // Unbuilt buttons (category not opened yet) have no super_btn.
+    if (this.super_btn) {
+      this.super_btn.destroy();
+      this.super_btn = null;
+    }
+  }
+
+  // Destroys the tooltip label shared by all EmojiButtons; it lives on
+  // global.stage, so it must be removed explicitly on disable().
+  static destroyTooltip() {
+    if (EmojiButton.tooltipLabel) {
+      EmojiButton.tooltipLabel.destroy();
+      EmojiButton.tooltipLabel = null;
+    }
   }
 
   updateStyle(forcedStyle) {
