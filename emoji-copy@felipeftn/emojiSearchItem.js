@@ -59,7 +59,8 @@ export class EmojiSearchItem {
         case Clutter.KEY_Return:
         case Clutter.KEY_KP_Enter:
           let firstRecent = this._recents.find(
-            (btn) => btn.super_btn.visible && btn.super_btn.can_focus
+            (btn) =>
+              btn.super_btn && btn.super_btn.visible && btn.super_btn.can_focus
           );
 
           if (firstRecent) {
