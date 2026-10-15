@@ -9,7 +9,9 @@ const VirtualKeyboard = (() => {
   let VirtualKeyboard;
   return () => {
     if (!VirtualKeyboard) {
-      VirtualKeyboard = Clutter.get_default_backend()
+      const backend =
+        global.stage.context?.get_backend?.() ?? Clutter.get_default_backend();
+      VirtualKeyboard = backend
         .get_default_seat()
         .create_virtual_device(Clutter.InputDeviceType.KEYBOARD_DEVICE);
     }
@@ -296,7 +298,7 @@ export class EmojiButton {
   triggerPasteHack() {
     this._pasteHackCallbackId = GLib.timeout_add(
       GLib.PRIORITY_DEFAULT,
-      1,
+      150,
       () => {
         const KEY_Shift_L = 42;
         const KEY_Insert = 110;
