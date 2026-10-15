@@ -45,35 +45,41 @@ export class SQLite {
 
   increment_selection(unicode) {
     return this.query(`
-      UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = '${unicode}'
-    `);
+      UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = ?
+    `, [unicode]);
   }
 
 search_description(search_text, skin_tone = 0, gender = 0) {
   const buildQuery = (pattern) => {
-    const sql_string = search_text
-      .split(" ")
-      .flatMap((word) => `description LIKE '${pattern.replace('WORD', word)}'`)
-      .join(" AND ");
+    const words = search_text.split(" ");
+    const sql_string = words.map(() => `description LIKE ?`).join(" AND ");
+    const params = words.map((word) => pattern.replace('WORD', word));
 
-    const skin_filter = skin_tone != 0 
-      ? ` AND skin_tone LIKE '%${this.get_skin_tone(skin_tone)}%'`
-      : ` AND skin_tone = ''`;
+    let skin_filter;
+    if (skin_tone != 0) {
+      skin_filter = ` AND skin_tone LIKE ?`;
+      params.push(`%${this.get_skin_tone(skin_tone)}%`);
+    } else {
+      skin_filter = ` AND skin_tone = ''`;
+    }
 
     const gender_filter = this.get_gender_filter(gender);
 
-    return `SELECT * FROM emojis WHERE ${sql_string}${skin_filter}${gender_filter} ORDER BY clicked_times DESC;`;
+    const sql = "SELECT * FROM emojis WHERE " + sql_string + skin_filter + gender_filter + " ORDER BY clicked_times DESC;";
+    return { sql, params };
   };
 
   // Try prefix search first
-  const prefix_results = this.query(buildQuery('WORD%'));
+  const prefix_query = buildQuery('WORD%');
+  const prefix_results = this.query(prefix_query.sql, prefix_query.params);
   
   if (prefix_results.length >= 11) {
     return prefix_results;
   }
 
   // Fallback to contains search and combine results
-  const contains_results = this.query(buildQuery('%WORD%'));
+  const contains_query = buildQuery('%WORD%');
+  const contains_results = this.query(contains_query.sql, contains_query.params);
   const seen = new Set(prefix_results.map(item => item.unicode));
   
   return [...prefix_results, ...contains_results.filter(item => !seen.has(item.unicode))];
@@ -88,10 +94,12 @@ search_description(search_text, skin_tone = 0, gender = 0) {
    * @param {number} gender - The selected gender (0 = no filter, 1 = women, 2 = men)
    */
   select_by_group(group, skin_tone = 0, gender = 0) {
+    const params = [group];
     let skin_filter = '';
     if (skin_tone != 0) {
       // Show emojis that either have no skin tone (objects, etc) or match the selected skin tone
-      skin_filter = ` AND skin_tone LIKE '%${this.get_skin_tone(skin_tone)}%'`;
+      skin_filter = ` AND skin_tone LIKE ?`;
+      params.push(`%${this.get_skin_tone(skin_tone)}%`);
     } else {
       // Show all emojis in the group
       skin_filter = ` AND skin_tone = ''`;
@@ -99,9 +107,10 @@ search_description(search_text, skin_tone = 0, gender = 0) {
 
     const gender_filter = this.get_gender_filter(gender);
 
-    return this.query(`
-      SELECT * FROM emojis WHERE emoji_group='${group}'${skin_filter}${gender_filter};
-    `);
+    return this.query(
+      "SELECT * FROM emojis WHERE emoji_group=?" + skin_filter + gender_filter + ";",
+      params
+    );
   }
 
   select_all() {
@@ -110,8 +119,8 @@ search_description(search_text, skin_tone = 0, gender = 0) {
     `);
   }
 
-  query(sql_query) {
-    const res = this.db.exec(sql_query);
+  query(sql_query, params = []) {
+    const res = this.db.exec(sql_query, params);
     if (res.length == 0) {
       return [];
     }
