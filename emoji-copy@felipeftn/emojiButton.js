@@ -305,6 +305,13 @@ export class EmojiButton {
       GLib.PRIORITY_DEFAULT,
       150,
       () => {
+        // Wait for a held Ctrl (e.g. from Ctrl+1) to be released, otherwise
+        // the app receives Ctrl+Shift+Insert instead of Shift+Insert.
+        const [, , mods] = global.get_pointer();
+        if (mods & Clutter.ModifierType.CONTROL_MASK) {
+          return GLib.SOURCE_CONTINUE;
+        }
+
         const KEY_Shift_L = 42;
         const KEY_Insert = 110;
 

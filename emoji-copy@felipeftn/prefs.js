@@ -29,6 +29,8 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
             [_('Left-click / Enter'), _('Copy the emoji and close the menu')],
             [_('Middle-click / Ctrl+Enter'), _('Copy the emoji without closing the menu')],
             [_('Right-click / Shift+Enter'), _('Add the emoji to the end of the clipboard content')],
+            [_('Ctrl+1…9, 0'), _('Copy the Nth emoji of the search row and close the menu')],
+            [_('Ctrl+Shift+1…9, 0'), _('Add the Nth emoji of the search row to the end of the clipboard content')],
             [_('Tab'), _('Navigate between emojis')],
         ];
         for (const [keys, description] of shortcuts) {
