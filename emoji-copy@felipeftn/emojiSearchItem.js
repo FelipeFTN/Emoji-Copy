@@ -18,7 +18,6 @@ export class EmojiSearchItem {
 
     this.searchEntry = new St.Entry({
       name: "searchEntry",
-      style_class: "search-entry",
       can_focus: true,
       hint_text: _("Type here to search…"),
       track_hover: true,
