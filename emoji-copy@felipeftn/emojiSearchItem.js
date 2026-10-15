@@ -53,6 +53,19 @@ export class EmojiSearchItem {
         return Clutter.EVENT_PROPAGATE;
       }
 
+      // Ctrl+1..9 picks the Nth emoji of the row, Ctrl+0 the 10th
+      if (
+        (event.get_state() & Clutter.ModifierType.CONTROL_MASK) &&
+        symbol >= Clutter.KEY_0 && symbol <= Clutter.KEY_9
+      ) {
+        const btn = this._recents[(symbol - Clutter.KEY_0 + 9) % 10];
+        const emojiToCopy = btn?.super_btn?.label ? btn.getTaggedEmoji() : null;
+        if (emojiToCopy) {
+          this.emojiCopy.sqlite.increment_selection(emojiToCopy);
+          return btn.replaceClipboardAndClose(emojiToCopy);
+        }
+      }
+
       switch (symbol) {
         // Existing Enter key logic - find first recent/result and activate
         case Clutter.KEY_Return:
