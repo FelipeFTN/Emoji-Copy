@@ -11,23 +11,20 @@
 }
 
 .EmojisCategory {
-  background-color: #3c3c3c;
-  color: #eeeeec;
+  background-color: rgba(127, 127, 127, 0.2);
   border-radius: 32px;
   padding: 12px;
-  border: 1px solid #282828;
+  border: 1px solid rgba(127, 127, 127, 0.3);
 }
 
 .EmojisCategory:hover,
 .EmojisCategory:focus {
-  background-color: rgba(120, 120, 120, 1);
-  color: #ffffff;
+  background-color: rgba(127, 127, 127, 0.35);
 }
 
 .EmojisCategory:active,
 .EmojisCategory:checked {
-  background-color: #1c1c1c;
-  color: #ffffff;
+  background-color: rgba(127, 127, 127, 0.5);
 }
 
 /* The actual emojis */
@@ -43,7 +40,7 @@
 
 .EmojisItemStyle:hover,
 .EmojisItemStyle:focus {
-  background-color: rgba(120, 120, 120, 1);
+  background-color: rgba(127, 127, 127, 0.35);
   border-radius: 6px;
 }
 
