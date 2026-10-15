@@ -53,16 +53,19 @@ export class EmojiSearchItem {
         return Clutter.EVENT_PROPAGATE;
       }
 
-      // Ctrl+1..9 picks the Nth emoji of the row, Ctrl+0 the 10th
-      if (
-        (event.get_state() & Clutter.ModifierType.CONTROL_MASK) &&
-        symbol >= Clutter.KEY_0 && symbol <= Clutter.KEY_9
-      ) {
-        const btn = this._recents[(symbol - Clutter.KEY_0 + 9) % 10];
+      // Ctrl+1..9 picks the Nth emoji of the row, Ctrl+0 the 10th, Ctrl+Shift
+      // appends it like Shift+Enter. Hardware keycodes 10..19 are the 1..0 row
+      // whatever the layout or Shift state.
+      const state = event.get_state();
+      const index = event.get_key_code() - 10;
+      if ((state & Clutter.ModifierType.CONTROL_MASK) && index >= 0 && index <= 9) {
+        const btn = this._recents[index];
         const emojiToCopy = btn?.super_btn?.label ? btn.getTaggedEmoji() : null;
         if (emojiToCopy) {
           this.emojiCopy.sqlite.increment_selection(emojiToCopy);
-          return btn.replaceClipboardAndClose(emojiToCopy);
+          return state & Clutter.ModifierType.SHIFT_MASK
+            ? btn.addToClipboardAndStay(emojiToCopy)
+            : btn.replaceClipboardAndClose(emojiToCopy);
         }
       }
 
