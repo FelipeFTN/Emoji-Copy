@@ -137,13 +137,14 @@ export default class EmojiCopy extends Extension {
       "changed::nbcols", () => {
         this.updateNbCols();
       },
+      "changed::recent-rows", () => {
+        this.searchItem._rebuildRecentsButtons();
+      },
       this,
     );
   }
 
   disable() {
-    this.searchItem.saveRecents();
-
     if (this._settings.get_boolean("active-keybind")) {
       Main.wm.removeKeybinding("emoji-keybind");
     }

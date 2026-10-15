@@ -211,3 +211,11 @@ msgstr "Digite aqui para pesquisar…"
 
 #~ msgid "Appearance"
 #~ msgstr "Aparência"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Recently Used Rows"
+msgstr "Linhas de recentes"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "How many rows of recently used emojis to show."
+msgstr "Quantas linhas de emojis usados recentemente mostrar."

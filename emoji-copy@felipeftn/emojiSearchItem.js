@@ -119,7 +119,7 @@ export class EmojiSearchItem {
     }
     searchedText = searchedText.toLowerCase().trim();
 
-    for (let j = 0; j < this._nbColumns; j++) {
+    for (let j = 0; j < this._recents.length; j++) {
       this._recents[j].super_btn.label = "";
     }
 
@@ -147,7 +147,7 @@ export class EmojiSearchItem {
 
     let firstEmptyIndex = 0;
     for (let i = 0; i < results.length; i++) {
-      if (i < this._nbColumns) {
+      if (i < this._recents.length) {
         this._recents[firstEmptyIndex].super_btn.label = results[i].unicode;
         this._recents[firstEmptyIndex].super_btn.text = results[i].description;
         firstEmptyIndex++;
@@ -170,22 +170,35 @@ export class EmojiSearchItem {
       reactive: false,
       can_focus: false,
     });
-    this._recentsContainer = new St.BoxLayout();
+    // St.BoxLayout "vertical" is deprecated on 48+ and "orientation" doesn't
+    // exist before it, so use a Clutter layout that works on every version.
+    this._recentsContainer = new St.Widget({
+      layout_manager: new Clutter.BoxLayout({
+        orientation: Clutter.Orientation.VERTICAL,
+      }),
+    });
     recentlyUsed.add_child(this._recentsContainer);
     this._recents = [];
     this._rebuildRecentsButtons();
     return recentlyUsed;
   }
 
-  // (Re)creates the recents row to match this._nbColumns
+  // (Re)creates the recents grid to match this._nbColumns and "recent-rows"
   _rebuildRecentsButtons() {
     this._recents.forEach((b) => b.destroy());
     this._recents = [];
+    this._recentsContainer.destroy_all_children();
 
-    for (let i = 0; i < this._nbColumns; i++) {
-      this._recents[i] = new EmojiButton(this.emojiCopy, "", []);
-      this._recents[i].build(null);
-      this._recentsContainer.add_child(this._recents[i].super_btn);
+    const nbRows = this._settings.get_int("recent-rows");
+    for (let r = 0; r < nbRows; r++) {
+      const row = new St.BoxLayout();
+      this._recentsContainer.add_child(row);
+      for (let c = 0; c < this._nbColumns; c++) {
+        const btn = new EmojiButton(this.emojiCopy, "", []);
+        btn.build(null);
+        row.add_child(btn.super_btn);
+        this._recents.push(btn);
+      }
     }
 
     this._buildRecents();
@@ -201,7 +214,7 @@ export class EmojiSearchItem {
 
   saveRecents() {
     let backUp = [];
-    for (let i = 0; i < this._nbColumns; i++) {
+    for (let i = 0; i < this._recents.length; i++) {
       backUp.push(this._recents[i].super_btn.label);
     }
     this._settings.set_strv("recently-used", backUp);
@@ -209,7 +222,7 @@ export class EmojiSearchItem {
 
   _buildRecents() {
     let temp = this._settings.get_strv("recently-used");
-    for (let i = 0; i < this._nbColumns; i++) {
+    for (let i = 0; i < this._recents.length; i++) {
       if (i < temp.length) {
         this._recents[i].super_btn.label = temp[i];
       } else {

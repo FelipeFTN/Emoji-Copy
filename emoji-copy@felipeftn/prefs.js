@@ -98,6 +98,12 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(keep_open);
 
+        // Number of "recently used" rows
+        const recent_rows = Adw.SpinRow.new_with_range(1, 5, 1);
+        recent_rows.set_title(_('Recently Used Rows'));
+        recent_rows.set_subtitle(_('How many rows of recently used emojis to show.'));
+        general_gp.add(recent_rows);
+
         // Keybind active (true or false)
         const active_keybind = new Adw.SwitchRow({
             title: _('Use Keybind'),
@@ -146,6 +152,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('keep-open', keep_open, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('recent-rows', recent_rows, 'value', Gio.SettingsBindFlags.DEFAULT);
 
         // Mouse and keyboard shortcuts reference
         this._shortcuts(general_pg);
