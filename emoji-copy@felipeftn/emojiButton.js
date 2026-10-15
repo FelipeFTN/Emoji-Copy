@@ -181,6 +181,11 @@ export class EmojiButton {
         return this.replaceClipboardAndClose(emojiToCopy);
       }
     }
+    if (symbol == Clutter.KEY_Left) {
+      if (this.super_btn.get_parent()?.navigate_focus(this.super_btn, St.DirectionType.LEFT, false)) {
+        return Clutter.EVENT_STOP;
+      }
+    }
     return Clutter.EVENT_PROPAGATE;
   }
 
