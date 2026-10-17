@@ -39,8 +39,45 @@ export class SQLite {
   }
 
   destroy() {
-    this.db.close();
-    this.db = null;
+    if (this.db) {
+      this.db.close();
+      this.db = null;
+    }
+  }
+
+  get_meta(key) {
+    if (!this.db) return null;
+    try {
+      const res = this.db.exec("SELECT value FROM meta WHERE key = ?;", [key]);
+      if (res.length > 0 && res[0].values.length > 0) {
+        return res[0].values[0][0];
+      }
+    } catch (e) {
+      // Table might not exist in older DBs
+    }
+    return null;
+  }
+
+  append_keywords_batch(mapping) {
+    if (!this.db || !mapping) return;
+    try {
+      this.db.exec("BEGIN TRANSACTION;");
+      const stmt = this.db.prepare(
+        "UPDATE emojis SET description = description || ' ' || ? WHERE unicode = ?;"
+      );
+      for (const [unicode, extraKeywords] of Object.entries(mapping)) {
+        if (extraKeywords && typeof extraKeywords === "string") {
+          stmt.run([extraKeywords, unicode]);
+        }
+      }
+      stmt.free();
+      this.db.exec("COMMIT;");
+    } catch (err) {
+      try {
+        this.db.exec("ROLLBACK;");
+      } catch (_) {}
+      console.error("Error appending keywords batch:", err);
+    }
   }
 
   increment_selection(unicode) {

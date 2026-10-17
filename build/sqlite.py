@@ -16,9 +16,20 @@ CREATE TABLE IF NOT EXISTS emojis(
 )
 """
 
+CREATE_META_TBL = """
+CREATE TABLE IF NOT EXISTS meta(
+    key VARCHAR(255) PRIMARY KEY,
+    value TEXT
+)
+"""
+
 # SQL query to insert/replace/update emoji in table
 INSERT_TBL = """
 REPLACE INTO emojis VALUES (?, ?, ?, ?, 0)
+"""
+
+INSERT_META = """
+REPLACE INTO meta VALUES (?, ?)
 """
 
 # SQL query to get all entries from table
@@ -55,6 +66,11 @@ class SQLite:
 
     def create_table(self):
         self.cur.execute(CREATE_TBL)
+        self.cur.execute(CREATE_META_TBL)
+        self.conn.commit()
+
+    def set_meta(self, key, value):
+        self.cur.execute(INSERT_META, (key, value))
         self.conn.commit()
 
     def insert_or_update(self, item):

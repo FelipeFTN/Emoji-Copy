@@ -3,6 +3,12 @@ import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
 import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
+import {
+    getSystemLanguage,
+    LocaleManager,
+    DEFAULT_BUNDLED_LANGUAGES,
+    LANGUAGE_NAMES,
+} from './handlers/localeManager.js';
 
 export default class EmojiCopyPrefs extends ExtensionPreferences {
     fillPreferencesWindow(window) {
@@ -156,6 +162,60 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
 
         // Mouse and keyboard shortcuts reference
         this._shortcuts(general_pg);
+
+        // Language & Search reference
+        this._languages(general_pg);
+    }
+
+    _languages(page) {
+        const lang_gp = new Adw.PreferencesGroup({
+            title: _('Language & Search'),
+            description: _('Multilingual search data and on-demand language packs'),
+        });
+        page.add(lang_gp);
+
+        const systemLang = getSystemLanguage();
+        const bundled = DEFAULT_BUNDLED_LANGUAGES;
+        const isBundled = bundled.includes(systemLang);
+
+        const statusRow = new Adw.ActionRow({
+            title: _('System Language'),
+            subtitle: isBundled
+                ? `${systemLang} (${_('Built-in zero-config')})`
+                : `${systemLang} (${_('On-demand download')})`,
+        });
+        lang_gp.add(statusRow);
+
+        const bundledListStr = bundled
+            .map((c) => (LANGUAGE_NAMES[c] ? `${LANGUAGE_NAMES[c]} (${c})` : c))
+            .join(', ');
+
+        const bundledRow = new Adw.ActionRow({
+            title: _('Built-in Languages'),
+            subtitle: bundledListStr,
+            subtitle_lines: 0,
+        });
+        lang_gp.add(bundledRow);
+
+        const downloadRow = new Adw.EntryRow({
+            title: _('Download Extra Language (ISO code: it, tr, pl, vi, etc.)'),
+            show_apply_button: true,
+        });
+        downloadRow.connect('apply', async () => {
+            const code = downloadRow.get_text().trim().toLowerCase();
+            if (code) {
+                downloadRow.set_title(_('Downloading language pack...'));
+                try {
+                    const manager = new LocaleManager(this.dir.get_path());
+                    await manager.downloadAndApplyLanguage(code, null);
+                    downloadRow.set_title(_('Downloaded successfully: ') + code);
+                    downloadRow.set_text('');
+                } catch (err) {
+                    downloadRow.set_title(_('Download failed: ') + err.message);
+                }
+            }
+        });
+        lang_gp.add(downloadRow);
     }
 
     _openAboutPage() {
