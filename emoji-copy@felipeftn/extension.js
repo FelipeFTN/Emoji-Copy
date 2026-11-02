@@ -145,6 +145,9 @@ export default class EmojiCopy extends Extension {
   }
 
   disable() {
+    // Keep the picks of a menu that is still open in "recently used".
+    this.searchItem?.commitPendingRecents();
+
     if (this._settings.get_boolean("active-keybind")) {
       Main.wm.removeKeybinding("emoji-keybind");
     }
@@ -239,6 +242,9 @@ export default class EmojiCopy extends Extension {
       // The clipboard still holds whatever was copied before opening the
       // menu; the first "append" selection must not append to it.
       this.clipboardOwned = false;
+    } else {
+      // Reorder "recently used" now that the row is no longer visible.
+      this.searchItem.commitPendingRecents();
     }
     this.super_btn.visible = open || this._settings.get_boolean("always-show");
     this.clearCategories();

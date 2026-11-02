@@ -14,6 +14,8 @@ export class EmojiSearchItem {
     });
     this._nbColumns = nbColumns;
     this.emojiCopy = emojiCopy;
+    // Emojis picked while the menu is open, see shiftFor()
+    this._pendingRecents = [];
     this._settings = this.emojiCopy._settings;
 
     this.searchEntry = new St.Entry({
@@ -257,16 +259,32 @@ export class EmojiSearchItem {
 
   shiftFor(currentEmoji) {
     if (currentEmoji == "") return;
+    // While the menu is open, moving the picked emoji to the front would
+    // reorder the row under the pointer: a second click on the same spot
+    // (right-click, middle-click, "Keep Open on Select") would then hit a
+    // different emoji. Remember the picks and apply them on close instead.
+    if (this.emojiCopy.get_super_btn()?.menu.isOpen) {
+      this._pendingRecents.push(currentEmoji);
+      return;
+    }
+    this._moveToFront([currentEmoji]);
+  }
+
+  // Applies the picks remembered while the menu was open, in pick order.
+  commitPendingRecents() {
+    const picks = this._pendingRecents;
+    this._pendingRecents = [];
+    if (picks.length > 0) {
+      this._moveToFront(picks);
+    }
+  }
+
+  _moveToFront(emojis) {
     let temp = this._settings.get_strv("recently-used");
-    for (let i = 0; i < temp.length; i++) {
-      if (temp[i] == currentEmoji) {
-        temp.splice(i, 1);
-      }
+    for (const currentEmoji of emojis) {
+      temp = temp.filter((e) => e != currentEmoji);
+      temp.unshift(currentEmoji);
     }
-    for (let j = temp.length; j > 0; j--) {
-      temp[j] = temp[j - 1];
-    }
-    temp[0] = currentEmoji;
     this._settings.set_strv("recently-used", temp);
     this._buildRecents();
     this.saveRecents();
