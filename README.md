@@ -1,15 +1,27 @@
+<div align="center">
+
 # Emoji Copy 😎
 
-[![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=flat-square)](https://www.buymeacoffee.com/felipeftn)
+**A GNOME Shell extension that puts an emoji picker in your top bar. 🚀**
 
-**This GNOME shell extension provides a emoji search pop-up menu. 🚀<br>Want any emoji? It's right into your top bar!<br>**
-This repo is a Fork from [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome) and was created for keeping the extension alive.
-Please feel free to use and contribute to this project. 😃
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black)](https://www.buymeacoffee.com/felipeftn)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue?style=for-the-badge)](./LICENSE)
+[![GNOME Shell](https://img.shields.io/badge/GNOME%20Shell-45%20to%2051-4A86CF?style=for-the-badge&logo=gnome&logoColor=white)](./emoji-copy@felipeftn/metadata.json)
+[![GNOME Extensions](https://img.shields.io/badge/GNOME%20Extensions-download-4A86CF?style=for-the-badge&logo=gnome&logoColor=white)](https://extensions.gnome.org/extension/6242/emoji-copy/)
+[![i18n](https://img.shields.io/badge/i18n-18%20locales-informational?style=for-the-badge)](./emoji-copy@felipeftn/locale)
+
+<sub>English · العربية · Български · Čeština · Deutsch · Esperanto · Español · Français · Galego · Magyar · Bahasa Indonesia · Italiano · Nederlands · Occitan · Polski · Português · Русский · Türkçe · 简体中文</sub>
+
+This repo is a fork of [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome), kept alive and updated for every new GNOME Shell release.
+Contributions and translations are welcome. 😃
+
+</div>
 
 ## Features 🚀
 
 - keyboard shortcut to open the extension's menu (<kbd>Super</kbd>+<kbd>.</kbd> by default)
 - dynamic search (press <kbd>Enter</kbd> to copy the first result to the clipboard)
+- <kbd>Ctrl</kbd>+<kbd>1</kbd>…<kbd>9</kbd>, <kbd>0</kbd> to pick the N-th emoji of the search row, add <kbd>Shift</kbd> to append it instead of replacing the clipboard
 - lots of configurable things
 - skin tone & gender modifiers
 - middle-click to set to the clipboard without closing the menu (or <kbd>Ctrl</kbd>+<kbd>Enter</kbd>)
