@@ -301,6 +301,13 @@ export class EmojiButton {
   // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
   // Originally from "clipboard-histroy@alexsaveau.dev"
   triggerPasteHack() {
+    // The callback may now stay pending until a held Ctrl is released, so a
+    // second trigger must not leave the previous one in the queue.
+    if (this._pasteHackCallbackId) {
+      GLib.source_remove(this._pasteHackCallbackId);
+      this._pasteHackCallbackId = null;
+    }
+
     this._pasteHackCallbackId = GLib.timeout_add(
       GLib.PRIORITY_DEFAULT,
       150,
