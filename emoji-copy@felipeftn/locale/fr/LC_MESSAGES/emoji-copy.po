@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://github.com/FelipeFTN/Emoji-Copy/issues\n"
-"POT-Creation-Date: 2026-11-04 12:06-0300\n"
+"POT-Creation-Date: 2026-11-04 12:38-0300\n"
 "PO-Revision-Date: 2025-05-23 21:06+0200\n"
 "Last-Translator: p-sage\n"
 "Language-Team: French <none>\n"
@@ -198,6 +198,42 @@ msgstr "Raccourci de Emoji Copy"
 #: emoji-copy@felipeftn/prefs.js
 msgid "About"
 msgstr "À propos"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Support"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Emoji Copy"
+msgid "Support Emoji Copy"
+msgstr "Emoji Copy"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid ""
+"Emoji Copy is free and maintained in my spare time. If it saves you time, "
+"you can buy me a coffee so the updates keep coming."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Buy me a coffee"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Other ways to help"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "They cost nothing and help just as much."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Open GitHub"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Star the repository or send a translation"
+msgstr ""
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "No skin tone"
