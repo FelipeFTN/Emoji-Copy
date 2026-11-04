@@ -1,5 +1,7 @@
 # Emoji Copy 😎
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-%E2%98%95-FFDD00?style=flat-square)](https://www.buymeacoffee.com/felipeftn)
+
 **This GNOME shell extension provides a emoji search pop-up menu. 🚀<br>Want any emoji? It's right into your top bar!<br>**
 This repo is a Fork from [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome) and was created for keeping the extension alive.
 Please feel free to use and contribute to this project. 😃
@@ -87,6 +89,18 @@ We still can do a lot of improvements in the way we load and display these emoji
 It will be less ugly if you have the « Noto Emoji » font, the
 « [Twitter Color Emoji](https://github.com/eosrei/twemoji-color-font/releases) »
 font, or the « JoyPixels Color » font installed on your system.
+
+## Support the project ☕
+
+Emoji Copy is free software, GPL-3.0, with no company behind it and no telemetry. Keeping it working on each new GNOME Shell release, updating the emoji data and shipping translations takes evenings.
+
+If it saves you time, you can [buy me a coffee](https://www.buymeacoffee.com/felipeftn). Every coffee goes to the time spent on the extension.
+
+Things that help just as much and cost nothing:
+
+- ⭐ star this repository, it is how other people find the extension
+- 🐞 report bugs with your GNOME Shell version and the steps to reproduce, most fixes start with a good report
+- 🌍 send a translation, the catalogs live in [`emoji-copy@felipeftn/locale`](./emoji-copy@felipeftn/locale)
 
 ## Contributors & translations 🫂
 
