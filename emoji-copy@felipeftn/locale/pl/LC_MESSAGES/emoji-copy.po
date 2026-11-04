@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-03 00:19-0300\n"
+"Report-Msgid-Bugs-To: https://github.com/FelipeFTN/Emoji-Copy/issues\n"
+"POT-Creation-Date: 2026-11-04 12:06-0300\n"
 "PO-Revision-Date: 2019-05-19 19:08+0200\n"
 "Last-Translator: Alex <rylatgl@gmail.com>\n"
 "Language-Team: Alex (https://gitlab.com/alex4401)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
 
-#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.js
 msgid "Emoji Copy"
 msgstr "Kopie Emotikon"
 
@@ -59,123 +59,153 @@ msgstr "Symbole"
 msgid "Flags"
 msgstr "Flagi"
 
-#: emoji-copy@felipeftn/prefs.ui
-#, fuzzy
-#| msgid ""
-#| "Displaying the interface from the bottom is better if you use a bottom "
-#| "panel instead of the default top bar."
-msgid ""
-"Displaying the interface from the bottom is better if you use a bottom panel "
-"instead of the default top bar. Modifications will be effective after "
-"reloading the extension."
+#: emoji-copy@felipeftn/prefs.js
+msgid "Shortcuts"
 msgstr ""
-"Wyświetlanie interfejsu z dołu jest lepszym wyborem, gdy używasz panel dolny "
-"zamiast domyślnego górnego."
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "General layout"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ways to pick an emoji from the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Left-click / Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Middle-click / Ctrl+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji without closing the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Right-click / Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the emoji to the end of the clipboard content"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the Nth emoji of the search row and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+Shift+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the Nth emoji of the search row, like Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Tab"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Navigate between emojis"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "General layout"
+msgid "General"
 msgstr "Ogólny układ"
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Number of emojis per line"
-msgstr "Liczba emotikon na linię"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Size of emojis (px)"
-msgstr "Rozmiar emotikon (piksele)"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Paste upon emoji selection"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Layout"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Use a keyboard shortcut to toggle the menu"
-msgstr "Użyj skrót klawiszowy by pokazać menu"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Help"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Apply"
-msgstr "Zastosuj"
-
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
 #, fuzzy
-#| msgid "Always show the icon"
-msgid "Always show the icon in the panel"
-msgstr "Zawsze pokazuj ikonę"
+#| msgid "Settings"
+msgid "General Settings"
+msgstr "Ustawienia"
 
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
+msgid "Configure your Emoji Copy"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Show Indicator"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Whether to show the emoji indicator."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Window Location"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Where to display the emoji menu window."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Top bar"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Cursor"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Paste on Select"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Automatically paste the selected emoji."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Keep Open on Select"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Keep the emoji menu open after selecting an emoji."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy on Close"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 msgid ""
-"If you access the menu with the keyboard shortcut, you don't need to always "
-"display the icon."
-msgstr ""
-"Jeśli otwierasz menu skrótem klawiszowym, ikona nie musi być zawsze "
-"wyświetlana."
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Keyboard bindings"
+"Emojis added with right-click are copied once when the menu closes, so "
+"clipboard history gets a single entry."
 msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid ""
-"Emoji copy is a versatile extension designed to simplify emoji selection and "
-"clipboard management."
+#: emoji-copy@felipeftn/prefs.js
+msgid "Recently Used Rows"
 msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Report bugs or ideas"
-msgstr "Zgłoś błędy lub nowe funkcje"
+#: emoji-copy@felipeftn/prefs.js
+msgid "How many rows of recently used emojis to show."
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
+msgid "Use Keybind"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Enable your default keybind to open the emoji menu."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 #, fuzzy
-#| msgid "Author:"
-msgid "Author"
-msgstr "Autor:"
+#| msgid "Emoji Copy"
+msgid "Emoji Copy Keybind"
+msgstr "Kopie Emotikon"
 
-#: emoji-copy@felipeftn/prefs.ui
-#, fuzzy
-#| msgid "Tranlators:"
-msgid "Translator(s)"
-msgstr "Tłumacze:"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "translator-credits"
-msgstr "Alex"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Original Owner"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
 msgid "About"
 msgstr "O Selektorze Emotikon"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "List of valid key names"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Modifier keys must be between chevrons"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Don't use a keyboard shortcut that already exists."
-msgstr ""
-
-#: emoji-copy@felipeftn/emojiCategory.js
-#, javascript-format
-msgid "Incorrect number of keywords for category '%s':"
-msgstr ""
-
-#: emoji-copy@felipeftn/emojiCategory.js
-msgid "Please report this bug"
-msgstr ""
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "No skin tone"
@@ -213,6 +243,58 @@ msgstr "Mężczyźni"
 msgid "Type here to search…"
 msgstr "Zacznij pisać by wyszukać…"
 
+#, fuzzy
+#~| msgid ""
+#~| "Displaying the interface from the bottom is better if you use a bottom "
+#~| "panel instead of the default top bar."
+#~ msgid ""
+#~ "Displaying the interface from the bottom is better if you use a bottom "
+#~ "panel instead of the default top bar. Modifications will be effective "
+#~ "after reloading the extension."
+#~ msgstr ""
+#~ "Wyświetlanie interfejsu z dołu jest lepszym wyborem, gdy używasz panel "
+#~ "dolny zamiast domyślnego górnego."
+
+#~ msgid "Number of emojis per line"
+#~ msgstr "Liczba emotikon na linię"
+
+#~ msgid "Size of emojis (px)"
+#~ msgstr "Rozmiar emotikon (piksele)"
+
+#~ msgid "Use a keyboard shortcut to toggle the menu"
+#~ msgstr "Użyj skrót klawiszowy by pokazać menu"
+
+#~ msgid "Apply"
+#~ msgstr "Zastosuj"
+
+#, fuzzy
+#~| msgid "Always show the icon"
+#~ msgid "Always show the icon in the panel"
+#~ msgstr "Zawsze pokazuj ikonę"
+
+#~ msgid ""
+#~ "If you access the menu with the keyboard shortcut, you don't need to "
+#~ "always display the icon."
+#~ msgstr ""
+#~ "Jeśli otwierasz menu skrótem klawiszowym, ikona nie musi być zawsze "
+#~ "wyświetlana."
+
+#~ msgid "Report bugs or ideas"
+#~ msgstr "Zgłoś błędy lub nowe funkcje"
+
+#, fuzzy
+#~| msgid "Author:"
+#~ msgid "Author"
+#~ msgstr "Autor:"
+
+#, fuzzy
+#~| msgid "Tranlators:"
+#~ msgid "Translator(s)"
+#~ msgstr "Tłumacze:"
+
+#~ msgid "translator-credits"
+#~ msgstr "Alex"
+
 #~ msgid "Modifications will be effective after reloading the extension."
 #~ msgstr "Zmiany będą aktywne po ponownym załadowaniu rozszerzenia."
 
@@ -228,9 +310,6 @@ msgstr "Zacznij pisać by wyszukać…"
 #~ msgstr ""
 #~ "To rozszerzenie dodaje konfigurowalny panel wyświetlający większość "
 #~ "emotikon. Kliknięcie na jedną z emotikon skopiuje ją do schowka."
-
-#~ msgid "Settings"
-#~ msgstr "Ustawienia"
 
 #~ msgid "Default value is:"
 #~ msgstr "Domyślna wartość:"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 😄 Emoji Copy V34\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-03 00:19-0300\n"
+"Report-Msgid-Bugs-To: https://github.com/FelipeFTN/Emoji-Copy/issues\n"
+"POT-Creation-Date: 2026-11-04 12:06-0300\n"
 "PO-Revision-Date: 2026-07-14 10:30+0800\n"
 "Last-Translator: \n"
 "Language-Team: frijal [https://dalam.web.id](https://dalam.web.id)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.6\n"
 
-#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.js
 msgid "Emoji Copy"
 msgstr "Salin Emoji"
 
@@ -58,116 +58,155 @@ msgstr "Simbol"
 msgid "Flags"
 msgstr "Bendera"
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid ""
-"Displaying the interface from the bottom is better if you use a bottom panel "
-"instead of the default top bar. Modifications will be effective after "
-"reloading the extension."
+#: emoji-copy@felipeftn/prefs.js
+msgid "Shortcuts"
 msgstr ""
-"Menampilkan antarmuka dari bawah lebih baik jika Anda menggunakan panel "
-"bawah, bukan panel atas bawaan. Perubahan akan berlaku setelah memuat ulang "
-"ekstensi."
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "General layout"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ways to pick an emoji from the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Left-click / Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Middle-click / Ctrl+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji without closing the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Right-click / Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the emoji to the end of the clipboard content"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the Nth emoji of the search row and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+Shift+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the Nth emoji of the search row, like Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Tab"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Navigate between emojis"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "General layout"
+msgid "General"
 msgstr "Tata letak umum"
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Number of emojis per line"
-msgstr "Jumlah emoji per baris"
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "General layout"
+msgid "General Settings"
+msgstr "Tata letak umum"
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Size of emojis (px)"
-msgstr "Ukuran emoji (px)"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Configure your Emoji Copy"
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Paste upon emoji selection"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Show Indicator"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Whether to show the emoji indicator."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Window Location"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Where to display the emoji menu window."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Top bar"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Cursor"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Paste upon emoji selection"
+msgid "Paste on Select"
 msgstr "Tempel saat emoji dipilih"
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Layout"
-msgstr "Tata letak"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Use a keyboard shortcut to toggle the menu"
-msgstr "Gunakan pintasan keyboard untuk menampilkan/menyembunyikan menu"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Help"
-msgstr "Bantuan"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Apply"
-msgstr "Terapkan"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Always show the icon in the panel"
-msgstr "Selalu tampilkan ikon di panel"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid ""
-"If you access the menu with the keyboard shortcut, you don't need to always "
-"display the icon."
+#: emoji-copy@felipeftn/prefs.js
+msgid "Automatically paste the selected emoji."
 msgstr ""
-"Jika Anda mengakses menu dengan pintasan keyboard, Anda tidak perlu selalu "
-"menampilkan ikon."
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Keyboard bindings"
-msgstr "Pintasan keyboard"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid ""
-"Emoji copy is a versatile extension designed to simplify emoji selection and "
-"clipboard management."
+#: emoji-copy@felipeftn/prefs.js
+msgid "Keep Open on Select"
 msgstr ""
-"Salin Emoji adalah ekstensi serbaguna yang dirancang untuk memudahkan "
-"pemilihan emoji dan pengelolaan papan klip."
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Report bugs or ideas"
-msgstr "Laporkan kutu atau ide"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Keep the emoji menu open after selecting an emoji."
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Author"
-msgstr "Pembuat"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy on Close"
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Translator(s)"
-msgstr "Penerjemah"
+#: emoji-copy@felipeftn/prefs.js
+msgid ""
+"Emojis added with right-click are copied once when the menu closes, so "
+"clipboard history gets a single entry."
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "translator-credits"
-msgstr "info penerjemah"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Recently Used Rows"
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Original Owner"
-msgstr "Pemilik asli"
+#: emoji-copy@felipeftn/prefs.js
+msgid "How many rows of recently used emojis to show."
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
+msgid "Use Keybind"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Enable your default keybind to open the emoji menu."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Emoji Copy"
+msgid "Emoji Copy Keybind"
+msgstr "Salin Emoji"
+
+#: emoji-copy@felipeftn/prefs.js
 msgid "About"
 msgstr "Tentang"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "List of valid key names"
-msgstr "Daftar nama tombol yang valid"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Modifier keys must be between chevrons"
-msgstr "Tombol pengubah harus diapit tanda kurung siku"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Don't use a keyboard shortcut that already exists."
-msgstr "Jangan gunakan pintasan keyboard yang sudah ada."
-
-#: emoji-copy@felipeftn/emojiCategory.js
-#, javascript-format
-msgid "Incorrect number of keywords for category '%s':"
-msgstr "Jumlah kata kunci untuk kategori '%s' tidak benar:"
-
-#: emoji-copy@felipeftn/emojiCategory.js
-msgid "Please report this bug"
-msgstr "Harap laporkan kutu ini"
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "No skin tone"
@@ -204,3 +243,81 @@ msgstr "Pria"
 #: emoji-copy@felipeftn/emojiSearchItem.js
 msgid "Type here to search…"
 msgstr "Ketik di sini untuk mencari…"
+
+#~ msgid ""
+#~ "Displaying the interface from the bottom is better if you use a bottom "
+#~ "panel instead of the default top bar. Modifications will be effective "
+#~ "after reloading the extension."
+#~ msgstr ""
+#~ "Menampilkan antarmuka dari bawah lebih baik jika Anda menggunakan panel "
+#~ "bawah, bukan panel atas bawaan. Perubahan akan berlaku setelah memuat "
+#~ "ulang ekstensi."
+
+#~ msgid "Number of emojis per line"
+#~ msgstr "Jumlah emoji per baris"
+
+#~ msgid "Size of emojis (px)"
+#~ msgstr "Ukuran emoji (px)"
+
+#~ msgid "Layout"
+#~ msgstr "Tata letak"
+
+#~ msgid "Use a keyboard shortcut to toggle the menu"
+#~ msgstr "Gunakan pintasan keyboard untuk menampilkan/menyembunyikan menu"
+
+#~ msgid "Help"
+#~ msgstr "Bantuan"
+
+#~ msgid "Apply"
+#~ msgstr "Terapkan"
+
+#~ msgid "Always show the icon in the panel"
+#~ msgstr "Selalu tampilkan ikon di panel"
+
+#~ msgid ""
+#~ "If you access the menu with the keyboard shortcut, you don't need to "
+#~ "always display the icon."
+#~ msgstr ""
+#~ "Jika Anda mengakses menu dengan pintasan keyboard, Anda tidak perlu "
+#~ "selalu menampilkan ikon."
+
+#~ msgid "Keyboard bindings"
+#~ msgstr "Pintasan keyboard"
+
+#~ msgid ""
+#~ "Emoji copy is a versatile extension designed to simplify emoji selection "
+#~ "and clipboard management."
+#~ msgstr ""
+#~ "Salin Emoji adalah ekstensi serbaguna yang dirancang untuk memudahkan "
+#~ "pemilihan emoji dan pengelolaan papan klip."
+
+#~ msgid "Report bugs or ideas"
+#~ msgstr "Laporkan kutu atau ide"
+
+#~ msgid "Author"
+#~ msgstr "Pembuat"
+
+#~ msgid "Translator(s)"
+#~ msgstr "Penerjemah"
+
+#~ msgid "translator-credits"
+#~ msgstr "info penerjemah"
+
+#~ msgid "Original Owner"
+#~ msgstr "Pemilik asli"
+
+#~ msgid "List of valid key names"
+#~ msgstr "Daftar nama tombol yang valid"
+
+#~ msgid "Modifier keys must be between chevrons"
+#~ msgstr "Tombol pengubah harus diapit tanda kurung siku"
+
+#~ msgid "Don't use a keyboard shortcut that already exists."
+#~ msgstr "Jangan gunakan pintasan keyboard yang sudah ada."
+
+#, javascript-format
+#~ msgid "Incorrect number of keywords for category '%s':"
+#~ msgstr "Jumlah kata kunci untuk kategori '%s' tidak benar:"
+
+#~ msgid "Please report this bug"
+#~ msgstr "Harap laporkan kutu ini"
