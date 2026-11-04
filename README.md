@@ -10,10 +10,10 @@
 [![GNOME Extensions](https://img.shields.io/badge/GNOME%20Extensions-download-4A86CF?style=for-the-badge&logo=gnome&logoColor=white)](https://extensions.gnome.org/extension/6242/emoji-copy/)
 [![i18n](https://img.shields.io/badge/i18n-18%20locales-informational?style=for-the-badge)](./emoji-copy@felipeftn/locale)
 
-<sub>English · العربية · Български · Čeština · Deutsch · Esperanto · Español · Français · Galego · Magyar · Bahasa Indonesia · Italiano · Nederlands · Occitan · Polski · Português · Русский · Türkçe · 简体中文</sub>
-
-This repo is a fork of [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome), kept alive and updated for every new GNOME Shell release.
+This repo is a fork of [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome), kept alive and updated for every new GNOME Shell release.<br/>
 Contributions and translations are welcome. 😃
+
+<sub>English · العربية · Български · Čeština · Deutsch · Esperanto · Español · Français · Galego · Magyar · Bahasa Indonesia · Italiano · Nederlands · Occitan · Polski · Português · Русский · Türkçe · 简体中文</sub>
 
 </div>
 
