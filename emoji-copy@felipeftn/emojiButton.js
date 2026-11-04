@@ -346,10 +346,24 @@ export class EmojiButton {
   // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
   // Originally from "clipboard-histroy@alexsaveau.dev"
   triggerPasteHack() {
+    // The callback may now stay pending until a held Ctrl is released, so a
+    // second trigger must not leave the previous one in the queue.
+    if (this._pasteHackCallbackId) {
+      GLib.source_remove(this._pasteHackCallbackId);
+      this._pasteHackCallbackId = null;
+    }
+
     this._pasteHackCallbackId = GLib.timeout_add(
       GLib.PRIORITY_DEFAULT,
       150,
       () => {
+        // Wait for a held Ctrl (e.g. from Ctrl+1) to be released, otherwise
+        // the app receives Ctrl+Shift+Insert instead of Shift+Insert.
+        const [, , mods] = global.get_pointer();
+        if (mods & Clutter.ModifierType.CONTROL_MASK) {
+          return GLib.SOURCE_CONTINUE;
+        }
+
         const KEY_Shift_L = 42;
         const KEY_Insert = 110;
 
