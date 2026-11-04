@@ -1,6 +1,22 @@
-extends:
-  # - ./lint/eslintrc-gjs.yml
-  # - ./lint/eslintrc-shell.yml
-  - ./lint/eslintrc-legacy.yml
+# The GNOME template configs that used to live in ./lint were almost entirely
+# formatting rules this codebase never followed, and they also linted the
+# vendored sql.js. Keep the correctness rules and stay out of the way.
+root: true
+env:
+  es2021: true
+extends: eslint:recommended
 parserOptions:
   sourceType: module
+ignorePatterns:
+  - emoji-copy@felipeftn/libs/
+globals:
+  # GJS puts these on the global scope, nobody imports them.
+  global: readonly
+  console: readonly
+rules:
+  # prefs.js uses 4 space blocks, the rest of the extension uses 2 and
+  # handlers/sql.js was written in 2. Reindenting everything is not worth it.
+  indent: off
+  no-unused-vars:
+    - error
+    - argsIgnorePattern: "^_"

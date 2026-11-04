@@ -20,7 +20,7 @@ async function ReadDB(extensionPath) {
     "emojis.db",
   ]);
   const f = Gio.File.new_for_path(p);
-  const [content, _etag] = await f.load_contents_async(null);
+  const [content] = await f.load_contents_async(null);
   return content;
 }
 

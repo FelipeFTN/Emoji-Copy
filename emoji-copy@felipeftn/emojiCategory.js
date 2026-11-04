@@ -5,8 +5,6 @@ import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 import { SkinTonesBar } from "./emojiOptionsBar.js";
 import { EmojiButton } from "./emojiButton.js";
 
-import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
-
 // Map of emoji's group
 const EMOJIS_CATEGORIES = {
   0: "Smileys & Emotion",

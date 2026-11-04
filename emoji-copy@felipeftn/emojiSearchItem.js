@@ -75,7 +75,7 @@ export class EmojiSearchItem {
       switch (symbol) {
         // Existing Enter key logic - find first recent/result and activate
         case Clutter.KEY_Return:
-        case Clutter.KEY_KP_Enter:
+        case Clutter.KEY_KP_Enter: {
           let firstRecent = this._recents.find(
             (btn) =>
               btn.super_btn && btn.super_btn.visible && btn.super_btn.can_focus
@@ -87,8 +87,9 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
-        case Clutter.KEY_Down:
+        case Clutter.KEY_Down: {
           let firstFocusableRecent = this._recents.find(
             (btn) =>
               btn.super_btn && btn.super_btn.visible && btn.super_btn.can_focus
@@ -100,8 +101,9 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
-        case Clutter.KEY_Up:
+        case Clutter.KEY_Up: {
           if (!this.emojiCopy || !this.emojiCopy.emojiCategories) {
             return Clutter.EVENT_PROPAGATE;
           }
@@ -119,6 +121,7 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
         default:
           return Clutter.EVENT_PROPAGATE;
@@ -158,9 +161,9 @@ export class EmojiSearchItem {
       results = [...toneResults, ...yellowResults];
     } else {
       // Only yellow (no skin tone) results as default
-      results = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender)
-        // Get this back if needed
-        // .filter(e => !e.skin_tone || e.skin_tone === '');
+      results = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender);
+      // Get this back if needed
+      // .filter(e => !e.skin_tone || e.skin_tone === '');
     }
 
     let firstEmptyIndex = 0;

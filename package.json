@@ -6,6 +6,7 @@
   "scripts": {
     "deploy": "sh build-a-zip.sh && sh install.sh",
     "build": "sh build-a-zip.sh",
+    "lint": "eslint 'emoji-copy@felipeftn/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +23,6 @@
   },
   "homepage": "https://github.com/FelipeFTN/emoji-copy#readme",
   "devDependencies": {
-    "eslint": "^8.48.0",
-    "eslint-plugin-jsdoc": "^46.8.2"
+    "eslint": "^8.48.0"
   }
 }
