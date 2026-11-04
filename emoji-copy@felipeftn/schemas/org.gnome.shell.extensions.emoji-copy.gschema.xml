@@ -50,6 +50,11 @@
       <summary>if the menu stays open after selecting an emoji</summary>
       <description>if true, the emoji menu will stay open after selecting an emoji, allowing to pick several emojis in a row.</description>
     </key>
+    <key type="b" name="copy-on-close">
+      <default>false</default>
+      <summary>if appended emojis are copied when the menu closes</summary>
+      <description>if true, right-click / Shift+Enter (append) and middle-click / Ctrl+Enter (replace without closing) only collect emojis, and the result is copied once when the menu closes, so clipboard history managers record a single entry.</description>
+    </key>
     <key type="b" name="active-keybind">
       <default>true</default>
       <summary>if keybinding is enabled</summary>

@@ -13,6 +13,7 @@ Please feel free to use and contribute to this project. 😃
 - middle-click to set to the clipboard without closing the menu (or <kbd>Ctrl</kbd>+<kbd>Enter</kbd>)
 - right-click to add the emoji at the end of the current clipboard content (or <kbd>Shift</kbd>+<kbd>Enter</kbd>)
 - "Keep Open on Select" preference to keep the menu open after selecting an emoji, so you can pick several in a row
+- "Copy on Close" preference: right-click / middle-click only collect emojis, and the result is copied once when the menu closes, so clipboard history managers get a single entry instead of one per click
 - "Paste on Select" preference to automatically paste the selected emoji into the focused text field
 
 Keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.

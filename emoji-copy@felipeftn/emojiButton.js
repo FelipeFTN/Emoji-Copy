@@ -220,6 +220,19 @@ export class EmojiButton {
     // From now on the clipboard only holds emojis picked in this menu
     // session, so further "append" selections may append to it.
     this.emojiCopy.clipboardOwned = true;
+    // Anything still waiting for the menu to close is superseded.
+    this.emojiCopy.setPendingClipboard(null);
+  }
+
+  /*
+   * With "copy-on-close", the "stay" actions don't touch the clipboard:
+   * they only build the text that will be copied once, when the menu
+   * closes. Every clipboard change is an entry in clipboard history
+   * managers, so appending five emojis would otherwise leave five entries
+   * (1, 2, 3, 4 and 5 emojis long) instead of one.
+   */
+  _deferToClose() {
+    return this._settings.get_boolean("copy-on-close");
   }
 
   replaceClipboardAndClose(emojiToCopy) {
@@ -239,12 +252,44 @@ export class EmojiButton {
   }
 
   replaceClipboardAndStay(emojiToCopy) {
+    if (this._deferToClose()) {
+      this.emojiCopy.setPendingClipboard(emojiToCopy);
+      return Clutter.EVENT_STOP;
+    }
+
     this._setClipboards(emojiToCopy);
 
     return Clutter.EVENT_STOP;
   }
 
   addToClipboardAndStay(emojiToCopy) {
+    if (this._deferToClose()) {
+      const pending = this.emojiCopy.pendingClipboard;
+      if (pending !== null) {
+        this.emojiCopy.setPendingClipboard(pending + emojiToCopy);
+        return Clutter.EVENT_STOP;
+      }
+      // Nothing pending yet: start from what this menu session already
+      // copied (e.g. a left-click with "Keep Open on Select"), never from
+      // content copied before the menu was opened.
+      if (!this.emojiCopy.clipboardOwned) {
+        this.emojiCopy.setPendingClipboard(emojiToCopy);
+        return Clutter.EVENT_STOP;
+      }
+      this.clipboard.get_text(CLIPBOARD_TYPE, (_, text) => {
+        // The menu may have closed while the clipboard was being read;
+        // then the emoji can't wait for a close that already happened.
+        if (this.emojiCopy.get_super_btn()?.menu.isOpen) {
+          this.emojiCopy.setPendingClipboard(
+            (this.emojiCopy.pendingClipboard ?? text ?? "") + emojiToCopy,
+          );
+        } else {
+          this._setClipboards((text ?? "") + emojiToCopy);
+        }
+      });
+      return Clutter.EVENT_STOP;
+    }
+
     // Content copied before the menu was opened is not ours to append to:
     // the first selection replaces it, the following ones append.
     if (!this.emojiCopy.clipboardOwned) {
