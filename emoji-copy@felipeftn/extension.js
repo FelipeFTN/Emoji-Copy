@@ -148,8 +148,10 @@ export default class EmojiCopy extends Extension {
   }
 
   disable() {
-    // Don't lose emojis collected in a menu that is still open.
+    // Don't lose emojis collected in a menu that is still open, and keep
+    // its picks in "recently used".
     this.flushPendingClipboard();
+    this.searchItem?.commitPendingRecents();
 
     if (this._settings.get_boolean("active-keybind")) {
       Main.wm.removeKeybinding("emoji-keybind");
@@ -247,8 +249,12 @@ export default class EmojiCopy extends Extension {
       this.clipboardOwned = false;
       this.setPendingClipboard(null);
     } else {
+      // Copy what was collected and reorder "recently used", now that the
+      // row is no longer visible.
       this.flushPendingClipboard();
+      this.searchItem.commitPendingRecents();
     }
+
     this.super_btn.visible = open || this._settings.get_boolean("always-show");
     this.clearCategories();
     this.searchItem.searchEntry.set_text("");
