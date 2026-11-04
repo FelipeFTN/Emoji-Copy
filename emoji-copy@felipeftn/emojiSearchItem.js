@@ -275,21 +275,24 @@ export class EmojiSearchItem {
   }
 
   // Applies the picks remembered while the menu was open, in pick order.
-  commitPendingRecents() {
+  // With updateUI false it only persists them, see disable(): rebuilding the
+  // row there would create widgets in a menu that is being torn down.
+  commitPendingRecents(updateUI = true) {
     const picks = this._pendingRecents;
     this._pendingRecents = [];
     if (picks.length > 0) {
-      this._moveToFront(picks);
+      this._moveToFront(picks, updateUI);
     }
   }
 
-  _moveToFront(emojis) {
+  _moveToFront(emojis, updateUI = true) {
     let temp = this._settings.get_strv("recently-used");
     for (const currentEmoji of emojis) {
       temp = temp.filter((e) => e != currentEmoji);
       temp.unshift(currentEmoji);
     }
     this._settings.set_strv("recently-used", temp);
+    if (!updateUI) return;
     this._buildRecents();
     this.saveRecents();
     this.emojiCopy._onSearchTextChanged();

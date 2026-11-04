@@ -149,9 +149,9 @@ export default class EmojiCopy extends Extension {
 
   disable() {
     // Don't lose emojis collected in a menu that is still open, and keep
-    // its picks in "recently used".
+    // its picks in "recently used". Persist only: the menu is going away.
     this.flushPendingClipboard();
-    this.searchItem?.commitPendingRecents();
+    this.searchItem?.commitPendingRecents(false);
 
     if (this._settings.get_boolean("active-keybind")) {
       Main.wm.removeKeybinding("emoji-keybind");
