@@ -18,10 +18,11 @@ export class EmojiSearchItem {
     this._pendingRecents = [];
     this._settings = this.emojiCopy._settings;
 
+    this._defaultHint = _("Type here to search…");
     this.searchEntry = new St.Entry({
       name: "searchEntry",
       can_focus: true,
-      hint_text: _("Type here to search…"),
+      hint_text: this._defaultHint,
       track_hover: true,
       x_expand: true,
     });
@@ -289,6 +290,12 @@ export class EmojiSearchItem {
     this._buildRecents();
     this.saveRecents();
     this.emojiCopy._onSearchTextChanged();
+  }
+
+  // Shows the emojis waiting to be copied on close ("copy-on-close") in
+  // place of the search hint, since the clipboard isn't updated until then.
+  showPending(text) {
+    this.searchEntry.hint_text = text ?? this._defaultHint;
   }
 
   destroy() {

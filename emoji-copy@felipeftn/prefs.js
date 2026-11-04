@@ -98,6 +98,13 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(keep_open);
 
+        // Copy emojis collected without closing the menu only once, on close
+        const copy_on_close = new Adw.SwitchRow({
+            title: _('Copy on Close'),
+            subtitle: _('Emojis added with right-click are copied once when the menu closes, so clipboard history gets a single entry.'),
+        });
+        general_gp.add(copy_on_close);
+
         // Number of "recently used" rows
         const recent_rows = Adw.SpinRow.new_with_range(1, 5, 1);
         recent_rows.set_title(_('Recently Used Rows'));
@@ -151,6 +158,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('keep-open', keep_open, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('copy-on-close', copy_on_close, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('recent-rows', recent_rows, 'value', Gio.SettingsBindFlags.DEFAULT);
 
