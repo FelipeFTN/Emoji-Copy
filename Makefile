@@ -20,7 +20,7 @@ all: clean build
 build: $(EMOJIS_DB) $(ZIP_NAME)
 	@echo "[+] EMOJI COPY BUILT"
 
-install: build
+install: clean build
 	gnome-extensions install $(ZIP_NAME) --force
 	@echo "Extension installed successfully! Now restart the Shell ('Alt'+'F2', then 'restart')."
 
