@@ -8,6 +8,9 @@ import { getSystemLanguage, LocaleManager, LANGUAGE_NAMES } from './handlers/loc
 const SUPPORT_URL = 'https://www.buymeacoffee.com/felipeftn';
 const REPO_URL = 'https://github.com/FelipeFTN/Emoji-Copy';
 
+const SUPPORT_URL = 'https://www.buymeacoffee.com/felipeftn';
+const REPO_URL = 'https://github.com/FelipeFTN/Emoji-Copy';
+
 export default class EmojiCopyPrefs extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         // Constructor
@@ -214,6 +217,65 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
             }
         });
         lang_gp.add(downloadRow);
+    }
+
+    _support() {
+        const support_pg = new Adw.PreferencesPage({
+            title: _('Support'),
+            icon_name: 'emblem-favorite-symbolic',
+        });
+        this._window.add(support_pg);
+
+        const support_gp = new Adw.PreferencesGroup({
+            title: _('Support Emoji Copy'),
+            description: _('Emoji Copy is free and maintained in my spare time. If it saves you time, you can buy me a coffee so the updates keep coming.'),
+        });
+        support_pg.add(support_gp);
+
+        const coffee_button = new Gtk.Button({
+            valign: Gtk.Align.CENTER,
+            child: new Adw.ButtonContent({
+                icon_name: 'emblem-favorite-symbolic',
+                label: _('Buy me a coffee'),
+            }),
+        });
+        coffee_button.set_css_classes(['suggested-action']);
+        coffee_button.connect('clicked', () => this._openUri(SUPPORT_URL));
+
+        const coffee_row = new Adw.ActionRow({
+            title: _('Buy me a coffee'),
+            subtitle: 'buymeacoffee.com/felipeftn',
+        });
+        coffee_row.add_suffix(coffee_button);
+        coffee_row.set_activatable_widget(coffee_button);
+        support_gp.add(coffee_row);
+
+        const help_gp = new Adw.PreferencesGroup({
+            title: _('Other ways to help'),
+            description: _('They cost nothing and help just as much.'),
+        });
+        support_pg.add(help_gp);
+
+        const repo_button = new Gtk.Button({
+            valign: Gtk.Align.CENTER,
+            child: new Adw.ButtonContent({
+                icon_name: 'web-browser-symbolic',
+                label: _('Open GitHub'),
+            }),
+        });
+        repo_button.connect('clicked', () => this._openUri(REPO_URL));
+
+        const repo_row = new Adw.ActionRow({
+            title: _('Star the repository or send a translation'),
+            subtitle: 'github.com/FelipeFTN/Emoji-Copy',
+        });
+        repo_row.add_suffix(repo_button);
+        repo_row.set_activatable_widget(repo_button);
+        help_gp.add(repo_row);
+    }
+
+    _openUri(uri) {
+        Gtk.show_uri(this._window, uri, 0);
     }
 
     _support() {

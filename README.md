@@ -1,18 +1,33 @@
+<div align="center">
+
 # Emoji Copy 😎
 
-**This GNOME shell extension provides a emoji search pop-up menu. 🚀<br>Want any emoji? It's right into your top bar!<br>**
-This repo is a Fork from [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome) and was created for keeping the extension alive.
-Please feel free to use and contribute to this project. 😃
+**A GNOME Shell extension that puts an emoji picker in your top bar. 🚀**
+
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-%E2%98%95-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black)](https://www.buymeacoffee.com/felipeftn)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue?style=for-the-badge)](./LICENSE)
+[![GNOME Shell](https://img.shields.io/badge/GNOME%20Shell-45%20to%2051-4A86CF?style=for-the-badge&logo=gnome&logoColor=white)](./emoji-copy@felipeftn/metadata.json)
+[![GNOME Extensions](https://img.shields.io/badge/GNOME%20Extensions-download-4A86CF?style=for-the-badge&logo=gnome&logoColor=white)](https://extensions.gnome.org/extension/6242/emoji-copy/)
+[![i18n](https://img.shields.io/badge/i18n-18%20locales-informational?style=for-the-badge)](./emoji-copy@felipeftn/locale)
+
+This repo is a fork of [emoji-selector-for-gnome](https://github.com/maoschanz/emoji-selector-for-gnome), kept alive and updated for every new GNOME Shell release.<br/>
+Contributions and translations are welcome. 😃
+
+<sub>English · العربية · Български · Čeština · Deutsch · Esperanto · Español · Français · Galego · Magyar · Bahasa Indonesia · Italiano · Nederlands · Occitan · Polski · Português · Русский · Türkçe · 简体中文</sub>
+
+</div>
 
 ## Features 🚀
 
 - keyboard shortcut to open the extension's menu (<kbd>Super</kbd>+<kbd>.</kbd> by default)
 - dynamic search (press <kbd>Enter</kbd> to copy the first result to the clipboard)
+- <kbd>Ctrl</kbd>+<kbd>1</kbd>…<kbd>9</kbd>, <kbd>0</kbd> to pick the N-th emoji of the search row, add <kbd>Shift</kbd> to append it instead of replacing the clipboard
 - lots of configurable things
 - skin tone & gender modifiers
 - middle-click to set to the clipboard without closing the menu (or <kbd>Ctrl</kbd>+<kbd>Enter</kbd>)
 - right-click to add the emoji at the end of the current clipboard content (or <kbd>Shift</kbd>+<kbd>Enter</kbd>)
 - "Keep Open on Select" preference to keep the menu open after selecting an emoji, so you can pick several in a row
+- "Copy on Close" preference: right-click / middle-click only collect emojis, and the result is copied once when the menu closes, so clipboard history managers get a single entry instead of one per click
 - "Paste on Select" preference to automatically paste the selected emoji into the focused text field
 
 Keyboard navigation is designed to work **with <kbd>Tab</kbd>, not the arrows**.
@@ -86,6 +101,18 @@ We still can do a lot of improvements in the way we load and display these emoji
 It will be less ugly if you have the « Noto Emoji » font, the
 « [Twitter Color Emoji](https://github.com/eosrei/twemoji-color-font/releases) »
 font, or the « JoyPixels Color » font installed on your system.
+
+## Support the project ☕
+
+Emoji Copy is free software, GPL-3.0, with no company behind it and no telemetry. Keeping it working on each new GNOME Shell release, updating the emoji data and shipping translations takes evenings.
+
+If it saves you time, you can [buy me a coffee](https://www.buymeacoffee.com/felipeftn). Every coffee goes to the time spent on the extension.
+
+Things that help just as much and cost nothing:
+
+- ⭐ star this repository, it is how other people find the extension
+- 🐞 report bugs with your GNOME Shell version and the steps to reproduce, most fixes start with a good report
+- 🌍 send a translation, the catalogs live in [`emoji-copy@felipeftn/locale`](./emoji-copy@felipeftn/locale)
 
 ## Contributors & translations 🫂
 
