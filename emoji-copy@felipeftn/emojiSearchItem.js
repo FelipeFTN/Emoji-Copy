@@ -170,7 +170,7 @@ export class EmojiSearchItem {
     for (let i = 0; i < results.length; i++) {
       if (i < this._recents.length) {
         this._recents[firstEmptyIndex].super_btn.label = results[i].unicode;
-        this._recents[firstEmptyIndex].super_btn.text = results[i].description;
+        this._recents[firstEmptyIndex].super_btn.text = results[i].localized_name || results[i].description;
         firstEmptyIndex++;
       }
     }

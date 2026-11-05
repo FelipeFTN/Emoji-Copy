@@ -16,9 +16,35 @@ CREATE TABLE IF NOT EXISTS emojis(
 )
 """
 
+CREATE_KEYWORDS_TBL = """
+CREATE TABLE IF NOT EXISTS emoji_keywords(
+    unicode VARCHAR(255),
+    lang VARCHAR(10),
+    name VARCHAR(255),
+    keywords TEXT,
+    PRIMARY KEY (unicode, lang)
+);
+CREATE INDEX IF NOT EXISTS idx_emoji_keywords_lang ON emoji_keywords(lang);
+"""
+
+CREATE_META_TBL = """
+CREATE TABLE IF NOT EXISTS meta(
+    key VARCHAR(255) PRIMARY KEY,
+    value TEXT
+)
+"""
+
 # SQL query to insert/replace/update emoji in table
 INSERT_TBL = """
 REPLACE INTO emojis VALUES (?, ?, ?, ?, 0)
+"""
+
+INSERT_KEYWORDS = """
+REPLACE INTO emoji_keywords VALUES (?, ?, ?, ?)
+"""
+
+INSERT_META = """
+REPLACE INTO meta VALUES (?, ?)
 """
 
 # SQL query to get all entries from table
@@ -33,7 +59,9 @@ SELECT COUNT(1) FROM emojis
 
 # SQL query to delete table
 DROP_TBL = """
-DROP TABLE IF EXISTS emojis
+DROP TABLE IF EXISTS emojis;
+DROP TABLE IF EXISTS emoji_keywords;
+DROP TABLE IF EXISTS meta;
 """
 
 # SQL query to enable full auto vacuum
@@ -55,6 +83,12 @@ class SQLite:
 
     def create_table(self):
         self.cur.execute(CREATE_TBL)
+        self.cur.executescript(CREATE_KEYWORDS_TBL)
+        self.cur.execute(CREATE_META_TBL)
+        self.conn.commit()
+
+    def set_meta(self, key, value):
+        self.cur.execute(INSERT_META, (key, value))
         self.conn.commit()
 
     def insert_or_update(self, item):
@@ -65,6 +99,10 @@ class SQLite:
         self.cur.executemany(INSERT_TBL, items)
         self.conn.commit()
 
+    def insert_many_keywords(self, items):
+        self.cur.executemany(INSERT_KEYWORDS, items)
+        self.conn.commit()
+
     def get_many(self, num):
         self.cur.execute(GETALL_TBL)
         return self.cur.fetchmany(num)
@@ -73,8 +111,13 @@ class SQLite:
         self.cur.execute(COUNT_TBL)
         return self.cur.fetchone()[0]
 
+    def get_keywords_count(self):
+        self.cur.execute("SELECT COUNT(1) FROM emoji_keywords")
+        return self.cur.fetchone()[0]
+
     def drop_table(self):
-        self.cur.execute(DROP_TBL)
+        self.cur.executescript(DROP_TBL)
+        self.conn.commit()
 
     def vacuum(self):
         self.cur.execute(ENABLE_FULL_AUTO_VACUUM)

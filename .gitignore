@@ -9,3 +9,5 @@ zip-temp
 gschemas.compiled
 emoji-copy@felipeftn/data/*.json
 emoji-copy@felipeftn/data/*.db
+build/cldr_cache/
+

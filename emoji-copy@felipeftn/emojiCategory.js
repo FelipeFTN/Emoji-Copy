@@ -112,7 +112,7 @@ export class EmojiCategory {
         let button = new EmojiButton(
           this.emojiCopy,
           this.emojis[i].unicode,
-          this.emojis[i].description,
+          this.emojis[i].localized_name || this.emojis[i].description,
         );
         this.emojiButtons.push(button);
       }
@@ -152,7 +152,7 @@ export class EmojiCategory {
       let button = new EmojiButton(
         this.emojiCopy,
         this.emojis[i].unicode,
-        this.emojis[i].description,
+        this.emojis[i].localized_name || this.emojis[i].description,
       );
       this.emojiButtons.push(button);
     }

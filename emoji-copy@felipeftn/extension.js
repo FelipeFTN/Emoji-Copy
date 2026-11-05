@@ -35,6 +35,7 @@ import { EmojiButton } from "./emojiButton.js";
 import { EmojiCategory } from "./emojiCategory.js";
 import { EmojiSearchItem } from "./emojiSearchItem.js";
 import { SQLite } from "./handlers/sql.js";
+import { LocaleManager } from "./handlers/localeManager.js";
 
 export default class EmojiCopy extends Extension {
   async enable() {
@@ -48,6 +49,9 @@ export default class EmojiCopy extends Extension {
 
     this.sqlite = new SQLite();
     await this.sqlite.initializeDB(this.path);
+
+    this.localeManager = new LocaleManager(this.path);
+    await this.localeManager.init(this.sqlite);
 
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
     let box = new St.BoxLayout();
@@ -185,6 +189,7 @@ export default class EmojiCopy extends Extension {
     this._settings = null;
     this.super_btn = null;
     this.sqlite = null;
+    this.localeManager = null;
     this._buttonMenuItem = null;
     this.emojiCategories = null;
   }

@@ -15,19 +15,21 @@ DB_PATH = "./emoji-copy@felipeftn/data/emojis.db" # path to SQLite DB for storin
 # Fetch unicode file from remote
 try:
     print(f"[+] Fetching unicode data from {UNICODE_URL}")
-    data = requests.get(UNICODE_URL).text
-    data = data.split("\n") # then split it into lines
-except:
-    print("[X] Could not fetch unicode test file containing emoji and its description")
+    response = requests.get(UNICODE_URL, timeout=30)
+    if response.status_code != 200:
+        raise RuntimeError(f"HTTP {response.status_code} while fetching {UNICODE_URL}")
+    data = response.text.split("\n")
+except Exception as e:
+    print(f"[X] Could not fetch unicode test file: {e}")
     print(traceback.format_exc())
     sys.exit(1)
 
 # Load emoji:keywords map
 try:
-    with open(EMOJI_MAP, "r") as f:
+    with open(EMOJI_MAP, "r", encoding="utf-8") as f:
         emoji_map = json.load(f)
 except FileNotFoundError:
-    print("[X] Could not fetch existing emojis mapped to keywords")
+    print("[X] Could not find emoji_map.json")
     print(traceback.format_exc())
     sys.exit(2)
 except json.JSONDecodeError:
@@ -41,6 +43,7 @@ print("[+] Parsing and loading emojis into database... 🍳")
 GROUP = ""
 SUBGROUP = ""
 ITEM = []
+KEYWORD_ITEMS = []
 
 # parse emojis fetched from unicode
 for line in data:
@@ -64,7 +67,8 @@ for line in data:
     if not match:
         continue
     emoji = match.group(1)
-    desc = match.group(2)
+    base_name = match.group(2)
+    desc = base_name
 
     # Extract only a single, normalized skin tone value (or empty string)
     skin_tone = ""
@@ -81,9 +85,12 @@ for line in data:
     if SUBGROUP not in desc:
         desc = f"{desc} {SUBGROUP}"
 
+    # Keep emojis.description short and clean (English display/fallback)
     item = (emoji, desc, skin_tone, GROUP)
-    #print(item)
     ITEM.append(item)
+
+    # Store base English keywords in emoji_keywords table
+    KEYWORD_ITEMS.append((emoji, "en", base_name, desc))
 
 # Insert custom emojis from custom.py
 print("[+] Loading custom emojis from custom.py... 🔧")
@@ -91,16 +98,16 @@ try:
     from custom import get_custom_emojis
     custom_emojis = get_custom_emojis()
     for emoji in custom_emojis.keys():
-        # If the emoji is already in the ITEM list, skip it
         if any(item[0] == emoji for item in ITEM):
-            print(f"[!] Emoji {emoji} already exists in ITEM. Skipping.")
             continue
 
-        # Use a default description if not provided
         if custom_emojis[emoji]:
-            desc = " ".join(custom_emojis[emoji].get("description", []))
-            item = (emoji, desc, "", custom_emojis[emoji].get("group", "Symbols"))
-            ITEM.append(item)
+            desc_list = custom_emojis[emoji].get("description", [])
+            desc = " ".join(desc_list)
+            name = desc_list[0] if desc_list else desc
+            group = custom_emojis[emoji].get("group", "Symbols")
+            ITEM.append((emoji, desc, "", group))
+            KEYWORD_ITEMS.append((emoji, "en", name, desc))
 except ImportError:
     print("[!] No custom emojis found. Skipping custom emojis.")
 except Exception as e:
@@ -113,9 +120,26 @@ EmojisDB = SQLite(DB_PATH)
 EmojisDB.drop_table()
 EmojisDB.create_table()
 EmojisDB.insert_many(ITEM)
+EmojisDB.insert_many_keywords(KEYWORD_ITEMS)
+
+# Save metadata indicating base bundled language
+EmojisDB.set_meta("bundled_languages", "en")
+EmojisDB.set_meta("schema_version", "2")
+
+# Vacuum
 EmojisDB.vacuum()
 
+# Verify database contents
+emoji_count = EmojisDB.get_count()
+keywords_count = EmojisDB.get_keywords_count()
+print(f"[!] Emoji Count: {emoji_count}")
+print(f"[!] Keywords Count: {keywords_count}")
+
+if emoji_count < 1800 or keywords_count < 1800:
+    print("[X] Database verification failed! Row count is suspiciously low.")
+    EmojisDB.close()
+    sys.exit(1)
+
+EmojisDB.close()
 print("[+] Finished loading emojis into database! 🎉")
-print(f"[!] Emoji Count: {EmojisDB.get_count()}")
-EmojisDB.close() # Never forget doing this
 print("[!] run `du -ah ./emoji-copy@felipeftn/data/` to get the DBs current size.")
