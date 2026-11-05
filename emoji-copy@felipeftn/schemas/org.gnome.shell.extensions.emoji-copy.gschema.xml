@@ -45,6 +45,11 @@
       <summary>if paste on select is enabled</summary>
       <description>if true, Selecting an emoji will attempt to paste it on the focused textfield</description>
     </key>
+    <key type="b" name="restore-clipboard">
+      <default>false</default>
+      <summary>if the clipboard is restored after pasting</summary>
+      <description>if true, pasting an emoji puts the previous clipboard content back once the paste is done, so the emoji does not stay in the clipboard and does not pile up in the clipboard history. Only used when 'paste-on-select' is enabled.</description>
+    </key>
     <key type="b" name="keep-open">
       <default>false</default>
       <summary>if the menu stays open after selecting an emoji</summary>

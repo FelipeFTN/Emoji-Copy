@@ -236,7 +236,15 @@ export class EmojiButton {
   }
 
   replaceClipboardAndClose(emojiToCopy) {
-    this._setClipboards(emojiToCopy);
+    const pasteOnSelect = this._settings.get_boolean("paste-on-select");
+    // "restore-clipboard" pastes without leaving the emoji behind: the
+    // previous content goes back in once the paste has been delivered.
+    const restoreClipboard =
+      pasteOnSelect && this._settings.get_boolean("restore-clipboard");
+
+    if (!restoreClipboard) {
+      this._setClipboards(emojiToCopy);
+    }
 
     // The "keep-open" setting turns the default action into a "stay" one,
     // so several emojis can be picked in a row.
@@ -244,7 +252,16 @@ export class EmojiButton {
       this.emojiCopy.get_super_btn().menu.close();
     }
 
-    if (this._settings.get_boolean("paste-on-select")) {
+    if (restoreClipboard) {
+      this.clipboard.get_text(CLIPBOARD_TYPE, (_, previous) => {
+        this.clipboard.set_text(CLIPBOARD_TYPE, emojiToCopy);
+        this.clipboard.set_text(PRIMARY_CLIPBOARD_TYPE, emojiToCopy);
+        this.triggerPasteHack(() => {
+          this.clipboard.set_text(CLIPBOARD_TYPE, previous ?? "");
+          this.clipboard.set_text(PRIMARY_CLIPBOARD_TYPE, previous ?? "");
+        });
+      });
+    } else if (pasteOnSelect) {
       this.triggerPasteHack();
     }
 
@@ -345,7 +362,7 @@ export class EmojiButton {
 
   // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
   // Originally from "clipboard-histroy@alexsaveau.dev"
-  triggerPasteHack() {
+  triggerPasteHack(onPasted) {
     // The callback may now stay pending until a held Ctrl is released, so a
     // second trigger must not leave the previous one in the queue.
     if (this._pasteHackCallbackId) {
@@ -390,6 +407,17 @@ export class EmojiButton {
         );
 
         this._pasteHackCallbackId = undefined;
+
+        // The focused app reads the clipboard when it handles the key event,
+        // after this callback returns. Restoring the clipboard any sooner
+        // pastes the old content instead of the emoji.
+        if (onPasted) {
+          GLib.timeout_add(GLib.PRIORITY_DEFAULT, 250, () => {
+            onPasted();
+            return GLib.SOURCE_REMOVE;
+          });
+        }
+
         return GLib.SOURCE_REMOVE;
       },
     );

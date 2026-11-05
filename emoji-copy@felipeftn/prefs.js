@@ -99,6 +99,13 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(paste_on_select);
 
+        // Put the previous clipboard content back after pasting
+        const restore_clipboard = new Adw.SwitchRow({
+            title: _('Restore Clipboard after Pasting'),
+            subtitle: _('Put the previous clipboard content back once the emoji is pasted, so it does not stay in the clipboard or pile up in the clipboard history. Needs "Paste on Select".'),
+        });
+        general_gp.add(restore_clipboard);
+
         // Keep the emoji menu open after selecting an emoji
         const keep_open = new Adw.SwitchRow({
             title: _('Keep Open on Select'),
@@ -165,6 +172,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         // Bind Adwaita field values to schema
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('restore-clipboard', restore_clipboard, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('keep-open', keep_open, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('copy-on-close', copy_on_close, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
