@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-23 19:01+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/FelipeFTN/Emoji-Copy/issues\n"
+"POT-Creation-Date: 2026-11-04 12:38-0300\n"
 "PO-Revision-Date: 2025-05-23 21:06+0200\n"
 "Last-Translator: p-sage\n"
 "Language-Team: French <none>\n"
@@ -13,122 +13,260 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: emoji-copy@felipeftn/extension.js:49 emoji-copy@felipeftn/prefs.js:102
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.js
 msgid "Emoji Copy"
 msgstr "Emoji Copy"
 
-#: emoji-copy@felipeftn/extension.js:220
+#: emoji-copy@felipeftn/extension.js
 msgid "Smileys & Body"
 msgstr "Émoticônes et émotions"
 
-#: emoji-copy@felipeftn/extension.js:221
+#: emoji-copy@felipeftn/extension.js
 msgid "Peoples & Clothing"
 msgstr "Personnages et corps"
 
-#: emoji-copy@felipeftn/extension.js:222
+#: emoji-copy@felipeftn/extension.js
 msgid "Animals & Nature"
 msgstr "Animaux et nature"
 
-#: emoji-copy@felipeftn/extension.js:223
+#: emoji-copy@felipeftn/extension.js
 msgid "Food & Drink"
 msgstr "Nourriture et boisson"
 
-#: emoji-copy@felipeftn/extension.js:224
+#: emoji-copy@felipeftn/extension.js
 msgid "Travel & Places"
 msgstr "Voyage et lieux"
 
-#: emoji-copy@felipeftn/extension.js:225
+#: emoji-copy@felipeftn/extension.js
 msgid "Activities & Sports"
 msgstr "Activités"
 
-#: emoji-copy@felipeftn/extension.js:226
+#: emoji-copy@felipeftn/extension.js
 msgid "Objects"
 msgstr "Objets"
 
-#: emoji-copy@felipeftn/extension.js:227
+#: emoji-copy@felipeftn/extension.js
 msgid "Symbols"
 msgstr "Symboles"
 
-#: emoji-copy@felipeftn/extension.js:228
+#: emoji-copy@felipeftn/extension.js
 msgid "Flags"
 msgstr "Drapeaux"
 
-#: emoji-copy@felipeftn/prefs.js:24
+#: emoji-copy@felipeftn/prefs.js
+msgid "Shortcuts"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ways to pick an emoji from the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Left-click / Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Middle-click / Ctrl+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji without closing the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Right-click / Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the emoji to the end of the clipboard content"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the Nth emoji of the search row and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+Shift+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the Nth emoji of the search row, like Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Tab"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Navigate between emojis"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 msgid "General"
 msgstr "Général"
 
-#: emoji-copy@felipeftn/prefs.js:31
+#: emoji-copy@felipeftn/prefs.js
 msgid "General Settings"
 msgstr "Paramètres généraux"
 
-#: emoji-copy@felipeftn/prefs.js:32
+#: emoji-copy@felipeftn/prefs.js
 msgid "Configure your Emoji Copy"
 msgstr "Configurez votre Emoji Copy"
 
-#: emoji-copy@felipeftn/prefs.js:38
+#: emoji-copy@felipeftn/prefs.js
 msgid "Show Indicator"
 msgstr "Afficher l'indicateur"
 
-#: emoji-copy@felipeftn/prefs.js:39
+#: emoji-copy@felipeftn/prefs.js
 msgid "Whether to show the emoji indicator."
 msgstr "Afficher ou non l'icône dans le panneau."
 
-#: emoji-copy@felipeftn/prefs.js:45
+#: emoji-copy@felipeftn/prefs.js
+msgid "Window Location"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Whether to show the emoji indicator."
+msgid "Where to display the emoji menu window."
+msgstr "Afficher ou non l'icône dans le panneau."
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Top bar"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Cursor"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 msgid "Paste on Select"
 msgstr "Coller sur la sélection"
 
-#: emoji-copy@felipeftn/prefs.js:46
+#: emoji-copy@felipeftn/prefs.js
 msgid "Automatically paste the selected emoji."
 msgstr "Coller automatiquement l'émoji sélectionné."
 
-#: emoji-copy@felipeftn/prefs.js:52
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Paste on Select"
+msgid "Keep Open on Select"
+msgstr "Coller sur la sélection"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Keep the emoji menu open after selecting an emoji."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy on Close"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid ""
+"Emojis added with right-click are copied once when the menu closes, so "
+"clipboard history gets a single entry."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Recently Used Rows"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "How many rows of recently used emojis to show."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 msgid "Use Keybind"
 msgstr "Utiliser un raccourci"
 
-#: emoji-copy@felipeftn/prefs.js:53
+#: emoji-copy@felipeftn/prefs.js
 msgid "Enable your default keybind to open the emoji menu."
 msgstr "Activez votre raccourci par défaut pour ouvrir le panneau des émojis."
 
-#: emoji-copy@felipeftn/prefs.js:60
+#: emoji-copy@felipeftn/prefs.js
 msgid "Emoji Copy Keybind"
 msgstr "Raccourci de Emoji Copy"
 
-#: emoji-copy@felipeftn/prefs.js:80
+#: emoji-copy@felipeftn/prefs.js
 msgid "About"
 msgstr "À propos"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:10
+#: emoji-copy@felipeftn/prefs.js
+msgid "Support"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Emoji Copy"
+msgid "Support Emoji Copy"
+msgstr "Emoji Copy"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid ""
+"Emoji Copy is free and maintained in my spare time. If it saves you time, "
+"you can buy me a coffee so the updates keep coming."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Buy me a coffee"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Other ways to help"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "They cost nothing and help just as much."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Open GitHub"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Star the repository or send a translation"
+msgstr ""
+
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "No skin tone"
 msgstr "Pas de teinte"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:11
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Light skin tone"
 msgstr "Teinte pâle"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:12
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Medium light skin tone"
 msgstr "Teinte moyennement pâle"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:13
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Medium skin tone"
 msgstr "Teinte moyenne"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:14
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Medium dark skin tone"
 msgstr "Teinte moyennement sombre"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:15
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Dark skin tone"
 msgstr "Teinte sombre"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:29
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Women"
 msgstr "Femmes"
 
-#: emoji-copy@felipeftn/emojiOptionsBar.js:30
+#: emoji-copy@felipeftn/emojiOptionsBar.js
 msgid "Men"
 msgstr "Hommes"
 
-#: emoji-copy@felipeftn/emojiSearchItem.js:24
+#: emoji-copy@felipeftn/emojiSearchItem.js
 msgid "Type here to search…"
 msgstr "Tapez pour rechercher…"

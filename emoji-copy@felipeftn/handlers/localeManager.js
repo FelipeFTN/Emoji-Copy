@@ -4,13 +4,12 @@ import Gio from "gi://Gio";
 Gio._promisify(Gio.File.prototype, "load_contents_async", "load_contents_finish");
 Gio._promisify(Gio.File.prototype, "replace_contents_async", "replace_contents_finish");
 
-export const DEFAULT_BUNDLED_LANGUAGES = [
-  "en", "zh", "es", "fr", "de", "ja", "ru", "pt", "hi", "ar", "bn", "ko"
-];
+const CLDR_BASE_URL = "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json";
 
 export const LANGUAGE_NAMES = {
   en: "English",
-  zh: "中文",
+  zh: "中文 (简体)",
+  "zh-Hant": "中文 (繁體)",
   es: "Español",
   fr: "Français",
   de: "Deutsch",
@@ -21,18 +20,53 @@ export const LANGUAGE_NAMES = {
   ar: "العربية (Arabic)",
   bn: "বাংলা (Bengali)",
   ko: "한국어 (Korean)",
+  it: "Italiano",
+  tr: "Türkçe",
+  pl: "Polski",
+  vi: "Tiếng Việt",
+  nl: "Nederlands",
+  uk: "Українська",
+  id: "Bahasa Indonesia",
+  th: "ไทย",
 };
 
-const CLDR_BASE_URL = "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json";
+/**
+ * Normalizes system locale string to a CLDR language identifier
+ */
+export function normalizeLanguageCode(rawLocale) {
+  if (!rawLocale) return "en";
+  const cleaned = rawLocale.split(".")[0].replace("@", "_");
+  const lower = cleaned.toLowerCase();
+
+  // Traditional Chinese variants
+  if (lower.startsWith("zh_tw") || lower.startsWith("zh_hk") || lower.startsWith("zh_mo") || lower.includes("hant")) {
+    return "zh-Hant";
+  }
+  // Simplified Chinese variants
+  if (lower.startsWith("zh")) {
+    return "zh";
+  }
+  // Portuguese variants
+  if (lower.startsWith("pt_pt")) {
+    return "pt-PT";
+  }
+  if (lower.startsWith("pt")) {
+    return "pt";
+  }
+
+  // General 2-letter ISO code
+  const base = cleaned.split("_")[0].toLowerCase();
+  return (base && base !== "c" && base !== "posix") ? base : "en";
+}
 
 /**
- * Gets the primary language code of the user's desktop environment
+ * Gets the primary normalized language code of the user's desktop environment
  */
 export function getSystemLanguage() {
   const langs = GLib.get_language_names();
   for (const l of langs) {
-    const code = l.split(".")[0].split("_")[0].toLowerCase();
-    if (code && code !== "c" && code !== "posix") {
+    const code = normalizeLanguageCode(l);
+    if (code && code !== "en") {
       return code;
     }
   }
@@ -40,7 +74,7 @@ export function getSystemLanguage() {
 }
 
 /**
- * Asynchronously fetch text from a URL using Soup 3.0 or Gio.File fallback
+ * Asynchronously fetch text from a URL using Soup 3.0 or Gio fallback
  */
 async function fetchTextAsync(url) {
   try {
@@ -51,14 +85,12 @@ async function fetchTextAsync(url) {
     if (msg.get_status() !== Soup.Status.OK) {
       return null;
     }
-    const decoder = new TextDecoder("utf-8");
-    return decoder.decode(bytes.get_data());
+    return new TextDecoder("utf-8").decode(bytes.get_data());
   } catch (_e) {
     try {
       const file = Gio.File.new_for_uri(url);
       const [content] = await file.load_contents_async(null);
-      const decoder = new TextDecoder("utf-8");
-      return decoder.decode(content);
+      return new TextDecoder("utf-8").decode(content);
     } catch (_err) {
       return null;
     }
@@ -66,30 +98,48 @@ async function fetchTextAsync(url) {
 }
 
 /**
- * Parses Unicode CLDR annotations JSON to a compact character->keywords dictionary
+ * Parses Unicode CLDR annotations JSON to a compact character -> { name, keywords } dictionary
  */
-function parseCldrAnnotations(jsonText) {
-  if (!jsonText) return {};
-  try {
-    const data = JSON.parse(jsonText);
-    const ann = data?.annotations?.annotations || {};
-    const mapping = {};
-    for (const [char, item] of Object.entries(ann)) {
-      const kws = [];
-      if (Array.isArray(item.default)) kws.push(...item.default);
-      if (Array.isArray(item.tts)) kws.push(...item.tts);
-      if (kws.length > 0) {
-        mapping[char] = kws.join(" ");
-        const noVs = char.replace(/\ufe0f/g, "");
-        if (!mapping[noVs]) {
-          mapping[noVs] = kws.join(" ");
+function parseCldrAnnotations(annJsonText, derJsonText) {
+  const mapping = {};
+
+  const processJson = (text) => {
+    if (!text) return;
+    try {
+      const data = JSON.parse(text);
+      const ann = data?.annotations?.annotations || {};
+      for (const [char, item] of Object.entries(ann)) {
+        let name = "";
+        if (Array.isArray(item.tts) && item.tts.length > 0) {
+          name = String(item.tts[0]).trim();
+        }
+
+        const kws = [];
+        if (Array.isArray(item.default)) {
+          kws.push(...item.default);
+        }
+        if (name && !kws.includes(name)) {
+          kws.unshift(name);
+        }
+
+        if (kws.length > 0) {
+          const entry = {
+            name: name || kws[0],
+            keywords: kws.join(" "),
+          };
+          mapping[char] = entry;
+          const noVs = char.replace(/\ufe0f/g, "");
+          if (!mapping[noVs]) {
+            mapping[noVs] = entry;
+          }
         }
       }
-    }
-    return mapping;
-  } catch (e) {
-    return {};
-  }
+    } catch (_err) {}
+  };
+
+  processJson(derJsonText);
+  processJson(annJsonText);
+  return mapping;
 }
 
 export class LocaleManager {
@@ -106,10 +156,12 @@ export class LocaleManager {
     if (sqlite) {
       const meta = sqlite.get_meta("bundled_languages");
       if (meta) {
-        return meta.split(",").map((s) => s.trim().toLowerCase());
+        return meta.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
       }
     }
-    return DEFAULT_BUNDLED_LANGUAGES;
+    // If meta is absent or uninitialized, only base English is considered bundled.
+    // Never fall back to assuming all languages are present.
+    return ["en"];
   }
 
   isLanguageBundled(lang, sqlite) {
@@ -122,19 +174,21 @@ export class LocaleManager {
    */
   async init(sqlite) {
     const lang = getSystemLanguage();
-    if (this.isLanguageBundled(lang, sqlite)) {
-      // Mainstream language already bundled in the base database: instant 0-config ready
+    sqlite.setSearchLanguage(lang);
+
+    if (lang === "en" || this.isLanguageBundled(lang, sqlite)) {
       return { lang, status: "bundled" };
     }
 
     // Check if local pack or cache exists
     const localMapping = await this.loadLocalMapping(lang);
     if (localMapping) {
-      sqlite.append_keywords_batch(localMapping);
+      sqlite.insert_language_keywords(lang, localMapping);
+      this._markLanguageBundled(lang, sqlite);
       return { lang, status: "cached" };
     }
 
-    // Asynchronously download in the background without blocking GNOME Shell
+    // Asynchronously download in background without blocking UI
     this.downloadAndApplyLanguage(lang, sqlite).catch((err) => {
       console.warn(`[Emoji Copy] Auto-download for language '${lang}' failed:`, err);
     });
@@ -175,7 +229,7 @@ export class LocaleManager {
   }
 
   /**
-   * Downloads CLDR annotations from official Unicode GitHub, caches locally, and updates SQLite
+   * Downloads CLDR annotations from Unicode GitHub, caches locally, and updates SQLite
    */
   async downloadAndApplyLanguage(lang, sqlite) {
     const annUrl = `${CLDR_BASE_URL}/cldr-annotations-full/annotations/${lang}/annotations.json`;
@@ -190,11 +244,12 @@ export class LocaleManager {
       throw new Error(`No CLDR data found for language '${lang}'`);
     }
 
-    const annMap = parseCldrAnnotations(annText);
-    const derMap = parseCldrAnnotations(derText);
-    const combined = { ...derMap, ...annMap };
+    const combined = parseCldrAnnotations(annText, derText);
+    if (Object.keys(combined).length === 0) {
+      throw new Error(`Empty CLDR annotations received for '${lang}'`);
+    }
 
-    // Save to user cache
+    // Save to user local cache
     const cachePath = GLib.build_filenamev([this.userCacheDir, `${lang}.json`]);
     const cacheFile = Gio.File.new_for_path(cachePath);
     const parentDir = cacheFile.get_parent();
@@ -210,11 +265,21 @@ export class LocaleManager {
       null
     );
 
-    // Apply to in-memory database
+    // Apply to SQLite database
     if (sqlite) {
-      sqlite.append_keywords_batch(combined);
+      sqlite.insert_language_keywords(lang, combined);
+      this._markLanguageBundled(lang, sqlite);
     }
 
     return combined;
+  }
+
+  _markLanguageBundled(lang, sqlite) {
+    if (!sqlite) return;
+    const current = this.getBundledLanguages(sqlite);
+    if (!current.includes(lang.toLowerCase())) {
+      current.push(lang.toLowerCase());
+      sqlite.set_meta("bundled_languages", current.join(","));
+    }
   }
 }

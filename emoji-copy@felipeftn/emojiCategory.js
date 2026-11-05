@@ -5,8 +5,6 @@ import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 import { SkinTonesBar } from "./emojiOptionsBar.js";
 import { EmojiButton } from "./emojiButton.js";
 
-import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
-
 // Map of emoji's group
 const EMOJIS_CATEGORIES = {
   0: "Smileys & Emotion",
@@ -114,7 +112,7 @@ export class EmojiCategory {
         let button = new EmojiButton(
           this.emojiCopy,
           this.emojis[i].unicode,
-          this.emojis[i].description,
+          this.emojis[i].localized_name || this.emojis[i].description,
         );
         this.emojiButtons.push(button);
       }
@@ -154,7 +152,7 @@ export class EmojiCategory {
       let button = new EmojiButton(
         this.emojiCopy,
         this.emojis[i].unicode,
-        this.emojis[i].description,
+        this.emojis[i].localized_name || this.emojis[i].description,
       );
       this.emojiButtons.push(button);
     }

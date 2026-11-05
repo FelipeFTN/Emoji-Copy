@@ -43,6 +43,9 @@ export default class EmojiCopy extends Extension {
     this._settings = this.getSettings();
     this.position = this._settings.get_string("position");
     this._permanentItems = 0;
+    // Text collected by the "stay" actions while "copy-on-close" is on;
+    // null when there is nothing to copy on close.
+    this.pendingClipboard = null;
 
     this.sqlite = new SQLite();
     await this.sqlite.initializeDB(this.path);
@@ -149,6 +152,11 @@ export default class EmojiCopy extends Extension {
   }
 
   disable() {
+    // Don't lose emojis collected in a menu that is still open, and keep
+    // its picks in "recently used". Persist only: the menu is going away.
+    this.flushPendingClipboard();
+    this.searchItem?.commitPendingRecents(false);
+
     if (this._settings.get_boolean("active-keybind")) {
       Main.wm.removeKeybinding("emoji-keybind");
     }
@@ -181,6 +189,7 @@ export default class EmojiCopy extends Extension {
     this._settings = null;
     this.super_btn = null;
     this.sqlite = null;
+    this.localeManager = null;
     this._buttonMenuItem = null;
     this.emojiCategories = null;
   }
@@ -243,7 +252,14 @@ export default class EmojiCopy extends Extension {
       // The clipboard still holds whatever was copied before opening the
       // menu; the first "append" selection must not append to it.
       this.clipboardOwned = false;
+      this.setPendingClipboard(null);
+    } else {
+      // Copy what was collected and reorder "recently used", now that the
+      // row is no longer visible.
+      this.flushPendingClipboard();
+      this.searchItem.commitPendingRecents();
     }
+
     this.super_btn.visible = open || this._settings.get_boolean("always-show");
     this.clearCategories();
     this.searchItem.searchEntry.set_text("");
@@ -255,6 +271,23 @@ export default class EmojiCopy extends Extension {
       this.timeoutSourceId = null;
       return GLib.SOURCE_REMOVE;
     });
+  }
+
+  setPendingClipboard(text) {
+    this.pendingClipboard = text;
+    this.searchItem?.showPending(text);
+  }
+
+  // Copies the text collected with "copy-on-close", once.
+  flushPendingClipboard() {
+    const text = this.pendingClipboard;
+    if (text === null) {
+      return;
+    }
+    this.setPendingClipboard(null);
+    const clipboard = St.Clipboard.get_default();
+    clipboard.set_text(St.ClipboardType.CLIPBOARD, text);
+    clipboard.set_text(St.ClipboardType.PRIMARY, text);
   }
 
   clearCategories() {

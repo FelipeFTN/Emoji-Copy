@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-03 00:19-0300\n"
+"Report-Msgid-Bugs-To: https://github.com/FelipeFTN/Emoji-Copy/issues\n"
+"POT-Creation-Date: 2026-11-04 12:38-0300\n"
 "PO-Revision-Date: 2020-03-07 04:17+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Poedit 2.2.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/extension.js emoji-copy@felipeftn/prefs.js
 msgid "Emoji Copy"
 msgstr "إيموجي سيلكتور"
 
@@ -58,120 +58,188 @@ msgstr "الرموز"
 msgid "Flags"
 msgstr "الرايات"
 
-#: emoji-copy@felipeftn/prefs.ui
-#, fuzzy
-#| msgid ""
-#| "Displaying the interface from the bottom is better if you use a bottom "
-#| "panel instead of the default top bar."
-msgid ""
-"Displaying the interface from the bottom is better if you use a bottom panel "
-"instead of the default top bar. Modifications will be effective after "
-"reloading the extension."
+#: emoji-copy@felipeftn/prefs.js
+msgid "Shortcuts"
 msgstr ""
-"يحبذ إظهار الواجهة من الأسفل لو كنت تستخدم شريطًا سفليًا بدلاً من الشريط العلوي "
-"الافتراضي."
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "General layout"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ways to pick an emoji from the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Left-click / Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Middle-click / Ctrl+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the emoji without closing the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Right-click / Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the emoji to the end of the clipboard content"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy the Nth emoji of the search row and close the menu"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Ctrl+Shift+1…9, 0"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Add the Nth emoji of the search row, like Shift+Enter"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Tab"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Navigate between emojis"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "General layout"
+msgid "General"
 msgstr "النسق العام"
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Number of emojis per line"
-msgstr "عدد الإموجيات لكل سطر"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Size of emojis (px)"
-msgstr "حجم الإموجي (بكسل)"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Paste upon emoji selection"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Layout"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Use a keyboard shortcut to toggle the menu"
-msgstr "استخدم اختصار من لوحة المفاتيح لإظهار وإخفاء القائمة"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Help"
-msgstr "مساعدة"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Apply"
-msgstr "تطبيق"
-
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
 #, fuzzy
-#| msgid "Always show the icon"
-msgid "Always show the icon in the panel"
-msgstr "أبق الأيقونة ظاهرة"
+#| msgid "Settings"
+msgid "General Settings"
+msgstr "الإعدادات"
 
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
+msgid "Configure your Emoji Copy"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Show Indicator"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Whether to show the emoji indicator."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Window Location"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Where to display the emoji menu window."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Top bar"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Cursor"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Paste on Select"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Automatically paste the selected emoji."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Keep Open on Select"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Keep the emoji menu open after selecting an emoji."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Copy on Close"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 msgid ""
-"If you access the menu with the keyboard shortcut, you don't need to always "
-"display the icon."
-msgstr "يمكنك إخفاء الأيقونة لو اخترت اختصارًا لإظهار القائمة"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Keyboard bindings"
+"Emojis added with right-click are copied once when the menu closes, so "
+"clipboard history gets a single entry."
 msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid ""
-"Emoji copy is a versatile extension designed to simplify emoji selection and "
-"clipboard management."
+#: emoji-copy@felipeftn/prefs.js
+msgid "Recently Used Rows"
 msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Report bugs or ideas"
-msgstr "التبليغ عن أخطاء برمجية أو اقتراحات"
+#: emoji-copy@felipeftn/prefs.js
+msgid "How many rows of recently used emojis to show."
+msgstr ""
 
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
+msgid "Use Keybind"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Enable your default keybind to open the emoji menu."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 #, fuzzy
-#| msgid "Author:"
-msgid "Author"
-msgstr "أنشأها:"
+#| msgid "Emoji Copy"
+msgid "Emoji Copy Keybind"
+msgstr "إيموجي سيلكتور"
 
-#: emoji-copy@felipeftn/prefs.ui
-#, fuzzy
-#| msgid "Tranlators:"
-msgid "Translator(s)"
-msgstr "ترجمها للعربية:"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "translator-credits"
-msgstr "أحمد العلق"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Original Owner"
-msgstr ""
-
-#: emoji-copy@felipeftn/prefs.ui
+#: emoji-copy@felipeftn/prefs.js
 msgid "About"
 msgstr "عن"
 
-#: emoji-copy@felipeftn/prefs.ui
-msgid "List of valid key names"
-msgstr "قائمة المفاتيح المتاحة"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Modifier keys must be between chevrons"
-msgstr "مفاتيح التعديل يجب أن تكون دائمًا بين علامتي تنصيص"
-
-#: emoji-copy@felipeftn/prefs.ui
-msgid "Don't use a keyboard shortcut that already exists."
-msgstr "لا تستخدم مفتاحًا يُستخدم لاختصار آخر"
-
-#: emoji-copy@felipeftn/emojiCategory.js
-#, javascript-format
-msgid "Incorrect number of keywords for category '%s':"
+#: emoji-copy@felipeftn/prefs.js
+msgid "Support"
 msgstr ""
 
-#: emoji-copy@felipeftn/emojiCategory.js
-msgid "Please report this bug"
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Emoji Copy"
+msgid "Support Emoji Copy"
+msgstr "إيموجي سيلكتور"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid ""
+"Emoji Copy is free and maintained in my spare time. If it saves you time, "
+"you can buy me a coffee so the updates keep coming."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Buy me a coffee"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Other ways to help"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "They cost nothing and help just as much."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Open GitHub"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Star the repository or send a translation"
 msgstr ""
 
 #: emoji-copy@felipeftn/emojiOptionsBar.js
@@ -210,6 +278,68 @@ msgstr "رجل"
 msgid "Type here to search…"
 msgstr "اكتب هنا للبحث..."
 
+#, fuzzy
+#~| msgid ""
+#~| "Displaying the interface from the bottom is better if you use a bottom "
+#~| "panel instead of the default top bar."
+#~ msgid ""
+#~ "Displaying the interface from the bottom is better if you use a bottom "
+#~ "panel instead of the default top bar. Modifications will be effective "
+#~ "after reloading the extension."
+#~ msgstr ""
+#~ "يحبذ إظهار الواجهة من الأسفل لو كنت تستخدم شريطًا سفليًا بدلاً من الشريط "
+#~ "العلوي الافتراضي."
+
+#~ msgid "Number of emojis per line"
+#~ msgstr "عدد الإموجيات لكل سطر"
+
+#~ msgid "Size of emojis (px)"
+#~ msgstr "حجم الإموجي (بكسل)"
+
+#~ msgid "Use a keyboard shortcut to toggle the menu"
+#~ msgstr "استخدم اختصار من لوحة المفاتيح لإظهار وإخفاء القائمة"
+
+#~ msgid "Help"
+#~ msgstr "مساعدة"
+
+#~ msgid "Apply"
+#~ msgstr "تطبيق"
+
+#, fuzzy
+#~| msgid "Always show the icon"
+#~ msgid "Always show the icon in the panel"
+#~ msgstr "أبق الأيقونة ظاهرة"
+
+#~ msgid ""
+#~ "If you access the menu with the keyboard shortcut, you don't need to "
+#~ "always display the icon."
+#~ msgstr "يمكنك إخفاء الأيقونة لو اخترت اختصارًا لإظهار القائمة"
+
+#~ msgid "Report bugs or ideas"
+#~ msgstr "التبليغ عن أخطاء برمجية أو اقتراحات"
+
+#, fuzzy
+#~| msgid "Author:"
+#~ msgid "Author"
+#~ msgstr "أنشأها:"
+
+#, fuzzy
+#~| msgid "Tranlators:"
+#~ msgid "Translator(s)"
+#~ msgstr "ترجمها للعربية:"
+
+#~ msgid "translator-credits"
+#~ msgstr "أحمد العلق"
+
+#~ msgid "List of valid key names"
+#~ msgstr "قائمة المفاتيح المتاحة"
+
+#~ msgid "Modifier keys must be between chevrons"
+#~ msgstr "مفاتيح التعديل يجب أن تكون دائمًا بين علامتي تنصيص"
+
+#~ msgid "Don't use a keyboard shortcut that already exists."
+#~ msgstr "لا تستخدم مفتاحًا يُستخدم لاختصار آخر"
+
 #~ msgid "Modifications will be effective after reloading the extension."
 #~ msgstr "التعديلات ستُنفذ بعد إعادة تشغيل الإضافة"
 
@@ -229,9 +359,6 @@ msgstr "اكتب هنا للبحث..."
 #~ msgstr ""
 #~ "توفر هذه الإضافة قائمة منبثقة تحوي على أغلب الإيموجيات، يُنسخ بالضغط على "
 #~ "أي منهم."
-
-#~ msgid "Settings"
-#~ msgstr "الإعدادات"
 
 #~ msgid "Default value is:"
 #~ msgstr "القيمة الافتراضية هي:"

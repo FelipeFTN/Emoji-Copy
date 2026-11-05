@@ -3,12 +3,10 @@ import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
 import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
-import {
-    getSystemLanguage,
-    LocaleManager,
-    DEFAULT_BUNDLED_LANGUAGES,
-    LANGUAGE_NAMES,
-} from './handlers/localeManager.js';
+import { getSystemLanguage, LocaleManager, LANGUAGE_NAMES } from './handlers/localeManager.js';
+
+const SUPPORT_URL = 'https://www.buymeacoffee.com/felipeftn';
+const REPO_URL = 'https://github.com/FelipeFTN/Emoji-Copy';
 
 export default class EmojiCopyPrefs extends ExtensionPreferences {
     fillPreferencesWindow(window) {
@@ -22,6 +20,9 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
 
         // General Page
         this._general();
+
+        // Support Page
+        this._support();
     }
 
     _shortcuts(page) {
@@ -35,6 +36,8 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
             [_('Left-click / Enter'), _('Copy the emoji and close the menu')],
             [_('Middle-click / Ctrl+Enter'), _('Copy the emoji without closing the menu')],
             [_('Right-click / Shift+Enter'), _('Add the emoji to the end of the clipboard content')],
+            [_('Ctrl+1…9, 0'), _('Copy the Nth emoji of the search row and close the menu')],
+            [_('Ctrl+Shift+1…9, 0'), _('Add the Nth emoji of the search row, like Shift+Enter')],
             [_('Tab'), _('Navigate between emojis')],
         ];
         for (const [keys, description] of shortcuts) {
@@ -104,6 +107,13 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(keep_open);
 
+        // Copy emojis collected without closing the menu only once, on close
+        const copy_on_close = new Adw.SwitchRow({
+            title: _('Copy on Close'),
+            subtitle: _('Emojis added with right-click are copied once when the menu closes, so clipboard history gets a single entry.'),
+        });
+        general_gp.add(copy_on_close);
+
         // Number of "recently used" rows
         const recent_rows = Adw.SpinRow.new_with_range(1, 5, 1);
         recent_rows.set_title(_('Recently Used Rows'));
@@ -157,6 +167,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         this._window._settings.bind('always-show', show_indicator, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('paste-on-select', paste_on_select, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('keep-open', keep_open, 'active', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('copy-on-close', copy_on_close, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('recent-rows', recent_rows, 'value', Gio.SettingsBindFlags.DEFAULT);
 
@@ -175,30 +186,16 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         page.add(lang_gp);
 
         const systemLang = getSystemLanguage();
-        const bundled = DEFAULT_BUNDLED_LANGUAGES;
-        const isBundled = bundled.includes(systemLang);
+        const displayName = LANGUAGE_NAMES[systemLang] || systemLang;
 
         const statusRow = new Adw.ActionRow({
             title: _('System Language'),
-            subtitle: isBundled
-                ? `${systemLang} (${_('Built-in zero-config')})`
-                : `${systemLang} (${_('On-demand download')})`,
+            subtitle: `${displayName} (${systemLang})`,
         });
         lang_gp.add(statusRow);
 
-        const bundledListStr = bundled
-            .map((c) => (LANGUAGE_NAMES[c] ? `${LANGUAGE_NAMES[c]} (${c})` : c))
-            .join(', ');
-
-        const bundledRow = new Adw.ActionRow({
-            title: _('Built-in Languages'),
-            subtitle: bundledListStr,
-            subtitle_lines: 0,
-        });
-        lang_gp.add(bundledRow);
-
         const downloadRow = new Adw.EntryRow({
-            title: _('Download Extra Language (ISO code: it, tr, pl, vi, etc.)'),
+            title: _('Download Extra Language (ISO code: it, tr, pl, ar, etc.)'),
             show_apply_button: true,
         });
         downloadRow.connect('apply', async () => {
@@ -208,7 +205,8 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
                 try {
                     const manager = new LocaleManager(this.dir.get_path());
                     await manager.downloadAndApplyLanguage(code, null);
-                    downloadRow.set_title(_('Downloaded successfully: ') + code);
+                    const langName = LANGUAGE_NAMES[code] ? `${LANGUAGE_NAMES[code]} (${code})` : code;
+                    downloadRow.set_title(_('Downloaded successfully: ') + langName);
                     downloadRow.set_text('');
                 } catch (err) {
                     downloadRow.set_title(_('Download failed: ') + err.message);
@@ -216,6 +214,65 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
             }
         });
         lang_gp.add(downloadRow);
+    }
+
+    _support() {
+        const support_pg = new Adw.PreferencesPage({
+            title: _('Support'),
+            icon_name: 'emblem-favorite-symbolic',
+        });
+        this._window.add(support_pg);
+
+        const support_gp = new Adw.PreferencesGroup({
+            title: _('Support Emoji Copy'),
+            description: _('Emoji Copy is free and maintained in my spare time. If it saves you time, you can buy me a coffee so the updates keep coming.'),
+        });
+        support_pg.add(support_gp);
+
+        const coffee_button = new Gtk.Button({
+            valign: Gtk.Align.CENTER,
+            child: new Adw.ButtonContent({
+                icon_name: 'emblem-favorite-symbolic',
+                label: _('Buy me a coffee'),
+            }),
+        });
+        coffee_button.set_css_classes(['suggested-action']);
+        coffee_button.connect('clicked', () => this._openUri(SUPPORT_URL));
+
+        const coffee_row = new Adw.ActionRow({
+            title: _('Buy me a coffee'),
+            subtitle: 'buymeacoffee.com/felipeftn',
+        });
+        coffee_row.add_suffix(coffee_button);
+        coffee_row.set_activatable_widget(coffee_button);
+        support_gp.add(coffee_row);
+
+        const help_gp = new Adw.PreferencesGroup({
+            title: _('Other ways to help'),
+            description: _('They cost nothing and help just as much.'),
+        });
+        support_pg.add(help_gp);
+
+        const repo_button = new Gtk.Button({
+            valign: Gtk.Align.CENTER,
+            child: new Adw.ButtonContent({
+                icon_name: 'web-browser-symbolic',
+                label: _('Open GitHub'),
+            }),
+        });
+        repo_button.connect('clicked', () => this._openUri(REPO_URL));
+
+        const repo_row = new Adw.ActionRow({
+            title: _('Star the repository or send a translation'),
+            subtitle: 'github.com/FelipeFTN/Emoji-Copy',
+        });
+        repo_row.add_suffix(repo_button);
+        repo_row.set_activatable_widget(repo_button);
+        help_gp.add(repo_row);
+    }
+
+    _openUri(uri) {
+        Gtk.show_uri(this._window, uri, 0);
     }
 
     _openAboutPage() {
@@ -226,6 +283,7 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         about_window.set_developer_name('FelipeFTN & Community');
         about_window.set_issue_url('https://github.com/FelipeFTN/Emoji-Copy/issues');
         about_window.set_website('https://github.com/FelipeFTN/Emoji-Copy');
+        about_window.set_support_url(SUPPORT_URL);
         about_window.set_license_type(Gtk.License.GPL_3_0);
         about_window.set_copyright('© 2023 FelipeFTN');
         about_window.show();

@@ -14,12 +14,15 @@ export class EmojiSearchItem {
     });
     this._nbColumns = nbColumns;
     this.emojiCopy = emojiCopy;
+    // Emojis picked while the menu is open, see shiftFor()
+    this._pendingRecents = [];
     this._settings = this.emojiCopy._settings;
 
+    this._defaultHint = _("Type here to search…");
     this.searchEntry = new St.Entry({
       name: "searchEntry",
       can_focus: true,
-      hint_text: _("Type here to search…"),
+      hint_text: this._defaultHint,
       track_hover: true,
       x_expand: true,
     });
@@ -53,23 +56,26 @@ export class EmojiSearchItem {
         return Clutter.EVENT_PROPAGATE;
       }
 
-      // Ctrl+1..9 picks the Nth emoji of the row, Ctrl+0 the 10th
-      if (
-        (event.get_state() & Clutter.ModifierType.CONTROL_MASK) &&
-        symbol >= Clutter.KEY_0 && symbol <= Clutter.KEY_9
-      ) {
-        const btn = this._recents[(symbol - Clutter.KEY_0 + 9) % 10];
+      // Ctrl+1..9 picks the Nth emoji of the row, Ctrl+0 the 10th, Ctrl+Shift
+      // appends it like Shift+Enter. Hardware keycodes 10..19 are the 1..0 row
+      // whatever the layout or Shift state.
+      const state = event.get_state();
+      const index = event.get_key_code() - 10;
+      if ((state & Clutter.ModifierType.CONTROL_MASK) && index >= 0 && index <= 9) {
+        const btn = this._recents[index];
         const emojiToCopy = btn?.super_btn?.label ? btn.getTaggedEmoji() : null;
         if (emojiToCopy) {
           this.emojiCopy.sqlite.increment_selection(emojiToCopy);
-          return btn.replaceClipboardAndClose(emojiToCopy);
+          return state & Clutter.ModifierType.SHIFT_MASK
+            ? btn.addToClipboardAndStay(emojiToCopy)
+            : btn.replaceClipboardAndClose(emojiToCopy);
         }
       }
 
       switch (symbol) {
         // Existing Enter key logic - find first recent/result and activate
         case Clutter.KEY_Return:
-        case Clutter.KEY_KP_Enter:
+        case Clutter.KEY_KP_Enter: {
           let firstRecent = this._recents.find(
             (btn) =>
               btn.super_btn && btn.super_btn.visible && btn.super_btn.can_focus
@@ -81,8 +87,9 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
-        case Clutter.KEY_Down:
+        case Clutter.KEY_Down: {
           let firstFocusableRecent = this._recents.find(
             (btn) =>
               btn.super_btn && btn.super_btn.visible && btn.super_btn.can_focus
@@ -94,8 +101,9 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
-        case Clutter.KEY_Up:
+        case Clutter.KEY_Up: {
           if (!this.emojiCopy || !this.emojiCopy.emojiCategories) {
             return Clutter.EVENT_PROPAGATE;
           }
@@ -113,6 +121,7 @@ export class EmojiSearchItem {
           }
 
           return Clutter.EVENT_PROPAGATE;
+        }
 
         default:
           return Clutter.EVENT_PROPAGATE;
@@ -152,16 +161,16 @@ export class EmojiSearchItem {
       results = [...toneResults, ...yellowResults];
     } else {
       // Only yellow (no skin tone) results as default
-      results = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender)
-        // Get this back if needed
-        // .filter(e => !e.skin_tone || e.skin_tone === '');
+      results = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender);
+      // Get this back if needed
+      // .filter(e => !e.skin_tone || e.skin_tone === '');
     }
 
     let firstEmptyIndex = 0;
     for (let i = 0; i < results.length; i++) {
       if (i < this._recents.length) {
         this._recents[firstEmptyIndex].super_btn.label = results[i].unicode;
-        this._recents[firstEmptyIndex].super_btn.text = results[i].description;
+        this._recents[firstEmptyIndex].super_btn.text = results[i].localized_name || results[i].description;
         firstEmptyIndex++;
       }
     }
@@ -257,20 +266,45 @@ export class EmojiSearchItem {
 
   shiftFor(currentEmoji) {
     if (currentEmoji == "") return;
+    // While the menu is open, moving the picked emoji to the front would
+    // reorder the row under the pointer: a second click on the same spot
+    // (right-click, middle-click, "Keep Open on Select") would then hit a
+    // different emoji. Remember the picks and apply them on close instead.
+    if (this.emojiCopy.get_super_btn()?.menu.isOpen) {
+      this._pendingRecents.push(currentEmoji);
+      return;
+    }
+    this._moveToFront([currentEmoji]);
+  }
+
+  // Applies the picks remembered while the menu was open, in pick order.
+  // With updateUI false it only persists them, see disable(): rebuilding the
+  // row there would create widgets in a menu that is being torn down.
+  commitPendingRecents(updateUI = true) {
+    const picks = this._pendingRecents;
+    this._pendingRecents = [];
+    if (picks.length > 0) {
+      this._moveToFront(picks, updateUI);
+    }
+  }
+
+  _moveToFront(emojis, updateUI = true) {
     let temp = this._settings.get_strv("recently-used");
-    for (let i = 0; i < temp.length; i++) {
-      if (temp[i] == currentEmoji) {
-        temp.splice(i, 1);
-      }
+    for (const currentEmoji of emojis) {
+      temp = temp.filter((e) => e != currentEmoji);
+      temp.unshift(currentEmoji);
     }
-    for (let j = temp.length; j > 0; j--) {
-      temp[j] = temp[j - 1];
-    }
-    temp[0] = currentEmoji;
     this._settings.set_strv("recently-used", temp);
+    if (!updateUI) return;
     this._buildRecents();
     this.saveRecents();
     this.emojiCopy._onSearchTextChanged();
+  }
+
+  // Shows the emojis waiting to be copied on close ("copy-on-close") in
+  // place of the search hint, since the clipboard isn't updated until then.
+  showPending(text) {
+    this.searchEntry.hint_text = text ?? this._defaultHint;
   }
 
   destroy() {
