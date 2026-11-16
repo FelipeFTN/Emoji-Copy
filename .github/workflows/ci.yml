@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Lint
+        run: |
+          npm ci
+          npm run lint
+
+      # build/parser.py needs requests and is what generates emojis.db, which
+      # the zip ships; there is no requirements.txt yet.
+      - name: Build
+        run: |
+          python3 -m pip install --quiet requests
+          make build
