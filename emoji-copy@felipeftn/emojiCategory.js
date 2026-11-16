@@ -31,7 +31,7 @@ export class EmojiCategory {
     this.emojiCopy = emojiCopy;
     this._settings = this.emojiCopy._settings;
     this.emojiButtons = []; // used for searching, and for updating the size/style
-    this._nbColumns = 10; // some random default value
+    this._nbColumns = this._settings.get_int("nbcols");
     this.id = id;
     this.emojis = this.emojiCopy.sqlite.select_by_group(
       EMOJIS_CATEGORIES[this.id],
