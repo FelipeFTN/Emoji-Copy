@@ -127,11 +127,11 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         general_gp.add(active_keybind);
 
         // Keybind field value (<Super>period)
-        let keybind = this._window._settings.get_strv('emoji-keybind')[0];
+        let keybind = this._window._settings.get_strv('emoji-keybind')[0] ?? '';
         const emoji_keybind = new Adw.EntryRow({
             title: _('Emoji Copy Keybind'),
             show_apply_button:  true,
-            text: _(keybind),
+            text: keybind,
         });
         general_gp.add(emoji_keybind);
 
@@ -140,8 +140,15 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
             keybind = emoji_keybind.get_text();
 		});
         emoji_keybind.connect('apply', () => {
-			this._window._settings.set_strv('emoji-keybind', [keybind]);
-		});
+            // An unparsable accelerator only produces a warning deep in the
+            // Shell, so refuse it here instead of storing it.
+            const [valid] = Gtk.accelerator_parse(keybind);
+            if (!valid) {
+                console.warn(`Invalid keybind, not applied: ${keybind}`);
+                return;
+            }
+            this._window._settings.set_strv('emoji-keybind', [keybind]);
+        });
 
         // About button - Thanks to @maniacx this could be done perfectly! 
         const about_button = new Gtk.Button({
