@@ -4,7 +4,6 @@ SHELL := /bin/bash
 
 EXTENSION := emoji-copy@felipeftn
 EXTENSION_NAME := emoji-copy
-EXTENSION_PATH = ~/.local/share/gnome-shell/extensions/$(EXTENSION)
 ZIP_NAME := $(EXTENSION).zip
 ZIP_TEMP := zip-temp
 
@@ -29,7 +28,7 @@ uninstall:
 	@echo "Extension uninstalled successfully!"
 
 clean:
-	@rm -rf $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB) $(EXTENSION_PATH)
+	@rm -rf $(ZIP_NAME) $(SCHEMA_COMPILED_FILE) $(ZIP_TEMP) $(EMOJIS_DB)
 	
 debug: clean install
 	dbus-run-session -- gnome-shell --devkit
