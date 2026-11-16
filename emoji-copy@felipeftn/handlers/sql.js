@@ -34,13 +34,18 @@ export class SQLite {
       const [SQL, db] = await Promise.all([initSqlJs(), ReadDB(extensionPath)]);
       this.db = new SQL.Database(new Uint8Array(db));
     } catch (error) {
+      // Without the database every query throws; let enable() fail instead of
+      // leaving a half-loaded extension that looks enabled and shows nothing.
       console.error("Error initializing database:", error);
+      throw error;
     }
   }
 
   destroy() {
-    this.db.close();
-    this.db = null;
+    if (this.db) {
+      this.db.close();
+      this.db = null;
+    }
   }
 
   increment_selection(unicode) {
