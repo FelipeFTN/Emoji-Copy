@@ -233,14 +233,6 @@ export class EmojiSearchItem {
     this._rebuildRecentsButtons();
   }
 
-  saveRecents() {
-    let backUp = [];
-    for (let i = 0; i < this._recents.length; i++) {
-      backUp.push(this._recents[i].super_btn.label);
-    }
-    this._settings.set_strv("recently-used", backUp);
-  }
-
   _buildRecents() {
     let temp = this._settings.get_strv("recently-used");
     for (let i = 0; i < this._recents.length; i++) {
@@ -296,8 +288,9 @@ export class EmojiSearchItem {
     }
     this._settings.set_strv("recently-used", temp);
     if (!updateUI) return;
+    // _buildRecents() only refreshes the labels; writing them back here would
+    // persist the 🐧 padding it fills the empty slots with.
     this._buildRecents();
-    this.saveRecents();
     this.emojiCopy._onSearchTextChanged();
   }
 
