@@ -10,8 +10,6 @@ ZIP_TEMP := zip-temp
 SCHEMA_COMPILED_FILE = $(EXTENSION)/schemas/gschemas.compiled
 EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
-ZIP_CONTENT = $(EXTENSION)/* LICENSE
-
 all: clean build
 
 # GNOME Shell 45+ compiles schemas itself; shipping gschemas.compiled
@@ -33,18 +31,9 @@ clean:
 debug: clean install
 	dbus-run-session -- gnome-shell --devkit
 
-# Just to make it clear ($@ => First argument; $^ second argument)
-# e.g: $@ => $(ZIP_NAME); $^ => $(ZIP_CONTENT).
+# The packaging lives in build-a-zip.sh, shared with `npm run build`.
 $(ZIP_NAME):
-	@echo "[-] ZIPPING EMOJI COPY..."
-	@mkdir -p zip-temp
-	@cp -r $(ZIP_CONTENT) $(ZIP_TEMP)
-	@cd $(ZIP_TEMP) && find . -name ".gitkeep" -type f | xargs rm -rf
-	@cd $(ZIP_TEMP) && find . -name "*.pot" -type f | xargs rm -rf
-	@cd $(ZIP_TEMP) && find . -name "*.po" -type f | xargs rm -rf
-	@rm -f $(ZIP_TEMP)/schemas/gschemas.compiled
-	@rm -f $@
-	@cd $(ZIP_TEMP) && zip -r ../$@ .
+	@sh build-a-zip.sh
 
 $(EMOJIS_DB):
 	@python3 ./build/parser.py
