@@ -1,4 +1,4 @@
-.PHONY: all build clean uninstall
+.PHONY: all build install uninstall deploy debug clean translations
 
 SHELL := /bin/bash
 
@@ -12,14 +12,14 @@ EMOJIS_DB = $(EXTENSION)/data/emojis.db
 
 all: clean build
 
-# GNOME Shell 45+ compiles schemas itself; shipping gschemas.compiled
-# triggers the EGO-P-006 review warning.
 build: $(EMOJIS_DB) $(ZIP_NAME)
 	@echo "[+] EMOJI COPY BUILT"
 
 install: build
 	gnome-extensions install $(ZIP_NAME) --force
 	@echo "Extension installed successfully! Now restart the Shell ('Alt'+'F2', then 'restart')."
+
+deploy: install
 
 uninstall:
 	gnome-extensions uninstall $(EXTENSION)
@@ -31,9 +31,24 @@ clean:
 debug: clean install
 	dbus-run-session -- gnome-shell --devkit
 
-# The packaging lives in build-a-zip.sh, shared with `npm run build`.
+translations:
+	./update-and-compile-translations.sh
+
+# The zip carries the extension contents at its root, not inside a
+# emoji-copy@felipeftn/ folder: GNOME Shell looks for metadata.json there.
+# The .po/.pot sources stay out, and GNOME Shell 45+ compiles the schemas
+# itself (shipping gschemas.compiled trips the EGO-P-006 review warning).
 $(ZIP_NAME):
-	@sh build-a-zip.sh
+	@echo "[-] Zipping $(ZIP_NAME)..."
+	@rm -rf $(ZIP_TEMP)
+	@mkdir -p $(ZIP_TEMP)
+	@cp -r $(EXTENSION)/* LICENSE $(ZIP_TEMP)
+	@find $(ZIP_TEMP) -name ".gitkeep" -type f -delete
+	@find $(ZIP_TEMP) -name "*.pot" -type f -delete
+	@find $(ZIP_TEMP) -name "*.po" -type f -delete
+	@rm -f $(ZIP_TEMP)/schemas/gschemas.compiled
+	@rm -f $@
+	@cd $(ZIP_TEMP) && zip -qr ../$@ .
 
 $(EMOJIS_DB):
 	@python3 ./build/parser.py
