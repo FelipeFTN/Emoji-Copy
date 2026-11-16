@@ -1,7 +1,6 @@
 # EMOJI COPY DEBUG
 
-I will be working on a better MD file later, for now, I will be droping here
-some useful commands I used to debug this extension.
+Useful commands I use to debug this extension.
 
 ### Reset extension
 
@@ -21,15 +20,15 @@ Build and Debug:
 First, build the extension:
 `make`
 
-Then, run an virtual wayland session (Gnome 48 and earlier):
+Then, run a virtual Wayland session (GNOME 48 and earlier):
 `dbus-run-session -- gnome-shell --nested --wayland`
 
-Or, run an virtual wayland session (Gnome 49 and later):
+Or, run a virtual Wayland session (GNOME 49 and later):
 `dbus-run-session gnome-shell --devkit --wayland`
 
 ### Symbolic link
 
-`ln -s ~/Desktop/emoji-copy/emoji-copy@felipeftn/ ~/.local/share/gnome-shell/extensions/debug-emoji-copy@felipeftn`
+`ln -s ~/Desktop/Emoji-Copy/emoji-copy@felipeftn/ ~/.local/share/gnome-shell/extensions/debug-emoji-copy@felipeftn`
 
 ### Running Emoji Copy on Debug mode
 
