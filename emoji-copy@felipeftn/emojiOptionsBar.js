@@ -76,7 +76,11 @@ export class SkinTonesBar {
   // Update buttons appearance, reflecting the current state of the settings
   update() {
     this.removeCircle();
-    // this._toneArray[this._settings.get_int("skin-tone")].set_checked(true);
+    // removeCircle() unchecked every tone, so put the current one back
+    const toneId = this._settings.get_int("skin-tone");
+    if (toneId > 0) {
+      this._toneArray[toneId].set_checked(true);
+    }
     this._genderArray.forEach(function (b) {
       if (b) { // index 0 contains null
         b.set_checked(false);
