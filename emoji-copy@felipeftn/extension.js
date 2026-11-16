@@ -107,11 +107,13 @@ export default class EmojiCopy extends Extension {
       this._permanentItems++;
       this.super_btn.menu.addMenuItem(recentlyUsed);
       this._permanentItems++;
+      this._addDatabaseWarning();
     }
 
     this._addAllCategories();
 
     if (this.position === "bottom") {
+      this._addDatabaseWarning();
       this.super_btn.menu.addMenuItem(recentlyUsed);
       this._permanentItems++;
       this.super_btn.menu.addMenuItem(this.searchItem.super_item);
@@ -353,6 +355,26 @@ export default class EmojiCopy extends Extension {
     for (let i = 0; i < 9; i++) {
       this.super_btn.menu.addMenuItem(this.emojiCategories[i].super_item);
     }
+  }
+
+  // A menu that opens but lists nothing looks like a bug in the picker; tell
+  // the user the emoji data is what is missing. Counted as a permanent item so
+  // clearCategories() does not hide it when the menu opens.
+  _addDatabaseWarning() {
+    if (!this.sqlite.dbError) {
+      return;
+    }
+    const item = new PopupMenu.PopupBaseMenuItem({
+      reactive: false,
+      can_focus: false,
+    });
+    item.add_child(
+      new St.Label({
+        text: _("Emoji data could not be loaded. Reinstall the extension."),
+      }),
+    );
+    this.super_btn.menu.addMenuItem(item);
+    this._permanentItems++;
   }
 
   _renderPanelMenuHeaderBox() {

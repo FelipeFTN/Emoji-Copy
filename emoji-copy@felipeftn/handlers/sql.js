@@ -27,6 +27,7 @@ async function ReadDB(extensionPath) {
 export class SQLite {
   constructor() {
     this.db = null;
+    this.dbError = null;
   }
 
   async initializeDB(extensionPath) {
@@ -34,13 +35,18 @@ export class SQLite {
       const [SQL, db] = await Promise.all([initSqlJs(), ReadDB(extensionPath)]);
       this.db = new SQL.Database(new Uint8Array(db));
     } catch (error) {
+      // Keep db null: query() returns empty results and the menu shows a
+      // warning, instead of the extension breaking on every keystroke.
       console.error("Error initializing database:", error);
+      this.dbError = error;
     }
   }
 
   destroy() {
-    this.db.close();
-    this.db = null;
+    if (this.db) {
+      this.db.close();
+      this.db = null;
+    }
   }
 
   increment_selection(unicode) {
@@ -120,6 +126,9 @@ search_description(search_text, skin_tone = 0, gender = 0) {
   }
 
   query(sql_query, params = []) {
+    if (!this.db) {
+      return [];
+    }
     const res = this.db.exec(sql_query, params);
     if (res.length == 0) {
       return [];
