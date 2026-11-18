@@ -21,6 +21,16 @@ INSERT_TBL = """
 REPLACE INTO emojis VALUES (?, ?, ?, ?, 0)
 """
 
+# Indexes for the queries the extension runs on every category open and every
+# keystroke: select_by_group filters on emoji_group, search_description on
+# description like 'word%'. The description index is NOCASE because LIKE is
+# case insensitive by default, and SQLite only uses an index for LIKE when the
+# index collation matches.
+CREATE_INDEXES = """
+CREATE INDEX IF NOT EXISTS idx_emojis_group ON emojis(emoji_group);
+CREATE INDEX IF NOT EXISTS idx_emojis_description ON emojis(description COLLATE NOCASE);
+"""
+
 # SQL query to get all entries from table
 GETALL_TBL = """
 SELECT * FROM emojis
@@ -55,6 +65,7 @@ class SQLite:
 
     def create_table(self):
         self.cur.execute(CREATE_TBL)
+        self.cur.executescript(CREATE_INDEXES)
         self.conn.commit()
 
     def insert_or_update(self, item):

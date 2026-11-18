@@ -180,11 +180,23 @@ search_description(search_text, skin_tone = 0, gender = 0) {
     // 0: no filter (show all)
     // 1: women (show emojis with "woman" in description or gender-neutral emojis)
     // 2: men (show emojis with "man" in description but not "woman", or gender-neutral emojis)
+    // So 1 is "woman, or no man" and 2 is "not woman": an emoji with "man" lands
+    // in both only when it is neutral, and the men side has no "man" test
+    // because "not woman" already covers it.
+    // Both words are matched as whole words: '%man%' also matched "manicure",
+    // "merman", "human" and the flags of Oman and Germany, which took 33
+    // neutral emojis out of the women filter. Descriptions are keyword lists,
+    // so a word boundary is a space, a comma, a colon or an apostrophe, and
+    // the padding covers the first and the last word. GLOB is case sensitive,
+    // like the descriptions in the db.
+    const hasWord = (word) =>
+      `(' ' || description || ' ') GLOB '*[ ,:’'']${word}[ ,:’'']*'`;
+
     switch (gender) {
       case 1: // Women
-        return ` AND (description LIKE '%woman%' OR (description NOT LIKE '%man%' AND description NOT LIKE '%woman%'))`;
-      case 2: // Men  
-        return ` AND ((description LIKE '%man%' AND description NOT LIKE '%woman%') OR (description NOT LIKE '%man%' AND description NOT LIKE '%woman%'))`;
+        return ` AND (${hasWord("woman")} OR NOT ${hasWord("man")})`;
+      case 2: // Men
+        return ` AND (NOT ${hasWord("woman")})`;
       default: // No filter
         return '';
     }

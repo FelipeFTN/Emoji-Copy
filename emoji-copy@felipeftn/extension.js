@@ -42,7 +42,6 @@ export default class EmojiCopy extends Extension {
     this.timeoutSourceId = null;
     this._settings = this.getSettings();
     this.position = this._settings.get_string("position");
-    this._permanentItems = 0;
     // Text collected by the "stay" actions while "copy-on-close" is on;
     // null when there is nothing to copy on close.
     this.pendingClipboard = null;
@@ -104,22 +103,16 @@ export default class EmojiCopy extends Extension {
 
     if (this.position === "top") {
       this.super_btn.menu.addMenuItem(this._buttonMenuItem);
-      this._permanentItems++;
       this.super_btn.menu.addMenuItem(this.searchItem.super_item);
-      this._permanentItems++;
       this.super_btn.menu.addMenuItem(recentlyUsed);
-      this._permanentItems++;
     }
 
     this._addAllCategories();
 
     if (this.position === "bottom") {
       this.super_btn.menu.addMenuItem(recentlyUsed);
-      this._permanentItems++;
       this.super_btn.menu.addMenuItem(this.searchItem.super_item);
-      this._permanentItems++;
       this.super_btn.menu.addMenuItem(this._buttonMenuItem);
-      this._permanentItems++;
     }
 
     if (this._settings.get_boolean("active-keybind")) {
@@ -332,22 +325,12 @@ export default class EmojiCopy extends Extension {
   }
 
   clearCategories() {
-    for (let i = 0; i < 9; i++) {
-      this.emojiCategories[i].getButton().set_checked(false);
-    }
-
-    let items = this.super_btn.menu._getMenuItems();
-
-    if (this.position == "top") {
-      for (let i = this._permanentItems; i < items.length; i++) {
-        items[i].setSubmenuShown(false);
-        items[i].visible = false;
-      }
-    } else {
-      for (let i = 0; i < (items.length - this._permanentItems); i++) {
-        items[i].setSubmenuShown(false);
-        items[i].visible = false;
-      }
+    // The categories are the only items built on top of this menu, so close
+    // them directly instead of walking it with the private _getMenuItems().
+    for (const category of this.emojiCategories) {
+      category.getButton().set_checked(false);
+      category.super_item.setSubmenuShown(false);
+      category.super_item.visible = false;
     }
 
     this._onSearchTextChanged();
