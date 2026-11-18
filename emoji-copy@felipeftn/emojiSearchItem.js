@@ -1,4 +1,5 @@
 import St from "gi://St";
+import GLib from "gi://GLib";
 import Clutter from "gi://Clutter";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
 
@@ -10,6 +11,9 @@ import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.j
 // "recent-rows" setting
 const MAX_RESULT_ROWS = 5;
 
+// How long the search waits for the typing to stop before running, in ms
+const SEARCH_DEBOUNCE_MS = 120;
+
 export class EmojiSearchItem {
   constructor(emojiCopy, nbColumns) {
     this.super_item = new PopupMenu.PopupBaseMenuItem({
@@ -20,6 +24,8 @@ export class EmojiSearchItem {
     this.emojiCopy = emojiCopy;
     // Emojis picked while the menu is open, see shiftFor()
     this._pendingRecents = [];
+    // Pending debounced search, see _queueSearch()
+    this._searchTimeoutId = null;
     this._settings = this.emojiCopy._settings;
     // Rows of the results grid, see _setRows()
     this._nbRows = this._settings.get_int("recent-rows");
@@ -35,7 +41,7 @@ export class EmojiSearchItem {
 
     this.searchEntry.get_clutter_text().connect(
       "text-changed",
-      this._onSearchTextChanged.bind(this),
+      () => this._queueSearch(),
     );
 
     // Listen for skin tone changes and refresh search results. Keep the
@@ -67,7 +73,21 @@ export class EmojiSearchItem {
       // whatever the layout or Shift state.
       const state = event.get_state();
       const index = event.get_key_code() - 10;
-      if ((state & Clutter.ModifierType.CONTROL_MASK) && index >= 0 && index <= 9) {
+      const picksEmoji =
+        (state & Clutter.ModifierType.CONTROL_MASK) && index >= 0 && index <= 9;
+
+      // The keys below read the results row, which may still be waiting for the
+      // debounce. This handler runs before ClutterText inserts the character,
+      // so flushing for every key would run the search that the debounce is
+      // there to avoid: only the keys that read the row flush it.
+      if (picksEmoji
+        || symbol === Clutter.KEY_Return
+        || symbol === Clutter.KEY_KP_Enter
+        || symbol === Clutter.KEY_Down) {
+        this._flushPendingSearch();
+      }
+
+      if (picksEmoji) {
         const btn = this._recents[index];
         const emojiToCopy = btn?.super_btn?.label ? btn.getTaggedEmoji() : null;
         if (emojiToCopy) {
@@ -133,6 +153,33 @@ export class EmojiSearchItem {
           return Clutter.EVENT_PROPAGATE;
       }
     });
+  }
+
+  // Every keystroke used to run the search right away, which means up to two
+  // LIKE queries over the whole table per character typed. Wait for the typing
+  // to stop instead.
+  _queueSearch() {
+    if (this._searchTimeoutId) {
+      GLib.Source.remove(this._searchTimeoutId);
+    }
+    this._searchTimeoutId = GLib.timeout_add(
+      GLib.PRIORITY_DEFAULT,
+      SEARCH_DEBOUNCE_MS,
+      () => {
+        this._searchTimeoutId = null;
+        this._onSearchTextChanged();
+        return GLib.SOURCE_REMOVE;
+      },
+    );
+  }
+
+  // Runs a queued search now, so the key handlers below act on the results for
+  // what is in the entry instead of the ones shown before the last keystroke.
+  _flushPendingSearch() {
+    if (!this._searchTimeoutId) return;
+    GLib.Source.remove(this._searchTimeoutId);
+    this._searchTimeoutId = null;
+    this._onSearchTextChanged();
   }
 
   // Updates the "recently used" buttons content in reaction to a new search
@@ -331,6 +378,10 @@ export class EmojiSearchItem {
   }
 
   destroy() {
+    if (this._searchTimeoutId) {
+      GLib.Source.remove(this._searchTimeoutId);
+      this._searchTimeoutId = null;
+    }
     if (this._settings && this._settingsHandlerIds) {
       for (const id of this._settingsHandlerIds) {
         this._settings.disconnect(id);

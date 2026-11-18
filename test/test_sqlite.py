@@ -50,6 +50,31 @@ class SQLiteBuildTest(unittest.TestCase):
         self.assertEqual(row[2], "medium skin tone")
         self.assertEqual(row[3], "People & Body")
 
+    def test_the_extension_queries_hit_the_indexes(self):
+        def plan(sql_query, params=()):
+            return " ".join(
+                row[-1]
+                for row in self.db.cur.execute("EXPLAIN QUERY PLAN " + sql_query, params)
+            )
+
+        # Same shape as select_by_group() and search_description() in
+        # emoji-copy@felipeftn/handlers/sql.js
+        self.assertIn(
+            "idx_emojis_group",
+            plan(
+                "SELECT * FROM emojis WHERE emoji_group=? AND skin_tone = '';",
+                ("Animals & Nature",),
+            ),
+        )
+        self.assertIn(
+            "idx_emojis_description",
+            plan(
+                "SELECT * FROM emojis WHERE description LIKE ? AND skin_tone = ''"
+                " ORDER BY clicked_times DESC;",
+                ("pengu%",),
+            ),
+        )
+
     def test_dropping_the_table_removes_every_row(self):
         self.db.insert_many([("🐧", "penguin", "", "Animals & Nature")])
         self.db.drop_table()
