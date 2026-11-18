@@ -39,7 +39,12 @@ export class EmojiCategory {
 
     this.super_item.visible = false;
     this.super_item.reactive = false;
-    this.super_item._triangleBin.visible = false;
+    // PopupSubMenuMenuItem has no public API for its expander arrow. Hiding it
+    // is cosmetic: if a Shell release drops _triangleBin, show the arrow
+    // instead of throwing in the constructor.
+    if (this.super_item._triangleBin) {
+      this.super_item._triangleBin.visible = false;
+    }
 
     const emoji_size = this._settings.get_int("emojisize");
     const nbcols = this._nbColumns;
