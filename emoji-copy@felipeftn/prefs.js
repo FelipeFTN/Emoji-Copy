@@ -47,6 +47,27 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         }
     }
 
+    // Adds a ComboRow that reads and writes one of `values` in a string setting
+    _comboRow(group, { title, subtitle, key, values, labels }) {
+        const row = new Adw.ComboRow({
+            title,
+            subtitle,
+            model: Gtk.StringList.new(labels),
+        });
+        group.add(row);
+
+        const current = this._window._settings.get_string(key);
+        const index = values.indexOf(current);
+        row.set_selected(index !== -1 ? index : 0);
+
+        row.connect('notify::selected', () => {
+            const selected = row.get_selected();
+            if (selected >= 0 && selected < values.length) {
+                this._window._settings.set_string(key, values[selected]);
+            }
+        });
+    }
+
     _general() {
         // General page
         const general_pg = new Adw.PreferencesPage({
@@ -69,28 +90,35 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         });
         general_gp.add(show_indicator);
 
+        // Where the buttons, the search box and the recent emojis sit in the menu
+        this._comboRow(general_gp, {
+            title: _('Menu Position'),
+            subtitle: _('Place the buttons, the search box and the recently used emojis above or below the categories. Takes effect after restarting the extension.'),
+            key: 'position',
+            values: ['top', 'bottom'],
+            labels: [_('Above the categories'), _('Below the categories')],
+        });
+
         // Show emoji copy window next to cursor (true or false)
-        const location_options = ['top-bar', 'cursor'];
-        const window_location = new Adw.ComboRow({
+        this._comboRow(general_gp, {
             title: _('Window Location'),
             subtitle: _('Where to display the emoji menu window.'),
-            model: Gtk.StringList.new([
-                _('Top bar'),
-                _('Cursor'),
-            ]),
+            key: 'window-location',
+            values: ['top-bar', 'cursor'],
+            labels: [_('Top bar'), _('Cursor')],
         });
-        general_gp.add(window_location);
 
-        const current_location = this._window._settings.get_string('window-location');
-        const initial_index = location_options.indexOf(current_location);
-        window_location.set_selected(initial_index !== -1 ? initial_index : 0);
+        // Number of emojis per line
+        const nbcols = Adw.SpinRow.new_with_range(5, 30, 1);
+        nbcols.set_title(_('Emojis per Row'));
+        nbcols.set_subtitle(_('How many emojis fit in a row of the menu.'));
+        general_gp.add(nbcols);
 
-        window_location.connect('notify::selected', () => {
-            const index = window_location.get_selected();
-            if (index >= 0 && index < location_options.length) {
-                this._window._settings.set_string('window-location', location_options[index]);
-            }
-        });
+        // Size of the emojis in the menu
+        const emojisize = Adw.SpinRow.new_with_range(10, 80, 1);
+        emojisize.set_title(_('Emoji Size'));
+        emojisize.set_subtitle(_('Font size of the emojis, in pixels.'));
+        general_gp.add(emojisize);
 
         // Emoji copy paste on Select Switch
         const paste_on_select = new Adw.SwitchRow({
@@ -176,6 +204,8 @@ export default class EmojiCopyPrefs extends ExtensionPreferences {
         this._window._settings.bind('copy-on-close', copy_on_close, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('active-keybind', active_keybind, 'active', Gio.SettingsBindFlags.DEFAULT);
         this._window._settings.bind('recent-rows', recent_rows, 'value', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('nbcols', nbcols, 'value', Gio.SettingsBindFlags.DEFAULT);
+        this._window._settings.bind('emojisize', emojisize, 'value', Gio.SettingsBindFlags.DEFAULT);
 
         // Mouse and keyboard shortcuts reference
         this._shortcuts(general_pg);
