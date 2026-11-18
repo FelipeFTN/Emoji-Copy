@@ -102,6 +102,27 @@ It will be less ugly if you have the « Noto Emoji » font, the
 « [Twitter Color Emoji](https://github.com/eosrei/twemoji-color-font/releases) »
 font, or the « JoyPixels Color » font installed on your system.
 
+## Custom emojis ✍️
+
+The menu copies any string, not only Unicode emojis: kaomoji, table flips,
+whatever you paste often. Put them in `~/.config/emoji-copy/custom.json` and
+reload the extension (`Alt`+`F2`, then `restart`, or toggle it off and on):
+
+```json
+{
+  "🥰": { "description": ["smiling face with hearts", "love"], "group": "Smileys & Emotion" },
+  "(╯°□°)╯︵ ┻━┻": { "description": ["table flip", "angry", "rage"], "group": "Symbols" }
+}
+```
+
+`description` is what the search matches. `group` is optional, defaults to
+`Symbols`, and has to be one of the categories of the menu (`Smileys & Emotion`,
+`People & Body`, `Animals & Nature`, `Food & Drink`, `Travel & Places`,
+`Activities`, `Objects`, `Symbols`, `Flags`); an entry with any other group only
+shows in the search results. An emoji that the database already ships keeps its
+group and its click count, and only its description is replaced. The file is
+read every time the extension is enabled and nothing is written back to it.
+
 ## Support the project ☕
 
 Emoji Copy is free software, GPL-3.0, with no company behind it and no telemetry. Keeping it working on each new GNOME Shell release, updating the emoji data and shipping translations takes evenings.

@@ -18,6 +18,7 @@
 
 import St from "gi://St";
 import Meta from "gi://Meta";
+import Gio from "gi://Gio";
 import GLib from "gi://GLib";
 import Shell from "gi://Shell";
 
@@ -48,6 +49,7 @@ export default class EmojiCopy extends Extension {
 
     this.sqlite = new SQLite();
     await this.sqlite.initializeDB(this.path);
+    await this._loadCustomEmojis();
 
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
     let box = new St.BoxLayout();
@@ -187,6 +189,50 @@ export default class EmojiCopy extends Extension {
     this.sqlite = null;
     this._buttonMenuItem = null;
     this.emojiCategories = null;
+  }
+
+  // Anything the user keeps in $XDG_CONFIG_HOME/emoji-copy/custom.json, in the
+  // same shape build/custom.py uses: {emoji: {"description": [...], "group"}}.
+  // It lives in memory only and is read again on every enable.
+  async _loadCustomEmojis() {
+    const path = GLib.build_filenamev([
+      GLib.get_user_config_dir(),
+      "emoji-copy",
+      "custom.json",
+    ]);
+
+    let contents;
+    try {
+      const [bytes] = await Gio.File.new_for_path(path).load_contents_async(null);
+      contents = new TextDecoder().decode(bytes);
+    } catch (error) {
+      // Not having a custom.json is the normal case; anything else is worth a line
+      if (error.code !== Gio.IOErrorEnum.NOT_FOUND) {
+        console.warn(`Cannot read ${path}:`, error);
+      }
+      return;
+    }
+
+    let custom;
+    try {
+      custom = JSON.parse(contents);
+    } catch (error) {
+      console.error(`Ignoring ${path}:`, error);
+      return;
+    }
+    if (typeof custom !== "object" || custom === null || Array.isArray(custom)) {
+      console.error(`Ignoring ${path}: expected an object of emojis`);
+      return;
+    }
+
+    for (const [emoji, entry] of Object.entries(custom)) {
+      const { description = [], group = null } = entry ?? {};
+      if (!Array.isArray(description) || (group !== null && typeof group !== "string")) {
+        console.warn(`Skipping ${emoji}: description has to be a list of words, group a string`);
+        continue;
+      }
+      this.sqlite.insert_emoji(emoji, description.join(" "), group);
+    }
   }
 
   toggleMenu() {
