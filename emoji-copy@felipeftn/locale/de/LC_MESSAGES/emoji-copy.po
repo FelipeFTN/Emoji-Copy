@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/FelipeFTN/Emoji-Copy/issues\n"
-"POT-Creation-Date: 2026-11-04 12:38-0300\n"
+"POT-Creation-Date: 2026-11-18 12:24-0300\n"
 "PO-Revision-Date: 2021-11-21 21:00+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: \n"
@@ -140,6 +140,24 @@ msgid "Whether to show the emoji indicator."
 msgstr ""
 
 #: emoji-copy@felipeftn/prefs.js
+msgid "Menu Position"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid ""
+"Place the buttons, the search box and the recently used emojis above or "
+"below the categories. Takes effect after restarting the extension."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Above the categories"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Below the categories"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
 msgid "Window Location"
 msgstr ""
 
@@ -153,6 +171,25 @@ msgstr ""
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "Cursor"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Emojis per Row"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "How many emojis fit in a row of the menu."
+msgstr ""
+
+# Did not translate it because it's the name of the app. 
+#: emoji-copy@felipeftn/prefs.js
+#, fuzzy
+#| msgid "Emoji Copy"
+msgid "Emoji Size"
+msgstr "Emoji Copy"
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Font size of the emojis, in pixels."
 msgstr ""
 
 #: emoji-copy@felipeftn/prefs.js
