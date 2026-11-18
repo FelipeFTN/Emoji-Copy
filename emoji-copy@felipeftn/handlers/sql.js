@@ -7,6 +7,7 @@ import GLib from "gi://GLib";
 
 import { initSqlJs } from "../libs/sql/sql.js";
 
+// extension.js relies on this too, to await the user's custom.json
 Gio._promisify(
   Gio.File.prototype,
   "load_contents_async",
@@ -52,6 +53,18 @@ export class SQLite {
     return this.query(`
       UPDATE emojis SET clicked_times = clicked_times + 1 WHERE unicode = ?
     `, [unicode]);
+  }
+
+  // Emojis from the user's custom.json. An emoji that is already in the table
+  // keeps its group and its click count unless the entry names a group.
+  insert_emoji(unicode, description, group = null) {
+    return this.query(`
+      INSERT INTO emojis (unicode, description, skin_tone, emoji_group, clicked_times)
+      VALUES (?, ?, '', COALESCE(?, 'Symbols'), 0)
+      ON CONFLICT(unicode) DO UPDATE SET
+        description = excluded.description,
+        emoji_group = COALESCE(?, emoji_group)
+    `, [unicode, description, group, group]);
   }
 
 search_description(search_text, skin_tone = 0, gender = 0) {
