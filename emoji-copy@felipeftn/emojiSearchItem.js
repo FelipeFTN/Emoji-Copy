@@ -6,6 +6,10 @@ import { EmojiButton } from "./emojiButton.js";
 
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
 
+// Ceiling for the results grid while searching, the same as the <range> of the
+// "recent-rows" setting
+const MAX_RESULT_ROWS = 5;
+
 export class EmojiSearchItem {
   constructor(emojiCopy, nbColumns) {
     this.super_item = new PopupMenu.PopupBaseMenuItem({
@@ -17,6 +21,8 @@ export class EmojiSearchItem {
     // Emojis picked while the menu is open, see shiftFor()
     this._pendingRecents = [];
     this._settings = this.emojiCopy._settings;
+    // Rows of the results grid, see _setRows()
+    this._nbRows = this._settings.get_int("recent-rows");
 
     this._defaultHint = _("Type here to search…");
     this.searchEntry = new St.Entry({
@@ -132,17 +138,15 @@ export class EmojiSearchItem {
   // Updates the "recently used" buttons content in reaction to a new search
   // query (the text changed or the category changed).
   _onSearchTextChanged() {
-    let searchedText = this.searchEntry?.get_text();
-    if (searchedText === null || searchedText === undefined || searchedText === "") {
+    // Trimmed first: a query of nothing but spaces is not a search
+    let searchedText = this.searchEntry?.get_text()?.trim();
+    if (!searchedText) {
+      this._setRows(this._settings.get_int("recent-rows"));
       this._buildRecents();
       this._updateSensitivity();
       return;
     }
-    searchedText = searchedText.toLowerCase().trim();
-
-    for (let j = 0; j < this._recents.length; j++) {
-      this._recents[j].super_btn.label = "";
-    }
+    searchedText = searchedText.toLowerCase();
 
     // Get results for selected skin tone and for yellow (no skin tone)
     const selectedTone = this._settings.get_int("skin-tone");
@@ -164,6 +168,19 @@ export class EmojiSearchItem {
       results = this.emojiCopy.sqlite.search_description(searchedText, 0, selectedGender);
       // Get this back if needed
       // .filter(e => !e.skin_tone || e.skin_tone === '');
+    }
+
+    // A single row of results hid every other match (#45): grow the grid to the
+    // rows the results need, up to the same ceiling as the recents rows.
+    this._setRows(Math.max(
+      this._settings.get_int("recent-rows"),
+      Math.min(MAX_RESULT_ROWS, Math.ceil(results.length / this._nbColumns)),
+    ));
+
+    // Resizing rebuilt the grid, so clear it here: the empty slots must not fall
+    // back to the recently used emojis while a search is showing.
+    for (let j = 0; j < this._recents.length; j++) {
+      this._recents[j].super_btn.label = "";
     }
 
     let firstEmptyIndex = 0;
@@ -204,14 +221,19 @@ export class EmojiSearchItem {
     return recentlyUsed;
   }
 
-  // (Re)creates the recents grid to match this._nbColumns and "recent-rows"
+  // (Re)creates the recents grid to match this._nbColumns and this._nbRows
   _rebuildRecentsButtons() {
     this._recents.forEach((b) => b.destroy());
     this._recents = [];
     this._recentsContainer.destroy_all_children();
 
-    const nbRows = this._settings.get_int("recent-rows");
-    for (let r = 0; r < nbRows; r++) {
+    // Without a search the grid goes back to the configured rows; while
+    // searching, _onSearchTextChanged() asks for the rows the results need.
+    if (!this.searchEntry?.get_text()) {
+      this._nbRows = this._settings.get_int("recent-rows");
+    }
+
+    for (let r = 0; r < this._nbRows; r++) {
       const row = new St.BoxLayout();
       this._recentsContainer.add_child(row);
       for (let c = 0; c < this._nbColumns; c++) {
@@ -224,6 +246,14 @@ export class EmojiSearchItem {
 
     this._buildRecents();
     this.updateStyleRecents();
+  }
+
+  // Rebuilds the grid only when the row count changes: the buttons are widgets
+  // and recreating them on every keystroke would cost more than the search
+  _setRows(nbRows) {
+    if (nbRows === this._nbRows) return;
+    this._nbRows = nbRows;
+    this._rebuildRecentsButtons();
   }
 
   // Updates the number of columns in place, keeping the search entry and
