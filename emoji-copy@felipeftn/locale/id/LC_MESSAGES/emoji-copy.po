@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 😄 Emoji Copy V34\n"
 "Report-Msgid-Bugs-To: https://github.com/FelipeFTN/Emoji-Copy/issues\n"
-"POT-Creation-Date: 2026-11-18 12:24-0300\n"
+"POT-Creation-Date: 2026-11-23 16:34-0300\n"
 "PO-Revision-Date: 2026-07-14 10:30+0800\n"
 "Last-Translator: \n"
 "Language-Team: frijal [https://dalam.web.id](https://dalam.web.id)\n"
@@ -198,6 +198,16 @@ msgstr "Tempel saat emoji dipilih"
 
 #: emoji-copy@felipeftn/prefs.js
 msgid "Automatically paste the selected emoji."
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid "Restore Clipboard after Pasting"
+msgstr ""
+
+#: emoji-copy@felipeftn/prefs.js
+msgid ""
+"Put the previous clipboard content back once the emoji is pasted, so it does "
+"not stay in the clipboard. Needs \"Paste on Select\"."
 msgstr ""
 
 #: emoji-copy@felipeftn/prefs.js
