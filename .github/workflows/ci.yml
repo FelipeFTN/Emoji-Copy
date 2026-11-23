@@ -21,6 +21,21 @@ jobs:
           npm ci
           npm run lint
 
+      - name: Test
+        run: npm test
+
+      # The Makefile ships no gschemas.compiled on purpose (EGO-P-006), so no
+      # other step parses the schema. --dry-run validates it without leaving
+      # the compiled file in the tree.
+      - name: Validate the settings schema
+        run: |
+          ls emoji-copy@felipeftn/schemas/*.gschema.xml >/dev/null
+          if ! command -v glib-compile-schemas >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y libglib2.0-bin
+          fi
+          glib-compile-schemas --strict --dry-run emoji-copy@felipeftn/schemas
+
       # build/parser.py needs requests and is what generates emojis.db, which
       # the zip ships; there is no requirements.txt yet.
       - name: Build
