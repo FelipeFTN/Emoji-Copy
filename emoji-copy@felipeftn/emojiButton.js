@@ -236,7 +236,13 @@ export class EmojiButton {
   }
 
   replaceClipboardAndClose(emojiToCopy) {
-    this._setClipboards(emojiToCopy);
+    const pasteOnSelect = this._settings.get_boolean("paste-on-select");
+    const restoreClipboard =
+      pasteOnSelect && this._settings.get_boolean("restore-clipboard");
+
+    if (!restoreClipboard) {
+      this._setClipboards(emojiToCopy);
+    }
 
     // The "keep-open" setting turns the default action into a "stay" one,
     // so several emojis can be picked in a row.
@@ -244,11 +250,64 @@ export class EmojiButton {
       this.emojiCopy.get_super_btn().menu.close();
     }
 
-    if (this._settings.get_boolean("paste-on-select")) {
+    if (restoreClipboard) {
+      this._pasteAndRestore(emojiToCopy);
+    } else if (pasteOnSelect) {
       this.triggerPasteHack();
     }
 
     return Clutter.EVENT_STOP;
+  }
+
+  /*
+   * "restore-clipboard" puts the previous clipboard content back after the
+   * paste. The emoji still goes through the clipboard, because that is how
+   * the paste is delivered: history managers see it. What this avoids is the
+   * emoji staying in the clipboard afterwards.
+   */
+  _pasteAndRestore(emojiToCopy) {
+    const paste = (previous) => {
+      this._setClipboards(emojiToCopy);
+      this.triggerPasteHack(() => this._restoreClipboardLater(previous));
+    };
+
+    // Picks with "keep-open" reuse the content captured before the first
+    // paste; reading again would save the emoji from the previous pick.
+    if (this.emojiCopy._clipboardBeforeRestore) {
+      paste(this.emojiCopy._clipboardBeforeRestore);
+      return;
+    }
+
+    this.clipboard.get_text(CLIPBOARD_TYPE, (_, clipboard) => {
+      this.clipboard.get_text(PRIMARY_CLIPBOARD_TYPE, (_, primary) => {
+        const previous = { clipboard, primary };
+        this.emojiCopy._clipboardBeforeRestore = previous;
+        paste(previous);
+      });
+    });
+  }
+
+  // The focused app reads the clipboard when it handles the paste key event,
+  // after triggerPasteHack()'s callback returns. Restoring any sooner pastes
+  // the old content instead of the emoji.
+  _restoreClipboardLater(previous) {
+    if (this.emojiCopy._restoreTimeoutId) {
+      GLib.source_remove(this.emojiCopy._restoreTimeoutId);
+    }
+    this.emojiCopy._restoreTimeoutId = GLib.timeout_add(
+      GLib.PRIORITY_DEFAULT,
+      250,
+      () => {
+        this.emojiCopy._restoreTimeoutId = null;
+        this.clipboard.set_text(CLIPBOARD_TYPE, previous.clipboard ?? "");
+        this.clipboard.set_text(PRIMARY_CLIPBOARD_TYPE, previous.primary ?? "");
+        // The clipboard is the user's content again, not something this menu
+        // session copied, so a following "append" must not append to it.
+        this.emojiCopy.clipboardOwned = false;
+        this.emojiCopy._clipboardBeforeRestore = null;
+        return GLib.SOURCE_REMOVE;
+      },
+    );
   }
 
   replaceClipboardAndStay(emojiToCopy) {
@@ -345,7 +404,7 @@ export class EmojiButton {
 
   // PR #189 from khaled-0 at maoschanz/emoji-selector-for-gnome
   // Originally from "clipboard-histroy@alexsaveau.dev"
-  triggerPasteHack() {
+  triggerPasteHack(onPasted) {
     // The callback may now stay pending until a held Ctrl is released, so a
     // second trigger must not leave the previous one in the queue.
     if (this._pasteHackCallbackId) {
@@ -390,6 +449,11 @@ export class EmojiButton {
         );
 
         this._pasteHackCallbackId = undefined;
+
+        // The app reads the clipboard from the key event above, after this
+        // callback returns, so the caller restores it from a later timeout.
+        onPasted?.();
+
         return GLib.SOURCE_REMOVE;
       },
     );
