@@ -13,6 +13,8 @@ globals:
   # GJS puts these on the global scope, nobody imports them.
   global: readonly
   console: readonly
+  # Encoding API, global since GJS 1.69 (used to read the user's custom.json)
+  TextDecoder: readonly
 rules:
   # prefs.js uses 4 space blocks, the rest of the extension uses 2 and
   # handlers/sql.js was written in 2. Reindenting everything is not worth it.
