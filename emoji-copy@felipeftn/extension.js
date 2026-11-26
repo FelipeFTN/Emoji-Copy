@@ -227,6 +227,21 @@ export default class EmojiCopy extends Extension {
       this.timeoutSourceId = null;
     }
 
+    // The restore-clipboard timer lives on the extension, so no button
+    // destroy() reaches it. Put the user's clipboard back now: leaving the
+    // source running calls back into a disposed menu, and dropping the timer
+    // alone keeps the emoji in the clipboard with no callback left to clear it.
+    if (this._restoreTimeoutId) {
+      GLib.Source.remove(this._restoreTimeoutId);
+      this._restoreTimeoutId = null;
+      const previous = this._clipboardBeforeRestore ?? {};
+      const clipboard = St.Clipboard.get_default();
+      clipboard.set_text(St.ClipboardType.CLIPBOARD, previous.clipboard ?? "");
+      clipboard.set_text(St.ClipboardType.PRIMARY, previous.primary ?? "");
+      this.clipboardOwned = false;
+    }
+    this._clipboardBeforeRestore = null;
+
     this.sqlite.destroy();
     this.searchItem.destroy();
     // Disconnects the categories' settings handlers; leaving them connected
