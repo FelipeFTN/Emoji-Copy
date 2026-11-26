@@ -6,7 +6,7 @@
   "url": "https://github.com/felipeftn/emoji-copy",
   "settings-schema": "org.gnome.shell.extensions.emoji-copy",
   "gettext-domain": "emoji-copy",
-  "version": 44,
+  "version": 45,
   "donations": {
     "github": "FelipeFTN",
     "buymeacoffee": "felipeftn"
