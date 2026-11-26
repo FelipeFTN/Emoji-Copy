@@ -87,13 +87,19 @@ export default class EmojiCopy extends Extension {
       return;
     }
 
-    this.sqlite = new SQLite();
-    await this.sqlite.initializeDB(this.path);
-    await this._loadCustomEmojis();
+    // Kept in a local too: a disable()/enable() that races this _init() swaps
+    // this.sqlite for its own instance, and the bail-out below must destroy
+    // this one, not the newer one.
+    const sqlite = new SQLite();
+    this.sqlite = sqlite;
+    await sqlite.initializeDB(this.path);
+    await this._loadCustomEmojis(sqlite);
     if (token !== this._initToken) {
       // Disabled while the database was loading.
-      this.sqlite.destroy();
-      this.sqlite = null;
+      sqlite.destroy();
+      if (this.sqlite === sqlite) {
+        this.sqlite = null;
+      }
       return;
     }
 
@@ -242,7 +248,7 @@ export default class EmojiCopy extends Extension {
   // Anything the user keeps in $XDG_CONFIG_HOME/emoji-copy/custom.json, in the
   // same shape build/custom.py uses: {emoji: {"description": [...], "group"}}.
   // It lives in memory only and is read again on every enable.
-  async _loadCustomEmojis() {
+  async _loadCustomEmojis(sqlite) {
     const path = GLib.build_filenamev([
       GLib.get_user_config_dir(),
       "emoji-copy",
@@ -279,7 +285,7 @@ export default class EmojiCopy extends Extension {
         console.warn(`Skipping ${emoji}: description has to be a list of words, group a string`);
         continue;
       }
-      this.sqlite.insert_emoji(emoji, description.join(" "), group);
+      sqlite.insert_emoji(emoji, description.join(" "), group);
     }
   }
 
