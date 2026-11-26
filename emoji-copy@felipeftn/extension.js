@@ -35,10 +35,43 @@ import {
 import { EmojiButton } from "./emojiButton.js";
 import { EmojiCategory } from "./emojiCategory.js";
 import { EmojiSearchItem } from "./emojiSearchItem.js";
-import { SQLite } from "./handlers/sql.js";
 
 export default class EmojiCopy extends Extension {
-  async enable() {
+  // GNOME Shell enables extensions one after the other and awaits enable(),
+  // and that happens while the startup animation is still pending. Importing
+  // handlers/sql.js pulls in sql.js (~1.3 MB) and loading the database takes
+  // long enough to delay the animation, so enable() stays synchronous and the
+  // work happens in _init(), after the shell has finished starting up.
+  enable() {
+    // Identifies this enable() cycle: disable() and a new enable() both make
+    // any _init() still running bail out instead of building the UI twice.
+    const token = (this._initToken = Symbol());
+    this._init(token).catch((e) => {
+      if (token !== this._initToken) {
+        return;
+      }
+      console.error("Emoji Copy failed to start:", e);
+      Main.notifyError(_("Emoji Copy"), `${e.message ?? e}`);
+      this.sqlite?.destroy();
+      this.sqlite = null;
+    });
+  }
+
+  async _init(token) {
+    if (Main.layoutManager._startingUp) {
+      // Startup only: wait for the shell's own animation instead of competing
+      // with it.
+      await new Promise((resolve) => {
+        const id = Main.layoutManager.connect("startup-complete", () => {
+          Main.layoutManager.disconnect(id);
+          resolve();
+        });
+      });
+    }
+    if (token !== this._initToken) {
+      return;
+    }
+
     this.timeoutSourceId = null;
     this._settings = this.getSettings();
     this.position = this._settings.get_string("position");
@@ -46,9 +79,29 @@ export default class EmojiCopy extends Extension {
     // null when there is nothing to copy on close.
     this.pendingClipboard = null;
 
-    this.sqlite = new SQLite();
-    await this.sqlite.initializeDB(this.path);
-    await this._loadCustomEmojis();
+    // Lazy so that sql.js is not parsed during startup. It also promisifies
+    // Gio.File.load_contents_async, which _loadCustomEmojis() relies on, so
+    // it has to be imported first.
+    const { SQLite } = await import("./handlers/sql.js");
+    if (token !== this._initToken) {
+      return;
+    }
+
+    // Kept in a local too: a disable()/enable() that races this _init() swaps
+    // this.sqlite for its own instance, and the bail-out below must destroy
+    // this one, not the newer one.
+    const sqlite = new SQLite();
+    this.sqlite = sqlite;
+    await sqlite.initializeDB(this.path);
+    await this._loadCustomEmojis(sqlite);
+    if (token !== this._initToken) {
+      // Disabled while the database was loading.
+      sqlite.destroy();
+      if (this.sqlite === sqlite) {
+        this.sqlite = null;
+      }
+      return;
+    }
 
     this.super_btn = new PanelMenu.Button(0.0, _("Emoji Copy"), false);
     let box = new St.BoxLayout();
@@ -143,6 +196,14 @@ export default class EmojiCopy extends Extension {
   }
 
   disable() {
+    // enable() returns before anything is built, so disable() can be called
+    // while _init() is still waiting for startup or loading the database.
+    // Dropping the token makes that _init() bail out.
+    this._initToken = null;
+    if (!this.super_btn) {
+      return;
+    }
+
     // Don't lose emojis collected in a menu that is still open, and keep
     // its picks in "recently used". Persist only: the menu is going away.
     this.flushPendingClipboard();
@@ -187,7 +248,7 @@ export default class EmojiCopy extends Extension {
   // Anything the user keeps in $XDG_CONFIG_HOME/emoji-copy/custom.json, in the
   // same shape build/custom.py uses: {emoji: {"description": [...], "group"}}.
   // It lives in memory only and is read again on every enable.
-  async _loadCustomEmojis() {
+  async _loadCustomEmojis(sqlite) {
     const path = GLib.build_filenamev([
       GLib.get_user_config_dir(),
       "emoji-copy",
@@ -224,7 +285,7 @@ export default class EmojiCopy extends Extension {
         console.warn(`Skipping ${emoji}: description has to be a list of words, group a string`);
         continue;
       }
-      this.sqlite.insert_emoji(emoji, description.join(" "), group);
+      sqlite.insert_emoji(emoji, description.join(" "), group);
     }
   }
 
